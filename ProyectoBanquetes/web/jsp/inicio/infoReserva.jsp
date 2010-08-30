@@ -46,14 +46,13 @@
             <tr style="height: 30px">
                 <td width="40%">Fecha Inicio:</td>
                 <td width="50%">
-                    <!--                    <input class="inputDate" id="inputDate" value="< detalles.getFechaInicio() %>" name="fechaInicio" onKeyUp="this.value=this.value.toUpperCase();" style="width: 160px; height: 23px"/>-->
-                    <input type="text" name="fechaFin" value="<%= detalles.getFechaInicio()%>" disabled="disabled" style="width: 160px; height: 23px" align="middle" />
-                </td>
+                    <input class="inputDate3" id="inputDate3" value="<%= detalles.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" />
+                 </td>
             </tr>
             <tr style="height: 30px">
                 <td>Fecha Fin:</td>
                 <td>
-                    <input type="text" name="fechaFin" value="<%= detalles.getFechaFin()%>" disabled="disabled" style="width: 160px; height: 23px" align="middle" />
+                    <input class="inputDate4" id="inputDate4" value="<%= detalles.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" />
                 </td>
             </tr>
             <tr style="height: 30px">
@@ -80,7 +79,6 @@
                         <% }%>
                         <% }%>
                     </select>
-                    <!--                    <input type="hidden" name="idTipoEvento" value="< idTipoEvento%>"/>-->
                 </td>
             </tr>
             <tr style="height: 30px">
