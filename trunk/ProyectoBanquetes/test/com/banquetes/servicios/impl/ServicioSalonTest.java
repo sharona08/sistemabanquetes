@@ -169,11 +169,11 @@ public class ServicioSalonTest {
     /**
      * Test of getSalon method, of class ServicioSalon.
      */
-    //@Test
+    @Test
     public void testGetSalon() {
         System.out.println("getSalon");
         try {
-            Salon salon = servicioSalon.getSalon(new Integer(1));
+            Salon salon = servicioSalon.getSalon(new Integer(2));
             assertNotNull(salon);
             System.out.println(salon.getId() + " " + salon.getNombre() + " " + salon.getCosto() + " " + salon.getHabilitado());
         } catch (Exception e) {
@@ -185,7 +185,7 @@ public class ServicioSalonTest {
     /**
      * Test of getSalon method, of class ServicioSalon.
      */
-    @Test
+   // @Test
     public void testGetSalonNombre() {
         System.out.println("getSalonNombre");
         try {
