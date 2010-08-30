@@ -25,12 +25,6 @@
 <%@page import="com.banquetes.dominio.Salon"%>
 <%@page import="com.sun.xml.internal.txw2.Document"%>
 
-<style type="text/css">
-    .a option {
-        height: 10px;
-    }
-</style>
-
 <% IServicioSalon iServicioSalon = new ServicioSalon();%>
 <% List<Salon> salones = iServicioSalon.listarSalones();%>
 
@@ -72,7 +66,6 @@
             <tr style="height: 30px">
                 <td>Tipo Evento:</td>
                 <td>
-                    <% Integer idTipoEvento = 0;%>
                     <select name="tipoEvento" style="width: 165px; height: 25px" >
                         <% for (TipoEvento tipoEvento : tipoEventos) {%>
                         <% if (tipoEvento.getTipoEvento().equals(detalles.getTipoEvento())) {%>

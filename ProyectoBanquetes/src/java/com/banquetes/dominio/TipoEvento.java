@@ -30,7 +30,7 @@ public class TipoEvento {
     }
 
     public void setTipoEvento(String tipoEvento) {
-        this.tipoEvento = tipoEvento;
+        this.tipoEvento = tipoEvento.toUpperCase();
     }
 
 }
