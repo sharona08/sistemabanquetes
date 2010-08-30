@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : EVENTO.xml
+    Created on : August 19, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Evento" alias="evento"/>
+
+    <insert id="crearEvento">
+        INSERT INTO EVENTO (estado, nombre, fechaInicio, fechaFin, cantidadPersonas, horaInicio, horaFin, idTipoEvento, rifEmpresa, idContacto)
+        VALUES (
+            'T',
+            #nombre#,
+            #fechaInicio#,
+            #fechaFin#,
+            #cantidadPersonas#,
+            #horaInicio#,
+            #horaFin#,
+            #idTipoEvento#,
+            #rifEmpresa#,
+            #idContacto#)
+            
+        <selectKey resultClass="int">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="editarEvento" parameterClass="evento">
+	UPDATE EVENTO SET
+          estado = #estado#,
+          nombre = #nombre#,
+          fechaInicio = #fechaInicio#,
+          fechaFin = #fechaFin#,
+          cantidadPersonas = #cantidadPersonas#,
+          idTipoEvento = #idTipoEvento#,
+          horaInicio = #horaInicio#,
+          horaFin = #horaFin#,
+          idContacto = #idContacto#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getEvento" resultClass="evento">
+      SELECT
+          id as id,
+          estado as estado,
+          nombre as nombre,
+          fechaInicio as fechaInicio,
+          fechaFin as fechaFin,
+          cantidadPersonas as cantidadPersonas,
+          horaInicio as horaInicio,
+          horaFin as horaFin,
+          idTipoEvento as idTipoEvento,
+          rifEmpresa as rifEmpresa,
+          idContacto as idContacto
+       FROM EVENTO
+	   WHERE id = #id#
+    </select>
+    
+    <select id="getEventos" resultClass="evento">
+      SELECT
+          id as id,
+          estado as estado,
+          nombre as nombre,
+          fechaInicio as fechaInicio,
+          fechaFin as fechaFin,
+          cantidadPersonas as cantidadPersonas,
+          horaInicio as horaInicio,
+          horaFin as horaFin,
+          idTipoEvento as idTipoEvento,
+          rifEmpresa as rifEmpresa,
+          idContacto as idContacto
+       FROM EVENTO
+       ORDER BY nombre ASC
+    </select>
+    
+</sqlMap>

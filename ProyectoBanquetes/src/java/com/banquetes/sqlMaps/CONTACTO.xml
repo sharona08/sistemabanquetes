@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : CONTACTO.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Contacto" alias="contacto"/>
+    
+    <insert id="crearContacto" parameterClass="contacto">
+        INSERT INTO CONTACTO (nombre, telefono, direccion, habilitado, rifEmpresa)
+        VALUES (#nombre#,
+                #telefono#,
+                #direccion#,
+                #habilitado#,
+                #rifEmpresa#)
+
+        <selectKey resultClass="int">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="editarContacto" parameterClass="contacto">
+	UPDATE CONTACTO SET
+          nombre = #nombre#, 
+          telefono = #telefono#,
+          direccion = #direccion#,
+          habilitado = #habilitado#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getContacto" resultClass="contacto">
+      SELECT
+          id as id,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado,
+          rifEmpresa as rifEmpresa
+       FROM CONTACTO
+	   WHERE id = #id#
+    </select>
+    
+    <select id="getContactos" resultClass="contacto">
+      SELECT
+          id as id,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado,
+          rifEmpresa as rifEmpresa
+       FROM CONTACTO
+       ORDER BY nombre ASC
+    </select>
+</sqlMap>

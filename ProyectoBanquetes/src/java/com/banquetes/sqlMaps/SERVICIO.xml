@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : SERVICIO.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Servicio" alias="servicio"/>
+
+    <insert id="crearServicio" parameterClass="servicio">
+        INSERT INTO SERVICIO (nombre, descripcion, costoUnitario, tipoServicio, habilitado, idDepartamento)
+        VALUES (#nombre#,
+                #descripcion#,
+                #costoUnitario#,
+                #tipoServicio#,
+                #habilitado#,
+                #idDepartamento#)
+
+        <selectKey resultClass="int">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="editarServicio" parameterClass="servicio">
+	UPDATE SERVICIO SET
+          nombre = #nombre#,
+          descripcion = #descripcion#,
+          costoUnitario = #costoUnitario#,
+          tipoServicio = #tipoServicio#,
+          habilitado = #habilitado#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getServicios" resultClass="servicio">
+      SELECT
+          id as id,
+          nombre as nombre,
+          descripcion as descripcion,
+          costoUnitario as costoUnitario,
+          tipoServicio as tipoServicio,
+          habilitado as habilitado,
+          idDepartamento as idDepartamento
+       FROM SERVICIO
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getServicio" resultClass="servicio">
+      SELECT
+          id as id,
+          nombre as nombre,
+          descripcion as descripcion,
+          costoUnitario as costoUnitario,
+          tipoServicio as tipoServicio,
+          habilitado as habilitado,
+          idDepartamento as idDepartamento
+       FROM SERVICIO
+	   WHERE id = #id#
+    </select>
+
+    <select id="getServicioNombre" resultClass="servicio">
+      SELECT
+          id as id,
+          nombre as nombre,
+          descripcion as descripcion,
+          costoUnitario as costoUnitario,
+          tipoServicio as tipoServicio,
+          habilitado as habilitado,
+          idDepartamento as idDepartamento
+       FROM SERVICIO
+	   WHERE nombre = #nombre#
+    </select>
+    
+</sqlMap>

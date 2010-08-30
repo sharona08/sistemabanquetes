@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : ibatisConfig.xml
+    Created on : August 6, 2010, 2:12 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMapConfig
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+ <transactionManager type="JDBC">
+   <dataSource type="SIMPLE">
+    <property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>
+    <property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/banquetes"/>
+    <property name="JDBC.Username" value="root"/>
+    <property name="JDBC.Password" value="admin"/>
+   </dataSource>
+ </transactionManager>
+
+ <sqlMap resource="com/banquetes/sqlMaps/EMPRESA.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/CONTACTO.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/SALON.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/MONTAJE.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/DEPARTAMENTO.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/SERVICIO.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/EVENTO.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/EVENTO_SALA.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/RESERVA.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/TIPO_EVENTO.xml" />
+ 
+</sqlMapConfig>

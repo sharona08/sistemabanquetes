@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : SALON.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.EventoSala" alias="eventoSala"/>
+
+    <insert id="crearEventoSala" parameterClass="eventoSala">
+        INSERT INTO EVENTO_SALA (idEvento, nuevoCosto, idSalon, idMontaje)
+        VALUES (#idEvento#,
+                #nuevoCosto#,
+                #idSalon#,
+                #idMontaje#)
+    </insert>
+
+    <update id="editarEventoSala" parameterClass="eventoSala">
+	UPDATE EVENTO_SALA SET
+          nuevoCosto = #nuevoCosto#,
+          idSalon = #idSalon#,
+          idMontaje = #idMontaje#
+	WHERE
+	  idEvento = #idEvento#
+          AND idSalon = #idSalon#
+    </update>
+
+    <select id="getEventoSalas" resultClass="eventoSala">
+      SELECT
+          idEvento as idEvento,
+          nuevoCosto as nuevoCosto,
+          idSalon as idSalon,
+          idMontaje as idMontaje
+       FROM EVENTO_SALA
+       WHERE
+	  idEvento = #idEvento#
+       ORDER BY idSalon ASC
+    </select>
+
+    <select id="getEventoSala" resultClass="eventoSala">
+      SELECT
+          idEvento as idEvento,
+          nuevoCosto as nuevoCosto,
+          idSalon as idSalon,
+          idMontaje as idMontaje
+       FROM EVENTO_SALA
+       WHERE
+	  idEvento = #idEvento#
+          AND idSalon = #idSalon#
+    </select>
+    
+</sqlMap>
