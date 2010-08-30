@@ -240,6 +240,22 @@ input.inputDate2 {
 	border-right-color: #ddd;
 	width: 150px;
 }
+input.inputDate3 {
+	border: 1px solid #999;
+	padding: 1px;
+	border-bottom-color: #ddd;
+	border-right-color: #ddd;
+	width: 160px;
+	height: 23px;
+}
+input.inputDate4 {
+	border: 1px solid #999;
+	padding: 1px;
+	border-bottom-color: #ddd;
+	border-right-color: #ddd;
+	width: 160px;
+	height: 23px;
+}
 #widget {
 	position: relative;
 }

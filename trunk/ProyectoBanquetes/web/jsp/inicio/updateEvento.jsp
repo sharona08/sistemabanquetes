@@ -4,6 +4,7 @@
     Author     : maya
 --%>
 
+<%@page import="com.banquetes.util.UtilMethods"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioEventoSala"%>
 <%@page import="com.banquetes.servicios.impl.ServicioEventoSala"%>
 <%@page import="com.banquetes.dominio.Montaje"%>
@@ -35,6 +36,7 @@
         <div id="pageWrap">
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
+                <% UtilMethods util = new UtilMethods(); %>
                 <% IServicioEvento servicioEvento = new ServicioEvento();%>
                 <% IServicioEventoSala servicioEventoSala = new ServicioEventoSala();%>
                 <% IServicioTipoEvento servicioTipoEvento = new ServicioTipoEvento();%>
@@ -59,6 +61,12 @@
                 <% eventoSala.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));%>
 
                 <% evento.setEstado(estado);%>
+
+                <% if (request.getParameter("fechaInicioEvento") != null)%>
+                <% evento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));%>
+
+                <% if (request.getParameter("fechaFinEvento") != null)%>
+                <% evento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));%>
 
                 <% if (request.getParameter("nombreEvento") != null)%>
                 <% evento.setNombre(request.getParameter("nombreEvento"));%>
