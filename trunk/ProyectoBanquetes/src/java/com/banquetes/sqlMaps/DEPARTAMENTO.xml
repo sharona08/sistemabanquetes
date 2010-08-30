@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : DEPARTAMENTO.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Departamento" alias="departamento"/>
+
+    <insert id="crearDepartamento" parameterClass="departamento">
+        INSERT INTO DEPARTAMENTO (nombre)
+        VALUES (#nombre#)
+
+        <selectKey resultClass="int">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="editarDepartamento" parameterClass="departamento">
+	UPDATE DEPARTAMENTO SET
+          nombre = #nombre#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getDepartamentos" resultClass="departamento">
+      SELECT
+          id as id,
+          nombre as nombre
+       FROM DEPARTAMENTO
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getDepartamento" resultClass="departamento">
+      SELECT
+          id as id,
+          nombre as nombre
+       FROM DEPARTAMENTO
+	   WHERE id = #id#
+    </select>
+
+    <select id="getDepartamentoNombre" resultClass="departamento">
+      SELECT
+          id as id,
+          nombre as nombre
+       FROM DEPARTAMENTO
+	   WHERE nombre= #nombre#
+    </select>
+    
+</sqlMap>

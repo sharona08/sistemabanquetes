@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : SALON.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.TipoEvento" alias="tipoEvento"/>
+
+    <insert id="crearTipoEvento" parameterClass="tipoEvento">
+        INSERT INTO TIPO_EVENTO (tipoEvento)
+        VALUES (#tipoEvento#)
+
+        <selectKey resultClass="int">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="editarTipoEvento" parameterClass="tipoEvento">
+	UPDATE TIPO_EVENTO SET
+          tipoEvento = #tipoEvento#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getTipoEventos" resultClass="tipoEvento">
+      SELECT
+          id as id,
+          tipoEvento as tipoEvento
+       FROM TIPO_EVENTO
+       ORDER BY tipoEvento ASC
+    </select>
+
+    <select id="getTipoEvento" resultClass="tipoEvento">
+      SELECT
+          id as id,
+          tipoEvento as tipoEvento
+       FROM TIPO_EVENTO
+	   WHERE id = #id#
+    </select>
+
+    <select id="getTipoEventoNombre" resultClass="tipoEvento">
+      SELECT
+          id as id,
+          tipoEvento as tipoEvento
+       FROM TIPO_EVENTO
+	   WHERE tipoEvento = #tipoEvento#
+    </select>
+    
+
+</sqlMap>

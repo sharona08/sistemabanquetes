@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : EMPRESA.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Empresa" alias="empresa"/>
+
+    <insert id="crearEmpresa">
+        INSERT INTO EMPRESA VALUES (
+            #rif#,
+            #nombre#,
+            #telefono#,
+            #direccion#,
+            #habilitado#)
+    </insert>
+
+    <update id="editarEmpresa" parameterClass="empresa">
+	UPDATE EMPRESA SET
+          nombre = #nombre#, 
+          telefono = #telefono#,
+          direccion = #direccion#,
+          habilitado = #habilitado#
+	WHERE
+	  rif = #rif#
+    </update>
+
+    <select id="getEmpresa" resultClass="empresa">
+      SELECT
+          rif as rif,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado
+       FROM EMPRESA
+	   WHERE rif = #rif#
+    </select>
+    
+    <select id="getEmpresas" resultClass="empresa">
+      SELECT
+          rif as rif,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado
+       FROM EMPRESA
+       ORDER BY nombre ASC
+    </select>
+</sqlMap>

@@ -1,0 +1,74 @@
+/* 
+    Document   : home
+    Created on : Aug 12, 2010, 9:36:56 PM
+    Author     : maya
+    Description:
+        Purpose of the stylesheet follows.
+*/
+* {
+    margin: 0;
+    padding: 0
+}
+
+html {
+    height: 100%
+}
+
+body{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+#header {
+    font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+    width: 100%
+}
+
+#headerTop{
+    background-color: #CAD8E6;
+    height: 80px;
+    position: relative;
+}
+
+#logo {
+    float: left;
+    padding: 2.5px 0;
+    padding-top: 10px;
+    text-align: center;
+    width: 220px
+}
+
+
+#footer{
+    /*    background-color: #025D8C;*/
+    /*    background-color: #3A668B;*/
+    background-color: #115599;
+    height: 57px;
+    width: 100%;
+    float: left;
+    position: relative
+}
+
+#pageWrap{
+    height: 100%;
+    min-width: 1000px
+}
+
+#content{
+    font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 98%;
+    height: auto;
+    min-height: 73.5%;
+/*    width: expression(document.body.clientWidth > 1000 ? “1000px” : “94%”);*/
+/*    max-width: 1000px;*/
+    margin: 0 auto;
+}
+
+#espacio{
+    height: 40px;
+}
+

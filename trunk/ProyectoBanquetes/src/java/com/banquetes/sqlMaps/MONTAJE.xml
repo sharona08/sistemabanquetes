@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : MONTAJE.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Montaje" alias="montaje"/>
+
+    <insert id="crearMontaje" parameterClass="montaje">
+        INSERT INTO MONTAJE (tipoMontaje)
+        VALUES (#tipoMontaje#)
+
+        <selectKey resultClass="int">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="editarMontaje" parameterClass="montaje">
+	UPDATE MONTAJE SET
+          tipoMontaje = #tipoMontaje#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getMontajes" resultClass="montaje">
+      SELECT
+          id as id,
+          tipoMontaje as tipoMontaje
+       FROM MONTAJE
+       ORDER BY tipoMontaje ASC
+    </select>
+
+    <select id="getMontaje" resultClass="montaje">
+      SELECT
+          id as id,
+          tipoMontaje as tipoMontaje
+       FROM MONTAJE
+	   WHERE id = #id#
+    </select>
+
+    <select id="getMontajeNombre" resultClass="montaje">
+      SELECT
+          id as id,
+          tipoMontaje as tipoMontaje
+       FROM MONTAJE
+	   WHERE tipoMontaje = #tipoMontaje#
+    </select>
+    
+</sqlMap>

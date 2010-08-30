@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : SALON.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.servicios.TO.DetallesReservaTO" alias="detallesReserva"/>
+    <typeAlias type="com.banquetes.servicios.TO.DetallesReservaSalonTO" alias="detallesReservaSalon"/>
+
+    <select id="getDetallesReserva" resultClass="detallesReserva">
+      SELECT
+         EV.id as idEvento,
+         EV.nombre as nombreEvento,
+         EV.estado as estadoEvento,
+         EV.fechaInicio as fechaInicio,
+         EV.fechaFin as fechaFin,
+         EV.cantidadPersonas as cantidadPersonas,
+         EV.horaInicio as horaInicio,
+         EV.horaFin as horaFin,
+         TE.id as idTipoEvento,
+         TE.tipoEvento as tipoEvento,
+         E.rif as rifEmpresa,
+         E.nombre as nombreEmpresa,
+         C.id as idContacto,
+         C.nombre as nombreContacto
+       FROM EMPRESA E, EVENTO EV, TIPO_EVENTO TE, CONTACTO C
+	   WHERE EV.idTipoEvento = TE.id
+           AND E.rif = EV.rifEmpresa
+           AND E.rif = C.rifEmpresa
+           AND C.id = EV.idContacto
+           AND EV.id = #idEvento#
+    </select>
+
+    <select id="getDetallesReservaSalon" resultClass="detallesReservaSalon">
+      SELECT
+         S.id as idSalon,
+         S.nombre as nombreSalon,
+         S.costo as costoSalon,
+         S.habilitado as salonHabilitado,
+         S.idSalon as idSalonFK,
+         ES.nuevoCosto as nuevoCosto,
+         M.id as idTipoMontaje,
+         M.tipoMontaje as tipoMontaje
+       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, DETALLE_SALA DS, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
+	   WHERE S.id = DS.idSalon
+           AND M.id = DS.idMontaje
+           AND ES.idSalon = DS.idSalon
+           AND ES.idMontaje = DS.idMontaje
+           AND EV.idTipoEvento = TE.id
+           AND EV.id = ES.idEvento
+           AND E.rif = EV.rifEmpresa
+           AND E.rif = C.rifEmpresa
+           AND C.id = EV.idContacto
+           AND EV.id = #idEvento#
+    </select>
+    
+</sqlMap>

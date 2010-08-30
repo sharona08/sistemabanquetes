@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : SALON.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Salon" alias="salon"/>
+    <typeAlias type="com.banquetes.servicios.TO.DisponibilidadSalonTO" alias="disponibilidadSalon"/>
+
+    <insert id="crearSalon" parameterClass="salon">
+        INSERT INTO SALON (nombre, costo, habilitado, idSalon)
+        VALUES (#nombre#,
+                #costo#,
+                #habilitado#,
+                #idSalon#)
+
+        <selectKey resultClass="int">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="editarSalon" parameterClass="salon">
+	UPDATE SALON SET
+          nombre = #nombre#,
+          costo = #costo#,
+          habilitado = #habilitado#,
+          idSalon = #idSalon#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getSalones" resultClass="salon">
+      SELECT
+          id as id,
+          nombre as nombre,
+          costo as costo,
+          habilitado as habilitado,
+          idSalon as idSalon
+       FROM SALON
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getSalon" resultClass="salon">
+      SELECT
+          id as id,
+          nombre as nombre,
+          costo as costo,
+          habilitado as habilitado,
+          idSalon as idSalon
+       FROM SALON
+	   WHERE id = #id#
+    </select>
+
+    <select id="getSalonNombre" resultClass="salon">
+      SELECT
+          id as id,
+          nombre as nombre,
+          costo as costo,
+          habilitado as habilitado,
+          idSalon as idSalon
+       FROM SALON
+	   WHERE nombre = #nombre#
+    </select>
+
+    <select id="getDisponibilidadSalon" resultClass="disponibilidadSalon">
+      SELECT
+         EV.id as idEvento,
+         EV.nombre as nombreEvento,
+         EV.estado as estadoEvento,
+         EV.fechaInicio as fechaInicio,
+         EV.fechaFin as fechaFin,
+         EV.horaInicio as horaInicio,
+         EV.horaFin as horaFin,
+         S.nombre as nombreSalon,
+         E.nombre as nombreEmpresa,
+         C.nombre as nombreContacto
+       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, DETALLE_SALA DS, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
+	   WHERE S.id = DS.idSalon
+           AND M.id = DS.idMontaje
+           AND ES.idSalon = DS.idSalon
+           AND ES.idMontaje = DS.idMontaje
+           AND EV.idTipoEvento = TE.id
+           AND EV.id = ES.idEvento
+           AND E.rif = EV.rifEmpresa
+           AND C.id = EV.idContacto
+           AND (EV.estado = 'C'
+                OR EV.estado = 'T')
+           AND S.nombre = #nombreSalon#
+           AND #fecha# BETWEEN EV.fechaInicio AND EV.fechaFin
+    </select>
+
+    <select id="getDisponibilidadSalonAnulados" resultClass="disponibilidadSalon">
+      SELECT
+         EV.id as idEvento,
+         EV.nombre as nombreEvento,
+         EV.estado as estadoEvento,
+         EV.fechaInicio as fechaInicio,
+         EV.fechaFin as fechaFin,
+         EV.horaInicio as horaInicio,
+         EV.horaFin as horaFin,
+         S.nombre as nombreSalon,
+         E.nombre as nombreEmpresa,
+         C.nombre as nombreContacto
+       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, DETALLE_SALA DS, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
+	   WHERE S.id = DS.idSalon
+           AND M.id = DS.idMontaje
+           AND ES.idSalon = DS.idSalon
+           AND ES.idMontaje = DS.idMontaje
+           AND EV.idTipoEvento = TE.id
+           AND EV.id = ES.idEvento
+           AND E.rif = EV.rifEmpresa
+           AND C.id = EV.idContacto
+           AND S.nombre = #nombreSalon#
+           AND #fecha# BETWEEN EV.fechaInicio AND EV.fechaFin
+    </select>
+    
+</sqlMap>
