@@ -80,7 +80,7 @@ public class ServicioEvento {
     }
 
     public void setNotaEspecial(String notaEspecial) {
-        this.notaEspecial = notaEspecial;
+        this.notaEspecial = notaEspecial.toUpperCase();
     }
 
     public String getNuevaDescripcion() {
@@ -88,7 +88,7 @@ public class ServicioEvento {
     }
 
     public void setNuevaDescripcion(String nuevaDescripcion) {
-        this.nuevaDescripcion = nuevaDescripcion;
+        this.nuevaDescripcion = nuevaDescripcion.toUpperCase();
     }
 
     public Double getNuevoCosto() {
@@ -104,7 +104,7 @@ public class ServicioEvento {
     }
 
     public void setNuevoNombre(String nuevoNombre) {
-        this.nuevoNombre = nuevoNombre;
+        this.nuevoNombre = nuevoNombre.toUpperCase();
     }
 
 }

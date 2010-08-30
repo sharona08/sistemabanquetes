@@ -35,7 +35,7 @@ public class Rol {
     }
 
     public void setTipoRol(String tipoRol) {
-        this.tipoRol = tipoRol;
+        this.tipoRol = tipoRol.toUpperCase();
     }
 
 }

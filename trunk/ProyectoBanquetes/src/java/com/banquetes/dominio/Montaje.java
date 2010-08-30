@@ -35,7 +35,7 @@ public class Montaje {
     }
 
     public void setTipoMontaje(String tipoMontaje) {
-        this.tipoMontaje = tipoMontaje;
+        this.tipoMontaje = tipoMontaje.toUpperCase();
     }
 
 }

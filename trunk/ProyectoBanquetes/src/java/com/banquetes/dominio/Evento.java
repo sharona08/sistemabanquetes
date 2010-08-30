@@ -56,7 +56,7 @@ public class Evento {
     }
 
     public void setEstado(String estado) {
-        this.estado = estado;
+        this.estado = estado.toUpperCase();
     }
 
     public Date getFechaFin() {
@@ -104,7 +104,7 @@ public class Evento {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
     }
 
     public String getRifEmpresa() {

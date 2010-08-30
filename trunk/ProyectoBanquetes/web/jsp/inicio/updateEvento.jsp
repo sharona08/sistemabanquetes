@@ -118,7 +118,7 @@
                 <% eventoSala.setIdMontaje(montaje.getId());%>
                 <% }%>
 
-                <% out.print(varSalon);%>
+                <% //out.print(varSalon);%>
                 <% int result2 = servicioEventoSala.editarEventoSala(eventoSala);%>
                 <% }%>
 

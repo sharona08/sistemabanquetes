@@ -37,7 +37,7 @@ public class Empresa {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
     }
 
     public String getTelefono() {
@@ -53,7 +53,7 @@ public class Empresa {
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        this.direccion = direccion.toUpperCase();
     }
 
     public Boolean getHabilitado() {
