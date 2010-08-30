@@ -337,8 +337,9 @@
         <input type="hidden" name="hiddenFechaInicio" value="<%= request.getParameter("fechaInicio")%>"/>
         <input type="hidden" name="hiddenFechaFin" value="<%= request.getParameter("fechaFin")%>"/>
         <input type="hidden" name="hiddenSalon" value="<%= request.getParameter("salon")%>"/>
-        <% if(request.getParameter("anulados")!=null) %>
+        <% if (request.getParameter("anulados") != null) {%>
         <input type="hidden" name="hiddenAnulados" value="<%= request.getParameter("anulados")%>"/>
+        <% }%>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
             <input type="submit" name="update" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
         </div>
