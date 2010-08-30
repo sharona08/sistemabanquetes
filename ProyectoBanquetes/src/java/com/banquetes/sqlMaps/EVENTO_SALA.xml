@@ -32,6 +32,14 @@
           AND idSalon = #idSalon#
     </update>
 
+    <update id="editarEventoSalon" parameterClass="eventoSala">
+	UPDATE EVENTO_SALA SET
+          idSalon = #nuevoIdSalon#
+	WHERE
+	  idEvento = #idEvento#
+          AND idSalon = #idSalon#
+    </update>
+
     <select id="getEventoSalas" resultClass="eventoSala">
       SELECT
           idEvento as idEvento,
@@ -55,5 +63,6 @@
 	  idEvento = #idEvento#
           AND idSalon = #idSalon#
     </select>
+
     
 </sqlMap>

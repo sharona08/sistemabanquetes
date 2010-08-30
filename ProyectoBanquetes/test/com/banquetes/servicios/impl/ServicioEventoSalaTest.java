@@ -31,7 +31,7 @@ public class ServicioEventoSalaTest {
    // @Test
     public void testCrearEventoSala() {
         System.out.println("crearEventoSala");
-        EventoSala eventoSala = new EventoSala(3, new Double("275.3"), 8, 5);
+        EventoSala eventoSala = new EventoSala(3, new Double("275.3"), 8, 5, null);
 
         try {
             this.testListarEventoSalas();
@@ -46,15 +46,34 @@ public class ServicioEventoSalaTest {
     /**
      * Test of editarEventoSala method, of class ServicioEventoSala.
      */
-    @Test
+   // @Test
     public void testEditarEventoSala() {
         System.out.println("editarEventoSala");
-        EventoSala eventoSala = new EventoSala(2, null, 3, null);
+        EventoSala eventoSala = new EventoSala(2, new Double("123.4"), new Integer(4), new Integer(3), null);
 
         try {
             System.out.println("EVENTO_SALA ANTES DEL UPDATE");
             this.testListarEventoSalas();
             servicioEventoSala.editarEventoSala(eventoSala);
+            System.out.println("EVENTO_SALA DESPUES DEL UPDATE");
+            this.testListarEventoSalas();
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * Test of editarEventoSala method, of class ServicioEventoSala.
+     */
+    @Test
+    public void testEditarEventoSalon() {
+        System.out.println("editarEventoSalon");
+        EventoSala eventoSala = new EventoSala(2, null, new Integer(3), null, new Integer(6));
+
+        try {
+            System.out.println("EVENTO_SALA ANTES DEL UPDATE");
+            this.testListarEventoSalas();
+            int result = servicioEventoSala.editarEventoSalon(eventoSala);
+            System.out.println("RESULT: " + result);
             System.out.println("EVENTO_SALA DESPUES DEL UPDATE");
             this.testListarEventoSalas();
         } catch (Exception e) {
@@ -69,7 +88,7 @@ public class ServicioEventoSalaTest {
         System.out.println("listarEventoSalas");
 
         try {
-            List<EventoSala> eventoSalas = servicioEventoSala.listarEventoSalas(3);
+            List<EventoSala> eventoSalas = servicioEventoSala.listarEventoSalas(2);
             assertNotNull(eventoSalas);
             for (EventoSala newEventoSalas : eventoSalas) {
                 System.out.println("idEvento: " + newEventoSalas.getIdEvento() + ", idMontaje: " + newEventoSalas.getIdMontaje() + ", idSalon" + newEventoSalas.getIdSalon() + ", nuevoCosto: " + newEventoSalas.getNuevoCosto());

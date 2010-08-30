@@ -32,7 +32,7 @@ public class ServicioReserva implements IServicioReserva {
         boolean result = false;
         Integer id = servicioEvento.crearEvento(evento);
         if (id != null) {
-            EventoSala eventoSala = new EventoSala(id, nuevoCosto, idSalon, idMontaje);
+            EventoSala eventoSala = new EventoSala(id, nuevoCosto, idSalon, idMontaje, null);
             servicioEventoSala.crearEventoSala(eventoSala);
         } else {
             System.out.println("ERROR: no se inserto el evento.");

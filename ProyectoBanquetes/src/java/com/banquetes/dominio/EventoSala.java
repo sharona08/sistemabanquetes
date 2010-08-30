@@ -11,6 +11,7 @@ public class EventoSala {
     private Double nuevoCosto;
     private Integer idSalon;
     private Integer idMontaje;
+    private Integer nuevoIdSalon;
 
     public EventoSala() {
     }
@@ -19,13 +20,14 @@ public class EventoSala {
         this.idEvento = idEvento;
     }
 
-    public EventoSala(Integer idEvento, Double nuevoCosto, Integer idSalon, Integer idMontaje) {
+    public EventoSala(Integer idEvento, Double nuevoCosto, Integer idSalon, Integer idMontaje, Integer nuevoIdSalon) {
         this.idEvento = idEvento;
         this.nuevoCosto = nuevoCosto;
         this.idSalon = idSalon;
         this.idMontaje = idMontaje;
+        this.nuevoIdSalon = nuevoIdSalon;
     }
-    
+
     public Integer getIdEvento() {
         return idEvento;
     }
@@ -56,5 +58,13 @@ public class EventoSala {
 
     public void setIdSalon(Integer idSalon) {
         this.idSalon = idSalon;
+    }
+
+    public Integer getNuevoIdSalon() {
+        return nuevoIdSalon;
+    }
+
+    public void setNuevoIdSalon(Integer nuevoIdSalon) {
+        this.nuevoIdSalon = nuevoIdSalon;
     }
 }
