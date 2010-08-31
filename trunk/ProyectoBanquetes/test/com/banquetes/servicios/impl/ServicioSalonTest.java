@@ -7,8 +7,10 @@ package com.banquetes.servicios.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import com.banquetes.dominio.Salon;
+import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
 import com.banquetes.servicios.interfaces.IServicioSalon;
+import com.banquetes.util.UtilMethods;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -20,6 +22,7 @@ import static org.junit.Assert.*;
 public class ServicioSalonTest {
 
     private IServicioSalon servicioSalon = new ServicioSalon();
+    private UtilMethods util = new UtilMethods();
 
     public ServicioSalonTest() {
     }
@@ -145,11 +148,11 @@ public class ServicioSalonTest {
     /**
      * Test of listarSalones method, of class ServicioSalon.
      */
-    //@Test
+   // @Test
     public void testListarDisponibilidadSalones() {
         System.out.println("listarDisponibilidadSalones");
         try {
-            String date = "2010-08-26";
+            String date = "2010-08-30";
             DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsedFechaInicio = formater.parse(date);
             java.sql.Date sqlFecha = new java.sql.Date(parsedFechaInicio.getTime());
@@ -167,13 +170,54 @@ public class ServicioSalonTest {
     }
 
     /**
-     * Test of getSalon method, of class ServicioSalon.
+     * Test of listarSalones method, of class ServicioSalon.
+     */
+//    @Test
+    public void testListarDisponibilidadConfirmados() {
+        System.out.println("listarDisponibilidadConfirmados");
+        try {
+            java.sql.Date fechaInicio = util.getSqlDate("2010-08-29");
+            java.sql.Date fechaFin = util.getSqlDate("2010-09-02");
+
+            List<DisponibilidadConfirmadosTO> dispon = servicioSalon.listarDisponibilidadConfirmados(fechaInicio, fechaFin, new Integer(4));
+            assertNotNull(dispon);
+            for (DisponibilidadConfirmadosTO d : dispon) {
+            System.out.println(d.getIdEvento());
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Test of listarSalones method, of class ServicioSalon.
      */
     @Test
+    public void testDisponibleSalon() {
+        System.out.println("disponibleSalon");
+        try {
+            java.sql.Date fechaInicio = util.getSqlDate("2010-08-29");
+            java.sql.Date fechaFin = util.getSqlDate("2010-09-02");
+
+            Boolean disponible = servicioSalon.disponibleSalon(fechaInicio, fechaFin, new Integer(4));
+            assertFalse(disponible);
+            System.out.println("Disponible: " + disponible);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Test of getSalon method, of class ServicioSalon.
+     */
+//  s  @Test
     public void testGetSalon() {
         System.out.println("getSalon");
         try {
-            Salon salon = servicioSalon.getSalon(new Integer(2));
+            Salon salon = servicioSalon.getSalon(new Integer(5));
             assertNotNull(salon);
             System.out.println(salon.getId() + " " + salon.getNombre() + " " + salon.getCosto() + " " + salon.getHabilitado());
         } catch (Exception e) {

@@ -96,8 +96,8 @@
 
             %>
 
-<!--        <tr align="center" style="height: 25px" bgcolor="#FF8080">-->
-        <tr align="center" style="height: 25px" bgcolor="#FC5454">
+        <tr align="center" style="height: 25px" bgcolor="#FF8080">
+<!--        <tr align="center" style="height: 25px" bgcolor="#FC5454">-->
 
             <% }%>
             <% }%>

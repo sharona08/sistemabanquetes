@@ -267,12 +267,16 @@
             <% String varNuevoCostoSalon = "";%>
             <% String varMontaje = "";%>
 
+            <% String varHiddenSalon = "";%>
+
             <% for (DetallesReservaSalonTO d : detallesSalon) {%>
             <% cont++;%>
             <% varSalon = "salon" + cont.toString();%>
             <% varCostoSalon = "costoSalon" + cont.toString();%>
             <% varNuevoCostoSalon = "nuevoCostoSalon" + cont.toString();%>
             <% varMontaje = "montaje" + cont.toString();%>
+            <% varHiddenSalon = "hiddenSalon" + cont.toString();%>
+            
             <tr style="height: 30px">
                 <td>Salon:</td>
                 <td>
@@ -290,6 +294,7 @@
                     </select>
                 </td>
             </tr>
+            <input type="hidden" name="<%= varHiddenSalon%>" value="<%= d.getNombreSalon()%>"/>
             <% Double costo = d.getNuevoCosto();%>
             <% if (costo == null) {%>
             <tr style="height: 30px">
