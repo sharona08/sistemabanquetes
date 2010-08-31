@@ -46,34 +46,16 @@ public class ServicioEventoSalaTest {
     /**
      * Test of editarEventoSala method, of class ServicioEventoSala.
      */
-   // @Test
+    @Test
     public void testEditarEventoSala() {
         System.out.println("editarEventoSala");
-        EventoSala eventoSala = new EventoSala(2, new Double("123.4"), new Integer(4), new Integer(3), null);
+        EventoSala eventoSala = new EventoSala(2, new Double("150"), new Integer(5), new Integer(2), null);
 
         try {
             System.out.println("EVENTO_SALA ANTES DEL UPDATE");
             this.testListarEventoSalas();
-            servicioEventoSala.editarEventoSala(eventoSala);
-            System.out.println("EVENTO_SALA DESPUES DEL UPDATE");
-            this.testListarEventoSalas();
-        } catch (Exception e) {
-        }
-    }
-
-    /**
-     * Test of editarEventoSala method, of class ServicioEventoSala.
-     */
-    @Test
-    public void testEditarEventoSalon() {
-        System.out.println("editarEventoSalon");
-        EventoSala eventoSala = new EventoSala(2, null, new Integer(3), null, new Integer(6));
-
-        try {
-            System.out.println("EVENTO_SALA ANTES DEL UPDATE");
-            this.testListarEventoSalas();
-            int result = servicioEventoSala.editarEventoSalon(eventoSala);
-            System.out.println("RESULT: " + result);
+            int result = servicioEventoSala.editarEventoSala(eventoSala);
+            System.out.println("resultado: " + result);
             System.out.println("EVENTO_SALA DESPUES DEL UPDATE");
             this.testListarEventoSalas();
         } catch (Exception e) {
@@ -83,7 +65,7 @@ public class ServicioEventoSalaTest {
     /**
      * Test of listarEventoSalas method, of class ServicioEventoSala.
      */
-    //@Test
+//    @Test
     public void testListarEventoSalas() {
         System.out.println("listarEventoSalas");
 

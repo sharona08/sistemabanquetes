@@ -12,8 +12,6 @@ public interface IServicioEventoSala {
     public void crearEventoSala(EventoSala eventoSala);
 
     public int editarEventoSala(EventoSala eventoSala);
-    
-    public int editarEventoSalon(EventoSala eventoSala);
 
     public List<EventoSala> listarEventoSalas(Integer idEvento);
     

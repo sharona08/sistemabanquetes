@@ -24,17 +24,9 @@
 
     <update id="editarEventoSala" parameterClass="eventoSala">
 	UPDATE EVENTO_SALA SET
+          idSalon = #nuevoIdSalon#,
           nuevoCosto = #nuevoCosto#,
-          idSalon = #idSalon#,
           idMontaje = #idMontaje#
-	WHERE
-	  idEvento = #idEvento#
-          AND idSalon = #idSalon#
-    </update>
-
-    <update id="editarEventoSalon" parameterClass="eventoSala">
-	UPDATE EVENTO_SALA SET
-          idSalon = #nuevoIdSalon#
 	WHERE
 	  idEvento = #idEvento#
           AND idSalon = #idSalon#
