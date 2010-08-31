@@ -192,25 +192,6 @@ public class ServicioSalonTest {
     }
 
     /**
-     * Test of listarSalones method, of class ServicioSalon.
-     */
-    @Test
-    public void testDisponibleSalon() {
-        System.out.println("disponibleSalon");
-        try {
-            java.sql.Date fechaInicio = util.getSqlDate("2010-08-29");
-            java.sql.Date fechaFin = util.getSqlDate("2010-09-02");
-
-            Boolean disponible = servicioSalon.disponibleSalon(fechaInicio, fechaFin, new Integer(4));
-            assertFalse(disponible);
-            System.out.println("Disponible: " + disponible);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Test of getSalon method, of class ServicioSalon.
      */
 //  s  @Test

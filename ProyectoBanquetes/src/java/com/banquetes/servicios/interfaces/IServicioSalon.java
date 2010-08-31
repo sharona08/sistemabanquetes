@@ -73,5 +73,5 @@ public interface IServicioSalon {
 
     public List<DisponibilidadConfirmadosTO> listarDisponibilidadConfirmados(Date fechaInicio, Date fechaFin, Integer idSalon);
 
-    public Boolean disponibleSalon(Date fechaInicio, Date fechaFin, Integer idSalon);
+    public Boolean disponibilidadConfirmados(Date fechaInicio, Date fechaFin, List<Salon> salones, Integer idEvento);
 }
