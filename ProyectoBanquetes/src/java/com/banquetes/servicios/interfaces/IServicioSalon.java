@@ -1,6 +1,7 @@
 package com.banquetes.servicios.interfaces;
 
 import com.banquetes.dominio.Salon;
+import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
 import java.sql.Date;
 import java.util.List;
@@ -69,4 +70,8 @@ public interface IServicioSalon {
     public List<DisponibilidadSalonTO> listarDisponibilidadSalones(String nombreSalon, Date fecha);
 
     public List<DisponibilidadSalonTO> listarDisponibilidadSalonesAnulados(String nombreSalon, Date fecha);
+
+    public List<DisponibilidadConfirmadosTO> listarDisponibilidadConfirmados(Date fechaInicio, Date fechaFin, Integer idSalon);
+
+    public Boolean disponibleSalon(Date fechaInicio, Date fechaFin, Integer idSalon);
 }

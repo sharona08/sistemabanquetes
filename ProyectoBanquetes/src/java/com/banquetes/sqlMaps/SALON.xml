@@ -14,6 +14,7 @@
 
     <typeAlias type="com.banquetes.dominio.Salon" alias="salon"/>
     <typeAlias type="com.banquetes.servicios.TO.DisponibilidadSalonTO" alias="disponibilidadSalon"/>
+    <typeAlias type="com.banquetes.servicios.TO.DisponibilidadConfirmadosTO" alias="disponibilidadConfirmados"/>
 
     <insert id="crearSalon" parameterClass="salon">
         INSERT INTO SALON (nombre, costo, habilitado, idSalon)
@@ -120,6 +121,19 @@
            AND C.id = EV.idContacto
            AND S.nombre = #nombreSalon#
            AND #fecha# BETWEEN EV.fechaInicio AND EV.fechaFin
+    </select>
+
+    <select id="getDisponibilidadConfirmados" resultClass="disponibilidadConfirmados">
+      SELECT 
+         E.id as idEvento
+      FROM EVENTO E, EVENTO_SALA ES, DETALLE_SALA DS
+          WHERE E.id = ES.idEvento
+          AND ES.idSalon = DS.idSalon
+          AND ES.idMontaje = DS.idMontaje
+          AND (E.fechaInicio BETWEEN #fechaInicio# AND #fechaFin#
+               OR E.fechaFin BETWEEN #fechaInicio# AND #fechaFin#)
+          AND E.estado = 'C'
+          AND ES.idSalon = #idSalon#
     </select>
     
 </sqlMap>

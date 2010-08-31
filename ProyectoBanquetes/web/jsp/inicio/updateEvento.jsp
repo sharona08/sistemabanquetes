@@ -36,109 +36,119 @@
         <div id="pageWrap">
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
-                <% UtilMethods util = new UtilMethods(); %>
-                <% IServicioEvento servicioEvento = new ServicioEvento();%>
-                <% IServicioEventoSala servicioEventoSala = new ServicioEventoSala();%>
-                <% IServicioTipoEvento servicioTipoEvento = new ServicioTipoEvento();%>
-                <% IServicioSalon servicioSalon = new ServicioSalon();%>
-                <% IServicioMontaje servicioMontaje = new ServicioMontaje();%>
-                <% Evento evento = new Evento();%>
-                <% EventoSala eventoSala = new EventoSala();%>
-                <% String estado = null;%>
-                <% if (request.getParameter("estado") != null) {%>
-                <% String estadoActual = request.getParameter("estado");%>
                 <%
-                     if (estadoActual.equals("TENTATIVO")) {
-                         estado = "T";
-                     } else if (estadoActual.equals("CONFIRMADO")) {
-                         estado = "C";
-                     } else if (estadoActual.equals("ANULADO")) {
-                         estado = "A";
-                     }%>
+                            UtilMethods util = new UtilMethods();
+                            IServicioEvento servicioEvento = new ServicioEvento();
+                            IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
+                            IServicioTipoEvento servicioTipoEvento = new ServicioTipoEvento();
+                            IServicioSalon servicioSalon = new ServicioSalon();
+                            IServicioMontaje servicioMontaje = new ServicioMontaje();
+                            Evento evento = new Evento();
+                            EventoSala eventoSala = new EventoSala();
+                            String estado = null;
+                            if (request.getParameter("estado") != null) {
+                                String estadoActual = request.getParameter("estado");
 
-                <% }%>
-                <% evento.setId(Integer.valueOf(request.getParameter("idEvento")));%>
-                <% eventoSala.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));%>
+                                if (estadoActual.equals("TENTATIVO")) {
+                                    estado = "T";
+                                } else if (estadoActual.equals("CONFIRMADO")) {
+                                    estado = "C";
+                                } else if (estadoActual.equals("ANULADO")) {
+                                    estado = "A";
+                                }
 
-                <% evento.setEstado(estado);%>
+                            }
+                            evento.setId(Integer.valueOf(request.getParameter("idEvento")));
+                            eventoSala.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
 
-                <% if (request.getParameter("fechaInicioEvento") != null)%>
-                <% evento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));%>
+                            evento.setEstado(estado);
 
-                <% if (request.getParameter("fechaFinEvento") != null)%>
-                <% evento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));%>
+                            if (request.getParameter("fechaInicioEvento") != null) {
+                                evento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));
+                            }
 
-                <% if (request.getParameter("nombreEvento") != null)%>
-                <% evento.setNombre(request.getParameter("nombreEvento"));%>
+                            if (request.getParameter("fechaFinEvento") != null) {
+                                evento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));
+                            }
 
-                <% if (request.getParameter("tipoEvento") != null) {%>
-                <% TipoEvento te = servicioTipoEvento.getTipoEventoNombre(request.getParameter("tipoEvento"));%>
-                <% evento.setIdTipoEvento(te.getId());%>
-                <% }%>
+                            if (request.getParameter("nombreEvento") != null) {
+                                evento.setNombre(request.getParameter("nombreEvento"));
+                            }
 
-                <% if (request.getParameter("cantidadPersonas") != null)%>
-                <% evento.setCantidadPersonas(Integer.valueOf(request.getParameter("cantidadPersonas")));%>
+                            if (request.getParameter("tipoEvento") != null) {
+                                TipoEvento te = servicioTipoEvento.getTipoEventoNombre(request.getParameter("tipoEvento"));
+                                evento.setIdTipoEvento(te.getId());
+                            }
 
-                <% if ((request.getParameter("horaInicio") != null) && (request.getParameter("minutosInicio") != null)) {%>
-                <% String horaInicio = request.getParameter("horaInicio") + ":" + request.getParameter("minutosInicio") + ":00";%>
-                <% evento.setHoraInicio(Time.valueOf(horaInicio));%>
-                <% }%>
+                            if (request.getParameter("cantidadPersonas") != null) {
+                                evento.setCantidadPersonas(Integer.valueOf(request.getParameter("cantidadPersonas")));
+                            }
 
-                <% if ((request.getParameter("horaFin") != null) && (request.getParameter("minutosFin") != null)) {%>
-                <% String horaFin = request.getParameter("horaFin") + ":" + request.getParameter("minutosFin") + ":00";%>
-                <% evento.setHoraFin(Time.valueOf(horaFin));%>
-                <% }%>
+                            if ((request.getParameter("horaInicio") != null) && (request.getParameter("minutosInicio") != null)) {
+                                String horaInicio = request.getParameter("horaInicio") + ":" + request.getParameter("minutosInicio") + ":00";
+                                evento.setHoraInicio(Time.valueOf(horaInicio));
+                            }
 
-                <% if (request.getParameter("rifEmpresa") != null)%>
-                <% evento.setRifEmpresa(request.getParameter("rifEmpresa"));%>
+                            if ((request.getParameter("horaFin") != null) && (request.getParameter("minutosFin") != null)) {
+                                String horaFin = request.getParameter("horaFin") + ":" + request.getParameter("minutosFin") + ":00";
+                                evento.setHoraFin(Time.valueOf(horaFin));
+                            }
 
-                <% if (request.getParameter("idContacto") != null)%>
-                <% evento.setIdContacto(Integer.valueOf(request.getParameter("idContacto")));%>
+                            if (request.getParameter("rifEmpresa") != null) {
+                                evento.setRifEmpresa(request.getParameter("rifEmpresa"));
+                            }
 
-                <% int result = servicioEvento.editarEvento(evento);%>
+                            if (request.getParameter("idContacto") != null) {
+                                evento.setIdContacto(Integer.valueOf(request.getParameter("idContacto")));
+                            }
 
-                <% if (request.getParameter("cont") != null) {%>
-                <% int cont = Integer.valueOf(request.getParameter("cont"));%>
-                <% String varSalon = "";%>
-                <% String varNuevoCosto = "";%>
-                <% String varCosto = "";%>
-                <% String varMontaje = "";%>
+                            int result = servicioEvento.editarEvento(evento);
 
-                <% for (int i = 0; i < cont + 1; i++) {%>
-                <% varSalon = "salon" + i;%>
-                <% varNuevoCosto = "nuevoCostoSalon" + i;%>
-                <% varCosto = "costoSalon" + i;%>
-                <% varMontaje = "montaje" + i;%>
+                            if (request.getParameter("cont") != null) {
+                                int cont = Integer.valueOf(request.getParameter("cont"));
+                                String varSalon = "";
+                                String varNuevoCosto = "";
+                                String varCosto = "";
+                                String varMontaje = "";
+                                String varHiddenSalon = "";
 
-                <% if (request.getParameter(varSalon) != null) {%>
-                <% Salon salon = servicioSalon.getSalonNombre(request.getParameter(varSalon));%>
-                <% eventoSala.setIdSalon(salon.getId());%>
-                <% }%>
+                                for (int i = 1; i <= cont; i++) {
+                                    varSalon = "salon" + i;
+                                    varNuevoCosto = "nuevoCostoSalon" + i;
+                                    varCosto = "costoSalon" + i;
+                                    varMontaje = "montaje" + i;
+                                    varHiddenSalon = "hiddenSalon" + i;
 
-                <% if (request.getParameter(varNuevoCosto) != null) {%>
-                <% eventoSala.setNuevoCosto(new Double(request.getParameter(varNuevoCosto)));%>
-                <% } else if (request.getParameter(varCosto) != null) {%>
-                <% eventoSala.setNuevoCosto(new Double(request.getParameter(varCosto)));%>
-                <% }%>
+                                    if (request.getParameter(varSalon) != null) {
+                                        out.print(varSalon+ ", ");
+                                        Salon salon = servicioSalon.getSalonNombre(request.getParameter(varHiddenSalon));
+                                        eventoSala.setIdSalon(salon.getId());
+                                        Salon salonNew = servicioSalon.getSalonNombre(request.getParameter(varSalon));
+                                        eventoSala.setNuevoIdSalon(salonNew.getId());
+                                    }
 
-                <% if (request.getParameter(varMontaje) != null) {%>
-                <% Montaje montaje = servicioMontaje.getMontajeNombre(request.getParameter(varMontaje));%>
-                <% eventoSala.setIdMontaje(montaje.getId());%>
-                <% }%>
+                                    if (request.getParameter(varNuevoCosto) != null) {
+                                        out.print(varNuevoCosto + ", ");
+                                        eventoSala.setNuevoCosto(new Double(request.getParameter(varNuevoCosto)));
+                                    } else if (request.getParameter(varCosto) != null) {
+                                        eventoSala.setNuevoCosto(new Double(request.getParameter(varCosto)));
+                                    }
 
-                <% //out.print(varSalon);%>
-                <% int result2 = servicioEventoSala.editarEventoSala(eventoSala);%>
-                <% }%>
+                                    if (request.getParameter(varMontaje) != null) {
+                                        out.print(varMontaje + ". | ");
+                                        Montaje montaje = servicioMontaje.getMontajeNombre(request.getParameter(varMontaje));
+                                        eventoSala.setIdMontaje(montaje.getId());
+                                    }
 
-                <% }%>
+                                    //out.print(varSalon);
+                                    int result2 = servicioEventoSala.editarEventoSala(eventoSala);
+                                }
 
+                            }
 
-
-
-                <% if ((result == 1)) {%>
-
-                <% }%>
-
+                            if ((result == 1)) {
+                            }
+                %>
             </div>
             <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>

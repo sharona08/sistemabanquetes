@@ -2,6 +2,7 @@ package com.banquetes.servicios.impl;
 
 import com.banquetes.configuracion.Conexion;
 import com.banquetes.dominio.Salon;
+import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
 import com.banquetes.servicios.interfaces.IServicioSalon;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -190,5 +191,32 @@ public class ServicioSalon implements IServicioSalon {
             Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
         }
         return dispon;
+    }
+
+    public List<DisponibilidadConfirmadosTO> listarDisponibilidadConfirmados(Date fechaInicio, Date fechaFin, Integer idSalon) {
+        List<DisponibilidadConfirmadosTO> dispon = null;
+
+        try {
+            Map param = new HashMap();
+            param.put("fechaInicio", fechaInicio);
+            param.put("fechaFin", fechaFin);
+            param.put("idSalon", idSalon);
+            dispon = sqlMap.queryForList("getDisponibilidadConfirmados", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dispon;
+    }
+
+    public Boolean disponibleSalon(Date fechaInicio, Date fechaFin, Integer idSalon){
+        Boolean disponible = Boolean.FALSE;
+        
+        List<DisponibilidadConfirmadosTO> dispon = this.listarDisponibilidadConfirmados(fechaInicio, fechaFin, idSalon);
+        if(dispon.isEmpty()){
+            disponible = Boolean.TRUE;
+        }else{
+            disponible = Boolean.FALSE;
+        }
+        return disponible;
     }
 }
