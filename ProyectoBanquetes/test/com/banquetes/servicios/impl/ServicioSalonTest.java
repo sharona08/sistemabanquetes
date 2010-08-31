@@ -131,7 +131,7 @@ public class ServicioSalonTest {
     /**
      * Test of listarSalones method, of class ServicioSalon.
      */
-   // @Test
+    @Test
     public void testListarSalones() {
         System.out.println("listarSalones");
         try {
