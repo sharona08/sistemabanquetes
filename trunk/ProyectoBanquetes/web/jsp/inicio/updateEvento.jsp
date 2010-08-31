@@ -4,6 +4,12 @@
     Author     : maya
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.util.List"%>
+<%@page import="com.banquetes.servicios.TO.DisponibilidadConfirmadosTO"%>
+<%@page import="java.awt.Window"%>
+<%@page import="com.sun.java.swing.plaf.windows.resources.windows_de"%>
 <%@page import="com.banquetes.util.UtilMethods"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioEventoSala"%>
 <%@page import="com.banquetes.servicios.impl.ServicioEventoSala"%>
@@ -30,7 +36,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../include/head.jsp"></jsp:include>
         <title>Editar Evento</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=<%= request.getParameter("hiddenFechaInicio")%>&fechaFin=<%= request.getParameter("hiddenFechaFin")%>&salon=<%= request.getParameter("hiddenSalon")%>">
+        <!--        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=< request.getParameter("hiddenFechaInicio")%>&fechaFin=< request.getParameter("hiddenFechaFin")%>&salon=< request.getParameter("hiddenSalon")%>">-->
     </head>
     <body>
         <div id="pageWrap">
@@ -45,6 +51,12 @@
                             IServicioMontaje servicioMontaje = new ServicioMontaje();
                             Evento evento = new Evento();
                             EventoSala eventoSala = new EventoSala();
+                            Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
+                            Date fechaInicio = util.getSqlDate(request.getParameter("fechaInicioEvento"));
+                            Date fechaFin = util.getSqlDate(request.getParameter("fechaFinEvento"));
+                            evento.setId(idEvento);
+                            eventoSala.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
+
                             String estado = null;
                             if (request.getParameter("estado") != null) {
                                 String estadoActual = request.getParameter("estado");
@@ -58,17 +70,39 @@
                                 }
 
                             }
-                            evento.setId(Integer.valueOf(request.getParameter("idEvento")));
-                            eventoSala.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
+                            List<Salon> salones = new ArrayList<Salon>();
+                            Salon salon = new Salon();
+                            if (estado.equals("C")) {
+                                int cont = Integer.valueOf(request.getParameter("cont"));
+                                String varSalon = "";
+                                String varHiddenSalon = "";
+                                for (int i = 1; i <= cont; i++) {
+                                    varSalon = "salon" + i;
+                                    varHiddenSalon = "hiddenSalon" + i;
+                                    salon = servicioSalon.getSalonNombre(request.getParameter(varHiddenSalon));
+                                    salones.add(salon);
+                                }
 
-                            evento.setEstado(estado);
+                                Boolean disponible = servicioSalon.disponibilidadConfirmados(fechaInicio, fechaFin, salones, idEvento);
 
-                            if (request.getParameter("fechaInicioEvento") != null) {
-                                evento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));
-                            }
+                                if (disponible) {
+                                    evento.setEstado(estado);
+                                    evento.setFechaInicio(fechaInicio);
+                                    evento.setFechaFin(fechaFin);
 
-                            if (request.getParameter("fechaFinEvento") != null) {
-                                evento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));
+                                } else {
+                                    out.print("Ya existe un evento confirmado para la fecha en el salon: " + request.getParameter(varHiddenSalon));
+                                }
+                            } else {
+                                evento.setEstado(estado);
+
+                                if (request.getParameter("fechaInicioEvento") != null) {
+                                    evento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));
+                                }
+
+                                if (request.getParameter("fechaFinEvento") != null) {
+                                    evento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));
+                                }
                             }
 
                             if (request.getParameter("nombreEvento") != null) {
@@ -120,22 +154,22 @@
                                     varHiddenSalon = "hiddenSalon" + i;
 
                                     if (request.getParameter(varSalon) != null) {
-                                        out.print(varSalon+ ", ");
-                                        Salon salon = servicioSalon.getSalonNombre(request.getParameter(varHiddenSalon));
+                                        //  out.print(varSalon + ", ");
+                                        salon = servicioSalon.getSalonNombre(request.getParameter(varHiddenSalon));
                                         eventoSala.setIdSalon(salon.getId());
                                         Salon salonNew = servicioSalon.getSalonNombre(request.getParameter(varSalon));
                                         eventoSala.setNuevoIdSalon(salonNew.getId());
                                     }
 
                                     if (request.getParameter(varNuevoCosto) != null) {
-                                        out.print(varNuevoCosto + ", ");
+                                        //  out.print(varNuevoCosto + ", ");
                                         eventoSala.setNuevoCosto(new Double(request.getParameter(varNuevoCosto)));
                                     } else if (request.getParameter(varCosto) != null) {
                                         eventoSala.setNuevoCosto(new Double(request.getParameter(varCosto)));
                                     }
 
                                     if (request.getParameter(varMontaje) != null) {
-                                        out.print(varMontaje + ". | ");
+                                        //  out.print(varMontaje + ". | ");
                                         Montaje montaje = servicioMontaje.getMontajeNombre(request.getParameter(varMontaje));
                                         eventoSala.setIdMontaje(montaje.getId());
                                     }
@@ -146,8 +180,8 @@
 
                             }
 
-                            if ((result == 1)) {
-                            }
+                            // if ((result == 1)) {
+                            // }
                 %>
             </div>
             <jsp:include page="../include/footer.jsp"></jsp:include>

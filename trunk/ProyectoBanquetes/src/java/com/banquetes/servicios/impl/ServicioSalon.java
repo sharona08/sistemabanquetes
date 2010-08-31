@@ -57,7 +57,7 @@ public class ServicioSalon implements IServicioSalon {
         }
         return existe;
     }
-    
+
     public Integer crearSalon(Salon salon) {
         Boolean existe = Boolean.TRUE;
         existe = this.existeSalonNombre(salon);
@@ -80,7 +80,7 @@ public class ServicioSalon implements IServicioSalon {
         try {
             if (existe) {
                 Salon newSalon = (Salon) sqlMap.queryForObject("getSalon", salon.getId());
-                
+
                 if (salon.getNombre() != null) {
                     newSalon.setNombre(salon.getNombre());
                 }
@@ -99,7 +99,7 @@ public class ServicioSalon implements IServicioSalon {
             Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void inhabilitarSalon(Salon salon) {
         Boolean existe = Boolean.TRUE;
         existe = this.existeSalonId(salon);
@@ -208,15 +208,25 @@ public class ServicioSalon implements IServicioSalon {
         return dispon;
     }
 
-    public Boolean disponibleSalon(Date fechaInicio, Date fechaFin, Integer idSalon){
-        Boolean disponible = Boolean.FALSE;
-        
-        List<DisponibilidadConfirmadosTO> dispon = this.listarDisponibilidadConfirmados(fechaInicio, fechaFin, idSalon);
-        if(dispon.isEmpty()){
-            disponible = Boolean.TRUE;
-        }else{
-            disponible = Boolean.FALSE;
+    public Boolean disponibilidadConfirmados(Date fechaInicio, Date fechaFin, List<Salon> salones, Integer idEvento) {
+        List<DisponibilidadConfirmadosTO> dispon = null;
+        Boolean result = Boolean.FALSE;
+
+        for (Salon s : salones) {
+            dispon = this.listarDisponibilidadConfirmados(fechaInicio, fechaFin, s.getId());
+            for (DisponibilidadConfirmadosTO d : dispon) {
+
+                if (dispon.isEmpty()) {
+                    result = Boolean.TRUE;
+                } else if (d.getIdEvento().equals(idEvento)) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                    return result;
+                }
+            }
         }
-        return disponible;
+
+        return result;
     }
 }
