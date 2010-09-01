@@ -48,10 +48,21 @@ public interface IServicioEmpresa {
     public List<Empresa> listarEmpresas();
 
     /**
+     * Firma para listar todas las empresas
+     * @return List<Empresa> lista de todas las empresas
+     */
+    public List<Empresa> listarEmpresasTodas(String rif, String nombre);
+
+    /**
+     * Firma para listar todas las empresas habilitadas
+     * @return List<Empresa> lista de todas las empresas habilitadas
+     */
+    public List<Empresa> listarEmpresasHabilitadas(String rif, String nombre);
+
+    /**
      * Firma para obtener una empresa dado el rif
      * @param rif el rif mediante el cual se buscara la empresa
      * @return Empresa objeto empresa encontrado con el rif
      */
     public Empresa getEmpresa(String rif);
-
 }

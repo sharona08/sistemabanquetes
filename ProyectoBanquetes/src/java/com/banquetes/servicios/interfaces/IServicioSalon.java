@@ -3,6 +3,7 @@ package com.banquetes.servicios.interfaces;
 import com.banquetes.dominio.Salon;
 import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
+import com.banquetes.servicios.TO.SalonesComboBoxTO;
 import java.sql.Date;
 import java.util.List;
 
@@ -57,6 +58,12 @@ public interface IServicioSalon {
      * @return List<Salon> lista de todos los salones 
      */
     public List<Salon> listarSalones();
+
+    /**
+     * Firma para listar los salones en el comboBox de reserva
+     * @return List<SalonesComboBoxTO> lista de todos los salones
+     */
+//    public List<SalonesComboBoxTO> listarSalonesComboBox(Integer idEvento, Integer idSalon);
 
     /**
      * Firma para obtener un salon dado el identificador

@@ -26,16 +26,16 @@
     </div>
     <ul id="nav">
         <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp" class="top_link"><span>Inicio</span></a></li>
-        <li class="top"><a href="#nogo2" id="products" class="top_link"><span class="down">Mantenimiento</span></a>
+        <li class="top"><a href="#" id="products" class="top_link"><span class="down">Mantenimiento</span></a>
             <ul class="sub">
-                <li class="mid"><a href="#nogo7" class="fly">Servicios</a>
+                <li class="mid"><a href="#" class="fly">Servicios</a>
                     <ul>
                         <li><a href="#nogo8">Alimentos y Bebidas</a></li>
                         <li><a href="#nogo9">Audiovisuales</a></li>
                         <li><a href="#nogo10">Otros</a></li>
                     </ul>
                 </li>
-                <li class="mid"><a href="#nogo7" class="fly">Empresas</a>
+                <li class="mid"><a href="/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp" class="fly">Empresas</a>
                     <ul>
                         <li><a href="#nogo19">Contactos</a></li>
                     </ul>

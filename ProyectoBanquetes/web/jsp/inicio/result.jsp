@@ -124,7 +124,6 @@
                         <% }%>
                         <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
                     </form>
-
                 </div>
 
             </td>

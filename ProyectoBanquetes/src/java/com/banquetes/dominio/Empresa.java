@@ -53,7 +53,7 @@ public class Empresa {
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion.toUpperCase();
+        this.direccion = direccion;
     }
 
     public Boolean getHabilitado() {

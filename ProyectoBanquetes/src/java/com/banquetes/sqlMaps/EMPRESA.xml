@@ -54,4 +54,29 @@
        FROM EMPRESA
        ORDER BY nombre ASC
     </select>
+
+    <select id="getEmpresasTodas" resultClass="empresa">
+      SELECT
+          rif as rif,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado
+       FROM EMPRESA
+       WHERE rif LIKE #rif#
+       AND nombre LIKE #nombre#
+    </select>
+
+    <select id="getEmpresasHabilitadas" resultClass="empresa">
+      SELECT
+          rif as rif,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado
+       FROM EMPRESA
+       WHERE rif LIKE #rif#
+       AND nombre LIKE #nombre#
+       AND habilitado is true
+    </select>
 </sqlMap>

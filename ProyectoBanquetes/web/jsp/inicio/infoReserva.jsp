@@ -47,7 +47,7 @@
                 <td width="40%">Fecha Inicio:</td>
                 <td width="50%">
                     <input class="inputDate3" id="inputDate3" value="<%= detalles.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" />
-                 </td>
+                </td>
             </tr>
             <tr style="height: 30px">
                 <td>Fecha Fin:</td>
@@ -218,7 +218,7 @@
             <tr style="height: 30px">
                 <td>Empresa:</td>
                 <td>
-                    <input type="text" name="nombreEmpresa" value="<%= detalles.getNombreEmpresa()%>" disabled="true" style="width: 160px; height: 23px" align="middle" />
+                    <input type="text" name="nombreEmpresa" value="<%= detalles.getNombreEmpresa()%>" disabled="true" style="width: 160px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
                     <input type="hidden" name="rifEmpresa" value="<%= detalles.getRifEmpresa()%>"/>
                 </td>
             </tr>
@@ -276,7 +276,7 @@
             <% varNuevoCostoSalon = "nuevoCostoSalon" + cont.toString();%>
             <% varMontaje = "montaje" + cont.toString();%>
             <% varHiddenSalon = "hiddenSalon" + cont.toString();%>
-            
+
             <tr style="height: 30px">
                 <td>Salon:</td>
                 <td>
@@ -328,6 +328,16 @@
                         <% }%>
                     </select>
                 </td>
+                <%
+                     Integer size = Integer.valueOf(detallesSalon.size());
+                     if (cont.equals(size)) {
+                %>
+                <td>
+                    <div id="boton" class="demo">
+                        <input type="submit" name="nuevoSalon" value="+" style="width: 35px; height: 25px;" align="middle" onclick=""/>
+                    </div>
+                </td>
+                <% }%>
             </tr>
             <tr>
                 <td>&nbsp;</td>

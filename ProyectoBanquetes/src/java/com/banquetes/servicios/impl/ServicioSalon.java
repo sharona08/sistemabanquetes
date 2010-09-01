@@ -4,6 +4,7 @@ import com.banquetes.configuracion.Conexion;
 import com.banquetes.dominio.Salon;
 import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
+import com.banquetes.servicios.TO.SalonesComboBoxTO;
 import com.banquetes.servicios.interfaces.IServicioSalon;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.sql.Date;
@@ -143,6 +144,19 @@ public class ServicioSalon implements IServicioSalon {
         return salones;
     }
 
+//    public List<SalonesComboBoxTO> listarSalonesComboBox(Integer idEvento, Integer idSalon){
+//        List<SalonesComboBoxTO> salones = null;
+//
+//        try {
+//            Map param = new HashMap();
+//            param.put("idSalon", idSalon);
+//            param.put("idEvento", idEvento);
+//            salones = sqlMap.queryForList("getSalonesComboBox", param);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return salones;
+//    }
     public Salon getSalon(Integer id) {
         Salon salon = null;
         try {
@@ -214,15 +228,17 @@ public class ServicioSalon implements IServicioSalon {
 
         for (Salon s : salones) {
             dispon = this.listarDisponibilidadConfirmados(fechaInicio, fechaFin, s.getId());
-            for (DisponibilidadConfirmadosTO d : dispon) {
 
-                if (dispon.isEmpty()) {
-                    result = Boolean.TRUE;
-                } else if (d.getIdEvento().equals(idEvento)) {
-                    result = Boolean.TRUE;
-                } else {
-                    result = Boolean.FALSE;
-                    return result;
+            if (dispon.isEmpty()) {
+                result = Boolean.TRUE;
+            } else {
+                for (DisponibilidadConfirmadosTO d : dispon) {
+                    if (d.getIdEvento().equals(idEvento)) {
+                        result = Boolean.TRUE;
+                    } else {
+                        result = Boolean.FALSE;
+                        return result;
+                    }
                 }
             }
         }
