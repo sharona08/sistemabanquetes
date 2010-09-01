@@ -48,10 +48,10 @@ public class ServicioEmpresaTest {
         }
     }
 
-//    @Test
+    @Test
     public void testEditarEmpresa() {
         System.out.println("Editar Empresa");
-        Empresa empresa = new Empresa("J-12345678-1", null, "02124341122", "HATILLO", true);
+        Empresa empresa = new Empresa("J-29565286-0", "HBP", "02124341122", "Av. Francisco de Miranda, Centro Plaza, Torre C, Piso 15, Oficina H. - los Palos Grandes", true);
 
         try {
             servicioEmpresa.editarEmpresa(empresa);
@@ -103,7 +103,7 @@ public class ServicioEmpresaTest {
     /**
      * Test of listarEmpresas method, of class ServicioEmpresa.
      */
-    @Test
+//    @Test
     public void testListarEmpresasTodas() {
         System.out.println("Servicio Empresas todas");
         try {
@@ -119,7 +119,7 @@ public class ServicioEmpresaTest {
     /**
      * Test of listarEmpresa method, of class ServicioEmpresa.
      */
-//    @Test
+    //@Test
     public void testGetEmpresa() {
         System.out.println("Servicio Empresa");
         String rif = "J-00000000-0";

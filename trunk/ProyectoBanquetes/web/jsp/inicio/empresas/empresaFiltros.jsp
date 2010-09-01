@@ -37,7 +37,7 @@
                 $("a", ".demo").click(function() { return false; });
             });
         </script>
-        <title>JSP Page</title>
+        <title>Empresas</title>
     </head>
     <body>
         <div id="pageWrap">
