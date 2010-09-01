@@ -36,7 +36,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../include/head.jsp"></jsp:include>
         <title>Editar Evento</title>
-        <!--        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=< request.getParameter("hiddenFechaInicio")%>&fechaFin=< request.getParameter("hiddenFechaFin")%>&salon=< request.getParameter("hiddenSalon")%>">-->
+                <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=<%= request.getParameter("hiddenFechaInicio")%>&fechaFin=<%= request.getParameter("hiddenFechaFin")%>&salon=<%= request.getParameter("hiddenSalon")%>">
     </head>
     <body>
         <div id="pageWrap">

@@ -15,6 +15,7 @@
     <typeAlias type="com.banquetes.dominio.Salon" alias="salon"/>
     <typeAlias type="com.banquetes.servicios.TO.DisponibilidadSalonTO" alias="disponibilidadSalon"/>
     <typeAlias type="com.banquetes.servicios.TO.DisponibilidadConfirmadosTO" alias="disponibilidadConfirmados"/>
+    <typeAlias type="com.banquetes.servicios.TO.SalonesComboBoxTO" alias="salonesComboBox"/>
 
     <insert id="crearSalon" parameterClass="salon">
         INSERT INTO SALON (nombre, costo, habilitado, idSalon)
@@ -48,6 +49,22 @@
        FROM SALON
        ORDER BY nombre ASC
     </select>
+
+<!--    <select id="getSalonesComboBox" resultClass="salonesComboBox">
+      SELECT
+          S.id as idSalon
+          S.nombre as nombreSalon
+      FROM SALON S
+      WHERE S.id NOT IN (SELECT S.id as idSalon2
+                         FROM SALON S, EVENTO E, EVENTO_SALA ES, DETALLE_SALA DS, MONTAJE M
+                         WHERE E.id = ES.idEvento
+                         AND DS.idSalon = ES.idSalon
+                         AND DS.idMontaje = ES.idMontaje
+                         AND DS.idSalon = S.id
+                         AND DS.idMontaje = M.id
+                         AND E.id = #idEvento#
+                         AND ES.idSalon <> #idSalon2#)
+    </select>-->
 
     <select id="getSalon" resultClass="salon">
       SELECT

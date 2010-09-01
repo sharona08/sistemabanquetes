@@ -87,11 +87,27 @@ public class ServicioEmpresaTest {
     /**
      * Test of listarEmpresas method, of class ServicioEmpresa.
      */
-    @Test
+//    @Test
     public void testListarEmpresas() {
         System.out.println("Servicio Empresas");
         try {
             List<Empresa> empresas = servicioEmpresa.listarEmpresas();
+            assertNotNull(empresas);
+            for (Empresa empresa1 : empresas) {
+                System.out.println("EMPRESA LISTA: " + empresa1.getRif() + " " + empresa1.getNombre() + " " + empresa1.getDireccion() + " " + empresa1.getTelefono() + " " + empresa1.getHabilitado().toString());
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * Test of listarEmpresas method, of class ServicioEmpresa.
+     */
+    @Test
+    public void testListarEmpresasTodas() {
+        System.out.println("Servicio Empresas todas");
+        try {
+            List<Empresa> empresas = servicioEmpresa.listarEmpresasTodas("", "PAR");
             assertNotNull(empresas);
             for (Empresa empresa1 : empresas) {
                 System.out.println("EMPRESA LISTA: " + empresa1.getRif() + " " + empresa1.getNombre() + " " + empresa1.getDireccion() + " " + empresa1.getTelefono() + " " + empresa1.getHabilitado().toString());

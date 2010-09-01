@@ -9,8 +9,10 @@ import java.text.SimpleDateFormat;
 import com.banquetes.dominio.Salon;
 import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
+import com.banquetes.servicios.TO.SalonesComboBoxTO;
 import com.banquetes.servicios.interfaces.IServicioSalon;
 import com.banquetes.util.UtilMethods;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -131,7 +133,7 @@ public class ServicioSalonTest {
     /**
      * Test of listarSalones method, of class ServicioSalon.
      */
-    @Test
+//    @Test
     public void testListarSalones() {
         System.out.println("listarSalones");
         try {
@@ -144,6 +146,23 @@ public class ServicioSalonTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Test of listarSalones method, of class ServicioSalon.
+     */
+//    @Test
+//    public void testListarSalonesComboBox() {
+//        System.out.println("listarSalonesComboBox");
+//        try {
+//            List<SalonesComboBoxTO> salones = servicioSalon.listarSalonesComboBox(new Integer(3), new Integer(4));
+//            assertNotNull(salones);
+//            for (SalonesComboBoxTO newSalon : salones) {
+//                System.out.println(newSalon.getIdEvento() + " " + newSalon.getIdSalon() + " " + newSalon.getNombreSalon());
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * Test of listarSalones method, of class ServicioSalon.
@@ -176,8 +195,8 @@ public class ServicioSalonTest {
     public void testListarDisponibilidadConfirmados() {
         System.out.println("listarDisponibilidadConfirmados");
         try {
-            java.sql.Date fechaInicio = util.getSqlDate("2010-08-29");
-            java.sql.Date fechaFin = util.getSqlDate("2010-09-02");
+            java.sql.Date fechaInicio = util.getSqlDate("2010-09-05");
+            java.sql.Date fechaFin = util.getSqlDate("2010-09-06");
 
             List<DisponibilidadConfirmadosTO> dispon = servicioSalon.listarDisponibilidadConfirmados(fechaInicio, fechaFin, new Integer(4));
             assertNotNull(dispon);
@@ -185,6 +204,25 @@ public class ServicioSalonTest {
             System.out.println(d.getIdEvento());
 
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testDisponibilidadConfirmados() {
+        System.out.println("disponibilidadConfirmados");
+        try {
+            java.sql.Date fechaInicio = util.getSqlDate("2010-09-05");
+            java.sql.Date fechaFin = util.getSqlDate("2010-09-06");
+            List<Salon> salones = new ArrayList<Salon>();
+            Salon salon = new Salon(new Integer(4), "CONSUL", null, null, null);
+            salones.add(salon);
+
+            Boolean result = servicioSalon.disponibilidadConfirmados(fechaInicio, fechaFin, salones, new Integer(1));
+//            assertNotNull(dispon);
+            System.out.println(result);
 
         } catch (Exception e) {
             e.printStackTrace();

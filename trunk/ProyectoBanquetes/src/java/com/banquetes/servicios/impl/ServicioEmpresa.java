@@ -7,6 +7,8 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 import java.util.List;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -112,6 +114,38 @@ public class ServicioEmpresa implements IServicioEmpresa {
 
         try {
             empresas = sqlMap.queryForList("getEmpresas", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return empresas;
+    }
+
+    public List<Empresa> listarEmpresasTodas(String rif, String nombre){
+        List<Empresa> empresas = null;
+
+        rif = rif+"%";
+        nombre = nombre+"%";
+        try {
+            Map param = new HashMap();
+            param.put("rif", rif);
+            param.put("nombre", nombre);
+            empresas = sqlMap.queryForList("getEmpresasTodas", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return empresas;
+    }
+
+    public List<Empresa> listarEmpresasHabilitadas(String rif, String nombre){
+        List<Empresa> empresas = null;
+
+        rif = rif+"%";
+        nombre = nombre+"%";
+        try {
+            Map param = new HashMap();
+            param.put("rif", rif);
+            param.put("nombre", nombre);
+            empresas = sqlMap.queryForList("getEmpresasHabilitadas", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);
         }
