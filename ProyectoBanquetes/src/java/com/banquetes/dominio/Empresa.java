@@ -37,7 +37,7 @@ public class Empresa {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre.toUpperCase();
+        this.nombre = nombre;
     }
 
     public String getTelefono() {

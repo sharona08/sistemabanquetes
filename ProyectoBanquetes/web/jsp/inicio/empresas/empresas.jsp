@@ -10,6 +10,18 @@
 <%@page import="com.banquetes.servicios.interfaces.IServicioEmpresa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<script type="text/javascript">
+    function includeDivEmpresa()
+    {
+        document.getElementById("empresa").style.display="block";
+    }
+
+    function hideDivEmpresa()
+    {
+        document.getElementById("empresa").style.display="none";
+    }
+</script>
+
 <%
             String rif = "";
             if (request.getParameter("rif") == null) {
@@ -39,45 +51,73 @@
             <td width="10%">Opcion</td>
         </tr>
         <%
-                        for (Empresa e : empresas) {
+                    for (Empresa e : empresas) {
 
         %>
-        <tr align="center">
-            <td>
-                <%=e.getRif()%>
-            </td>
-            <td>
-                <%=e.getNombre()%>
-            </td>
-            <td>
-                <%
+        <form method="get" action="">
+            <tr align="center">
+                <td>
+                    <%=e.getRif()%>
+                    <input type="hidden" name="hiddenRif" value="<%=e.getRif()%>"/>
+                </td>
+                <td>
+                    <%=e.getNombre()%>
+                </td>
+                <td>
+                    <%
                                             if (e.getTelefono() == null) {
                                                 out.print("--");
                                             } else {
                                                 out.print(e.getTelefono());
                                             }
-                %>
-            </td>
-            <td>
-                <%
+                    %>
+                </td>
+                <td>
+                    <%
                                             if (e.getDireccion() == null) {
                                                 out.print("--");
                                             } else {
                                                 out.print(e.getDireccion());
                                             }
-                %>
-            </td>
-            <td>
-                <div id="boton" class="demo">
-                    <form method="get" action="">
+                    %>
+                </td>
+                <td>
+                    <div id="boton" class="demo">
                         <input type="hidden" name="rif" value="<%= rif%>">
                         <input type="hidden" name="nombre" value="<%= nombre%>">
-                        <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
-                    </form>
+                        <% if (request.getParameter("inhabilitados") != null) {%>
+                        <input type="hidden" name="inhabilitados" value="<%= request.getParameter("inhabilitados")%>">
+                        <%}%>
+                        <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="includeDivEmpresa()"/>
+                    </div>
+                </td>
+            </tr>
+        </form>
+        <% }%>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="center">
+                <div id="boton" class="demo">
+                    <input type="submit" name="crear" value="Crear Empresa" style="width: 95px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
                 </div>
             </td>
         </tr>
-        <% } %>
-
     </table>
 </div>
+
+<div id="espacio"></div>
+
+<%
+            if (request.getParameter("hiddenRif") != null) {
+%>
+
+<div id="empresa" style="width: 40%; min-height: 300px; background-color: #B9B9B9; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
+    <jsp:include page="detalleEmpresa.jsp"></jsp:include>
+</div>
+
+<% }%>
+
+<div id="espacio"></div>
