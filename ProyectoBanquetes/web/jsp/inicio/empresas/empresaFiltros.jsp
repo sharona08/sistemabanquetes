@@ -11,25 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../datepicker/css/datepicker.css" type="text/css" />
-        <link rel="stylesheet" media="screen" type="text/css" href="../../datepicker/css/layout.css" />
-        <script type="text/javascript" src="../../datepicker/js/jquery.js"></script>
-        <script type="text/javascript" src="../../datepicker/js/datepicker.js"></script>
-        <script type="text/javascript" src="../../datepicker/js/eye.js"></script>
-        <script type="text/javascript" src="../../datepicker/js/utils.js"></script>
-        <script type="text/javascript" src="../../datepicker/js/layout.js?ver=1.0.2"></script>
-        <link rel="stylesheet" type="text/css" href="../../css/home.css" />
-        <link rel="stylesheet" type="text/css" href="../../css/disponibilidad.css" />
-        <link rel="stylesheet" type="text/css" href="../../dropDown/dropDown.css" />
-        <script type="text/javascript" src="../../dropDown/stuHover.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
-        <link type="text/css" href="../../jQuery/css/jquery.ui.all.css" rel="stylesheet" />
-        <script type="text/javascript" src="../../jQuery/js/jquery-1.4.2.js"></script>
-        <script type="text/javascript" src="../../jQuery/js/jquery.ui.core.js"></script>
-        <script type="text/javascript" src="../../jQuery/js/jquery.ui.widget.js"></script>
-        <script type="text/javascript" src="../../jQuery/js/jquery.ui.button.js"></script>
-        <link type="text/css" href="../../jQuery/css/demos.css" rel="stylesheet" />
-
+        <jsp:include page="../headInicio.jsp"></jsp:include>
         <script type="text/javascript">
             $(function() {
                 $("button, input:submit, a", ".demo").button();
@@ -97,14 +79,14 @@
                             <tr style="height: 30px">
                                 <td>Rif</td>
                                 <td>
-                                    <input value="<%= hiddenRif %>" name="rif" onKeyUp="this.value=this.value.toUpperCase();" style="width: 160px; height: 23px" align="middle"/>
+                                    <input value="<%= hiddenRif%>" name="rif" onKeyUp="this.value=this.value.toUpperCase();" style="width: 160px; height: 23px" align="middle"/>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr style="height: 30px">
                                 <td>Nombre</td>
                                 <td>
-                                    <input value="<%= hiddenNombre %>" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 160px; height: 23px" align="middle"/>
+                                    <input value="<%= hiddenNombre%>" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 160px; height: 23px" align="middle"/>
                                 </td>
                                 <td>
                                     <div id="boton" class="demo">
