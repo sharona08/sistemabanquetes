@@ -34,16 +34,10 @@
         <script type="text/javascript" src="../../jQuery/js/jquery.ui.button.js"></script>
         <link type="text/css" href="../../jQuery/css/demos.css" rel="stylesheet" />
         <title>Crear Empresa</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp"/>
+        <!--        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp"/>-->
     </head>
     <body>
 
-        <script type="text/javascript">
-            function show_alert()
-            {
-                alert("Error! la empresa ya esta registrada.");
-            }
-        </script>
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
@@ -59,11 +53,22 @@
 
                             Boolean existe = servicioEmpresa.existeEmpresa(empresa);
                             if (!existe) {
-                                servicioEmpresa.crearEmpresa(empresa);
-                            } else {
+                                Boolean result = servicioEmpresa.crearEmpresa(empresa);
+                                if (result) {
                 %>
                 <script type="text/javascript">
-                    show_alert();
+                    alert("Exito! la empresa ha sido registrada exitosamente.");
+                </script>
+                <% } else {
+                %>
+                <script type="text/javascript">
+                    alert("Error! la empresa no se pudo registrar.");
+                </script>
+                <%                                                }
+                                            } else {
+                %>
+                <script type="text/javascript">
+                    alert("Error! la empresa ya esta registrada.");
                 </script>
                 <%                            }
                 %>
