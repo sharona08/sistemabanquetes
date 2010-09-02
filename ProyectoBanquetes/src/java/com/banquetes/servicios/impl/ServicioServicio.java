@@ -69,7 +69,8 @@ public class ServicioServicio implements IServicioServicio {
         return id;
     }
 
-    public void editarServicio(Servicio servicio) {
+    public Boolean editarServicio(Servicio servicio) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeServicioId(servicio);
         try {
@@ -90,45 +91,65 @@ public class ServicioServicio implements IServicioServicio {
                     newServicio.setHabilitado(servicio.getHabilitado());
                 }
 
-                sqlMap.update("editarServicio", newServicio);
+                int resultado = sqlMap.update("editarServicio", newServicio);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
             } else {
                 System.out.println("No existe el servicio");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void inhabilitarServicio(Servicio servicio) {
+    public Boolean inhabilitarServicio(Servicio servicio) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeServicioId(servicio);
         try {
             if (existe) {
                 Servicio newServicio = (Servicio) sqlMap.queryForObject("getServicio", servicio.getId());
                 newServicio.setHabilitado(Boolean.FALSE);
-                sqlMap.update("editarServicio", newServicio);
+                int resultado = sqlMap.update("editarServicio", newServicio);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
             } else {
                 System.out.println("No existe el servicio");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void habilitarServicio(Servicio servicio) {
+    public Boolean habilitarServicio(Servicio servicio) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeServicioId(servicio);
         try {
             if (existe) {
                 Servicio newServicio = (Servicio) sqlMap.queryForObject("getServicio", servicio.getId());
                 newServicio.setHabilitado(Boolean.TRUE);
-                sqlMap.update("editarServicio", newServicio);
+                int resultado = sqlMap.update("editarServicio", newServicio);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
             } else {
                 System.out.println("No existe el servicio");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     public List<Servicio> listarServicios() {

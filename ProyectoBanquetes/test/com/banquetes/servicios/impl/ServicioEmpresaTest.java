@@ -36,19 +36,20 @@ public class ServicioEmpresaTest {
     /**
      * Test of listarEmpresa method, of class ServicioEmpresa.
      */
-//    @Test
+    @Test
     public void testCrearEmpresa() {
         System.out.println("Crear Empresa");
-        Empresa empresa = new Empresa("J-12345678-2", "ñ C.A.", null, null, Boolean.TRUE);
+        Empresa empresa = new Empresa("J-12345678-3", "empresa C.A.", null, null, Boolean.TRUE);
 
         try {
-            servicioEmpresa.crearEmpresa(empresa);
+            Boolean result = servicioEmpresa.crearEmpresa(empresa);
+            System.out.println("RESULTADO: " + result);
             this.testListarEmpresas();
         } catch (Exception e) {
         }
     }
 
-    @Test
+//    @Test
     public void testEditarEmpresa() {
         System.out.println("Editar Empresa");
         Empresa empresa = new Empresa("J-29565286-0", "HBP", "02124341122", "Av. Francisco de Miranda, Centro Plaza, Torre C, Piso 15, Oficina H. - los Palos Grandes", true);

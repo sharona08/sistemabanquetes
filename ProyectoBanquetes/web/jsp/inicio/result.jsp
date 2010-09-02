@@ -56,11 +56,11 @@
 <div id="resultDisponibilidad" style="margin-right: 10px">
     <table id="tableId" width="100%" border="1" cellspacing="0" cellpadding="0">
         <tr align="center" style="height: 30px; background-color: #919999; border-color: #556270; font-weight: bolder; color: white">
-            <td width="5%">ID</td>
-            <td width="10%">Fecha</td>
-            <td width="10%">Disponible</td>
-            <td width="65%">Evento</td>
-            <td width="10%">Opcion</td>
+            <td width="4%">ID</td>
+            <td width="8%">Fecha</td>
+            <td width="8%">Disponible</td>
+            <td width="72%">Evento</td>
+            <td width="8%">Opcion</td>
         </tr>
         <%
                     IServicioSalon iServicioSalon2 = new ServicioSalon();

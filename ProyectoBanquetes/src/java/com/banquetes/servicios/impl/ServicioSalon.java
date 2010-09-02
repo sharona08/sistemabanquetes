@@ -75,7 +75,8 @@ public class ServicioSalon implements IServicioSalon {
         return id;
     }
 
-    public void editarSalon(Salon salon) {
+    public Boolean editarSalon(Salon salon) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeSalonId(salon);
         try {
@@ -92,45 +93,67 @@ public class ServicioSalon implements IServicioSalon {
                     newSalon.setHabilitado(salon.getHabilitado());
                 }
 
-                sqlMap.update("editarSalon", newSalon);
+                int resultado = sqlMap.update("editarSalon", newSalon);
+
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
+
             } else {
                 System.out.println("No existe el salon");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void inhabilitarSalon(Salon salon) {
+    public Boolean inhabilitarSalon(Salon salon) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeSalonId(salon);
         try {
             if (existe) {
                 Salon newSalon = (Salon) sqlMap.queryForObject("getSalon", salon.getId());
                 newSalon.setHabilitado(Boolean.FALSE);
-                sqlMap.update("editarSalon", newSalon);
+                int resultado = sqlMap.update("editarSalon", newSalon);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
             } else {
                 System.out.println("No existe el salon");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void habilitarSalon(Salon salon) {
+    public Boolean habilitarSalon(Salon salon) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeSalonId(salon);
         try {
             if (existe) {
                 Salon newSalon = (Salon) sqlMap.queryForObject("getSalon", salon.getId());
                 newSalon.setHabilitado(Boolean.TRUE);
-                sqlMap.update("editarSalon", newSalon);
+                int resultado = sqlMap.update("editarSalon", newSalon);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
             } else {
                 System.out.println("No existe el salon");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     public List<Salon> listarSalones() {

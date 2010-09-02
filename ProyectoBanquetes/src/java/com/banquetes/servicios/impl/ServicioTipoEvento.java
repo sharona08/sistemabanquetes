@@ -67,7 +67,8 @@ public class ServicioTipoEvento implements IServicioTipoEvento {
         return id;
     }
 
-    public void editarTipoEvento(TipoEvento tipoEvento) {
+    public Boolean editarTipoEvento(TipoEvento tipoEvento) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeTipoEventoId(tipoEvento);
         try {
@@ -78,13 +79,21 @@ public class ServicioTipoEvento implements IServicioTipoEvento {
                     newTipoEvento.setTipoEvento(tipoEvento.getTipoEvento());
                 }
 
-                sqlMap.update("editarTipoEvento", newTipoEvento);
+                int resultado = sqlMap.update("editarTipoEvento", newTipoEvento);
+
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
+
             } else {
-                System.out.println("No existe el tipo de evento");
+                result = Boolean.FALSE;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioTipoEvento.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     public List<TipoEvento> listarTipoEventos() {
@@ -97,7 +106,7 @@ public class ServicioTipoEvento implements IServicioTipoEvento {
         }
         return tipoEventos;
     }
-    
+
     public TipoEvento getTipoEvento(Integer id) {
         TipoEvento tipoEvento = null;
         try {
@@ -119,5 +128,4 @@ public class ServicioTipoEvento implements IServicioTipoEvento {
         }
         return tipoEvento;
     }
-
 }

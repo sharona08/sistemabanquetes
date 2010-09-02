@@ -30,7 +30,7 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`EMPRESA` (
   `rif` VARCHAR(45) NOT NULL ,
   `nombre` VARCHAR(100) NOT NULL ,
   `telefono` VARCHAR(45) NULL ,
-  `direccion` VARCHAR(200) NULL ,
+  `direccion` VARCHAR(5000) NULL ,
   `habilitado` TINYINT(1)  NOT NULL ,
   PRIMARY KEY (`rif`) )
 ENGINE = InnoDB;
@@ -43,8 +43,9 @@ DROP TABLE IF EXISTS `banquetes`.`TIPO_EVENTO` ;
 
 CREATE  TABLE IF NOT EXISTS `banquetes`.`TIPO_EVENTO` (
   `id` INT(11)  NOT NULL AUTO_INCREMENT ,
-  `tipoEvento` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`id`) )
+  `tipoEvento` VARCHAR(200) NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  UNIQUE INDEX `tipoEvento_UNIQUE` (`tipoEvento` ASC) )
 ENGINE = InnoDB;
 
 
@@ -55,9 +56,9 @@ DROP TABLE IF EXISTS `banquetes`.`CONTACTO` ;
 
 CREATE  TABLE IF NOT EXISTS `banquetes`.`CONTACTO` (
   `id` INT(11)  NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(100) NOT NULL ,
   `telefono` VARCHAR(45) NULL ,
-  `direccion` VARCHAR(200) NULL ,
+  `direccion` VARCHAR(5000) NULL ,
   `habilitado` TINYINT(1)  NOT NULL ,
   `rifEmpresa` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`) ,
@@ -87,6 +88,7 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`EVENTO` (
   `idTipoEvento` INT(11)  NOT NULL ,
   `rifEmpresa` VARCHAR(45) NOT NULL ,
   `idContacto` INT(11)  NOT NULL ,
+  `nota` VARCHAR(5000) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_EVENTO_EMPRESA1` (`rifEmpresa` ASC) ,
   INDEX `fk_EVENTO_TIPO_EVENTO1` (`idTipoEvento` ASC) ,
@@ -116,7 +118,7 @@ DROP TABLE IF EXISTS `banquetes`.`SALON` ;
 
 CREATE  TABLE IF NOT EXISTS `banquetes`.`SALON` (
   `id` INT(11)  NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(50) NOT NULL ,
+  `nombre` VARCHAR(100) NOT NULL ,
   `costo` DOUBLE NOT NULL ,
   `habilitado` TINYINT(1)  NOT NULL ,
   `idSalon` INT(11)  NULL ,
@@ -138,7 +140,7 @@ DROP TABLE IF EXISTS `banquetes`.`MONTAJE` ;
 
 CREATE  TABLE IF NOT EXISTS `banquetes`.`MONTAJE` (
   `id` INT(11)  NOT NULL AUTO_INCREMENT ,
-  `tipoMontaje` VARCHAR(150) NOT NULL ,
+  `tipoMontaje` VARCHAR(200) NOT NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `tipoMontaje_UNIQUE` (`tipoMontaje` ASC) )
 ENGINE = InnoDB;
@@ -203,7 +205,7 @@ DROP TABLE IF EXISTS `banquetes`.`DEPARTAMENTO` ;
 
 CREATE  TABLE IF NOT EXISTS `banquetes`.`DEPARTAMENTO` (
   `id` INT(11)  NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(100) NOT NULL ,
+  `nombre` VARCHAR(200) NOT NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) )
 ENGINE = InnoDB;
@@ -217,9 +219,9 @@ DROP TABLE IF EXISTS `banquetes`.`SERVICIO` ;
 CREATE  TABLE IF NOT EXISTS `banquetes`.`SERVICIO` (
   `id` INT(11)  NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(100) NOT NULL ,
-  `descripcion` VARCHAR(500) NULL ,
+  `descripcion` VARCHAR(5000) NULL ,
   `costoUnitario` DOUBLE NOT NULL ,
-  `tipoServicio` VARCHAR(100) NOT NULL ,
+  `tipoServicio` VARCHAR(200) NOT NULL ,
   `habilitado` TINYINT(1)  NOT NULL ,
   `idDepartamento` INT(11)  NOT NULL ,
   PRIMARY KEY (`id`) ,
@@ -244,10 +246,10 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`SERVICIO_EVENTO` (
   `cantidad` INT(11)  NOT NULL ,
   `horaInicio` TIME NOT NULL ,
   `horaFin` TIME NULL DEFAULT NULL ,
-  `notaEspecial` VARCHAR(500) NULL DEFAULT NULL ,
+  `notaEspecial` VARCHAR(5000) NULL DEFAULT NULL ,
   `nuevoCosto` DOUBLE NULL ,
   `nuevoNombre` VARCHAR(100) NULL ,
-  `nuevaDescripcion` VARCHAR(500) NULL ,
+  `nuevaDescripcion` VARCHAR(5000) NULL ,
   PRIMARY KEY (`idServicio`, `idEvento`) ,
   INDEX `fk_SERVICIO_has_EVENTO_SERVICIO1` (`idServicio` ASC) ,
   INDEX `fk_SERVICIO_has_EVENTO_EVENTO1` (`idEvento` ASC) ,
@@ -310,7 +312,12 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 SET AUTOCOMMIT=0;
 USE `banquetes`;
 INSERT INTO `banquetes`.`EMPRESA` (`rif`, `nombre`, `telefono`, `direccion`, `habilitado`) VALUES ('J-00000000-0', 'PARTICULAR', NULL, NULL, true);
-INSERT INTO `banquetes`.`EMPRESA` (`rif`, `nombre`, `telefono`, `direccion`, `habilitado`) VALUES ('J-29565286-0', 'HBP, C.A.', '02128776788', 'Av. Francisco de Miranda, Centro Plaza, Torre C, Piso 15, Oficina H. - Los Palos Grandes', true);
+INSERT INTO `banquetes`.`EMPRESA` (`rif`, `nombre`, `telefono`, `direccion`, `habilitado`) VALUES ('J-00120707-4', 'MOTOROLA DE VENEZUELA', NULL, 'AV. FRANCISCO DE MIRANDA, CENTRO LIDO, TORRE A, PISO 15, EL ROSAL. CARACAS', true);
+INSERT INTO `banquetes`.`EMPRESA` (`rif`, `nombre`, `telefono`, `direccion`, `habilitado`) VALUES ('J-00000001-0', 'LABORATORIOS ABBOTT', NULL, 'CENTRO GERENCIAL LOS CORTIJOS PISO 1 CALLE LOS LABORATORIOS. CARACAS', true);
+INSERT INTO `banquetes`.`EMPRESA` (`rif`, `nombre`, `telefono`, `direccion`, `habilitado`) VALUES ('J-00002735-8', 'AVON COSMETICS DE VENEZUELA', NULL, 'AV PPAL DE LOS RUICES CENTRO MONACA. P.B. LOCAL C. ANACO', true);
+INSERT INTO `banquetes`.`EMPRESA` (`rif`, `nombre`, `telefono`, `direccion`, `habilitado`) VALUES ('J-00021492-1', 'GLAXOSMITHKLINE VENEZUELA, C.A.', NULL, 'CALLE LUIS DE CAMOENS, #115-117, URB. LA TRINIDAD. CARACAS', true);
+INSERT INTO `banquetes`.`EMPRESA` (`rif`, `nombre`, `telefono`, `direccion`, `habilitado`) VALUES ('J-30131018-7', 'KRAFT FOODS VENEZUELA, C.A.', NULL, 'AV. FRANCISCO DE MIRANDA, URB. CAMPO ALEGRE, EDIF. SEGUROS VENEZUELA PI. CARACAS', true);
+INSERT INTO `banquetes`.`EMPRESA` (`rif`, `nombre`, `telefono`, `direccion`, `habilitado`) VALUES ('J-00119573-4', 'CORPORACION CLOROX DE VENEZUELA, S.A.', NULL, 'AV. GUAICAIPURO EDIF. FORUM PISO 13, EL ROSAL.', true);
 
 COMMIT;
 
@@ -338,9 +345,15 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `banquetes`;
-INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (1, 'GERARDO BARCIA', NULL, NULL, true, 'J-29565286-0');
-INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (2, 'ANDREA PEREZ', '04124458736', 'LOS RUICES', true, 'J-00000000-0');
-INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (3, 'EDUARDO GOMEZ', '02128876545', 'MONTALBAN', true, 'J-00000000-0');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (1, 'KAREN GOSLING', NULL, NULL, true, 'J-00120707-4');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (2, 'IRLENE SEQUEA', '7007107', NULL, true, 'J-00000001-0');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (3, 'ANA URBINA', '3401620', NULL, true, 'J-00002735-8');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (4, 'ARBORY LEON', '9452122', NULL, true, 'J-00021492-1');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (5, 'CAMILA HOMBERGER', '6009248', NULL, true, 'J-30131018-7');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (6, 'IOLANDA CASTRIOTTA', '9050808', NULL, true, 'J-00119573-4');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (7, 'GERARDO BARCIA', '04126785511', NULL, true, 'J-00000000-0');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (8, 'ANDREA DE SOUSA', '04162230099', NULL, true, 'J-00000000-0');
+INSERT INTO `banquetes`.`CONTACTO` (`id`, `nombre`, `telefono`, `direccion`, `habilitado`, `rifEmpresa`) VALUES (9, 'DIANA URIBE', '04142235544', NULL, true, 'J-00000000-0');
 
 COMMIT;
 
@@ -349,7 +362,10 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `banquetes`;
-INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`) VALUES (1, 'T', 'GRADUACION', '2010-08-14', '2010-08-16', 50, '18:00:00', '23:00:00', 1, 'J-00000000-0', 2);
+INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (1, 'T', 'GRADUACION', '2010-09-05', '2010-09-06', 50, '18:00:00', '23:00:00', 1, 'J-00000000-0', 7, NULL);
+INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (2, 'T', 'BODA', '2010-09-08', '2010-09-08', 60, '17:00:00', '23:00:00', 6, 'J-00000000-0', 8, 'ROSAS ROJAS');
+INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (3, 'C', 'CONFERENCIA KRAFT', '2010-09-10', '2010-09-11', 30, '12:00:00', '16:00:00', 4, 'J-30131018-7', 5, NULL);
+INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (4, 'C', 'PRESENTACION NUEVO PRODUCTO AVON', '2010-09-12', '2010-09-12', 50, '11:00:00', '15:00:00', 3, 'J-00002735-8', 3, NULL);
 
 COMMIT;
 
@@ -462,6 +478,9 @@ COMMIT;
 SET AUTOCOMMIT=0;
 USE `banquetes`;
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (1, NULL, 4, 1);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (2, '205', 4, 2);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (3, '500', 3, 5);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (4, NULL, 2, 3);
 
 COMMIT;
 

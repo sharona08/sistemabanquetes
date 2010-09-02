@@ -22,6 +22,12 @@
     }
 </script>
 
+<script type="text/javascript">
+    function redirect(url){
+        window.location.href=url;
+    }
+</script>
+
 <%
             String rif = "";
             if (request.getParameter("rif") == null) {
@@ -37,7 +43,12 @@
                 nombre = request.getParameter("nombre");
             }
             IServicioEmpresa servicioEmpresa = new ServicioEmpresa();
-            List<Empresa> empresas = servicioEmpresa.listarEmpresasTodas(rif, nombre);
+            List<Empresa> empresas;
+            if (request.getParameter("inhabilitados") != null) {
+                empresas = servicioEmpresa.listarEmpresasTodas(rif, nombre);
+            } else {
+                empresas = servicioEmpresa.listarEmpresasHabilitadas(rif, nombre);
+            }
 %>
 
 
@@ -45,17 +56,21 @@
     <table width="100%" border="1" cellspacing="0" cellpadding="0">
         <tr align="center" style="height: 30px; background-color: #919999; border-color: #556270; font-weight: bolder; color: white">
             <td width="10%">RIF</td>
-            <td width="10%">Nombre</td>
-            <td width="10%">Telefono</td>
-            <td width="60%">Direccion</td>
-            <td width="10%">Opcion</td>
+            <td width="27%">Nombre</td>
+            <!--            <td width="7%">Telefono</td>-->
+            <td width="55%">Direccion</td>
+            <td width="8%">Opcion</td>
         </tr>
         <%
                     for (Empresa e : empresas) {
 
         %>
         <form method="get" action="">
+            <% if (e.getHabilitado()) {%>
             <tr align="center">
+                <% } else {%>
+            <tr align="center" bgcolor="#FF8080">
+                <% }%>
                 <td>
                     <%=e.getRif()%>
                     <input type="hidden" name="hiddenRif" value="<%=e.getRif()%>"/>
@@ -63,15 +78,15 @@
                 <td>
                     <%=e.getNombre()%>
                 </td>
-                <td>
-                    <%
-                                            if (e.getTelefono() == null) {
-                                                out.print("--");
-                                            } else {
-                                                out.print(e.getTelefono());
-                                            }
-                    %>
-                </td>
+                <!--                <td>-->
+
+                <!--                                            if (e.getTelefono() == null) {
+                                                                out.print("--");
+                                                            } else {
+                                                                out.print(e.getTelefono());
+                                                            }
+                -->
+                <!--                </td>-->
                 <td>
                     <%
                                             if (e.getDireccion() == null) {
@@ -98,10 +113,9 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
             <td align="center">
                 <div id="boton" class="demo">
-                    <input type="submit" name="crear" value="Crear Empresa" style="width: 95px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
+                    <input type="submit" name="crear" value="Nueva" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="redirect('formCrearEmpresa.jsp')"/>
                 </div>
             </td>
         </tr>
