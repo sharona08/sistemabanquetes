@@ -32,15 +32,32 @@
         <script type="text/javascript" src="../../jQuery/js/jquery.ui.widget.js"></script>
         <script type="text/javascript" src="../../jQuery/js/jquery.ui.button.js"></script>
         <link type="text/css" href="../../jQuery/css/demos.css" rel="stylesheet" />
+
+        <script type="text/javascript">
+            $(function() {
+                $("button, input:submit, a", ".demo").button();
+
+                $("a", ".demo").click(function() { return false; });
+            });
+        </script>
+
+        <script type="text/javascript" src="../../js/jquery.validate.js"></script>
+        <style type="text/css">
+            label { width: 10em; float: left; }
+            label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+            p { clear: both; }
+            .submit { margin-left: 12em; }
+            em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+        </style>
+        <script>
+            $(document).ready(function(){
+                $("#commentForm").validate();
+            });
+        </script>
+
+
         <title>Crear Empresa</title>
     </head>
-    <script type="text/javascript">
-        $(function() {
-            $("button, input:submit, a", ".demo").button();
-
-            $("a", ".demo").click(function() { return false; });
-        });
-    </script>
 
     <body>
         <div id="pageWrap">
@@ -48,20 +65,21 @@
             <div id="content">
                 <h1 id="letra1">CREAR EMPRESA</h1>
                 <div style="height: 10px"></div>
-                <div style="padding-left: 20px; background-color: #dadada; width: 30%; height: 300px">
+                <div style="padding-left: 20px; background-color: #dadada; width: 30%; min-height: 330px">
                     <div id="espacio"></div>
-                    <form method="get" action="crearEmpresa.jsp">
+
+                    <form method="get" action="crearEmpresa.jsp" class="cmxform" id="commentForm">
                         <table width="100%" border="0">
                             <tr style="height: 30px">
-                                <td width="10%">RIF:</td>
+                                <td width="10%">RIF: (*)</td>
                                 <td width="30%">
-                                    <input value="" name="rif" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
+                                    <input class="required" value="" name="rif" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
                                 </td>
                             </tr>
                             <tr style="height: 30px">
-                                <td width="30%">Nombre:</td>
+                                <td width="30%">Nombre: (*)</td>
                                 <td width="50%">
-                                    <input value="" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
+                                    <input class="required" value="" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
                                 </td>
                             </tr>
                             <tr style="height: 30px">
@@ -83,11 +101,15 @@
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
+                                <td>(*) Campos obligatorios</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                             </tr>
                         </table>
                         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-                            <input type="submit" name="create" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
+                            <input class="submit" type="submit" name="create" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
                         </div>
                     </form>
                 </div>

@@ -75,7 +75,7 @@
                     <%=e.getRif()%>
                     <input type="hidden" name="hiddenRif" value="<%=e.getRif()%>"/>
                 </td>
-                <td>
+                <td align="center">
                     <%=e.getNombre()%>
                 </td>
                 <!--                <td>-->
