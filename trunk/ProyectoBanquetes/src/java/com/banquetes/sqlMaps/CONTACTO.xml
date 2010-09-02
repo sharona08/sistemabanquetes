@@ -19,7 +19,7 @@
         VALUES (#nombre#,
                 #telefono#,
                 #direccion#,
-                #habilitado#,
+                true,
                 #rifEmpresa#)
 
         <selectKey resultClass="int">
@@ -58,6 +58,48 @@
           habilitado as habilitado,
           rifEmpresa as rifEmpresa
        FROM CONTACTO
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getContactosTodos" resultClass="contacto">
+      SELECT
+          id as id,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado,
+          rifEmpresa as rifEmpresa
+       FROM CONTACTO
+       WHERE id LIKE #id#
+       AND nombre LIKE #nombre#
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getContactosHabilitados" resultClass="contacto">
+      SELECT
+          id as id,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado,
+          rifEmpresa as rifEmpresa
+       FROM CONTACTO
+          WHERE habilitado is true
+          AND id LIKE #id#
+          AND nombre LIKE #nombre#
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getContactosRif" resultClass="contacto">
+      SELECT
+          id as id,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado,
+          rifEmpresa as rifEmpresa
+       FROM CONTACTO
+	   WHERE rifEmpresa = #rifEmpresa#
        ORDER BY nombre ASC
     </select>
 </sqlMap>

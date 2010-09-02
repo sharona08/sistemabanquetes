@@ -42,6 +42,24 @@ public interface IServicioContacto {
     public List<Contacto> listarContactos();
 
     /**
+     * Firma para listar todos los contactos todos
+     * @return List<Contacto> lista de todos los contactos todos
+     */
+    public List<Contacto> listarContactosTodos(Integer id, String nombre);
+
+    /**
+     * Firma para listar todos los contactos por rif
+     * @return List<Contacto> lista de todos los contactos por rif
+     */
+    public List<Contacto> listarContactosRif(String rif);
+
+    /**
+     * Firma para listar todos los contactos habilitados
+     * @return List<Contacto> lista de todos los contactos habilitados
+     */
+    public List<Contacto> listarContactosHabilitados(Integer id, String nombre);
+
+    /**
      * Firma para obtener un contacto mediante su id
      * @param id el identificador con el cual se buscara 
      * @return Contacto objeto contacto con el id ingresado 

@@ -28,7 +28,7 @@
                         rif = "";
                     } else {
                         rif = request.getParameter("rif");
-                     }
+                    }
                     String nombre = "";
                     if (request.getParameter("nombre") == null) {
                         nombre = "";
@@ -62,8 +62,18 @@
 
                             empresa.setHabilitado(habilitado);
 
-                            servicioEmpresa.editarEmpresa(empresa);
+                            Boolean result = servicioEmpresa.editarEmpresa(empresa);
+                            if (result) {
                 %>
+                <script type="text/javascript">
+                    alert("Exito! la empresa ha sido editada exitosamente.");
+                </script>
+                <% } else {%>
+                <script type="text/javascript">
+                    alert("Error! la empresa no pudo ser editada.");
+                </script>
+
+                <% }%>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
