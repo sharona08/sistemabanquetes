@@ -37,7 +37,7 @@
                 </li>
                 <li class="mid"><a href="/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp" class="fly">Empresas</a>
                     <ul>
-                        <li><a href="#nogo19">Contactos</a></li>
+                        <li><a href="/ProyectoBanquetes/jsp/inicio/contactos/contactoFiltros.jsp">Contactos</a></li>
                     </ul>
                 </li>
                 <li><a href="#nogo3">Salones</a></li>

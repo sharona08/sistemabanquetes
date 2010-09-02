@@ -32,7 +32,8 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`EMPRESA` (
   `telefono` VARCHAR(45) NULL ,
   `direccion` VARCHAR(5000) NULL ,
   `habilitado` TINYINT(1)  NOT NULL ,
-  PRIMARY KEY (`rif`) )
+  PRIMARY KEY (`rif`) ,
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) )
 ENGINE = InnoDB;
 
 

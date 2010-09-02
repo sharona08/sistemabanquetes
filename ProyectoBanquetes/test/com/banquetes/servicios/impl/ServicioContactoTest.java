@@ -60,7 +60,7 @@ public class ServicioContactoTest {
         }
     }
 
-    @Test
+//    @Test
     public void testHabilitarContacto() {
         System.out.println("Habilitar contacto");
         Contacto contacto = new Contacto(2, null, null, null, null, null);
@@ -72,7 +72,7 @@ public class ServicioContactoTest {
         }
     }
 
-    @Test
+//    @Test
     public void testListarContactos() {
         System.out.println("ListarContactos");
         try {
@@ -86,7 +86,49 @@ public class ServicioContactoTest {
         }
     }
 
+//    @Test
+    public void testListarContactosRif() {
+        System.out.println("ListarContactosRif");
+        try {
+            List<Contacto> contactos = servicioContacto.listarContactosRif("J-00000000-0");
+            assertNotNull(contactos);
+            for (Contacto contacto : contactos) {
+                System.out.println("CONTACTOS: " + contacto.getId() + " " + contacto.getNombre() + " " + contacto.getDireccion() + " " + contacto.getTelefono() + " " + contacto.getHabilitado().toString() + " " + contacto.getRifEmpresa());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    @Test
+    public void testListarContactosTodos() {
+        System.out.println("ListarContactosTodos");
+        try {
+            List<Contacto> contactos = servicioContacto.listarContactosTodos(null, "AN");
+            assertNotNull(contactos);
+            for (Contacto contacto : contactos) {
+                System.out.println("CONTACTOS: " + contacto.getId() + " " + contacto.getNombre() + " " + contacto.getDireccion() + " " + contacto.getTelefono() + " " + contacto.getHabilitado().toString() + " " + contacto.getRifEmpresa());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
+    public void testListarContactosHabilitados() {
+        System.out.println("ListarContactosHabilitados");
+        try {
+            List<Contacto> contactos = servicioContacto.listarContactosHabilitados(null, null);
+            assertNotNull(contactos);
+            for (Contacto contacto : contactos) {
+                System.out.println("CONTACTOS: " + contacto.getId() + " " + contacto.getNombre() + " " + contacto.getDireccion() + " " + contacto.getTelefono() + " " + contacto.getHabilitado().toString() + " " + contacto.getRifEmpresa());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    @Test
     public void testGetContacto() {
         System.out.println("ServicioContacto");
         Integer id = 1;

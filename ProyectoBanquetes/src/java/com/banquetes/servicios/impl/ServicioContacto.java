@@ -7,6 +7,8 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 import java.util.List;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -99,6 +101,71 @@ public class ServicioContacto implements IServicioContacto {
 
         try {
             contactos = sqlMap.queryForList("getContactos", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioContacto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contactos;
+    }
+
+    public List<Contacto> listarContactosTodos(Integer id, String nombre) {
+        List<Contacto> contactos = null;
+
+        String idContacto = "";
+        if (id == null) {
+            idContacto = "%";
+        } else {
+            idContacto = id.toString() + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+
+        try {
+            Map param = new HashMap();
+            param.put("id", idContacto);
+            param.put("nombre", nombre);
+            contactos = sqlMap.queryForList("getContactosTodos", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioContacto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contactos;
+    }
+
+    public List<Contacto> listarContactosRif(String rif) {
+        List<Contacto> contactos = null;
+
+        try {
+            contactos = sqlMap.queryForList("getContactosRif", rif);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioContacto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contactos;
+    }
+
+    public List<Contacto> listarContactosHabilitados(Integer id, String nombre) {
+        List<Contacto> contactos = null;
+
+        String idContacto = "";
+        if (id == null) {
+            idContacto = "%";
+        } else {
+            idContacto = id.toString() + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+
+        try {
+            Map param = new HashMap();
+            param.put("id", idContacto);
+            param.put("nombre", nombre);
+            contactos = sqlMap.queryForList("getContactosHabilitados", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioContacto.class.getName()).log(Level.SEVERE, null, ex);
         }
