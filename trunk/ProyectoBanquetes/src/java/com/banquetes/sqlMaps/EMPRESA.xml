@@ -20,7 +20,14 @@
             #nombre#,
             #telefono#,
             #direccion#,
-            #habilitado#)
+            true)
+            
+        <selectKey resultClass="String">
+            SELECT
+              rif as rif
+            FROM EMPRESA
+	      WHERE rif = #rif#
+        </selectKey>
     </insert>
 
     <update id="editarEmpresa" parameterClass="empresa">

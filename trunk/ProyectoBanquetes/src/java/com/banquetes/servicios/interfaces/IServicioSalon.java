@@ -39,19 +39,19 @@ public interface IServicioSalon {
      * Firma para editar un objeto salon
      * @param salon el objeto salon a ser editado
      */
-    public void editarSalon(Salon salon);
+    public Boolean editarSalon(Salon salon);
 
     /**
      * Firma para inhabilitar un salon
      * @param salon el objeto salon que sera inhabilitado
      */
-    public void inhabilitarSalon(Salon salon);
+    public Boolean inhabilitarSalon(Salon salon);
 
     /**
      * Firma para habilitar un salon
      * @param salon el objeto salon que sera habilitado
      */
-    public void habilitarSalon(Salon salon);
+    public Boolean habilitarSalon(Salon salon);
 
     /**
      * Firma para listar todos los salones

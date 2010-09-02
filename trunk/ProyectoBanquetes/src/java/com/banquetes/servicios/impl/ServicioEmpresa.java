@@ -39,21 +39,31 @@ public class ServicioEmpresa implements IServicioEmpresa {
         }
         return existe;
     }
-    public void crearEmpresa(Empresa empresa) {
+
+    public Boolean crearEmpresa(Empresa empresa) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeEmpresa(empresa);
         try {
             if (!existe) {
-                sqlMap.insert("crearEmpresa", empresa);
+                String resultado = (String) sqlMap.insert("crearEmpresa", empresa);
+                if (resultado != null) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
+
             } else {
                 System.out.println("La empresa ya esta registrada");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void editarEmpresa(Empresa empresa) {
+    public Boolean editarEmpresa(Empresa empresa) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeEmpresa(empresa);
         try {
@@ -68,45 +78,68 @@ public class ServicioEmpresa implements IServicioEmpresa {
                     newEmpresa.setHabilitado(empresa.getHabilitado());
                 }
 
-                sqlMap.update("editarEmpresa", newEmpresa);
+                int resultado = sqlMap.update("editarEmpresa", newEmpresa);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
+
             } else {
                 System.out.println("No existe la empresa");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void inhabilitarEmpresa(Empresa empresa) {
+    public Boolean inhabilitarEmpresa(Empresa empresa) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeEmpresa(empresa);
         try {
             if (existe) {
                 Empresa newEmpresa = (Empresa) sqlMap.queryForObject("getEmpresa", empresa.getRif());
                 newEmpresa.setHabilitado(Boolean.FALSE);
-                sqlMap.update("editarEmpresa", newEmpresa);
+                int resultado = sqlMap.update("editarEmpresa", newEmpresa);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
+
             } else {
                 System.out.println("No existe la empresa");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void habilitarEmpresa(Empresa empresa) {
+    public Boolean habilitarEmpresa(Empresa empresa) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeEmpresa(empresa);
         try {
             if (existe) {
                 Empresa newEmpresa = (Empresa) sqlMap.queryForObject("getEmpresa", empresa.getRif());
                 newEmpresa.setHabilitado(Boolean.TRUE);
-                sqlMap.update("editarEmpresa", newEmpresa);
+                int resultado = sqlMap.update("editarEmpresa", newEmpresa);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
+
             } else {
                 System.out.println("No existe la empresa");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     public List<Empresa> listarEmpresas() {
@@ -120,11 +153,11 @@ public class ServicioEmpresa implements IServicioEmpresa {
         return empresas;
     }
 
-    public List<Empresa> listarEmpresasTodas(String rif, String nombre){
+    public List<Empresa> listarEmpresasTodas(String rif, String nombre) {
         List<Empresa> empresas = null;
 
-        rif = rif+"%";
-        nombre = nombre+"%";
+        rif = rif + "%";
+        nombre = nombre + "%";
         try {
             Map param = new HashMap();
             param.put("rif", rif);
@@ -136,11 +169,11 @@ public class ServicioEmpresa implements IServicioEmpresa {
         return empresas;
     }
 
-    public List<Empresa> listarEmpresasHabilitadas(String rif, String nombre){
+    public List<Empresa> listarEmpresasHabilitadas(String rif, String nombre) {
         List<Empresa> empresas = null;
 
-        rif = rif+"%";
-        nombre = nombre+"%";
+        rif = rif + "%";
+        nombre = nombre + "%";
         try {
             Map param = new HashMap();
             param.put("rif", rif);
@@ -163,4 +196,3 @@ public class ServicioEmpresa implements IServicioEmpresa {
         return empresa;
     }
 }
-

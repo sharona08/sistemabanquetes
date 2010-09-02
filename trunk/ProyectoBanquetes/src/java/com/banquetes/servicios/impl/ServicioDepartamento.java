@@ -69,7 +69,8 @@ public class ServicioDepartamento implements IServicioDepartamento {
         return id;
     }
 
-    public void editarDeparteamento(Departamento departamento) {
+    public Boolean editarDeparteamento(Departamento departamento) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeDepartamentoId(departamento);
         try {
@@ -79,14 +80,19 @@ public class ServicioDepartamento implements IServicioDepartamento {
                 if (departamento.getNombre() != null) {
                     newDepartamento.setNombre(departamento.getNombre());
                 }
-                sqlMap.update("editarDepartamento", newDepartamento);
-
+                int resultado = sqlMap.update("editarDepartamento", newDepartamento);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
             } else {
                 System.out.println("No existe el departamento");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioDepartamento.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     public List<Departamento> listarDepartamentos() {

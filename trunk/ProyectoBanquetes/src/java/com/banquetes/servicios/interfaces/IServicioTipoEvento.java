@@ -15,7 +15,7 @@ public interface IServicioTipoEvento {
 
     public Integer crearTipoEvento(TipoEvento tipoEvento);
 
-    public void editarTipoEvento(TipoEvento tipoEvento);
+    public Boolean editarTipoEvento(TipoEvento tipoEvento);
 
     public List<TipoEvento> listarTipoEventos();
     

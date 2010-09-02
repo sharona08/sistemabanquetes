@@ -35,19 +35,19 @@ public interface IServicioServicio {
      * Firma para editar un servicio existente
      * @param servicio el objeto servicio que sera editado 
      */
-    public void editarServicio(Servicio servicio);
+    public Boolean editarServicio(Servicio servicio);
 
     /**
      * Firma para inhabilitar un servicio existente
      * @param servicio el objeto servicio que sera inhabilitado 
      */
-    public void inhabilitarServicio(Servicio servicio);
+    public Boolean inhabilitarServicio(Servicio servicio);
 
     /**
      * Firma para habilitar un servicio existente
      * @param servicio el objeto servicio que sera habilitado
      */
-    public void habilitarServicio(Servicio servicio);
+    public Boolean habilitarServicio(Servicio servicio);
 
     /**
      * Firma para listar todos los servicios 

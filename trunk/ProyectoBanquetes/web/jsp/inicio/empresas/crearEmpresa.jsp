@@ -1,12 +1,13 @@
 <%-- 
-    Document   : updateEmpresa
-    Created on : Sep 1, 2010, 4:36:29 PM
+    Document   : crearEmpresa
+    Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
 
+<%@page import="sun.org.mozilla.javascript.internal.JavaScriptException"%>
 <%@page import="com.banquetes.dominio.Empresa"%>
-<%@page import="com.banquetes.servicios.impl.ServicioEmpresa"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioEmpresa"%>
+<%@page import="com.banquetes.servicios.impl.ServicioEmpresa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,54 +33,39 @@
         <script type="text/javascript" src="../../jQuery/js/jquery.ui.widget.js"></script>
         <script type="text/javascript" src="../../jQuery/js/jquery.ui.button.js"></script>
         <link type="text/css" href="../../jQuery/css/demos.css" rel="stylesheet" />
-        <title>Editar empresa</title>
-        <%
-                    String hiddenRif = "";
-                    if (request.getParameter("hiddenRif") == null) {
-                        hiddenRif = "";
-                    } else {
-                        hiddenRif = request.getParameter("hiddenRif");
-                    }
-                    String rif = "";
-                    if (request.getParameter("rif") == null) {
-                        rif = "";
-                    } else {
-                        rif = request.getParameter("rif");
-                     }
-                    String nombre = "";
-                    if (request.getParameter("nombre") == null) {
-                        nombre = "";
-                    } else {
-                        nombre = request.getParameter("nombre");
-                    }
-        %>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp?rif=<%= rif%>&nombre=<%= nombre%>">
+        <title>Crear Empresa</title>
+        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp"/>
     </head>
     <body>
+
+        <script type="text/javascript">
+            function show_alert()
+            {
+                alert("Error! la empresa ya esta registrada.");
+            }
+        </script>
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
-                <h1 id="letra1">EMPRESAS</h1>
+                <h1 id="letra1">Crear Empresa</h1>
                 <%
                             IServicioEmpresa servicioEmpresa = new ServicioEmpresa();
                             Empresa empresa = new Empresa();
-                            empresa.setRif(hiddenRif);
-                            empresa.setNombre(request.getParameter("nombreEmpresa"));
+                            empresa.setRif(request.getParameter("rif"));
+                            empresa.setNombre(request.getParameter("nombre"));
                             empresa.setTelefono(request.getParameter("telefono"));
                             empresa.setDireccion(request.getParameter("direccion"));
+                            empresa.setHabilitado(true);
 
-                            Boolean habilitado = null;
-                            String estadoActual = request.getParameter("estados");
-
-                            if (estadoActual.equals("HABILITADO")) {
-                                habilitado = Boolean.TRUE;
-                            } else if (estadoActual.equals("INHABILITADO")) {
-                                habilitado = Boolean.FALSE;
-                            }
-
-                            empresa.setHabilitado(habilitado);
-
-                            servicioEmpresa.editarEmpresa(empresa);
+                            Boolean existe = servicioEmpresa.existeEmpresa(empresa);
+                            if (!existe) {
+                                servicioEmpresa.crearEmpresa(empresa);
+                            } else {
+                %>
+                <script type="text/javascript">
+                    show_alert();
+                </script>
+                <%                            }
                 %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>

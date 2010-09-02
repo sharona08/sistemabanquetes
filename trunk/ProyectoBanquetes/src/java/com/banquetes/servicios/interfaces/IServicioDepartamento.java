@@ -34,7 +34,7 @@ public interface IServicioDepartamento {
      * Firma para editar un departamento
      * @param departamento objeto departamento a ser editado
      */
-    public void editarDeparteamento(Departamento departamento);
+    public Boolean editarDeparteamento(Departamento departamento);
 
     /**
      * Firma para listar todos los departamentos

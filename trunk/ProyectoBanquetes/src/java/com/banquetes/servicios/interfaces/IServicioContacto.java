@@ -21,19 +21,19 @@ public interface IServicioContacto {
      * Firma para editar un contacto existente 
      * @param contacto objeto contacto que sera editado
      */
-    public void editarContacto(Contacto contacto);
+    public Boolean editarContacto(Contacto contacto);
 
     /**
      * Firma para inhabilitar un contacto existente
      * @param contacto el objeto contacto que sera inhabilitado
      */
-    public void inhabilitarContacto(Contacto contacto);
+    public Boolean inhabilitarContacto(Contacto contacto);
 
     /**
      * Firma para habilitar un contacto existente
      * @param contacto el objeto contacto que sera habilitado
      */
-    public void habilitarContacto(Contacto contacto);
+    public Boolean habilitarContacto(Contacto contacto);
 
     /**
      * Firma para listar todos los contactos 

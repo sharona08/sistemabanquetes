@@ -21,25 +21,25 @@ public interface IServicioEmpresa {
      * Firma para crear una nueva empresa
      * @param empresa objeto empresa a ser creado
      */
-    public void crearEmpresa(Empresa empresa);
+    public Boolean crearEmpresa(Empresa empresa);
 
     /**
      * Firma para editar una empresa
      * @param empresa el objeto empresa que sera editada
      */
-    public void editarEmpresa(Empresa empresa);
+    public Boolean editarEmpresa(Empresa empresa);
 
     /**
      * Firma para inhabilitar una empresa
      * @param empresa el objeto empresa a ser inhabilitado
      */
-    public void inhabilitarEmpresa(Empresa empresa);
+    public Boolean inhabilitarEmpresa(Empresa empresa);
 
     /**
      * Firma para habilitar una empresa
      * @param empresa el objeto empresa a ser habilitado
      */
-    public void habilitarEmpresa(Empresa empresa);
+    public Boolean habilitarEmpresa(Empresa empresa);
 
     /**
      * Firma para listar todas las empresas

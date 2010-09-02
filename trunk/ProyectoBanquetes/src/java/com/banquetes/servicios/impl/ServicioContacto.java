@@ -32,8 +32,9 @@ public class ServicioContacto implements IServicioContacto {
         }
         return id;
     }
-    
-    public void editarContacto(Contacto contacto) {
+
+    public Boolean editarContacto(Contacto contacto) {
+        Boolean result = false;
         try {
             Contacto newContacto = (Contacto) sqlMap.queryForObject("getContacto", contacto.getId());
             if (contacto.getNombre() != null) {
@@ -45,31 +46,52 @@ public class ServicioContacto implements IServicioContacto {
                 newContacto.setHabilitado(contacto.getHabilitado());
             }
 
-            sqlMap.update("editarContacto", newContacto);
+            int resultado = sqlMap.update("editarContacto", newContacto);
+            if (resultado == 1) {
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(ServicioContacto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void inhabilitarContacto(Contacto contacto) {
+    public Boolean inhabilitarContacto(Contacto contacto) {
+        Boolean result = false;
         try {
             Contacto newContacto = (Contacto) sqlMap.queryForObject("getContacto", contacto.getId());
             newContacto.setHabilitado(Boolean.FALSE);
-            sqlMap.update("editarContacto", newContacto);
+            int resultado = sqlMap.update("editarContacto", newContacto);
+            if (resultado == 1) {
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(ServicioContacto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
-    public void habilitarContacto(Contacto contacto) {
+    public Boolean habilitarContacto(Contacto contacto) {
+        Boolean result = false;
         try {
             Contacto newContacto = (Contacto) sqlMap.queryForObject("getContacto", contacto.getId());
             newContacto.setHabilitado(Boolean.TRUE);
-            sqlMap.update("editarContacto", newContacto);
+            int resultado = sqlMap.update("editarContacto", newContacto);
+            if (resultado == 1) {
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioContacto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     public List<Contacto> listarContactos() {
@@ -94,4 +116,3 @@ public class ServicioContacto implements IServicioContacto {
         return contacto;
     }
 }
-
