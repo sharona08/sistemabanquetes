@@ -45,8 +45,7 @@
                     }
                 </script>
 
-                <div id="disponibilidad" style="margin-left: 10px">
-
+                <div id="disponibilidad" style="margin-left: 10px;">
                     <h1 id="letra1">Disponibilidad de salones</h1>
 
                     <%
