@@ -26,9 +26,9 @@
     </div>
     <ul id="nav">
         <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp" class="top_link"><span>Inicio</span></a></li>
-        <li class="top"><a href="#" id="products" class="top_link"><span class="down">Mantenimiento</span></a>
+        <li class="top"><a href="" id="products" class="top_link"><span class="down">Mantenimiento</span></a>
             <ul class="sub">
-                <li class="mid"><a href="#" class="fly">Servicios</a>
+                <li class="mid"><a href="" class="fly">Servicios</a>
                     <ul>
                         <li><a href="#nogo8">Alimentos y Bebidas</a></li>
                         <li><a href="#nogo9">Audiovisuales</a></li>
