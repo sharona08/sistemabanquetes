@@ -156,8 +156,18 @@ public class ServicioEmpresa implements IServicioEmpresa {
     public List<Empresa> listarEmpresasTodas(String rif, String nombre) {
         List<Empresa> empresas = null;
 
-        rif = rif + "%";
-        nombre = nombre + "%";
+        if (rif == null) {
+            rif = "%";
+        } else {
+            rif = rif + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+
         try {
             Map param = new HashMap();
             param.put("rif", rif);
@@ -172,8 +182,18 @@ public class ServicioEmpresa implements IServicioEmpresa {
     public List<Empresa> listarEmpresasHabilitadas(String rif, String nombre) {
         List<Empresa> empresas = null;
 
-        rif = rif + "%";
-        nombre = nombre + "%";
+        if (rif == null) {
+            rif = "%";
+        } else {
+            rif = rif + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+        
         try {
             Map param = new HashMap();
             param.put("rif", rif);
@@ -189,6 +209,17 @@ public class ServicioEmpresa implements IServicioEmpresa {
         Empresa empresa = null;
         try {
             empresa = (Empresa) sqlMap.queryForObject("getEmpresa", rif);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return empresa;
+    }
+
+    public Empresa getEmpresaNombre(String nombre) {
+        Empresa empresa = null;
+        try {
+            empresa = (Empresa) sqlMap.queryForObject("getEmpresaNombre", nombre);
 
         } catch (SQLException ex) {
             Logger.getLogger(ServicioEmpresa.class.getName()).log(Level.SEVERE, null, ex);

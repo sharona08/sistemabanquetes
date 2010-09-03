@@ -50,6 +50,17 @@
        FROM EMPRESA
 	   WHERE rif = #rif#
     </select>
+
+    <select id="getEmpresaNombre" resultClass="empresa">
+      SELECT
+          rif as rif,
+          nombre as nombre,
+          telefono as telefono,
+          direccion as direccion,
+          habilitado as habilitado
+       FROM EMPRESA
+	   WHERE nombre = #nombre#
+    </select>
     
     <select id="getEmpresas" resultClass="empresa">
       SELECT
@@ -85,5 +96,6 @@
        WHERE rif LIKE #rif#
        AND nombre LIKE #nombre#
        AND habilitado is true
+       ORDER BY nombre asc
     </select>
 </sqlMap>

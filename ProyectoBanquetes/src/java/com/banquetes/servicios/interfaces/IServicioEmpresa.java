@@ -65,4 +65,11 @@ public interface IServicioEmpresa {
      * @return Empresa objeto empresa encontrado con el rif
      */
     public Empresa getEmpresa(String rif);
+
+    /**
+     * Firma para obtener una empresa dado el nombre
+     * @param nombre el nombre mediante el cual se buscara la empresa
+     * @return Empresa objeto empresa encontrado con el nombre
+     */
+    public Empresa getEmpresaNombre(String nombre);
 }

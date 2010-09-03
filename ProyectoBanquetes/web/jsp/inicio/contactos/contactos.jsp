@@ -126,7 +126,7 @@
             <td>&nbsp;</td>
             <td align="center">
                 <div id="boton" class="demo">
-                    <input type="submit" name="crear" value="Nueva" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="redirect('formCrearEmpresa.jsp')"/>
+                    <input type="submit" name="crear" value="Nuevo" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="redirect('formCrearContacto.jsp')"/>
                 </div>
             </td>
         </tr>
