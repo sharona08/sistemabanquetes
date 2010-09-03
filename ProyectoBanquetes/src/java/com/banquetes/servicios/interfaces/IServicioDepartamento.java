@@ -34,7 +34,7 @@ public interface IServicioDepartamento {
      * Firma para editar un departamento
      * @param departamento objeto departamento a ser editado
      */
-    public Boolean editarDeparteamento(Departamento departamento);
+    public Boolean editarDepartamento(Departamento departamento);
 
     /**
      * Firma para listar todos los departamentos
@@ -48,4 +48,11 @@ public interface IServicioDepartamento {
      * @return Departamento segun el id ingresado 
      */
     public Departamento getDepartamento(Integer id);
+
+    /**
+     * Firma para obetener un departamento segun su id
+     * @param id identificador del departamento a buscar
+     * @return Departamento segun el id ingresado
+     */
+    public Departamento getDepartamentoNombre(String nombre);
 }

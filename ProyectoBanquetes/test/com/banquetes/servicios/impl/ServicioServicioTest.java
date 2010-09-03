@@ -71,10 +71,10 @@ public class ServicioServicioTest {
     /**
      * Test of editarServicio method, of class ServicioServicio.
      */
-//    @Test
+    @Test
     public void testEditarServicio() {
         System.out.println("editarServicio");
-        Servicio servicio = new Servicio(28, null, "COMIDA", new Double("70"), "AB", Boolean.TRUE, 1);
+        Servicio servicio = new Servicio(29, "as", "COMIDA", new Double("70"), "AB", Boolean.TRUE, 1);
         try {
             this.testListarServicios();
             System.out.println("");
@@ -106,7 +106,7 @@ public class ServicioServicioTest {
     /**
      * Test of habilitarServicio method, of class ServicioServicio.
      */
-    @Test
+//    @Test
     public void testHabilitarServicio() {
         System.out.println("habilitarServicio");
         Servicio servicio = new Servicio(28, null, null, null, null, null, null);
@@ -147,7 +147,7 @@ public class ServicioServicioTest {
     public void testGetServicio() {
         System.out.println("getServicio");
         try {
-            Servicio servicio = servicioServicio.getServicio(new Integer(1));
+            Servicio servicio = servicioServicio.getServicio(new Integer(1), "AB");
             assertNotNull(servicio);
             System.out.println(servicio.getId() + " " + servicio.getNombre() + " "
                     + servicio.getDescripcion() + " " + servicio.getCostoUnitario() + " "

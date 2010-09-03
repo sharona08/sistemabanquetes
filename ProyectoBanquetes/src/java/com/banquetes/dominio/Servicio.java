@@ -41,7 +41,7 @@ public class Servicio {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre.toUpperCase();
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
@@ -49,7 +49,7 @@ public class Servicio {
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion.toUpperCase();
+        this.descripcion = descripcion;
     }
 
     public Double getCostoUnitario() {
@@ -65,7 +65,7 @@ public class Servicio {
     }
 
     public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio.toUpperCase();
+        this.tipoServicio = tipoServicio;
     }
 
     public Boolean getHabilitado() {
