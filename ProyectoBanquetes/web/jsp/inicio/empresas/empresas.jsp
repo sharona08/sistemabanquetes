@@ -128,7 +128,7 @@
             if (request.getParameter("hiddenRif") != null) {
 %>
 
-<div id="empresa" style="width: 40%; min-height: 300px; background-color: #B9B9B9; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
+<div id="empresa" style="width: 50%; min-height: 300px; background-color: #B9B9B9; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
     <jsp:include page="detalleEmpresa.jsp"></jsp:include>
 </div>
 
