@@ -40,7 +40,7 @@ public interface IServicioDepartamento {
      * Firma para listar todos los departamentos
      * @return List<Departamento> lista con todos los departamentos
      */
-    public List<Departamento> listarDepartamentos();
+    public List<Departamento> listarDepartamentos(Integer id, String nombre);
 
     /**
      * Firma para obetener un departamento segun su id

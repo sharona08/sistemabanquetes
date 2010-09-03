@@ -35,6 +35,8 @@
           id as id,
           nombre as nombre
        FROM DEPARTAMENTO
+       WHERE id LIKE #id#
+       AND nombre LIKE #nombre#
        ORDER BY nombre ASC
     </select>
 

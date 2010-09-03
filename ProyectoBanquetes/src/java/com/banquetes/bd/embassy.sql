@@ -148,31 +148,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `banquetes`.`DETALLE_SALA`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `banquetes`.`DETALLE_SALA` ;
-
-CREATE  TABLE IF NOT EXISTS `banquetes`.`DETALLE_SALA` (
-  `idSalon` INT(11)  NOT NULL ,
-  `idMontaje` INT(11)  NOT NULL ,
-  `capacidad` INT(11)  NULL ,
-  PRIMARY KEY (`idSalon`, `idMontaje`) ,
-  INDEX `fk_SALON_has_MONTAJE_SALON1` (`idSalon` ASC) ,
-  INDEX `fk_SALON_has_MONTAJE_MONTAJE1` (`idMontaje` ASC) ,
-  CONSTRAINT `fk_SALON_has_MONTAJE_SALON1`
-    FOREIGN KEY (`idSalon` )
-    REFERENCES `banquetes`.`SALON` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_SALON_has_MONTAJE_MONTAJE1`
-    FOREIGN KEY (`idMontaje` )
-    REFERENCES `banquetes`.`MONTAJE` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `banquetes`.`EVENTO_SALA`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `banquetes`.`EVENTO_SALA` ;
@@ -184,15 +159,21 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`EVENTO_SALA` (
   `idMontaje` INT(11)  NOT NULL ,
   PRIMARY KEY (`idEvento`, `idSalon`) ,
   INDEX `fk_EVENTO_SALA_EVENTO1` (`idEvento` ASC) ,
-  INDEX `fk_EVENTO_SALA_DETALLE_SALA1` (`idSalon` ASC, `idMontaje` ASC) ,
+  INDEX `fk_EVENTO_SALA_SALON1` (`idSalon` ASC) ,
+  INDEX `fk_EVENTO_SALA_MONTAJE1` (`idMontaje` ASC) ,
   CONSTRAINT `fk_EVENTO_SALA_EVENTO1`
     FOREIGN KEY (`idEvento` )
     REFERENCES `banquetes`.`EVENTO` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_EVENTO_SALA_DETALLE_SALA1`
-    FOREIGN KEY (`idSalon` , `idMontaje` )
-    REFERENCES `banquetes`.`DETALLE_SALA` (`idSalon` , `idMontaje` )
+  CONSTRAINT `fk_EVENTO_SALA_SALON1`
+    FOREIGN KEY (`idSalon` )
+    REFERENCES `banquetes`.`SALON` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_EVENTO_SALA_MONTAJE1`
+    FOREIGN KEY (`idMontaje` )
+    REFERENCES `banquetes`.`MONTAJE` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -403,85 +384,14 @@ INSERT INTO `banquetes`.`MONTAJE` (`id`, `tipoMontaje`) VALUES (7, 'ESPINA DE PE
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `banquetes`.`DETALLE_SALA`
--- -----------------------------------------------------
-SET AUTOCOMMIT=0;
-USE `banquetes`;
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (1, 1, 50);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (1, 2, 60);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (1, 3, 40);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (1, 4, 30);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (1, 5, 35);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (1, 6, 33);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (1, 7, 35);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (2, 1, 60);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (2, 2, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (2, 3, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (2, 4, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (2, 5, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (2, 6, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (2, 7, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (3, 1, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (3, 2, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (3, 3, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (3, 4, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (3, 5, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (3, 6, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (3, 7, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (4, 1, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (4, 2, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (4, 3, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (4, 4, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (4, 5, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (4, 6, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (4, 7, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (5, 1, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (5, 2, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (5, 3, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (5, 4, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (5, 5, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (5, 6, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (5, 7, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (6, 1, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (6, 2, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (6, 3, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (6, 4, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (6, 5, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (6, 6, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (6, 7, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (7, 1, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (7, 2, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (7, 3, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (7, 4, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (7, 5, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (7, 6, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (7, 7, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (8, 1, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (8, 2, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (8, 3, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (8, 4, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (8, 5, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (8, 6, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (8, 7, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (9, 1, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (9, 2, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (9, 3, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (9, 4, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (9, 5, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (9, 6, NULL);
-INSERT INTO `banquetes`.`DETALLE_SALA` (`idSalon`, `idMontaje`, `capacidad`) VALUES (9, 7, NULL);
-
-COMMIT;
-
--- -----------------------------------------------------
 -- Data for table `banquetes`.`EVENTO_SALA`
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `banquetes`;
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (1, NULL, 4, 1);
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (2, '205', 4, 2);
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (3, '500', 3, 5);
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (4, NULL, 2, 3);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (3, '500', 3, 3);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (4, NULL, 3, 3);
 
 COMMIT;
 
@@ -530,5 +440,6 @@ INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitari
 INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (25, 'COFFEE BREAK 3', 'DESCRIPCION DEL COFFEE BREAK 3', '50', 'AB', true, 3);
 INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (26, 'COFFEE BREAK 4', 'DESCRIPCION DEL COFFEE BREAK 4', '50', 'AB', true, 3);
 INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (27, 'COFFEE BREAK 5', 'DESCRIPCION DEL COFFEE BREAK 5', '45', 'AB', true, 3);
+INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (28, 'SERVICIO OTRO', 'DESCRIPCION DEL SERVICIO', '34', 'OT', true, 5);
 
 COMMIT;
