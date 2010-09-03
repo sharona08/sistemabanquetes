@@ -40,8 +40,8 @@
                         <li><a href="/ProyectoBanquetes/jsp/inicio/contactos/contactoFiltros.jsp">Contactos</a></li>
                     </ul>
                 </li>
-                <li><a href="#nogo3">Salones</a></li>
-                <li><a href="#nogo21">Montajes</a></li>
+                <li><a href="/ProyectoBanquetes/jsp/inicio/salones/salonFiltros.jsp">Salones</a></li>
+                <li><a href="/ProyectoBanquetes/jsp/inicio/montajes/montajeFiltros.jsp">Montajes</a></li>
                 <li><a href="/ProyectoBanquetes/jsp/inicio/departamentos/departamentoFiltros.jsp">Departamentos</a></li>
             </ul>
         </li>
@@ -53,12 +53,12 @@
                 <li><a href="#nogo26">Reporte 4</a></li>
             </ul>
         </li>
-        <li class="top"><a href="#nogo27" id="contacts" class="top_link"><span class="down">Reserva</span></a>
+        <li class="top"><a href="" id="contacts" class="top_link"><span class="down">Reserva</span></a>
             <ul class="sub">
                 <li><a href="#nogo28">Buscar Reserva</a></li>
             </ul>
         </li>
-        <li class="top"><a href="#nogo53" id="shop" class="top_link"><span class="down">Disponibilidad</span></a>
+        <li class="top"><a href="" id="shop" class="top_link"><span class="down">Disponibilidad</span></a>
             <ul class="sub">
                 <li><a href="#nogo54">Salones</a></li>
             </ul>

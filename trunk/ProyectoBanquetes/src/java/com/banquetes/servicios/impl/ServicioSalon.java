@@ -4,7 +4,6 @@ import com.banquetes.configuracion.Conexion;
 import com.banquetes.dominio.Salon;
 import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
-import com.banquetes.servicios.TO.SalonesComboBoxTO;
 import com.banquetes.servicios.interfaces.IServicioSalon;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.sql.Date;
@@ -167,19 +166,58 @@ public class ServicioSalon implements IServicioSalon {
         return salones;
     }
 
-//    public List<SalonesComboBoxTO> listarSalonesComboBox(Integer idEvento, Integer idSalon){
-//        List<SalonesComboBoxTO> salones = null;
-//
-//        try {
-//            Map param = new HashMap();
-//            param.put("idSalon", idSalon);
-//            param.put("idEvento", idEvento);
-//            salones = sqlMap.queryForList("getSalonesComboBox", param);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return salones;
-//    }
+    public List<Salon> listarSalonesTodos(Integer id, String nombre) {
+        List<Salon> salones = null;
+
+        String idSalon = "";
+        if (id == null) {
+            idSalon = "%";
+        } else {
+            idSalon = id.toString() + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+        try {
+            Map param = new HashMap();
+            param.put("id", idSalon);
+            param.put("nombre", nombre);
+            salones = sqlMap.queryForList("getSalones", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return salones;
+    }
+
+    public List<Salon> listarSalonesHabilitados(Integer id, String nombre) {
+        List<Salon> salones = null;
+
+        String idSalon = "";
+        if (id == null) {
+            idSalon = "%";
+        } else {
+            idSalon = id.toString() + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+        try {
+            Map param = new HashMap();
+            param.put("id", idSalon);
+            param.put("nombre", nombre);
+            salones = sqlMap.queryForList("getSalonesHabilitados", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return salones;
+    }
+
     public Salon getSalon(Integer id) {
         Salon salon = null;
         try {

@@ -7,6 +7,8 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 import java.util.List;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,8 +71,8 @@ public class ServicioMontaje implements IServicioMontaje {
         return id;
     }
 
-    public int editarMontaje(Montaje montaje) {
-        int result = 0;
+    public Boolean editarMontaje(Montaje montaje) {
+        Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeMontajeId(montaje);
         try {
@@ -80,7 +82,13 @@ public class ServicioMontaje implements IServicioMontaje {
                 if (montaje.getTipoMontaje() != null) {
                     newMontaje.setTipoMontaje(montaje.getTipoMontaje());
                 }
-                result = sqlMap.update("editarMontaje", newMontaje);
+                int resultado = sqlMap.update("editarMontaje", newMontaje);
+
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
 
             } else {
                 System.out.println("No existe el montaje");
@@ -91,11 +99,27 @@ public class ServicioMontaje implements IServicioMontaje {
         return result;
     }
 
-    public List<Montaje> listarMontajes() {
+    public List<Montaje> listarMontajes(Integer id, String nombre) {
         List<Montaje> montajes = null;
 
+        String idMontaje = "";
+        if (id == null) {
+            idMontaje = "%";
+        } else {
+            idMontaje = id.toString() + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+
         try {
-            montajes = sqlMap.queryForList("getMontajes", null);
+            Map param = new HashMap();
+            param.put("id", idMontaje);
+            param.put("tipoMontaje", nombre);
+            montajes = sqlMap.queryForList("getMontajes", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioMontaje.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -60,6 +60,18 @@ public interface IServicioSalon {
     public List<Salon> listarSalones();
 
     /**
+     * Firma para listar todos los salones todos
+     * @return List<Salon> lista de todos los salones todos
+     */
+    public List<Salon> listarSalonesTodos(Integer id, String nombre);
+
+    /**
+     * Firma para listar todos los salones habilitados
+     * @return List<Salon> lista de todos los salones habilitados
+     */
+    public List<Salon> listarSalonesHabilitados(Integer id, String nombre);
+
+    /**
      * Firma para listar los salones en el comboBox de reserva
      * @return List<SalonesComboBoxTO> lista de todos los salones
      */

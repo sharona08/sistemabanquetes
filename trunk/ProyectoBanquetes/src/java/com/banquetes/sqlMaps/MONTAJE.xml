@@ -35,6 +35,8 @@
           id as id,
           tipoMontaje as tipoMontaje
        FROM MONTAJE
+       WHERE id LIKE #id#
+       AND tipoMontaje LIKE #tipoMontaje#
        ORDER BY tipoMontaje ASC
     </select>
 
