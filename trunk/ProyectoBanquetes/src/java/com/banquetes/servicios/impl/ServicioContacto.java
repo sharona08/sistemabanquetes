@@ -144,7 +144,7 @@ public class ServicioContacto implements IServicioContacto {
         }
         return contactos;
     }
-
+    
     public List<Contacto> listarContactosHabilitados(Integer id, String nombre) {
         List<Contacto> contactos = null;
 
