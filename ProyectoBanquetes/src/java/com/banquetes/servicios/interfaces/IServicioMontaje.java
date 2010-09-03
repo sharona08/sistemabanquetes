@@ -35,13 +35,13 @@ public interface IServicioMontaje {
      * Firma para editar un montaje existente
      * @param montaje el objeto montaje a ser editado
      */
-    public int editarMontaje(Montaje montaje);
+    public Boolean editarMontaje(Montaje montaje);
 
     /**
      * Firma para listar todos los montajes
      * @return List<Montaje> lista con todos los montajes 
      */
-    public List<Montaje> listarMontajes();
+    public List<Montaje> listarMontajes(Integer id, String nombre);
 
     /**
      * Firma para obtener un montaje por su id

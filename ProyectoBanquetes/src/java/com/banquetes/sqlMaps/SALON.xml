@@ -50,21 +50,32 @@
        ORDER BY nombre ASC
     </select>
 
-<!--    <select id="getSalonesComboBox" resultClass="salonesComboBox">
+    <select id="getSalonesTodos" resultClass="salon">
       SELECT
-          S.id as idSalon
-          S.nombre as nombreSalon
-      FROM SALON S
-      WHERE S.id NOT IN (SELECT S.id as idSalon2
-                         FROM SALON S, EVENTO E, EVENTO_SALA ES, DETALLE_SALA DS, MONTAJE M
-                         WHERE E.id = ES.idEvento
-                         AND DS.idSalon = ES.idSalon
-                         AND DS.idMontaje = ES.idMontaje
-                         AND DS.idSalon = S.id
-                         AND DS.idMontaje = M.id
-                         AND E.id = #idEvento#
-                         AND ES.idSalon <> #idSalon2#)
-    </select>-->
+          id as id,
+          nombre as nombre,
+          costo as costo,
+          habilitado as habilitado,
+          idSalon as idSalon
+       FROM SALON
+       WHERE id LIKE #id#
+       AND nombre LIKE #nombre#
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getSalonesHabilitados" resultClass="salon">
+      SELECT
+          id as id,
+          nombre as nombre,
+          costo as costo,
+          habilitado as habilitado,
+          idSalon as idSalon
+       FROM SALON
+       WHERE habilitado is true
+          AND id LIKE #id#
+          AND nombre LIKE #nombre#
+       ORDER BY nombre ASC
+    </select>
 
     <select id="getSalon" resultClass="salon">
       SELECT

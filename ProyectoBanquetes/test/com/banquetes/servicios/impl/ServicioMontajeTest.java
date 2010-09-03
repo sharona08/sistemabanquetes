@@ -95,7 +95,7 @@ public class ServicioMontajeTest {
     public void testListarMontajes() {
         System.out.println("listarMontajes");
         try {
-            List<Montaje> montajes = servicioMontaje.listarMontajes();
+            List<Montaje> montajes = servicioMontaje.listarMontajes(null, null);
             assertNotNull(montajes);
             for (Montaje newMontaje : montajes) {
                 System.out.println(newMontaje.getId() + " " + newMontaje.getTipoMontaje());
