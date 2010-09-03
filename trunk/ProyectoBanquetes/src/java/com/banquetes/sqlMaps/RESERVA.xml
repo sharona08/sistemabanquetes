@@ -49,11 +49,9 @@
          ES.nuevoCosto as nuevoCosto,
          M.id as idTipoMontaje,
          M.tipoMontaje as tipoMontaje
-       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, DETALLE_SALA DS, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
-	   WHERE S.id = DS.idSalon
-           AND M.id = DS.idMontaje
-           AND ES.idSalon = DS.idSalon
-           AND ES.idMontaje = DS.idMontaje
+       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
+	   WHERE S.id = ES.idSalon
+           AND M.id = ES.idMontaje
            AND EV.idTipoEvento = TE.id
            AND EV.id = ES.idEvento
            AND E.rif = EV.rifEmpresa

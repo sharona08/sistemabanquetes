@@ -7,6 +7,8 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 import java.util.List;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -95,11 +97,27 @@ public class ServicioDepartamento implements IServicioDepartamento {
         return result;
     }
 
-    public List<Departamento> listarDepartamentos() {
+    public List<Departamento> listarDepartamentos(Integer id, String nombre) {
         List<Departamento> departamentos = null;
 
+        String idDepartamento = "";
+        if (id == null) {
+            idDepartamento = "%";
+        } else {
+            idDepartamento = id.toString() + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+        
         try {
-            departamentos = sqlMap.queryForList("getDepartamentos", null);
+            Map param = new HashMap();
+            param.put("id", idDepartamento);
+            param.put("nombre", nombre);
+            departamentos = sqlMap.queryForList("getDepartamentos", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioDepartamento.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -94,7 +94,7 @@ public class ServicioDepartamentoTest {
     public void testListarDepartamentos() {
         System.out.println("listarDepartamentos");
         try {
-            List<Departamento> montajes = servicioDepartamento.listarDepartamentos();
+            List<Departamento> montajes = servicioDepartamento.listarDepartamentos(null, null);
             assertNotNull(montajes);
             for (Departamento newDepartamento : montajes) {
                 System.out.println(newDepartamento.getId() + " " + newDepartamento.getNombre());

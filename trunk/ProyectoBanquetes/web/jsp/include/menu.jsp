@@ -31,8 +31,8 @@
                 <li class="mid"><a href="" class="fly">Servicios</a>
                     <ul>
                         <li><a href="/ProyectoBanquetes/jsp/inicio/alimentosBebidas/alimentoFiltros.jsp">Alimentos y Bebidas</a></li>
-                        <li><a href="#nogo9">Audiovisuales</a></li>
-                        <li><a href="#nogo10">Otros</a></li>
+                        <li><a href="/ProyectoBanquetes/jsp/inicio/audiovisuales/audiovisualFiltros.jsp">Audiovisuales</a></li>
+                        <li><a href="/ProyectoBanquetes/jsp/inicio/otros/otroFiltros.jsp">Otros</a></li>
                     </ul>
                 </li>
                 <li class="mid"><a href="/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp" class="fly">Empresas</a>
@@ -42,10 +42,10 @@
                 </li>
                 <li><a href="#nogo3">Salones</a></li>
                 <li><a href="#nogo21">Montajes</a></li>
-                <li><a href="#nogo20">Departamentos</a></li>
+                <li><a href="/ProyectoBanquetes/jsp/inicio/departamentos/departamentoFiltros.jsp">Departamentos</a></li>
             </ul>
         </li>
-        <li class="top"><a href="#nogo22" id="services" class="top_link"><span class="down">Reportes</span></a>
+        <li class="top"><a href="" id="services" class="top_link"><span class="down">Reportes</span></a>
             <ul class="sub">
                 <li><a href="#nogo23">Reporte 1</a></li>
                 <li><a href="#nogo24">Reporte 2</a></li>

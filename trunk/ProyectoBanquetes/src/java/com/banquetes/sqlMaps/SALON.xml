@@ -100,11 +100,9 @@
          S.nombre as nombreSalon,
          E.nombre as nombreEmpresa,
          C.nombre as nombreContacto
-       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, DETALLE_SALA DS, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
-	   WHERE S.id = DS.idSalon
-           AND M.id = DS.idMontaje
-           AND ES.idSalon = DS.idSalon
-           AND ES.idMontaje = DS.idMontaje
+       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
+	   WHERE S.id = ES.idSalon
+           AND M.id = ES.idMontaje
            AND EV.idTipoEvento = TE.id
            AND EV.id = ES.idEvento
            AND E.rif = EV.rifEmpresa
@@ -127,11 +125,9 @@
          S.nombre as nombreSalon,
          E.nombre as nombreEmpresa,
          C.nombre as nombreContacto
-       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, DETALLE_SALA DS, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
-	   WHERE S.id = DS.idSalon
-           AND M.id = DS.idMontaje
-           AND ES.idSalon = DS.idSalon
-           AND ES.idMontaje = DS.idMontaje
+       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
+	   WHERE S.id = ES.idSalon
+           AND M.id = ES.idMontaje
            AND EV.idTipoEvento = TE.id
            AND EV.id = ES.idEvento
            AND E.rif = EV.rifEmpresa
@@ -143,10 +139,10 @@
     <select id="getDisponibilidadConfirmados" resultClass="disponibilidadConfirmados">
       SELECT 
          E.id as idEvento
-      FROM EVENTO E, EVENTO_SALA ES, DETALLE_SALA DS
+      FROM EVENTO E, EVENTO_SALA ES, SALON S, MONTAJE M
           WHERE E.id = ES.idEvento
-          AND ES.idSalon = DS.idSalon
-          AND ES.idMontaje = DS.idMontaje
+          AND ES.idSalon = S.id
+          AND ES.idMontaje = M.id
           AND (E.fechaInicio BETWEEN #fechaInicio# AND #fechaFin#
                OR E.fechaFin BETWEEN #fechaInicio# AND #fechaFin#)
           AND E.estado = 'C'

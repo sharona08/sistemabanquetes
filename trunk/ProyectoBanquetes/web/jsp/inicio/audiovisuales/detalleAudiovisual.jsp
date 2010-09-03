@@ -25,7 +25,7 @@
             Integer id = Integer.valueOf(request.getParameter("hiddenId"));
 
             IServicioServicio servicioServicio = new ServicioServicio();
-            Servicio servicio = servicioServicio.getServicio(id, "AB");
+            Servicio servicio = servicioServicio.getServicio(id, "AU");
 
             String descripcion = "";
             if (servicio.getDescripcion() == null) {
@@ -35,9 +35,9 @@
             }
 %>
 
-<h1 id="letra2">INFORMACION ALIMENTO Y BEBIDA # <% out.println(id);%></h1>
+<h1 id="letra2">INFORMACION AUDIOVISUAL # <% out.println(id);%></h1>
 <div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
-    <form method="get" action="updateAlimento.jsp">
+    <form method="get" action="updateAudiovisual.jsp">
         <table width="80%" border="0">
             <tr style="height: 30px">
                 <td width="30%">Nombre:</td>
