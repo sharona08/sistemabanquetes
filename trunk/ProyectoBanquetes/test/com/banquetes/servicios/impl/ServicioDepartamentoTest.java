@@ -80,7 +80,7 @@ public class ServicioDepartamentoTest {
         try {
             this.testListarDepartamentos();
             System.out.println("");
-            servicioDepartamento.editarDeparteamento(departamento);
+            servicioDepartamento.editarDepartamento(departamento);
             this.testListarDepartamentos();
         } catch (Exception e) {
             e.printStackTrace();

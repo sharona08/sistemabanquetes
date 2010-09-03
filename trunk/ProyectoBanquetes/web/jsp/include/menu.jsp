@@ -30,7 +30,7 @@
             <ul class="sub">
                 <li class="mid"><a href="" class="fly">Servicios</a>
                     <ul>
-                        <li><a href="#nogo8">Alimentos y Bebidas</a></li>
+                        <li><a href="/ProyectoBanquetes/jsp/inicio/alimentosBebidas/alimentoFiltros.jsp">Alimentos y Bebidas</a></li>
                         <li><a href="#nogo9">Audiovisuales</a></li>
                         <li><a href="#nogo10">Otros</a></li>
                     </ul>

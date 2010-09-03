@@ -56,9 +56,21 @@ public interface IServicioServicio {
     public List<Servicio> listarServicios();
 
     /**
+     * Firma para listar todos los servicios 
+     * @return List<Servicio> lista con todos los servicios
+     */
+    public List<Servicio> listarServiciosTodos(Integer id, String nombre, String tipoServicio);
+
+    /**
+     * Firma para listar todos los servicios habilitados
+     * @return List<Servicio> lista con todos los servicios habilitados
+     */
+    public List<Servicio> listarServiciosHabilitados(Integer id, String nombre, String tipoServicio);
+
+    /**
      * Firma para obtener un servicio por su id
      * @param id el identificador con el que se buscara el servicio
      * @return Servicio el objeto servicio consultado 
      */
-    public Servicio getServicio(Integer id);
+    public Servicio getServicio(Integer id, String tipoServicio);
 }

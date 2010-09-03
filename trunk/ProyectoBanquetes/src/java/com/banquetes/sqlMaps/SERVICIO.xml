@@ -34,7 +34,8 @@
           descripcion = #descripcion#,
           costoUnitario = #costoUnitario#,
           tipoServicio = #tipoServicio#,
-          habilitado = #habilitado#
+          habilitado = #habilitado#,
+          idDepartamento = #idDepartamento#
 	WHERE
 	  id = #id#
     </update>
@@ -49,6 +50,39 @@
           habilitado as habilitado,
           idDepartamento as idDepartamento
        FROM SERVICIO
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getServiciosTodos" resultClass="servicio">
+      SELECT
+          id as id,
+          nombre as nombre,
+          descripcion as descripcion,
+          costoUnitario as costoUnitario,
+          tipoServicio as tipoServicio,
+          habilitado as habilitado,
+          idDepartamento as idDepartamento
+       FROM SERVICIO
+       WHERE id LIKE #id#
+       AND nombre LIKE #nombre#
+       AND tipoServicio = #tipoServicio#
+       ORDER BY nombre ASC
+    </select>
+
+    <select id="getServiciosHabilitados" resultClass="servicio">
+      SELECT
+          id as id,
+          nombre as nombre,
+          descripcion as descripcion,
+          costoUnitario as costoUnitario,
+          tipoServicio as tipoServicio,
+          habilitado as habilitado,
+          idDepartamento as idDepartamento
+       FROM SERVICIO
+       WHERE habilitado is true
+       AND id LIKE #id#
+       AND nombre LIKE #nombre#
+       AND tipoServicio = #tipoServicio#
        ORDER BY nombre ASC
     </select>
 
@@ -75,7 +109,7 @@
           habilitado as habilitado,
           idDepartamento as idDepartamento
        FROM SERVICIO
-	   WHERE nombre = #nombre#
+	  WHERE nombre = #nombre#
     </select>
     
 </sqlMap>

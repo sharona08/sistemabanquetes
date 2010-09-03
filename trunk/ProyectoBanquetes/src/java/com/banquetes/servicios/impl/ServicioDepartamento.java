@@ -69,7 +69,7 @@ public class ServicioDepartamento implements IServicioDepartamento {
         return id;
     }
 
-    public Boolean editarDeparteamento(Departamento departamento) {
+    public Boolean editarDepartamento(Departamento departamento) {
         Boolean result = Boolean.FALSE;
         Boolean existe = Boolean.TRUE;
         existe = this.existeDepartamentoId(departamento);
@@ -110,6 +110,17 @@ public class ServicioDepartamento implements IServicioDepartamento {
         Departamento departamento = null;
         try {
             departamento = (Departamento) sqlMap.queryForObject("getDepartamento", id);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioDepartamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return departamento;
+    }
+
+    public Departamento getDepartamentoNombre(String nombre) {
+        Departamento departamento = null;
+        try {
+            departamento = (Departamento) sqlMap.queryForObject("getDepartamentoNombre", nombre);
 
         } catch (SQLException ex) {
             Logger.getLogger(ServicioDepartamento.class.getName()).log(Level.SEVERE, null, ex);

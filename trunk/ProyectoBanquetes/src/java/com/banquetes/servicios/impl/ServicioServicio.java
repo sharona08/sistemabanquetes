@@ -7,6 +7,8 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 import java.util.List;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -90,6 +92,9 @@ public class ServicioServicio implements IServicioServicio {
                 if (servicio.getHabilitado() != null) {
                     newServicio.setHabilitado(servicio.getHabilitado());
                 }
+                if (servicio.getIdDepartamento() != null) {
+                    newServicio.setIdDepartamento(servicio.getIdDepartamento());
+                }
 
                 int resultado = sqlMap.update("editarServicio", newServicio);
                 if (resultado == 1) {
@@ -163,10 +168,69 @@ public class ServicioServicio implements IServicioServicio {
         return servicios;
     }
 
-    public Servicio getServicio(Integer id) {
+    public List<Servicio> listarServiciosTodos(Integer id, String nombre, String tipoServicio) {
+        List<Servicio> servicios = null;
+
+        String idServicio = "";
+        if (id == null) {
+            idServicio = "%";
+        } else {
+            idServicio = id.toString() + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+
+        try {
+            Map param = new HashMap();
+            param.put("id", idServicio);
+            param.put("nombre", nombre);
+            param.put("tipoServicio", tipoServicio);
+            servicios = sqlMap.queryForList("getServiciosTodos", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return servicios;
+    }
+
+    public List<Servicio> listarServiciosHabilitados(Integer id, String nombre, String tipoServicio) {
+        List<Servicio> servicios = null;
+
+        String idServicio = "";
+        if (id == null) {
+            idServicio = "%";
+        } else {
+            idServicio = id.toString() + "%";
+        }
+
+        if (nombre == null) {
+            nombre = "%";
+        } else {
+            nombre = nombre + "%";
+        }
+
+        try {
+            Map param = new HashMap();
+            param.put("id", idServicio);
+            param.put("nombre", nombre);
+            param.put("tipoServicio", tipoServicio);
+            servicios = sqlMap.queryForList("getServiciosHabilitados", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return servicios;
+    }
+
+    public Servicio getServicio(Integer id, String tipoServicio) {
         Servicio servicio = null;
         try {
-            servicio = (Servicio) sqlMap.queryForObject("getServicio", id);
+            Map param = new HashMap();
+            param.put("id", id);
+            param.put("tipoServicio", tipoServicio);
+            servicio = (Servicio) sqlMap.queryForObject("getServicio", param);
 
         } catch (SQLException ex) {
             Logger.getLogger(ServicioServicio.class.getName()).log(Level.SEVERE, null, ex);
