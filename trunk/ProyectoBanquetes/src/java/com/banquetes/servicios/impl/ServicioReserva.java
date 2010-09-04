@@ -28,14 +28,29 @@ public class ServicioReserva implements IServicioReserva {
     public ServicioReserva() {
     }
 
-    public boolean reservar(Evento evento, Integer idSalon, Integer idMontaje, Double nuevoCosto) {
-        boolean result = false;
-        Integer id = servicioEvento.crearEvento(evento);
-        if (id != null) {
-            EventoSala eventoSala = new EventoSala(id, nuevoCosto, idSalon, idMontaje, null);
-            servicioEventoSala.crearEventoSala(eventoSala);
-        } else {
-            System.out.println("ERROR: no se inserto el evento.");
+    public Boolean reservar(Evento evento, Integer idSalon, Integer idMontaje, Double nuevoCosto) {
+        Boolean result = Boolean.FALSE;
+        try {
+            sqlMap.startTransaction();
+            Integer id = servicioEvento.crearEvento(evento);
+            if (id != null) {
+                EventoSala eventoSala = new EventoSala(id, nuevoCosto, idSalon, idMontaje, null);
+                Boolean resultES = servicioEventoSala.crearEventoSala(eventoSala);
+                if (resultES) {
+                    sqlMap.commitTransaction();
+                    result = Boolean.TRUE;
+                } else {
+                    System.out.println("ERROR: no se inserto el evento sala.");
+                    sqlMap.endTransaction();
+                    result = Boolean.FALSE;
+                }
+            } else {
+                System.out.println("ERROR: no se inserto el evento.");
+                sqlMap.endTransaction();
+                result = Boolean.FALSE;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }

@@ -5,6 +5,8 @@
 
 package com.banquetes.servicios.impl;
 
+import java.sql.Time;
+import com.banquetes.util.UtilMethods;
 import com.banquetes.dominio.Evento;
 import com.banquetes.servicios.TO.DetallesReservaTO;
 import com.banquetes.servicios.interfaces.IServicioReserva;
@@ -28,24 +30,28 @@ public class ServicioReservaTest {
     /**
      * Test of reservar method, of class ServicioReserva.
      */
-   // @Test
+    @Test
     public void testReservar() {
         System.out.println("reservar");
-        Evento evento = null;
-        Integer idSalon = null;
-        Integer idMontaje = null;
-        Double nuevoCosto = null;
-        ServicioReserva instance = new ServicioReserva();
-        boolean expResult = false;
-        boolean result = instance.reservar(evento, idSalon, idMontaje, nuevoCosto);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        UtilMethods util = new UtilMethods();
+        java.sql.Date fechaInicio = util.getSqlDate("2010-09-10");
+        java.sql.Date fechaFin = util.getSqlDate("2010-09-10");
+        java.sql.Time horaInicio = Time.valueOf("12:00:00");
+        java.sql.Time horaFin = Time.valueOf("15:00:00");
+
+        Evento evento = new Evento(null, null, "NUEVO EVENTO", new Integer(6), fechaInicio, fechaFin, new Integer(30), horaInicio, horaFin, "J-00000000-0", 2);
+        Integer idSalon = new Integer(4);
+        Integer idMontaje = new Integer(5);
+        Double nuevoCosto = new Double(120);
+
+        Boolean result = servicioReserva.reservar(evento, idSalon, idMontaje, nuevoCosto);
+        System.out.println("RESULTADO: " + result);
     }
 
     /**
      * Test of getDetallesReserva method, of class ServicioReserva.
      */
-    @Test
+//    @Test
     public void testGetDetallesReserva() {
         System.out.println("getDetallesReserva");
         Integer idEvento = new Integer(3);

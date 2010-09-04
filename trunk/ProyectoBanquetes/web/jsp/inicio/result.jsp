@@ -32,16 +32,9 @@
 </script>
 
 <script type="text/javascript">
-    var value;
-    function rowValue(fila){
-        var table = document.getElementById("tableId");
-        var row = table.rows[fila];
-        var cell = row.cells[0];
-        var content = cell.firstChild.nodeValue;
-        alert(content);
-        return content
+    function redirect(url){
+        window.location.href=url;
     }
-
 </script>
 
 <%!    UtilMethods util = new UtilMethods();%>
@@ -97,7 +90,7 @@
             %>
 
         <tr align="center" style="height: 25px" bgcolor="#FF8080">
-<!--        <tr align="center" style="height: 25px" bgcolor="#FC5454">-->
+            <!--        <tr align="center" style="height: 25px" bgcolor="#FC5454">-->
 
             <% }%>
             <% }%>
@@ -108,7 +101,7 @@
                 <h2>NO</h2>
             </td>
             <td>
-                <% out.print(d.getNombreEmpresa() + ", CONTACTO: " + d.getNombreContacto() + " : "+ d.getNombreEvento() + ". INICIO: " + d.getFechaInicio() + ". FIN: " + d.getFechaFin());%>
+                <% out.print(d.getNombreEmpresa() + ", CONTACTO: " + d.getNombreContacto() + " : " + d.getNombreEvento() + ". INICIO: " + d.getFechaInicio() + ". FIN: " + d.getFechaFin());%>
             </td>
             <td>
                 <div id="boton" class="demo">
@@ -119,7 +112,7 @@
                         <input type="hidden" id="salon" name="salon" value="<%= d.getNombreSalon()%>">
                         <input type="hidden" id="ok" name="ok" value="OK">
                         <input type="hidden" id="ID" name="ID" value="<%= d.getIdEvento()%>">
-                        <% if(request.getParameter("anulados")!=null) {%>
+                        <% if (request.getParameter("anulados") != null) {%>
                         <input type="hidden" id="anulados" name="anulados" value="<%= request.getParameter("anulados")%>">
                         <% }%>
                         <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
@@ -143,11 +136,17 @@
             <td> -- </td>
             <td>
                 <div id="boton" class="demo">
-                    <input type="submit" name="reservar" value="Reservar " style="width: 65px; margin-top: 1px; margin-bottom: 1px;"/>
+                    <form method="get" action="">
+                        <input type="hidden" id="fechaInicio" name="fechaInicio" value="<%= fechaInicioJSP%>">
+                        <input type="hidden" id="fechaFin" name="fechaFin" value="<%= fechaFinJSP%>">
+                        <input type="hidden" id="salon" name="salon" value="<%= salonJSP%>">
+                        <input type="hidden" id="fecha" name="fecha" value="<%= sqlFecha.toString()%>">
+                    </form>
+                        <input type="submit" name="reservar" value="Reservar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="redirect('reservar/formReservar.jsp?fecha=<%= sqlFecha.toString()%>&salon=<%=salonJSP%>')"/>
                 </div>
             </td>
         </tr>
-
+        
         <% }%>
 
         <% }%>
@@ -167,6 +166,6 @@
     </jsp:include>
 </div>
 
-<%  } %>
+<%  }%>
 
 <div id="espacio"></div>

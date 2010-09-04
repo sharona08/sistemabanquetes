@@ -23,12 +23,20 @@ public class ServicioEventoSala implements IServicioEventoSala {
     public ServicioEventoSala() {
     }
 
-    public void crearEventoSala(EventoSala eventoSala) {
+    public Boolean crearEventoSala(EventoSala eventoSala) {
+        Boolean result = Boolean.FALSE;
         try {
-            sqlMap.insert("crearEventoSala", eventoSala);
+            Integer resultado = (Integer) sqlMap.insert("crearEventoSala", eventoSala);
+
+            if(resultado != null){
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ServicioEventoSala.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return result;
     }
 
     public int editarEventoSala(EventoSala eventoSala) {

@@ -20,6 +20,14 @@
                 #nuevoCosto#,
                 #idSalon#,
                 #idMontaje#)
+
+        <selectKey resultClass="Integer">
+            SELECT
+              idEvento as idEvento
+            FROM EVENTO_SALA
+	      WHERE idEvento = #idEvento#
+	      AND idSalon = #idSalon#
+        </selectKey>
     </insert>
 
     <update id="editarEventoSala" parameterClass="eventoSala">
