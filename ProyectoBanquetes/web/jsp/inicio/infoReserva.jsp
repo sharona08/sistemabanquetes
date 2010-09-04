@@ -29,7 +29,7 @@
 <% List<Salon> salones = iServicioSalon.listarSalones();%>
 
 <% IServicioMontaje iServicioMontaje = new ServicioMontaje();%>
-<% List<Montaje> montajes = iServicioMontaje.listarMontajes();%>
+<% List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);%>
 
 <% IServicioTipoEvento iServicioEvento = new ServicioTipoEvento();%>
 <% List<TipoEvento> tipoEventos = iServicioEvento.listarTipoEventos();%>

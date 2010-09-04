@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface IServicioReserva {
 
-    public boolean reservar(Evento evento, Integer idSalon, Integer idMontaje, Double nuevoCosto);
+    public Boolean reservar(Evento evento, Integer idSalon, Integer idMontaje, Double nuevoCosto);
 
     public DetallesReservaTO getDetallesReserva(Integer idEvento);
 

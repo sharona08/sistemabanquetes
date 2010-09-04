@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IServicioEventoSala {
 
-    public void crearEventoSala(EventoSala eventoSala);
+    public Boolean crearEventoSala(EventoSala eventoSala);
 
     public int editarEventoSala(EventoSala eventoSala);
 

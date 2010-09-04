@@ -34,9 +34,9 @@ public class ServicioEventoTest {
         System.out.println("crearEvento");
         this.testListarEventos();
         System.out.println("");
-        UtilMethods util = new UtilMethods();
-        java.sql.Date fechaInicio = util.getSqlDate("2010-08-31");
-        java.sql.Date fechaFin = util.getSqlDate("2010-09-01");
+        UtilMethods util2 = new UtilMethods();
+        java.sql.Date fechaInicio = util2.getSqlDate("2010-08-31");
+        java.sql.Date fechaFin = util2.getSqlDate("2010-09-01");
         java.sql.Time horaInicio = Time.valueOf("12:00:00");
         java.sql.Time horaFin = Time.valueOf("15:00:00");
 
@@ -55,7 +55,7 @@ public class ServicioEventoTest {
     /**
      * Test of editarEvento method, of class ServicioEvento.
      */
-    @Test
+//    @Test
     public void testEditarEvento() {
         System.out.println("editarEvento");
         this.testListarEventos();
@@ -75,7 +75,7 @@ public class ServicioEventoTest {
     /**
      * Test of listarEventos method, of class ServicioEvento.
      */
-   // @Test
+    @Test
     public void testListarEventos() {
         System.out.println("listarEventos");
         try {
