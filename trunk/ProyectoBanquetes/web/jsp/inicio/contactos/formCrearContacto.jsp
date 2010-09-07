@@ -56,34 +56,33 @@
             <div id="content">
                 <h1 id="letra1">CREAR CONTACTO</h1>
                 <div style="height: 10px"></div>
-                <div style="padding-left: 20px; background-color: #dadada; width: 30%; min-height: 330px">
+                <div style="padding-left: 20px; background-color: #dadada; width: 30%; min-height: 350px">
                     <div id="espacio"></div>
 
                     <form method="get" action="crearContacto.jsp" class="cmxform" id="commentForm">
                         <table width="100%" border="0">
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td width="30%">Nombre: (*)</td>
                                 <td width="50%">
                                     <input class="required" value="" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 200px; height: 23px" align="middle" />
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td>Telefono:</td>
                                 <td>
                                     <input value="" name="telefono" onKeyUp="this.value=this.value.toUpperCase();" style="width: 200px; height: 23px" align="middle" />
                                 </td>
                             </tr>
-                            <tr style="height: 70px;">
+                            <tr style="height: 80px;">
                                 <td>Direccion:</td>
                                 <td>
-                                    <textarea name="direccion" rows="4" cols="20" style="width: 202px">
-                                    </textarea>
+                                    <textarea name="direccion" rows="4" cols="" style="width: 202px"><%=""%></textarea>
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td width="10%">Empresa: (*)</td>
                                 <td width="30%">
-                                    <select name="empresa" style="width: 202px; height: 25px">
+                                    <select name="empresa" style="width: 205px; height: 25px">
                                         <% for (Empresa empresa : empresas) {%>
                                         <option selected>
                                             <%= empresa.getNombre()%>

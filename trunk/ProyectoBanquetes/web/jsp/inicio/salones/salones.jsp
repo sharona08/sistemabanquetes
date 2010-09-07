@@ -98,8 +98,12 @@
                 </td>
                 <td>
                     <%
-                                            Salon salon = servicioSalon.getSalon(s.getId());
-                                            out.print(salon.getNombre());
+                                            if (s.getIdSalon() != null) {
+                                                Salon salon = servicioSalon.getSalon(s.getIdSalon());
+                                                out.print(salon.getNombre());
+                                            } else {
+                                                out.print("");
+                                            }
                     %>
                 </td>
                 <td>

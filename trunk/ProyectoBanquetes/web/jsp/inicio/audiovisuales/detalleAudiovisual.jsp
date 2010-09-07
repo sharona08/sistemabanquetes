@@ -78,7 +78,7 @@
                 <td>
                     <%
                                 Departamento departamento = servicioDepartamento.getDepartamento(servicio.getIdDepartamento());
-                                List<Departamento> departamentos = servicioDepartamento.listarDepartamentos();
+                                List<Departamento> departamentos = servicioDepartamento.listarDepartamentos(null, null);
                     %>
 
                     <select name="departamento" style="width: 202px; height: 25px">

@@ -185,7 +185,7 @@ public class ServicioSalon implements IServicioSalon {
             Map param = new HashMap();
             param.put("id", idSalon);
             param.put("nombre", nombre);
-            salones = sqlMap.queryForList("getSalones", param);
+            salones = sqlMap.queryForList("getSalonesTodos", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
         }

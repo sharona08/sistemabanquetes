@@ -66,6 +66,8 @@
             }
         </script>
 
+        <script type="text/javascript" src="selectContacto.js"></script>
+
         <title>Reservar</title>
     </head>
 
@@ -109,6 +111,7 @@
 
     <body>
 
+
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
@@ -117,7 +120,7 @@
                 <div style="padding-left: 20px; background-color: #dadada; width: 35%; min-height: 400px">
                     <div id="espacio"></div>
 
-                    <form method="get" action="reservar.jsp" class="cmxform" id="commentForm" name="form">
+                    <form method="GET" action="reservar.jsp" class="cmxform" id="commentForm" name="formulario" id="formulario">
                         <table width="100%" border="0">
 
                             <tr style="height: 30px">
@@ -231,9 +234,9 @@
                                 <td width="10%">Empresa: (*)</td>
                                 <td width="30%">
                                     <!--                                    <select name="empresa" style="width: 165px; height: 25px" onchange="location.href='formReservar.jsp?empresa='+this.value+'&fechaInicioEvento='+<fechaInicio%>" >-->
-<!--                                    <select name="empresa" style="width: 165px; height: 25px" onchange="redirect('formReservar.jsp?empresa='+this.value+'&cantidadPersonas='+<%=request.getParameter("cantidadPersonas")%>)" >-->
+<!--                                    <select name="empresa" style="width: 165px; height: 25px" onchange="redirect('/ProyectoBanquetes/jsp/inicio/reservar/formReservar.jsp?empresa='+this.value+'&cantidadPersonas='+<%=request.getParameter("cantidadPersonas")%>)" >-->
+                                    <select id="empresa" name="empresa" style="width: 165px; height: 25px" onchange="showCustomer(this.value)">
 
-                                    <select name="empresa" style="width: 165px; height: 25px">
                                         <% if (request.getParameter("empresa") != null) {%>
                                         <% for (Empresa empresa : empresas) {%>
                                         <% if (empresa.getRif().equals(request.getParameter("empresa"))) {%>
@@ -265,23 +268,16 @@
                             <tr style="height: 30px">
                                 <td width="10%">Contacto: (*)</td>
                                 <td width="30%">
-                                    <select name="contacto" style="width: 165px; height: 25px" >
-                                        <% if (request.getParameter("empresa") != null) {%>
-                                        <% contactos = iServicioContacto.listarContactosRif(request.getParameter("empresa"));%>
-                                        <% for (Contacto contacto : contactos) {%>
-                                        <option selected value="<%= contacto.getId()%>">
-                                            <%= contacto.getNombre()%>
-                                        </option>
-                                        <% }%>
-                                        <% } else {%>
-                                        <% contactos = iServicioContacto.listarContactosRif("J-00000000-0");%>
-                                        <% for (Contacto contacto : contactos) {%>
-                                        <option selected value="<%= contacto.getId()%>">
-                                            <%= contacto.getNombre()%>
-                                        </option>
-                                        <% }%>
-                                        <% }%>
-                                    </select>
+                                    <div id="txtHint">
+                                        <select id="contacto" name="contacto" style="width: 165px; height: 25px" >
+                                            <% contactos = iServicioContacto.listarContactosRif("J-00000000-0");%>
+                                            <% for (Contacto contacto : contactos) {%>
+                                            <option selected value="<%= contacto.getId()%>">
+                                                <%= contacto.getNombre()%>
+                                            </option>
+                                            <% }%>
+                                        </select>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -310,7 +306,7 @@
                                 <td>
                                     <select name="montaje" style="width: 165px; height: 25px">
                                         <% for (Montaje montaje : montajes) {%>
-                                        <option selected value="<%= montaje.getId() %>">
+                                        <option selected value="<%= montaje.getId()%>">
                                             <%= montaje.getTipoMontaje()%>
                                         </option>
                                         <% }%>
