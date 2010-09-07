@@ -21,10 +21,10 @@
 <div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
     <form method="get" action="updateMontaje.jsp">
         <table width="80%" border="0">
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td width="30%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= montaje.getTipoMontaje()%>" name="nombreMontaje" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
+                    <input value="<%= montaje.getTipoMontaje()%>" name="nombreMontaje" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr>

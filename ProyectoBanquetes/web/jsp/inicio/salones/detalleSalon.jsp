@@ -20,22 +20,22 @@
 <div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
     <form method="get" action="updateSalon.jsp">
         <table width="80%" border="0">
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td width="30%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= salon.getNombre()%>" name="nombreSalon" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
+                    <input value="<%= salon.getNombre()%>" name="nombreSalon" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td>Costo:</td>
                 <td>
-                    <input value="<%= salon.getCosto()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
+                    <input value="<%= salon.getCosto()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td>Estado:</td>
                 <td>
-                    <select name="estados" style="width: 185px; height: 25px">
+                    <select name="estados" style="width: 200px; height: 25px">
                         <% if (salon.getHabilitado()) {%>
                         <option selected>HABILITADO</option>
                         <option>INHABILITADO</option>
@@ -46,7 +46,7 @@
                     </select>
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td>Salon:</td>
                 <td>
                     <%
@@ -59,7 +59,7 @@
                                     salonfk = "";
                                 }
                     %>
-                    <input value="<%= salonfk%>" name="salonFK" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" disabled />
+                    <input value="<%= salonfk%>" name="salonFK" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" disabled />
                 </td>
             </tr>
             <tr>

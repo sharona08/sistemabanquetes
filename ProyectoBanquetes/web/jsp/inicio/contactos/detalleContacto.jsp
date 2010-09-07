@@ -36,13 +36,13 @@
 <div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
     <form method="get" action="updateContacto.jsp">
         <table width="80%" border="0">
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td width="30%">Nombre:</td>
                 <td width="50%">
                     <input value="<%= contacto.getNombre()%>" name="nombreContacto" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td>Telefono:</td>
                 <td>
                     <input value="<%= telefono%>" name="telefono" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
@@ -58,7 +58,7 @@
                     <% }%>
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td>Estado:</td>
                 <td>
                     <select name="estados" style="width: 200px; height: 25px">
@@ -72,7 +72,7 @@
                     </select>
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 40px">
                 <td>Empresa:</td>
                 <td>
                     <%
@@ -101,5 +101,5 @@
     <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
         <input type="submit" name="cancel" value="Cancelar" onclick="hideDivContacto()" style="width: 65px;"/>
     </div>
-        <div id="espacio"></div>
+    <div id="espacio"></div>
 </div>
