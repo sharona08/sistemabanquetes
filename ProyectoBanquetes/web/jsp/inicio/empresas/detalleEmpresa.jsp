@@ -31,31 +31,33 @@
 <h1 id="letra2">INFORMACION EMPRESA RIF: <% out.println(rif);%></h1>
 <div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
     <form method="get" action="updateEmpresa.jsp">
-        <table width="80%" border="0">
+        <table width="70%" border="0">
             <tr style="height: 30px">
-                <td width="30%">Nombre:</td>
+                <td width="20%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= empresa.getNombre()%>" name="nombreEmpresa" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
+                    <input value="<%= empresa.getNombre()%>" name="nombreEmpresa" onKeyUp="this.value=this.value.toUpperCase();" style="width: 200px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 30px">
                 <td>Telefono:</td>
                 <td>
-                    <input value="<%= telefono%>" name="telefono" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
+                    <input value="<%= telefono%>" name="telefono" onKeyUp="this.value=this.value.toUpperCase();" style="width: 200px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 70px;">
                 <td>Direccion:</td>
                 <td>
-                    <textarea name="direccion" rows="4" cols="20" style="width: 181px">
-                        <%= direccion%>
-                    </textarea>
+                    <% if (!direccion.equals("")) {%>
+                    <textarea name="descripcion" rows="4" cols="" style="width: 203px"><%=direccion%></textarea>
+                    <% } else {%>
+                    <textarea name="descripcion" rows="4" cols="" style="width: 203px"><%=""%></textarea>
+                    <% }%>
                 </td>
             </tr>
             <tr style="height: 30px">
                 <td>Estado:</td>
                 <td>
-                    <select name="estados" style="width: 185px; height: 25px">
+                    <select name="estados" style="width: 205px; height: 25px">
                         <% if (empresa.getHabilitado()) {%>
                         <option selected>HABILITADO</option>
                         <option>INHABILITADO</option>

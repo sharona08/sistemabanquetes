@@ -48,9 +48,11 @@
             <tr style="height: 70px;">
                 <td>Descripcion:</td>
                 <td>
-                    <textarea name="descripcion" rows="4" cols="20" style="width: 181px">
-                        <%= descripcion%>
-                    </textarea>
+                    <% if (!descripcion.equals("")) {%>
+                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=descripcion%></textarea>
+                    <% } else {%>
+                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=""%></textarea>
+                    <% }%>
                 </td>
             </tr>
             <tr style="height: 30px">
@@ -82,14 +84,14 @@
                     %>
 
                     <select name="departamento" style="width: 202px; height: 25px">
-                        <% for (Departamento d: departamentos) {%>
+                        <% for (Departamento d : departamentos) {%>
                         <%
-                        if(d.getId().equals(departamento.getId())){
+                             if (d.getId().equals(departamento.getId())) {
                         %>
                         <option selected>
                             <%= d.getNombre()%>
                         </option>
-                        <% } else{ %>
+                        <% } else {%>
                         <option>
                             <%= d.getNombre()%>
                         </option>
