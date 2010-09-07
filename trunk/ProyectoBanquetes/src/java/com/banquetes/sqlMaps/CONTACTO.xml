@@ -100,6 +100,7 @@
           rifEmpresa as rifEmpresa
        FROM CONTACTO
 	   WHERE rifEmpresa = #rifEmpresa#
+           AND habilitado is true
        ORDER BY nombre ASC
     </select>
 </sqlMap>

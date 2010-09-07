@@ -192,6 +192,19 @@ public class ServicioSalon implements IServicioSalon {
         return salones;
     }
 
+    public List<Salon> listarSalonesEvento(Integer idEvento) {
+        List<Salon> salones = null;
+
+        try {
+            Map param = new HashMap();
+            param.put("idEvento", idEvento);
+            salones = sqlMap.queryForList("getSalonesEvento", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return salones;
+    }
+
     public List<Salon> listarSalonesHabilitados(Integer id, String nombre) {
         List<Salon> salones = null;
 

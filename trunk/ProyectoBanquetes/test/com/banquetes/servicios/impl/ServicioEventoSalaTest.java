@@ -28,10 +28,11 @@ public class ServicioEventoSalaTest {
     /**
      * Test of crearEventoSala method, of class ServicioEventoSala.
      */
-   // @Test
+    @Test
     public void testCrearEventoSala() {
         System.out.println("crearEventoSala");
-        EventoSala eventoSala = new EventoSala(3, new Double("275.3"), 8, 5, null);
+//        EventoSala eventoSala = new EventoSala(6, new Double("275.3"), 8, 5, null);
+        EventoSala eventoSala = new EventoSala(7, null, 4, 5, null);
 
         try {
             this.testListarEventoSalas();
@@ -46,7 +47,7 @@ public class ServicioEventoSalaTest {
     /**
      * Test of editarEventoSala method, of class ServicioEventoSala.
      */
-    @Test
+//    @Test
     public void testEditarEventoSala() {
         System.out.println("editarEventoSala");
         EventoSala eventoSala = new EventoSala(2, new Double("150"), new Integer(5), new Integer(2), null);
@@ -70,7 +71,7 @@ public class ServicioEventoSalaTest {
         System.out.println("listarEventoSalas");
 
         try {
-            List<EventoSala> eventoSalas = servicioEventoSala.listarEventoSalas(2);
+            List<EventoSala> eventoSalas = servicioEventoSala.listarEventoSalas(5);
             assertNotNull(eventoSalas);
             for (EventoSala newEventoSalas : eventoSalas) {
                 System.out.println("idEvento: " + newEventoSalas.getIdEvento() + ", idMontaje: " + newEventoSalas.getIdMontaje() + ", idSalon" + newEventoSalas.getIdSalon() + ", nuevoCosto: " + newEventoSalas.getNuevoCosto());

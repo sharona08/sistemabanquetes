@@ -21,6 +21,7 @@ public class Evento {
     private Time horaFin;
     private String rifEmpresa;
     private Integer idContacto;
+    private String nota;
 
     public Evento() {
     }
@@ -29,7 +30,7 @@ public class Evento {
         this.id = id;
     }
 
-    public Evento(Integer id, String estado, String nombre, Integer idTipoEvento, Date fechaInicio, Date fechaFin, Integer cantidadPersonas, Time horaInicio, Time horaFin, String rifEmpresa, Integer idContacto) {
+    public Evento(Integer id, String estado, String nombre, Integer idTipoEvento, Date fechaInicio, Date fechaFin, Integer cantidadPersonas, Time horaInicio, Time horaFin, String rifEmpresa, Integer idContacto, String nota) {
         this.id = id;
         this.estado = estado;
         this.nombre = nombre;
@@ -41,6 +42,15 @@ public class Evento {
         this.horaFin = horaFin;
         this.rifEmpresa = rifEmpresa;
         this.idContacto = idContacto;
+        this.nota = nota;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
     }
 
     public Integer getCantidadPersonas() {

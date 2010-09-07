@@ -65,6 +65,8 @@ public interface IServicioSalon {
      */
     public List<Salon> listarSalonesTodos(Integer id, String nombre);
 
+    public List<Salon> listarSalonesEvento(Integer idEvento);
+
     /**
      * Firma para listar todos los salones habilitados
      * @return List<Salon> lista de todos los salones habilitados
