@@ -48,9 +48,11 @@
             <tr style="height: 70px;">
                 <td>Descripcion:</td>
                 <td>
-                    <textarea name="descripcion" rows="4" cols="20" style="width: 181px">
-                        <%= descripcion%>
-                    </textarea>
+                    <% if (!descripcion.equals("")) {%>
+                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=descripcion%></textarea>
+                    <% } else {%>
+                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=""%></textarea>
+                    <% }%>
                 </td>
             </tr>
             <tr style="height: 30px">
