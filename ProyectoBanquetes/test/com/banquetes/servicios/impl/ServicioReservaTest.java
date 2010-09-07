@@ -34,17 +34,18 @@ public class ServicioReservaTest {
     public void testReservar() {
         System.out.println("reservar");
         UtilMethods util = new UtilMethods();
-        java.sql.Date fechaInicio = util.getSqlDate("2010-09-10");
-        java.sql.Date fechaFin = util.getSqlDate("2010-09-10");
-        java.sql.Time horaInicio = Time.valueOf("12:00:00");
-        java.sql.Time horaFin = Time.valueOf("15:00:00");
+        java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
+        java.sql.Date fechaFin = util.getSqlDate("2010-09-12");
+        java.sql.Time horaInicio = Time.valueOf("23:50:00");
+        java.sql.Time horaFin = Time.valueOf("23:50:00");
 
-        Evento evento = new Evento(null, null, "NUEVO EVENTO", new Integer(6), fechaInicio, fechaFin, new Integer(30), horaInicio, horaFin, "J-00000000-0", 2);
+        Evento evento = new Evento(null, "T", "PRUEBA", new Integer(8), fechaInicio, fechaFin, new Integer(30), horaInicio, horaFin, "J-00000000-0", 7, null);
         Integer idSalon = new Integer(4);
         Integer idMontaje = new Integer(5);
-        Double nuevoCosto = new Double(120);
+//        Double nuevoCosto = new Double(120);
+        Double nuevoCosto = null;
 
-        Boolean result = servicioReserva.reservar(evento, idSalon, idMontaje, nuevoCosto);
+        Integer result = servicioReserva.reservar(evento, idSalon, idMontaje, nuevoCosto);
         System.out.println("RESULTADO: " + result);
     }
 

@@ -88,6 +88,19 @@
 	   WHERE id = #id#
     </select>
 
+    <select id="getSalonesEvento" resultClass="salon">
+      SELECT
+          S.id as id,
+          S.nombre as nombre,
+          S.costo as costo,
+          S.habilitado as habilitado,
+          S.idSalon as idSalon
+       FROM SALON S, EVENTO_SALA ES, EVENTO E
+	   WHERE S.id = ES.idSalon
+           AND E.id = ES.idEvento
+           AND ES.idEvento = #idEvento#
+    </select>
+
     <select id="getSalonNombre" resultClass="salon">
       SELECT
           id as id,

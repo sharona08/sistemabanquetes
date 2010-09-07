@@ -1,28 +1,28 @@
 package com.banquetes.dominio;
 
-import java.util.Date;
+import java.sql.Time;
 
 /**
  * Clase para almacenar informacion de los objetos de dominio servicioEvento
  * @author maya
  * @version 1.0
  */
-public class ServicioEvento {
+public class ServicioServicioEvento {
 
     private Integer idServicio;
     private Integer idEvento;
     private Integer cantidad;
-    private Date horaInicio;
-    private Date horaFin;
+    private Time horaInicio;
+    private Time horaFin;
     private String notaEspecial;
     private Double nuevoCosto;
     private String nuevoNombre;
     private String nuevaDescripcion;
 
-    public ServicioEvento() {
+    public ServicioServicioEvento() {
     }
 
-    public ServicioEvento(Integer idServicio, Integer idEvento, Integer cantidad, Date horaInicio, Date horaFin, String notaEspecial, Double nuevoCosto, String nuevoNombre, String nuevaDescripcion) {
+    public ServicioServicioEvento(Integer idServicio, Integer idEvento, Integer cantidad, Time horaInicio, Time horaFin, String notaEspecial, Double nuevoCosto, String nuevoNombre, String nuevaDescripcion) {
         this.idServicio = idServicio;
         this.idEvento = idEvento;
         this.cantidad = cantidad;
@@ -59,19 +59,19 @@ public class ServicioEvento {
     }
 
 
-    public Date getHoraInicio() {
+    public Time getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Date horaInicio) {
+    public void setHoraInicio(Time horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Date getHoraFin() {
+    public Time getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(Date horaFin) {
+    public void setHoraFin(Time horaFin) {
         this.horaFin = horaFin;
     }
 

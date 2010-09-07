@@ -15,7 +15,7 @@
     <typeAlias type="com.banquetes.dominio.Evento" alias="evento"/>
 
     <insert id="crearEvento">
-        INSERT INTO EVENTO (estado, nombre, fechaInicio, fechaFin, cantidadPersonas, horaInicio, horaFin, idTipoEvento, rifEmpresa, idContacto)
+        INSERT INTO EVENTO (estado, nombre, fechaInicio, fechaFin, cantidadPersonas, horaInicio, horaFin, idTipoEvento, rifEmpresa, idContacto, nota)
         VALUES (
             'T',
             #nombre#,
@@ -26,7 +26,8 @@
             #horaFin#,
             #idTipoEvento#,
             #rifEmpresa#,
-            #idContacto#)
+            #idContacto#,
+            #nota#)
             
         <selectKey resultClass="int">
             select last_insert_id() as id

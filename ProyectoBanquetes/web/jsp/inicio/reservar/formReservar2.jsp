@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : createEmpresa
     Created on : Sep 2, 2010, 10:12:46 AM
     Author     : maya
@@ -66,6 +66,8 @@
             }
         </script>
 
+
+
         <title>Reservar</title>
     </head>
 
@@ -84,9 +86,6 @@
                 } else {
                     fechaInicio = request.getParameter("fecha");
                 }
-
-                String rif = request.getParameter("empresa");
-
 
                 IServicioSalon iServicioSalon = new ServicioSalon();
                 List<Salon> salones = iServicioSalon.listarSalones();
@@ -153,11 +152,7 @@
                             <tr style="height: 30px">
                                 <td>Cantidad Personas: (*)</td>
                                 <td>
-                                    <% if (request.getParameter("cantidadPersonas") != null) {%>
-                                    <input class="required" type="text" name="cantidadPersonas" value="<%=request.getParameter("cantidadPersonas")%>" style="width: 160px; height: 23px" align="middle" onchange="personas = <%=request.getParameter("cantidadPersonas")%>" />
-                                    <% } else {%>
-                                    <input class="required" type="text" name="cantidadPersonas" value="" style="width: 160px; height: 23px" align="middle" onchange="personas = this.value" />
-                                    <% }%>
+                                    <input class="required" type="text" name="cantidadPersonas" value="" style="width: 160px; height: 23px" align="middle" />
                                 </td>
                             </tr>
 
@@ -231,9 +226,7 @@
                                 <td width="10%">Empresa: (*)</td>
                                 <td width="30%">
                                     <!--                                    <select name="empresa" style="width: 165px; height: 25px" onchange="location.href='formReservar.jsp?empresa='+this.value+'&fechaInicioEvento='+<fechaInicio%>" >-->
-<!--                                    <select name="empresa" style="width: 165px; height: 25px" onchange="redirect('formReservar.jsp?empresa='+this.value+'&cantidadPersonas='+<%=request.getParameter("cantidadPersonas")%>)" >-->
-
-                                    <select name="empresa" style="width: 165px; height: 25px">
+                                    <select name="empresa" style="width: 165px; height: 25px" onchange="redirect('formReservar.jsp?empresa='+this.value+'&fechaInicioEvento='+<%= request.getParameter("fecha")%>)" >
                                         <% if (request.getParameter("empresa") != null) {%>
                                         <% for (Empresa empresa : empresas) {%>
                                         <% if (empresa.getRif().equals(request.getParameter("empresa"))) {%>
@@ -265,7 +258,7 @@
                             <tr style="height: 30px">
                                 <td width="10%">Contacto: (*)</td>
                                 <td width="30%">
-                                    <select name="contacto" style="width: 165px; height: 25px" >
+                                    <select name="contacto" style="width: 165px; height: 25px">
                                         <% if (request.getParameter("empresa") != null) {%>
                                         <% contactos = iServicioContacto.listarContactosRif(request.getParameter("empresa"));%>
                                         <% for (Contacto contacto : contactos) {%>
@@ -310,7 +303,7 @@
                                 <td>
                                     <select name="montaje" style="width: 165px; height: 25px">
                                         <% for (Montaje montaje : montajes) {%>
-                                        <option selected value="<%= montaje.getId() %>">
+                                        <option selected value="<%= request.getParameter("montaje")%>">
                                             <%= montaje.getTipoMontaje()%>
                                         </option>
                                         <% }%>
@@ -344,7 +337,7 @@
                                 <td>
                                     <div id="boton" class="demo" style="float: right; margin-bottom: 20px">
                                         <input type="hidden" name="hiddenSalon" value="<%= request.getParameter("salon")%>"/>
-                                        <input class="submit" type="submit" name="create" value="Siguente" style="width: 65px; margin-right: 10px" onclick=""/>
+                                        <input class="submit" type="submit" name="create" value="Guardar" style="width: 65px; margin-right: 10px" onclick=""/>
                                     </div>
                                 </td>
                             </tr>

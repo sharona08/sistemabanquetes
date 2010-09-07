@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : SERVICIO_EVENTO.xml
+    Created on : September 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.ServicioServicioEvento" alias="servicioEvento"/>
+
+    <insert id="crearServicioEvento" parameterClass="servicioEvento">
+        INSERT INTO SERVICIO_EVENTO (idServicio, idEvento, cantidad, horaInicio, horaFin, notaEspecial, nuevoCosto, nuevoNombre, nuevaDescripcion)
+        VALUES (#idServicio#,
+                #idEvento#,
+                #cantidad#,
+                #horaInicio#,
+                #horaFin#,
+                #notaEspecial#,
+                #nuevoCosto#,
+                #nuevoNombre#,
+                #nuevaDescripcion#)
+
+        <selectKey resultClass="Integer">
+            SELECT
+              idEvento as idEvento
+            FROM SERVICIO_EVENTO
+	      WHERE idEvento = #idEvento#
+	      AND idServicio = #idServicio#
+        </selectKey>
+    </insert>
+
+    <update id="editarServicioEvento" parameterClass="servicioEvento">
+	UPDATE SERVICIO_EVENTO SET
+          cantidad = #cantidad#,
+          horaInicio = #horaInicio#,
+          horaFin = #horaFin#,
+          notaEspecial = #notaEspecial#,
+          nuevoCosto = #nuevoCosto#,
+          nuevoNombre = #nuevoNombre#,
+          nuevaDescripcion = #nuevaDescripcion#
+	WHERE
+	  idEvento = #idEvento#
+          AND idServicio = #idServicio#
+    </update>
+
+    <select id="getServicioEventos" resultClass="servicioEvento">
+      SELECT
+          idEvento as idEvento,
+          idServicio as idServicio,
+          cantidad as cantidad,
+          horaInicio as horaInicio,
+          horaFin as horaFin,
+          notaEspecial as notaEspecial,
+          nuevoCosto as nuevoCosto,
+          nuevoNombre as nuevoNombre,
+          nuevaDescripcion as nuevaDescripcion
+       FROM SERVICIO_EVENTO
+       WHERE
+	  idEvento = #idEvento#
+       ORDER BY idSalon ASC
+    </select>
+
+    <select id="getServicioEvento" resultClass="servicioEvento">
+      SELECT
+          idEvento as idEvento,
+          idServicio as idServicio,
+          cantidad as cantidad,
+          horaInicio as horaInicio,
+          horaFin as horaFin,
+          notaEspecial as notaEspecial,
+          nuevoCosto as nuevoCosto,
+          nuevoNombre as nuevoNombre,
+          nuevaDescripcion as nuevaDescripcion
+       FROM SERVICIO_EVENTO
+       WHERE
+	  idEvento = #idEvento#
+          AND idServicio = #idServicio#
+    </select>
+
+</sqlMap>

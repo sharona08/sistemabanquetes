@@ -3,6 +3,7 @@ package com.banquetes.servicios.impl;
 import com.banquetes.configuracion.Conexion;
 import com.banquetes.dominio.Evento;
 import com.banquetes.dominio.EventoSala;
+import com.banquetes.dominio.ServicioServicioEvento;
 import com.banquetes.servicios.TO.DetallesReservaSalonTO;
 import com.banquetes.servicios.TO.DetallesReservaTO;
 import com.banquetes.servicios.interfaces.IServicioReserva;
@@ -10,7 +11,9 @@ import com.banquetes.servicios.interfaces.IServicioEvento;
 import com.banquetes.servicios.interfaces.IServicioEventoSala;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,31 +31,21 @@ public class ServicioReserva implements IServicioReserva {
     public ServicioReserva() {
     }
 
-    public Boolean reservar(Evento evento, Integer idSalon, Integer idMontaje, Double nuevoCosto) {
-        Boolean result = Boolean.FALSE;
-        try {
-            sqlMap.startTransaction();
-            Integer id = servicioEvento.crearEvento(evento);
-            if (id != null) {
-                EventoSala eventoSala = new EventoSala(id, nuevoCosto, idSalon, idMontaje, null);
-                Boolean resultES = servicioEventoSala.crearEventoSala(eventoSala);
-                if (resultES) {
-                    sqlMap.commitTransaction();
-                    result = Boolean.TRUE;
-                } else {
-                    System.out.println("ERROR: no se inserto el evento sala.");
-                    sqlMap.endTransaction();
-                    result = Boolean.FALSE;
-                }
+    public Integer reservar(Evento evento, Integer idSalon, Integer idMontaje, Double nuevoCosto) {
+        Integer idEvento = servicioEvento.crearEvento(evento);
+        if (idEvento != null) {
+            EventoSala eventoSala = new EventoSala(idEvento, nuevoCosto, idSalon, idMontaje, null);
+            Boolean resultES = servicioEventoSala.crearEventoSala(eventoSala);
+            if (resultES) {
+                System.out.println("Se inserto el evento sala correctamente.");
+                
             } else {
-                System.out.println("ERROR: no se inserto el evento.");
-                sqlMap.endTransaction();
-                result = Boolean.FALSE;
+                System.out.println("ERROR: no se inserto el evento sala.");
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            System.out.println("ERROR: no se inserto el evento.");
         }
-        return result;
+        return idEvento;
     }
 
     public DetallesReservaTO getDetallesReserva(Integer idEvento) {
@@ -75,5 +68,94 @@ public class ServicioReserva implements IServicioReserva {
             Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
         return detallesSalon;
+    }
+
+    public Boolean crearServicioEvento(ServicioServicioEvento servicioEvento) {
+        Boolean result = Boolean.FALSE;
+        try {
+            Integer resultado = (Integer) sqlMap.insert("crearServicioEvento", servicioEvento);
+
+            if (resultado != null) {
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    public Boolean editarServicioEvento(ServicioServicioEvento servicioEvento) {
+        Boolean result = Boolean.FALSE;
+        try {
+            Map param = new HashMap();
+            param.put("idEvento", servicioEvento.getIdEvento());
+            param.put("idSalon", servicioEvento.getIdServicio());
+
+            ServicioServicioEvento newServicioEvento = (ServicioServicioEvento) sqlMap.queryForObject("getServicioEvento", param);
+
+            if (servicioEvento.getCantidad() != null) {
+                newServicioEvento.setCantidad(servicioEvento.getCantidad());
+            }
+            if (servicioEvento.getHoraInicio() != null) {
+                newServicioEvento.setHoraInicio(servicioEvento.getHoraInicio());
+            }
+            if (servicioEvento.getHoraInicio() != null) {
+                newServicioEvento.setHoraInicio(servicioEvento.getHoraInicio());
+            }
+            if (servicioEvento.getHoraFin() != null) {
+                newServicioEvento.setHoraFin(servicioEvento.getHoraFin());
+            }
+            if (servicioEvento.getNotaEspecial() != null) {
+                newServicioEvento.setNotaEspecial(servicioEvento.getNotaEspecial());
+            }
+            if (servicioEvento.getNuevoCosto() != null) {
+                newServicioEvento.setNuevoCosto(servicioEvento.getNuevoCosto());
+            }
+            if (servicioEvento.getNuevoNombre() != null) {
+                newServicioEvento.setNuevoNombre(servicioEvento.getNuevoNombre());
+            }
+            if (servicioEvento.getNuevaDescripcion() != null) {
+                newServicioEvento.setNuevaDescripcion(servicioEvento.getNuevaDescripcion());
+            }
+
+            int resultado = sqlMap.update("editarServicioEvento", newServicioEvento);
+
+            if (resultado == 1) {
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    public List<ServicioServicioEvento> listarServicioEventos(Integer idEvento) {
+        List<ServicioServicioEvento> servicioEventos = null;
+
+        try {
+            servicioEventos = sqlMap.queryForList("getServicioEventos", idEvento);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return servicioEventos;
+    }
+
+    public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idServicio) {
+        ServicioServicioEvento servicioEvento2 = null;
+
+        try {
+            Map param = new HashMap();
+            param.put("idEvento", idEvento);
+            param.put("idServicio", idServicio);
+            servicioEvento2 = (ServicioServicioEvento) sqlMap.queryForObject("getServicioEvento", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return servicioEvento2;
     }
 }

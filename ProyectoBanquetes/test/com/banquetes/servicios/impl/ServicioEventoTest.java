@@ -29,18 +29,18 @@ public class ServicioEventoTest {
     /**
      * Test of crearEvento method, of class ServicioEvento.
      */
-    //@Test
+//    @Test
     public void testCrearEvento() {
         System.out.println("crearEvento");
         this.testListarEventos();
         System.out.println("");
         UtilMethods util2 = new UtilMethods();
-        java.sql.Date fechaInicio = util2.getSqlDate("2010-08-31");
-        java.sql.Date fechaFin = util2.getSqlDate("2010-09-01");
+        java.sql.Date fechaInicio = util2.getSqlDate("2010-09-12");
+        java.sql.Date fechaFin = util2.getSqlDate("2010-09-12");
         java.sql.Time horaInicio = Time.valueOf("12:00:00");
         java.sql.Time horaFin = Time.valueOf("15:00:00");
 
-        Evento evento = new Evento(null, null, "PRESENTACION", new Integer(6), fechaInicio, fechaFin, new Integer(30), horaInicio, horaFin, "J-00000000-0", 2);
+        Evento evento = new Evento(null, null, "NUEVOOOO", new Integer(6), fechaInicio, fechaFin, new Integer(30), horaInicio, horaFin, "J-00000000-0", 7, null);
 
         Integer id = null;
         try {
@@ -62,7 +62,7 @@ public class ServicioEventoTest {
         java.sql.Time horaInicio = Time.valueOf("08:00:00");
         java.sql.Time horaFin = Time.valueOf("10:10:00");
         java.sql.Date fechaFin = util.getSqlDate("2010-08-30");
-        Evento evento = new Evento(2, "C", null, new Integer(8), null, fechaFin, null, horaInicio, horaFin, null, null);
+        Evento evento = new Evento(6, "C", null, new Integer(8), null, fechaFin, null, horaInicio, horaFin, null, null, null);
 
         try {
             int result = servicioEvento.editarEvento(evento);
