@@ -49,34 +49,33 @@
             <div id="content">
                 <h1 id="letra1">CREAR EMPRESA</h1>
                 <div style="height: 10px"></div>
-                <div style="padding-left: 20px; background-color: #dadada; width: 30%; min-height: 330px">
+                <div style="padding-left: 20px; background-color: #dadada; width: 30%; min-height: 350px">
                     <div id="espacio"></div>
 
                     <form method="get" action="crearEmpresa.jsp" class="cmxform" id="commentForm">
                         <table width="100%" border="0">
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td width="10%">RIF: (*)</td>
                                 <td width="30%">
                                     <input class="required" value="" name="rif" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td width="30%">Nombre: (*)</td>
                                 <td width="50%">
                                     <input class="required" value="" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td>Telefono:</td>
                                 <td>
                                     <input value="" name="telefono" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" align="middle" />
                                 </td>
                             </tr>
-                            <tr style="height: 70px;">
+                            <tr style="height: 80px;">
                                 <td>Direccion:</td>
                                 <td>
-                                    <textarea name="direccion" rows="4" cols="20" style="width: 181px">
-                                    </textarea>
+                                    <textarea name="direccion" rows="4" cols="" style="width: 181px"><%=""%></textarea>
                                 </td>
                             </tr>
                             <tr>
