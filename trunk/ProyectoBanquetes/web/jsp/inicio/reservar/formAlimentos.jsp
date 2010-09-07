@@ -4,6 +4,9 @@
     Author     : maya
 --%>
 
+<%@page import="com.banquetes.servicios.interfaces.IServicioEvento"%>
+<%@page import="com.banquetes.dominio.Evento"%>
+<%@page import="com.banquetes.servicios.impl.ServicioEvento"%>
 <%@page import="com.banquetes.servicios.impl.ServicioSalon"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioSalon"%>
 <%@page import="com.banquetes.dominio.Salon"%>
@@ -46,6 +49,8 @@
             });
         </script>
 
+        <script type="text/javascript" src="selectServicio.js"></script>
+
         <title>Alimentos y Bebidas</title>
     </head>
     <body>
@@ -63,39 +68,55 @@
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
-                <h1 id="letra1">AGREGAR ALIMENTO Y BEBIDA</h1>
+                <h1 id="letra1">AGREGAR ALIMENTOS Y BEBIDAS</h1>
                 <div style="height: 10px"></div>
                 <div style="padding-left: 20px; background-color: #dadada; width: 35%; min-height: 400px">
                     <div id="espacio"></div>
 
                     <form method="get" action="crearAB.jsp" class="cmxform" id="commentForm" name="form">
-                        <table width="100%" border="0">
+                        <table width="85%" border="0">
 
-                            <tr style="height: 30px">
-                                <td width="40%">Nombre: (*)</td>
+                            <tr style="height: 40px">
+                                <td width="45%">Nombre: (*)</td>
                                 <td width="40%">
-                                    <select name="nombre" style="width: 165px; height: 25px">
+                                    <select name="nombre" style="width: 200px; height: 25px" onchange="mostrarInfo(this.value, <%=request.getParameter("idEvento")%>);">
                                         <%
+                                                    Servicio serv = servicios.get(0);
                                                     for (Servicio s : servicios) {
-                                                        out.write("<option value=" + s.getId() + ">" + s.getNombre() + "</option>");
+                                                        if (s.getId().equals(serv.getId())) {
+                                                            out.write("<option selected value=" + s.getId() + ">" + s.getNombre() + ", " + s.getCostoUnitario() + "</option>");
+                                                        } else {
+                                                            out.write("<option value=" + s.getId() + ">" + s.getNombre() + ", " + s.getCostoUnitario() + "</option>");
+                                                        }
                                                     }
                                         %>
                                     </select>
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td>Costo Unitario: (*)</td>
                                 <td>
-                                    <input class="required" value="" name="costoUnitario" style="width: 160px; height: 23px" onKeyUp="this.value=this.value.toUpperCase();" />
+                                    <div id="ab">
+                                        <%
+                                                    Servicio servicio = servicioServicio.getServicio(serv.getId(), "AB");
+                                        %>
+                                        <input class="required" value="<%= servicio.getCostoUnitario()%>" name="costoUnitario" style="width: 195px; height: 23px" onKeyUp="this.value=this.value.toUpperCase();" />
+                                    </div>
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td>Cantidad: (*)</td>
                                 <td>
-                                    <input class="required" type="text" name="cantidad" value="" style="width: 160px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
+                                    <div id="cant">
+                                        <%
+                                                    IServicioEvento servicioEvento = new ServicioEvento();
+                                                    Evento evento = servicioEvento.getEvento(Integer.valueOf(idEvento));
+                                        %>
+                                        <input class="required" type="text" name="cantidad" value="<%= evento.getCantidadPersonas() %>" style="width: 195px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
+                                    </div>
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td>Hora:</td>
                                 <td>
                                     <select name="horaInicio" style="width: 50px; height: 25px">
@@ -128,13 +149,10 @@
                                     </select>
                                 </td>
                             </tr>
-                            <%--TODO:
-                            * LISTAR TODOS LOS SALONES QUE ESTEN RELACIONADOS CON LA RESERVA QUE SE ACABA DE CREAR
-                            --%>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td>Salon: </td>
                                 <td>
-                                    <select style="width: 165px; height: 25px">
+                                    <select style="width: 200px; height: 25px">
                                         <%
                                                     for (Salon s : salones) {
                                                         out.write("<option value=" + s.getId() + ">" + s.getNombre() + "</option>");
@@ -144,22 +162,22 @@
                                     </select>
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 80px">
                                 <td>Descripcion:</td>
                                 <td>
-                                    <textarea cols="" rows="" name="descripcion" style="width: 165px;"></textarea>
+                                    <textarea cols="" rows="4" name="descripcion" style="width: 200px;"></textarea>
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 80px">
                                 <td>Nota:</td>
                                 <td>
-                                    <textarea cols="" rows="" name="nota" style="width: 165px;"></textarea>
+                                    <textarea cols="" rows="4" name="nota" style="width: 200px;"></textarea>
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 40px">
                                 <td>Area de Servicio: (*)</td>
                                 <td>
-                                    <select name="area" style="width: 165px; height: 25px">
+                                    <select name="area" style="width: 200px; height: 25px">
                                         <%
                                                     for (Departamento d : departamentos) {
                                                         out.write("<option value=" + d.getId() + ">" + d.getNombre() + "</option>");
