@@ -224,12 +224,11 @@ public class ServicioServicio implements IServicioServicio {
         return servicios;
     }
 
-    public Servicio getServicio(Integer id, String tipoServicio) {
+    public Servicio getServicio(Integer id) {
         Servicio servicio = null;
         try {
             Map param = new HashMap();
             param.put("id", id);
-            param.put("tipoServicio", tipoServicio);
             servicio = (Servicio) sqlMap.queryForObject("getServicio", param);
 
         } catch (SQLException ex) {

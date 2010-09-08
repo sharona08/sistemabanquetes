@@ -4,9 +4,6 @@
     Author     : maya
 --%>
 
-<%@page import="com.banquetes.dominio.Evento"%>
-<%@page import="com.banquetes.servicios.impl.ServicioEvento"%>
-<%@page import="com.banquetes.servicios.interfaces.IServicioEvento"%>
 <%@page import="com.banquetes.dominio.Servicio"%>
 <%@page import="com.banquetes.servicios.impl.ServicioServicio"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioServicio"%>
@@ -22,13 +19,8 @@
             IServicioServicio servicioServicio = new ServicioServicio();
 
             String idServicio = (String) request.getParameter("idServicio");
-            String idEvento = (String) request.getParameter("idEvento");
-
-            IServicioEvento servicioEvento = new ServicioEvento();
-            Evento evento = servicioEvento.getEvento(Integer.valueOf(idEvento));
 
             Servicio servicio = servicioServicio.getServicio(Integer.valueOf(idServicio));
-            Double costo = servicio.getCostoUnitario();
-
 %>
-<input value="<%= evento.getCantidadPersonas() %>" name="cantidad" style="width: 195px; height: 23px" onKeyUp="this.value=this.value.toUpperCase();" />
+
+<textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%= servicio.getDescripcion() %></textarea>

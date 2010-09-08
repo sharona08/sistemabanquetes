@@ -15,9 +15,10 @@
     <typeAlias type="com.banquetes.dominio.ServicioServicioEvento" alias="servicioEvento"/>
 
     <insert id="crearServicioEvento" parameterClass="servicioEvento">
-        INSERT INTO SERVICIO_EVENTO (idServicio, idEvento, cantidad, horaInicio, horaFin, notaEspecial, nuevoCosto, nuevoNombre, nuevaDescripcion)
+        INSERT INTO SERVICIO_EVENTO (idServicio, idEvento, idSalon, cantidad, horaInicio, horaFin, notaEspecial, nuevoCosto, nuevoNombre, nuevaDescripcion)
         VALUES (#idServicio#,
                 #idEvento#,
+                #idSalon#,
                 #cantidad#,
                 #horaInicio#,
                 #horaFin#,
@@ -32,6 +33,7 @@
             FROM SERVICIO_EVENTO
 	      WHERE idEvento = #idEvento#
 	      AND idServicio = #idServicio#
+	      AND idSalon = #idSalon#
         </selectKey>
     </insert>
 
@@ -47,40 +49,46 @@
 	WHERE
 	  idEvento = #idEvento#
           AND idServicio = #idServicio#
+          AND idSalon = #idSalon#
     </update>
 
     <select id="getServicioEventos" resultClass="servicioEvento">
       SELECT
-          idEvento as idEvento,
-          idServicio as idServicio,
-          cantidad as cantidad,
-          horaInicio as horaInicio,
-          horaFin as horaFin,
-          notaEspecial as notaEspecial,
-          nuevoCosto as nuevoCosto,
-          nuevoNombre as nuevoNombre,
-          nuevaDescripcion as nuevaDescripcion
-       FROM SERVICIO_EVENTO
-       WHERE
-	  idEvento = #idEvento#
-       ORDER BY idSalon ASC
+          SE.idEvento as idEvento,
+          SE.idServicio as idServicio,
+          SE.idSalon as idSalon,
+          SE.cantidad as cantidad,
+          SE.horaInicio as horaInicio,
+          SE.horaFin as horaFin,
+          SE.notaEspecial as notaEspecial,
+          SE.nuevoCosto as nuevoCosto,
+          SE.nuevoNombre as nuevoNombre,
+          SE.nuevaDescripcion as nuevaDescripcion
+       FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E
+       WHERE SE.idServicio = S.id
+         AND SE.idEvento = E.idEvento
+         AND SE.idSalon = E.idSalon
+         AND SE.idEvento = #idEvento#
     </select>
 
     <select id="getServicioEvento" resultClass="servicioEvento">
       SELECT
-          idEvento as idEvento,
-          idServicio as idServicio,
-          cantidad as cantidad,
-          horaInicio as horaInicio,
-          horaFin as horaFin,
-          notaEspecial as notaEspecial,
-          nuevoCosto as nuevoCosto,
-          nuevoNombre as nuevoNombre,
-          nuevaDescripcion as nuevaDescripcion
-       FROM SERVICIO_EVENTO
-       WHERE
-	  idEvento = #idEvento#
-          AND idServicio = #idServicio#
+          SE.idEvento as idEvento,
+          SE.idServicio as idServicio,
+          SE.idSalon as idSalon,
+          SE.cantidad as cantidad,
+          SE.horaInicio as horaInicio,
+          SE.horaFin as horaFin,
+          SE.notaEspecial as notaEspecial,
+          SE.nuevoCosto as nuevoCosto,
+          SE.nuevoNombre as nuevoNombre,
+          SE.nuevaDescripcion as nuevaDescripcion
+       FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E
+       WHERE SE.idServicio = S.id
+         AND SE.idEvento = E.idEvento
+         AND SE.idEvento = #idEvento#
+         AND SE.idServicio = #idServicio#
+         AND SE.idSalon = #idSalon#
     </select>
 
 </sqlMap>

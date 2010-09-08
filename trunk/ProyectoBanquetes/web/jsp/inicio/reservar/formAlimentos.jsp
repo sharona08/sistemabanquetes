@@ -50,6 +50,7 @@
         </script>
 
         <script type="text/javascript" src="selectServicio.js"></script>
+        <script type="text/javascript" src="selectServicioDesc.js"></script>
 
         <title>Alimentos y Bebidas</title>
     </head>
@@ -62,24 +63,33 @@
                     List<Departamento> departamentos = servicioDepartamento.listarDepartamentos(null, null);
 
                     String idEvento = request.getParameter("idEvento");
+
                     IServicioSalon servicioSalon = new ServicioSalon();
                     List<Salon> salones = servicioSalon.listarSalonesEvento(Integer.valueOf(idEvento));
+
+                    IServicioEvento servicioEvento = new ServicioEvento();
+                    Evento evento = servicioEvento.getEvento(Integer.valueOf(idEvento));
+
+                    String descripcion = "";
+
         %>
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">AGREGAR ALIMENTOS Y BEBIDAS</h1>
                 <div style="height: 10px"></div>
+
                 <div style="padding-left: 20px; background-color: #dadada; width: 35%; min-height: 400px">
+                    <div id="espacio"></div>
+                    <label id="letra2">RESERVA # <%= idEvento%></label>
                     <div id="espacio"></div>
 
                     <form method="get" action="crearAB.jsp" class="cmxform" id="commentForm" name="form">
                         <table width="85%" border="0">
-
                             <tr style="height: 40px">
                                 <td width="45%">Nombre: (*)</td>
                                 <td width="40%">
-                                    <select name="nombre" style="width: 200px; height: 25px" onchange="mostrarInfo(this.value, <%=request.getParameter("idEvento")%>);">
+                                    <select name="nombre" style="width: 200px; height: 25px" onchange="mostrarInfo(this.value, <%=request.getParameter("idEvento")%>); mostrarDesc(this.value, <%=request.getParameter("idEvento")%>);">
                                         <%
                                                     Servicio serv = servicios.get(0);
                                                     for (Servicio s : servicios) {
@@ -88,71 +98,105 @@
                                                         } else {
                                                             out.write("<option value=" + s.getId() + ">" + s.getNombre() + ", " + s.getCostoUnitario() + "</option>");
                                                         }
+                                                        descripcion = servicioServicio.getServicio(s.getId()).getDescripcion();
                                                     }
                                         %>
                                     </select>
                                 </td>
                             </tr>
+                            <%
+                                        Servicio servicio = servicioServicio.getServicio(serv.getId());
+                            %>
+
                             <tr style="height: 40px">
                                 <td>Costo Unitario: (*)</td>
                                 <td>
                                     <div id="ab">
-                                        <%
-                                                    Servicio servicio = servicioServicio.getServicio(serv.getId(), "AB");
-                                        %>
+
                                         <input class="required" value="<%= servicio.getCostoUnitario()%>" name="costoUnitario" style="width: 195px; height: 23px" onKeyUp="this.value=this.value.toUpperCase();" />
                                     </div>
                                 </td>
                             </tr>
+
                             <tr style="height: 40px">
                                 <td>Cantidad: (*)</td>
                                 <td>
-                                    <div id="cant">
-                                        <%
-                                                    IServicioEvento servicioEvento = new ServicioEvento();
-                                                    Evento evento = servicioEvento.getEvento(Integer.valueOf(idEvento));
-                                        %>
-                                        <input class="required" type="text" name="cantidad" value="<%= evento.getCantidadPersonas() %>" style="width: 195px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
-                                    </div>
+                                    <input class="required" type="text" name="cantidad" value="<%= evento.getCantidadPersonas()%>" style="width: 195px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
                                 </td>
                             </tr>
                             <tr style="height: 40px">
                                 <td>Hora:</td>
                                 <td>
-                                    <select name="horaInicio" style="width: 50px; height: 25px">
-                                        <% for (int i = 0; i < 24; i++) {%>
-                                        <% if (i < 10) {%>
+                                    <%
+                                                String horaInicio = evento.getHoraInicio().toString();
+                                                String[] arregloHora = horaInicio.split(":");
+                                                Integer hora = Integer.valueOf(arregloHora[0]);
+                                                Integer minutos = Integer.valueOf(arregloHora[1]);
+                                    %>
+                                    <div id="horaInicio">
+                                        <select name="horaInicio" style="width: 50px; height: 25px; float: left">
+                                            <% for (int i = 0; i < 24; i++) {%>
+                                            <% if (i < 10) {%>
 
-                                        <option selected>
-                                            <%= "0" + i%>
-                                        </option>
-                                        <% } else {%>
-                                        <option selected>
-                                            <%= i%>
-                                        </option>
-                                        <% }%>
-                                        <% }%>
-                                    </select>
-                                    <select name="minutosInicio" style="width: 50px; height: 25px">
-                                        <% for (int i = 0; i < 60; i = i + 10) {%>
+                                            <% if (i == hora) {%>
+                                            <option selected>
+                                                <%= "0" + i%>
+                                            </option>
+                                            <% } else {%>
+                                            <option>
+                                                <%= "0" + i%>
+                                            </option>
+                                            <% }%>
+                                            <% } else {%>
 
-                                        <% if (i < 10) {%>
-                                        <option selected>
-                                            <%= "0" + i%>
-                                        </option>
-                                        <% } else {%>
-                                        <option selected>
-                                            <%= i%>
-                                        </option>
-                                        <% }%>
-                                        <% }%>
-                                    </select>
+                                            <% if (i == hora) {%>
+                                            <option selected>
+                                                <%= i%>
+                                            </option>
+                                            <% } else {%>
+                                            <option>
+                                                <%= i%>
+                                            </option>
+                                            <% }%>
+                                            <% }%>
+                                            <% }%>
+                                        </select>
+                                    </div>
+                                    <div id="minutosInicio">
+                                        <select name="minutosInicio" style="width: 50px; height: 25px; float: left; margin-left: 5px">
+                                            <% for (int i = 0; i < 60; i = i + 10) {%>
+
+                                            <% if (i < 10) {%>
+                                            <% if (i == minutos) {%>
+                                            <option selected>
+                                                <%= "0" + i%>
+                                            </option>
+                                            <% } else {%>
+                                            <option>
+                                                <%= "0" + i%>
+                                            </option>
+                                            <% }%>
+                                            <%} else {%>
+
+                                            <% if (i == minutos) {%>
+                                            <option selected>
+                                                <%= i%>
+                                            </option>
+                                            <% } else {%>
+                                            <option>
+                                                <%= i%>
+                                            </option>
+                                            <% }%>
+                                            <% }%>
+                                            <% }%>
+                                        </select>
+                                    </div>
                                 </td>
                             </tr>
                             <tr style="height: 40px">
                                 <td>Salon: </td>
                                 <td>
-                                    <select style="width: 200px; height: 25px">
+                                    <select name="salon" style="width: 200px; height: 25px">
                                         <%
                                                     for (Salon s : salones) {
                                                         out.write("<option value=" + s.getId() + ">" + s.getNombre() + "</option>");
@@ -165,7 +209,9 @@
                             <tr style="height: 80px">
                                 <td>Descripcion:</td>
                                 <td>
-                                    <textarea cols="" rows="4" name="descripcion" style="width: 200px;"></textarea>
+                                    <div id="descripcion">
+                                        <textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%= servicio.getDescripcion()%></textarea>
+                                    </div>
                                 </td>
                             </tr>
                             <tr style="height: 80px">
@@ -174,30 +220,13 @@
                                     <textarea cols="" rows="4" name="nota" style="width: 200px;"></textarea>
                                 </td>
                             </tr>
-                            <tr style="height: 40px">
-                                <td>Area de Servicio: (*)</td>
-                                <td>
-                                    <select name="area" style="width: 200px; height: 25px">
-                                        <%
-                                                    for (Departamento d : departamentos) {
-                                                        out.write("<option value=" + d.getId() + ">" + d.getNombre() + "</option>");
-                                                    }
-                                        %>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>
-
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td>(*) Campos obligatorios</td>
+                                <td><label style="font-weight: 400; color: red; width: 100%">(*) Campos obligatorios</label></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -206,8 +235,9 @@
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>
+                                    <input type="hidden" name="idEvento" value="<%=idEvento%>"/>
                                     <div id="boton" class="demo" style="float: right; margin-bottom: 20px">
-                                        <input class="submit" type="submit" name="create" value="Otro" style="width: 65px; margin-right: 10px" onclick=""/>
+                                        <input class="submit" type="submit" name="create" value="Crear" style="width: 65px; margin-right: 10px" onclick=""/>
                                     </div>
                                 </td>
                             </tr>
@@ -217,11 +247,15 @@
                             </tr>
                         </table>
                     </form>
-                </div>
-                <div id="espacio"></div>
-                <div id="resultado">
 
                 </div>
+
+                <div id="espacio"></div>
+
+                <div id="alimentos">
+                    <jsp:include page="alimentosEvento.jsp" flush="true"></jsp:include>
+                </div>
+
                 <div id="espacio"></div>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>

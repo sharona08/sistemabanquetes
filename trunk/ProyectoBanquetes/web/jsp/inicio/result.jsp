@@ -157,7 +157,7 @@
 <%
             if (request.getParameter("ID") != null) {%>
 
-<div id="toggleText" style="width: 40%; min-height: 300px; background-color: #B9B9B9; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
+<div id="toggleText" style="width: 40%; min-height: 300px; background-color: #dadada; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
     <jsp:include page="../inicio/infoReserva.jsp">
         <jsp:param name="fechaInicio" value="<%= fechaInicioJSP%>"></jsp:param>
         <jsp:param name="fechaFin" value="<%= fechaFinJSP%>"></jsp:param>

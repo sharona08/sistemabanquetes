@@ -91,7 +91,8 @@ public class ServicioReserva implements IServicioReserva {
         try {
             Map param = new HashMap();
             param.put("idEvento", servicioEvento.getIdEvento());
-            param.put("idSalon", servicioEvento.getIdServicio());
+            param.put("idServicio", servicioEvento.getIdServicio());
+            param.put("idSalon", servicioEvento.getIdSalon());
 
             ServicioServicioEvento newServicioEvento = (ServicioServicioEvento) sqlMap.queryForObject("getServicioEvento", param);
 
@@ -145,12 +146,13 @@ public class ServicioReserva implements IServicioReserva {
         return servicioEventos;
     }
 
-    public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idServicio) {
+    public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio) {
         ServicioServicioEvento servicioEvento2 = null;
 
         try {
             Map param = new HashMap();
             param.put("idEvento", idEvento);
+            param.put("idSalon", idSalon);
             param.put("idServicio", idServicio);
             servicioEvento2 = (ServicioServicioEvento) sqlMap.queryForObject("getServicioEvento", param);
         } catch (SQLException ex) {
