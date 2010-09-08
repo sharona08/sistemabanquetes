@@ -72,5 +72,5 @@ public interface IServicioServicio {
      * @param id el identificador con el que se buscara el servicio
      * @return Servicio el objeto servicio consultado 
      */
-    public Servicio getServicio(Integer id, String tipoServicio);
+    public Servicio getServicio(Integer id);
 }

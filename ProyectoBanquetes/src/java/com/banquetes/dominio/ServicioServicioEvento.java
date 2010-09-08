@@ -11,6 +11,7 @@ public class ServicioServicioEvento {
 
     private Integer idServicio;
     private Integer idEvento;
+    private Integer idSalon;
     private Integer cantidad;
     private Time horaInicio;
     private Time horaFin;
@@ -22,9 +23,10 @@ public class ServicioServicioEvento {
     public ServicioServicioEvento() {
     }
 
-    public ServicioServicioEvento(Integer idServicio, Integer idEvento, Integer cantidad, Time horaInicio, Time horaFin, String notaEspecial, Double nuevoCosto, String nuevoNombre, String nuevaDescripcion) {
+    public ServicioServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Integer cantidad, Time horaInicio, Time horaFin, String notaEspecial, Double nuevoCosto, String nuevoNombre, String nuevaDescripcion) {
         this.idServicio = idServicio;
         this.idEvento = idEvento;
+        this.idSalon = idSalon;
         this.cantidad = cantidad;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
@@ -48,6 +50,14 @@ public class ServicioServicioEvento {
 
     public void setIdEvento(Integer idEvento) {
         this.idEvento = idEvento;
+    }
+
+    public Integer getIdSalon() {
+        return idSalon;
+    }
+
+    public void setIdSalon(Integer idSalon) {
+        this.idSalon = idSalon;
     }
 
     public Integer getCantidad() {

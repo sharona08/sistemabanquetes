@@ -225,6 +225,7 @@ DROP TABLE IF EXISTS `banquetes`.`SERVICIO_EVENTO` ;
 CREATE  TABLE IF NOT EXISTS `banquetes`.`SERVICIO_EVENTO` (
   `idServicio` INT(11)  NOT NULL ,
   `idEvento` INT(11)  NOT NULL ,
+  `idSalon` INT(11)  NOT NULL ,
   `cantidad` INT(11)  NOT NULL ,
   `horaInicio` TIME NOT NULL ,
   `horaFin` TIME NULL DEFAULT NULL ,
@@ -232,17 +233,17 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`SERVICIO_EVENTO` (
   `nuevoCosto` DOUBLE NULL ,
   `nuevoNombre` VARCHAR(100) NULL ,
   `nuevaDescripcion` VARCHAR(5000) NULL ,
-  PRIMARY KEY (`idServicio`, `idEvento`) ,
+  PRIMARY KEY (`idServicio`, `idEvento`, `idSalon`) ,
   INDEX `fk_SERVICIO_has_EVENTO_SERVICIO1` (`idServicio` ASC) ,
-  INDEX `fk_SERVICIO_has_EVENTO_EVENTO1` (`idEvento` ASC) ,
+  INDEX `fk_SERVICIO_EVENTO_EVENTO_SALA1` (`idEvento` ASC, `idSalon` ASC) ,
   CONSTRAINT `fk_SERVICIO_has_EVENTO_SERVICIO1`
     FOREIGN KEY (`idServicio` )
     REFERENCES `banquetes`.`SERVICIO` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_SERVICIO_has_EVENTO_EVENTO1`
-    FOREIGN KEY (`idEvento` )
-    REFERENCES `banquetes`.`EVENTO` (`id` )
+  CONSTRAINT `fk_SERVICIO_EVENTO_EVENTO_SALA1`
+    FOREIGN KEY (`idEvento` , `idSalon` )
+    REFERENCES `banquetes`.`EVENTO_SALA` (`idEvento` , `idSalon` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

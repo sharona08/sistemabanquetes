@@ -8,6 +8,7 @@ package com.banquetes.servicios.impl;
 import java.sql.Time;
 import com.banquetes.util.UtilMethods;
 import com.banquetes.dominio.Evento;
+import com.banquetes.dominio.ServicioServicioEvento;
 import com.banquetes.servicios.TO.DetallesReservaTO;
 import com.banquetes.servicios.interfaces.IServicioReserva;
 import java.util.List;
@@ -30,7 +31,7 @@ public class ServicioReservaTest {
     /**
      * Test of reservar method, of class ServicioReserva.
      */
-    @Test
+    //@Test
     public void testReservar() {
         System.out.println("reservar");
         UtilMethods util = new UtilMethods();
@@ -47,6 +48,25 @@ public class ServicioReservaTest {
 
         Integer result = servicioReserva.reservar(evento, idSalon, idMontaje, nuevoCosto);
         System.out.println("RESULTADO: " + result);
+    }
+
+    //@Test
+    public void testCrearServicioEvento(){
+        System.out.println("testCrearServicioEvento");
+        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(1, 2, 4, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "");
+
+        Boolean result = servicioReserva.crearServicioEvento(servicioEvento);
+        System.out.println("Inserto: " + result);
+    }
+
+    @Test
+    public void testGetServiciosEvento(){
+        System.out.println("testGetServiciosEvento");
+        
+        List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventos(5);
+        for (ServicioServicioEvento s : servicios) {
+            System.out.println("idEvento: " + s.getIdEvento() + ", idSalon: " + s.getIdSalon() + ", idServicio: " + s.getIdServicio());
+        }
     }
 
     /**

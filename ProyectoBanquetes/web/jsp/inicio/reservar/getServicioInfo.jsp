@@ -16,14 +16,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-            IServicioReserva servicioReserva = new ServicioReserva();
             IServicioServicio servicioServicio = new ServicioServicio();
 
             String idServicio = (String) request.getParameter("idServicio");
-            String idEvento = (String) request.getParameter("idEvento");
-            ServicioServicioEvento servicioEvento = servicioReserva.getServicioEvento(Integer.valueOf(idEvento), Integer.valueOf(idServicio));
 
-            Servicio servicio = servicioServicio.getServicio(Integer.valueOf(idServicio), "AB");
+            Servicio servicio = servicioServicio.getServicio(Integer.valueOf(idServicio));
             Double costo = servicio.getCostoUnitario();
 
 %>

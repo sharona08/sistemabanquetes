@@ -78,15 +78,6 @@
                 <td align="center">
                     <%=e.getNombre()%>
                 </td>
-                <!--                <td>-->
-
-                <!--                                            if (e.getTelefono() == null) {
-                                                                out.print("--");
-                                                            } else {
-                                                                out.print(e.getTelefono());
-                                                            }
-                -->
-                <!--                </td>-->
                 <td>
                     <%
                                             if (e.getDireccion() == null) {
