@@ -136,7 +136,12 @@
                                 evento.setIdContacto(Integer.valueOf(request.getParameter("idContacto")));
                             }
 
+                            if (request.getParameter("nota") != null) {
+                                evento.setNota(request.getParameter("nota"));
+                            }
+
                             int result = servicioEvento.editarEvento(evento);
+                            int result2 = 0;
 
                             if (request.getParameter("cont") != null) {
                                 int cont = Integer.valueOf(request.getParameter("cont"));
@@ -154,7 +159,6 @@
                                     varHiddenSalon = "hiddenSalon" + i;
 
                                     if (request.getParameter(varSalon) != null) {
-                                        //  out.print(varSalon + ", ");
                                         salon = servicioSalon.getSalonNombre(request.getParameter(varHiddenSalon));
                                         eventoSala.setIdSalon(salon.getId());
                                         Salon salonNew = servicioSalon.getSalonNombre(request.getParameter(varSalon));
@@ -162,27 +166,43 @@
                                     }
 
                                     if (request.getParameter(varNuevoCosto) != null) {
-                                        //  out.print(varNuevoCosto + ", ");
                                         eventoSala.setNuevoCosto(new Double(request.getParameter(varNuevoCosto)));
                                     } else if (request.getParameter(varCosto) != null) {
                                         eventoSala.setNuevoCosto(new Double(request.getParameter(varCosto)));
                                     }
 
                                     if (request.getParameter(varMontaje) != null) {
-                                        //  out.print(varMontaje + ". | ");
                                         Montaje montaje = servicioMontaje.getMontajeNombre(request.getParameter(varMontaje));
                                         eventoSala.setIdMontaje(montaje.getId());
                                     }
 
-                                    //out.print(varSalon);
-                                    int result2 = servicioEventoSala.editarEventoSala(eventoSala);
+                                    result2 = servicioEventoSala.editarEventoSala(eventoSala);
                                 }
 
                             }
 
-                            // if ((result == 1)) {
-                            // }
-%>
+                            if ((result == 1) && (result2 == 1)) {
+                %>
+                <script type="text/javascript">
+                    alert("Exito! la reserva ha sido editada exitosamente.");
+                </script>
+                <% } else {%>
+                <% if ((result != 1) && (result2 == 1)) {%>
+                <script type="text/javascript">
+                    alert("Error! la informacion del evento no pudo ser editada, revise campos.");
+                </script>
+                <% }%>
+                <%if ((result == 1) && (result2 != 1)) {%>
+                <script type="text/javascript">
+                    alert("Error! la informacion del salon no pudo ser editada, revise campos.");
+                </script>
+                <% }%>
+                <%if ((result != 1) && (result2 != 1)) {%>
+                <script type="text/javascript">
+                    alert("Error! la reserva no pudo ser editada, revise campos.");
+                </script>
+                <% }%>
+                <% }%>
             </div>
             <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>

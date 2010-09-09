@@ -30,7 +30,8 @@
          E.rif as rifEmpresa,
          E.nombre as nombreEmpresa,
          C.id as idContacto,
-         C.nombre as nombreContacto
+         C.nombre as nombreContacto,
+         EV.nota as nota
        FROM EMPRESA E, EVENTO EV, TIPO_EVENTO TE, CONTACTO C
 	   WHERE EV.idTipoEvento = TE.id
            AND E.rif = EV.rifEmpresa

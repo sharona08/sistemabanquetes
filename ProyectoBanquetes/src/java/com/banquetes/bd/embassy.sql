@@ -391,6 +391,7 @@ SET AUTOCOMMIT=0;
 USE `banquetes`;
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (1, NULL, 4, 1);
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (2, '205', 4, 2);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (2, NULL, 5, 2);
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (3, '500', 3, 3);
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (4, NULL, 3, 3);
 

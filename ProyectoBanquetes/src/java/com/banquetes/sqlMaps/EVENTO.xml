@@ -44,7 +44,8 @@
           idTipoEvento = #idTipoEvento#,
           horaInicio = #horaInicio#,
           horaFin = #horaFin#,
-          idContacto = #idContacto#
+          idContacto = #idContacto#,
+          nota = #nota#
 	WHERE
 	  id = #id#
     </update>

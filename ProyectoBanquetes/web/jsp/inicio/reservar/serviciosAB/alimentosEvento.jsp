@@ -106,7 +106,7 @@
                     </div>
                 </td>
                 <td>
-                    <input type="image" src="../remove_24.png" name="eliminar" value="" style="width: 24px; height: 24px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
+                    <input type="image" src="../../remove_24.png" name="eliminar" value="" style="width: 20px; height: 20px; margin-top: 2px; margin-bottom: 2px;" onclick=""/>
                 </td>
             </tr>
         </form>
@@ -120,7 +120,7 @@
             if (request.getParameter("hiddenId") != null) {
 %>
 
-<div id="alimento" style="width: 45%; min-height: 300px; background-color: #B9B9B9; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
+<div id="alimento" style="width: 40%; min-height: 300px; background-color: #dadada; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
     <jsp:include page="detalleAB.jsp"></jsp:include>
 </div>
 
