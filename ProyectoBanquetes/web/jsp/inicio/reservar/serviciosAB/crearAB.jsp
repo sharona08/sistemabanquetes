@@ -17,12 +17,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Alimentos y Bebidas</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/formAlimentos.jsp?idEvento=<%= request.getParameter("idEvento")%>"/>
+        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%= request.getParameter("idEvento")%>"/>
     </head>
     <body>
 
         <div id="pageWrap">
-            <jsp:include page="../../include/menu.jsp"></jsp:include>
+            <jsp:include page="../../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">Crear Alimentos y Bebidas</h1>
                 <%
@@ -57,7 +57,7 @@
                 </script>
                 <% }%>
             </div>
-            <jsp:include page="../../include/footer.jsp"></jsp:include>
+            <jsp:include page="../../../include/footer.jsp"></jsp:include>
         </div>
     </body>
 </html>

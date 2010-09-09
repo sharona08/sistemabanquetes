@@ -78,7 +78,7 @@
                 %>
                 <script type="text/javascript">
                     alert("Exito! la reserva ha sido realizada exitosamente.");
-                    window.location.href='formAlimentos.jsp?idEvento=<%=result%>';
+                    window.location.href='serviciosAB/formAlimentos.jsp?idEvento=<%=result%>';
                 </script> 
                 <% } else {%>
                 <script type="text/javascript">
