@@ -59,9 +59,6 @@
                     IServicioServicio servicioServicio = new ServicioServicio();
                     List<Servicio> servicios = servicioServicio.listarServiciosHabilitados(null, null, "AB");
 
-                    IServicioDepartamento servicioDepartamento = new ServicioDepartamento();
-                    List<Departamento> departamentos = servicioDepartamento.listarDepartamentos(null, null);
-
                     String idEvento = request.getParameter("idEvento");
 
                     IServicioSalon servicioSalon = new ServicioSalon();
@@ -69,8 +66,6 @@
 
                     IServicioEvento servicioEvento = new ServicioEvento();
                     Evento evento = servicioEvento.getEvento(Integer.valueOf(idEvento));
-
-                    String descripcion = "";
 
         %>
         <div id="pageWrap">
@@ -98,7 +93,6 @@
                                                         } else {
                                                             out.write("<option value=" + s.getId() + ">" + s.getNombre() + ", " + s.getCostoUnitario() + "</option>");
                                                         }
-                                                        descripcion = servicioServicio.getServicio(s.getId()).getDescripcion();
                                                     }
                                         %>
                                     </select>
