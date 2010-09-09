@@ -71,7 +71,7 @@ public class ServicioServicioTest {
     /**
      * Test of editarServicio method, of class ServicioServicio.
      */
-    @Test
+    //@Test
     public void testEditarServicio() {
         System.out.println("editarServicio");
         Servicio servicio = new Servicio(29, "as", "COMIDA", new Double("70"), "AB", Boolean.TRUE, 1);
@@ -124,7 +124,7 @@ public class ServicioServicioTest {
     /**
      * Test of listarSalones method, of class ServicioServicio.
      */
-//    @Test
+    @Test
     public void testListarServicios() {
         System.out.println("listarServicios");
         try {

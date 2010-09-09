@@ -52,6 +52,25 @@
           AND idSalon = #idSalon#
     </update>
 
+    <select id="getServicioEventosTodos" resultClass="servicioEvento">
+      SELECT
+          SE.idEvento as idEvento,
+          SE.idServicio as idServicio,
+          SE.idSalon as idSalon,
+          SE.cantidad as cantidad,
+          SE.horaInicio as horaInicio,
+          SE.horaFin as horaFin,
+          SE.notaEspecial as notaEspecial,
+          SE.nuevoCosto as nuevoCosto,
+          SE.nuevoNombre as nuevoNombre,
+          SE.nuevaDescripcion as nuevaDescripcion
+       FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E
+       WHERE SE.idServicio = S.id
+         AND SE.idEvento = E.idEvento
+         AND SE.idSalon = E.idSalon
+         AND SE.idEvento = #idEvento#
+    </select>
+
     <select id="getServicioEventos" resultClass="servicioEvento">
       SELECT
           SE.idEvento as idEvento,
@@ -69,6 +88,7 @@
          AND SE.idEvento = E.idEvento
          AND SE.idSalon = E.idSalon
          AND SE.idEvento = #idEvento#
+         AND S.tipoServicio = #tipoServicio#
     </select>
 
     <select id="getServicioEvento" resultClass="servicioEvento">

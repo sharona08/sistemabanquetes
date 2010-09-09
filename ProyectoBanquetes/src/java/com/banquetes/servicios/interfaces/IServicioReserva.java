@@ -22,7 +22,9 @@ public interface IServicioReserva {
     
     public Boolean editarServicioEvento(ServicioServicioEvento servicioEvento);
 
-    public List<ServicioServicioEvento> listarServicioEventos(Integer idEvento);
+    public List<ServicioServicioEvento> listarServicioEventos(Integer idEvento, String tipoEvento);
+
+    public List<ServicioServicioEvento> listarServicioEventosTodos(Integer idEvento);
 
     public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio);
 

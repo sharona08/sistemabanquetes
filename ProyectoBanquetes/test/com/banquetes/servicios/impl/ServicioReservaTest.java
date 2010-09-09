@@ -63,7 +63,17 @@ public class ServicioReservaTest {
     public void testGetServiciosEvento(){
         System.out.println("testGetServiciosEvento");
         
-        List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventos(5);
+        List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventos(10, "AB");
+        for (ServicioServicioEvento s : servicios) {
+            System.out.println("idEvento: " + s.getIdEvento() + ", idSalon: " + s.getIdSalon() + ", idServicio: " + s.getIdServicio());
+        }
+    }
+
+   // @Test
+    public void testGetServiciosEventoTodos(){
+        System.out.println("testGetServiciosEventoTodos");
+
+        List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventosTodos(10);
         for (ServicioServicioEvento s : servicios) {
             System.out.println("idEvento: " + s.getIdEvento() + ", idSalon: " + s.getIdSalon() + ", idServicio: " + s.getIdServicio());
         }
