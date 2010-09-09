@@ -25,7 +25,7 @@
             Integer id = Integer.valueOf(request.getParameter("hiddenId"));
 
             IServicioServicio servicioServicio = new ServicioServicio();
-            Servicio servicio = servicioServicio.getServicio(id, "OT");
+            Servicio servicio = servicioServicio.getServicio(id);
 
             String descripcion = "";
             if (servicio.getDescripcion() == null) {
