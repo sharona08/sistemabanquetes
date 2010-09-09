@@ -42,30 +42,30 @@
 <h1>INFORMACION RESERVA # <% out.println(request.getParameter("ID"));%></h1>
 <div id="infoReserva" style="margin-left: 20px; margin-right: 20px; padding-top: 15px">
     <form method="get" action="updateEvento.jsp">
-        <table width="90%" border="0">
-            <tr style="height: 30px">
-                <td width="40%">Fecha Inicio:</td>
+        <table width="94%" border="0">
+            <tr style="height: 35px">
+                <td width="44%">Fecha Inicio:</td>
                 <td width="50%">
-                    <input class="inputDate3" id="inputDate3" value="<%= detalles.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" />
+                    <input class="inputDate3" id="inputDate3" value="<%= detalles.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" />
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Fecha Fin:</td>
                 <td>
-                    <input class="inputDate4" id="inputDate4" value="<%= detalles.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" />
+                    <input class="inputDate4" id="inputDate4" value="<%= detalles.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 180px; height: 23px" />
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Nombre Evento:</td>
                 <td>
-                    <input type="text" name="nombreEvento" value="<%= detalles.getNombreEvento()%>" style="width: 160px; height: 23px" align="middle" onkeyup="toUpperCase()" />
+                    <input type="text" name="nombreEvento" value="<%= detalles.getNombreEvento()%>" style="width: 180px; height: 23px" align="middle" onkeyup="toUpperCase()" />
                     <input type="hidden" name="idEvento" value="<%= detalles.getIdEvento()%>"/>
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Tipo Evento:</td>
                 <td>
-                    <select name="tipoEvento" style="width: 165px; height: 25px" >
+                    <select name="tipoEvento" style="width: 185px; height: 25px" >
                         <% for (TipoEvento tipoEvento : tipoEventos) {%>
                         <% if (tipoEvento.getTipoEvento().equals(detalles.getTipoEvento())) {%>
                         <option selected>
@@ -81,13 +81,13 @@
                     </select>
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Cantidad Personas:</td>
                 <td>
-                    <input type="text" name="cantidadPersonas" value="<%= detalles.getCantidadPersonas()%>" style="width: 160px; height: 23px" align="middle" />
+                    <input type="text" name="cantidadPersonas" value="<%= detalles.getCantidadPersonas()%>" style="width: 180px; height: 23px" align="middle" />
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <% String fullTime = detalles.getHoraInicio().toString();%>
                 <% String[] arregloHora = fullTime.split(":");%>
                 <% Integer hora = Integer.valueOf(arregloHora[0]);%>
@@ -152,7 +152,7 @@
 
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <% String fullTimeEnd = detalles.getHoraFin().toString();%>
                 <% String[] arregloHoraEnd = fullTimeEnd.split(":");%>
                 <% Integer horaEnd = Integer.valueOf(arregloHoraEnd[0]);%>
@@ -215,24 +215,24 @@
                     </select>
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Empresa:</td>
                 <td>
-                    <input type="text" name="nombreEmpresa" value="<%= detalles.getNombreEmpresa()%>" disabled="true" style="width: 160px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
+                    <input type="text" name="nombreEmpresa" value="<%= detalles.getNombreEmpresa()%>" disabled="true" style="width: 180px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
                     <input type="hidden" name="rifEmpresa" value="<%= detalles.getRifEmpresa()%>"/>
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Contacto:</td>
                 <td>
-                    <input type="text" name="nombreContacto" value="<%= detalles.getNombreContacto()%>" disabled="true" style="width: 160px; height: 23px" align="middle" />
+                    <input type="text" name="nombreContacto" value="<%= detalles.getNombreContacto()%>" disabled="true" style="width: 180px; height: 23px" align="middle" />
                     <input type="hidden" name="idContacto" value="<%= detalles.getIdContacto()%>"/>
                 </td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Estado:</td>
                 <td>
-                    <select name="estado" style="width: 165px; height: 25px">
+                    <select name="estado" style="width: 185px; height: 25px">
                         <% if (detalles.getEstadoEvento().equals("T")) {%>
                         <option selected>TENTATIVO</option>
                         <option>CONFIRMADO</option>
@@ -249,11 +249,23 @@
                     </select>
                 </td>
             </tr>
-            <tr>
+            <tr style="height: 95px">
+                <td>Nota:</td>
+                <td>
+                    <% if (detalles.getNota() != null) {%>
+                    <textarea name="nota" cols="" rows="5" style="width: 183px"><%= detalles.getNota()%></textarea>
+                    <% } else {%>
+                    <textarea name="nota" cols="" rows="5" style="width: 183px"></textarea>
+                    <% }%>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr style="height: 20px">
+                <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <% if (detallesSalon.size() > 1) {%>
                 <td style="font-size: 18px">Detalles salones</td>
                 <% } else {%>
@@ -277,10 +289,10 @@
             <% varMontaje = "montaje" + cont.toString();%>
             <% varHiddenSalon = "hiddenSalon" + cont.toString();%>
 
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Salon:</td>
                 <td>
-                    <select name="<%=varSalon%>" style="width: 165px; height: 25px">
+                    <select name="<%=varSalon%>" style="width: 185px; height: 25px">
                         <% for (Salon salon : salones) {%>
                         <% if (salon.getNombre().equals(d.getNombreSalon())) {%>
                         <option selected>
@@ -300,22 +312,22 @@
             <tr style="height: 30px">
                 <td>Costo:</td>
                 <td>
-                    <input type="text" name="<%=varCostoSalon%>" value="<%= d.getCostoSalon()%>" style="width: 160px; height: 23px" align="middle" />
+                    <input type="text" name="<%=varCostoSalon%>" value="<%= d.getCostoSalon()%>" style="width: 180px; height: 23px" align="middle" />
                 </td>
             </tr>
             <% } else {%>
 
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Costo:</td>
                 <td>
-                    <input type="text" name="<%=varNuevoCostoSalon%>" value="<%= d.getNuevoCosto()%>" style="width: 160px; height: 23px" align="middle" />
+                    <input type="text" name="<%=varNuevoCostoSalon%>" value="<%= d.getNuevoCosto()%>" style="width: 180px; height: 23px" align="middle" />
                 </td>
             </tr>
             <% }%>
-            <tr style="height: 30px">
+            <tr style="height: 35px">
                 <td>Montaje:</td>
                 <td>
-                    <select name="<%=varMontaje%>" style="width: 165px; height: 25px">
+                    <select name="<%=varMontaje%>" style="width: 185px; height: 25px">
                         <% for (Montaje montaje : montajes) {%>
                         <% if (montaje.getTipoMontaje().equals(d.getTipoMontaje())) {%>
                         <option selected>
@@ -333,9 +345,8 @@
                      if (cont.equals(size)) {
                 %>
                 <td>
-                    <div id="boton" class="demo">
-                        <input type="submit" name="nuevoSalon" value="+" style="width: 35px; height: 25px;" align="middle" onclick=""/>
-                    </div>
+                    <input type="image" src="add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
+
                 </td>
                 <% }%>
             </tr>
@@ -354,11 +365,11 @@
         <input type="hidden" name="hiddenAnulados" value="<%= request.getParameter("anulados")%>"/>
         <% }%>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-            <input type="submit" name="update" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
+            <input type="submit" name="update" value="Guardar" style="width: 75px; height: 25px; margin-left: 270px; margin-right: 10px" onclick=""/>
         </div>
     </form>
     <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-        <input type="submit" name="cancel" value="Cancelar" onclick="hideDiv()" style="width: 65px;"/>
+        <input type="submit" name="cancel" value="Cancelar" onclick="hideDiv()" style="width: 75px; height: 25px;"/>
     </div>
 
     &nbsp;

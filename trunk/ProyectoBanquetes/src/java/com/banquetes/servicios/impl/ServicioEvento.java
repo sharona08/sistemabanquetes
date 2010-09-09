@@ -62,6 +62,9 @@ public class ServicioEvento implements IServicioEvento {
             if (evento.getIdContacto() != null) {
                 newEvento.setIdContacto(evento.getIdContacto());
             }
+            if (evento.getNota() != null) {
+                newEvento.setNota(evento.getNota());
+            }
 
             result = sqlMap.update("editarEvento", newEvento);
 

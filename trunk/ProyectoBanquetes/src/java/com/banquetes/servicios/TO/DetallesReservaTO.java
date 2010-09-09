@@ -23,11 +23,12 @@ public class DetallesReservaTO {
     String nombreEmpresa;
     Integer idContacto;
     String nombreContacto;
+    String nota;
 
     public DetallesReservaTO() {
     }
 
-    public DetallesReservaTO(Integer idEvento, String nombreEvento, String estadoEvento, Date fechaInicio, Date fechaFin, Integer cantidadPersonas, Time horaInicio, Time horaFin, Integer idTipoEvento, String tipoEvento, String rifEmpresa, String nombreEmpresa, Integer idContacto, String nombreContacto) {
+    public DetallesReservaTO(Integer idEvento, String nombreEvento, String estadoEvento, Date fechaInicio, Date fechaFin, Integer cantidadPersonas, Time horaInicio, Time horaFin, Integer idTipoEvento, String tipoEvento, String rifEmpresa, String nombreEmpresa, Integer idContacto, String nombreContacto, String nota) {
         this.idEvento = idEvento;
         this.nombreEvento = nombreEvento;
         this.estadoEvento = estadoEvento;
@@ -42,6 +43,7 @@ public class DetallesReservaTO {
         this.nombreEmpresa = nombreEmpresa;
         this.idContacto = idContacto;
         this.nombreContacto = nombreContacto;
+        this.nota = nota;
     }
 
     public Integer getCantidadPersonas() {
@@ -154,6 +156,14 @@ public class DetallesReservaTO {
 
     public void setTipoEvento(String tipoEvento) {
         this.tipoEvento = tipoEvento;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
     }
 
 }
