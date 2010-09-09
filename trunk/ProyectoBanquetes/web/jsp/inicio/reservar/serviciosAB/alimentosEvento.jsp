@@ -92,7 +92,7 @@
                     %>
                 </td>
                 <td>
-                    <%=servicioSalon.getSalon(s.getIdSalon()).getNombre() %>
+                    <%=servicioSalon.getSalon(s.getIdSalon()).getNombre()%>
                 </td>
                 <td>
                     <%=s.getCantidad()%>
@@ -106,22 +106,11 @@
                     </div>
                 </td>
                 <td>
-                    <div id="boton" class="demo">
-                        <input type="submit" name="eliminar" value="Eliminar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
-                    </div>
+                    <input type="image" src="../remove_24.png" name="eliminar" value="" style="width: 24px; height: 24px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
                 </td>
             </tr>
         </form>
         <% }%>
-
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
     </table>
 </div>
 
@@ -136,5 +125,3 @@
 </div>
 
 <% }%>
-
-<div id="espacio"></div>

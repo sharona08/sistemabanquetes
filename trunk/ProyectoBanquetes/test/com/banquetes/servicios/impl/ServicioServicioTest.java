@@ -147,7 +147,7 @@ public class ServicioServicioTest {
     public void testGetServicio() {
         System.out.println("getServicio");
         try {
-            Servicio servicio = servicioServicio.getServicio(new Integer(1), "AB");
+            Servicio servicio = servicioServicio.getServicio(new Integer(1));
             assertNotNull(servicio);
             System.out.println(servicio.getId() + " " + servicio.getNombre() + " "
                     + servicio.getDescripcion() + " " + servicio.getCostoUnitario() + " "

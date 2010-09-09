@@ -74,7 +74,7 @@
 
         %>
         <div id="pageWrap">
-            <jsp:include page="../../include/menu.jsp"></jsp:include>
+            <jsp:include page="../../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">AGREGAR ALIMENTOS Y BEBIDAS</h1>
                 <div style="height: 10px"></div>
@@ -256,9 +256,13 @@
                     <jsp:include page="alimentosEvento.jsp" flush="true"></jsp:include>
                 </div>
 
+                <div id="boton" class="demo" style="float: right; margin-bottom: 20px">
+                    <input class="submit" type="submit" name="siguiente" value="Siguiente >>" style="width: 85px; height: 25px; margin-right: 40px" onclick=""/>
+                </div>
+
                 <div id="espacio"></div>
             </div>
-            <jsp:include page="../../include/footer.jsp"></jsp:include>
+            <jsp:include page="../../../include/footer.jsp"></jsp:include>
         </div>
     </body>
 </html>
