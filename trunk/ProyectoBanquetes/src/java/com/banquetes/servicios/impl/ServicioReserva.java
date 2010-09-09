@@ -135,11 +135,25 @@ public class ServicioReserva implements IServicioReserva {
         return result;
     }
 
-    public List<ServicioServicioEvento> listarServicioEventos(Integer idEvento) {
+    public List<ServicioServicioEvento> listarServicioEventos(Integer idEvento, String tipoServicio) {
         List<ServicioServicioEvento> servicioEventos = null;
 
         try {
-            servicioEventos = sqlMap.queryForList("getServicioEventos", idEvento);
+            Map param = new HashMap();
+            param.put("idEvento", idEvento);
+            param.put("tipoServicio", tipoServicio);
+            servicioEventos = sqlMap.queryForList("getServicioEventos", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return servicioEventos;
+    }
+
+    public List<ServicioServicioEvento> listarServicioEventosTodos(Integer idEvento) {
+        List<ServicioServicioEvento> servicioEventos = null;
+
+        try {
+            servicioEventos = sqlMap.queryForList("getServicioEventosTodos", idEvento);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
         }

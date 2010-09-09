@@ -150,7 +150,7 @@
                             <tr style="height: 35px">
                                 <td>Cantidad Personas: (*)</td>
                                 <td>
-                                    <input class="required" type="text" name="cantidadPersonas" value="" style="width: 195px; height: 23px" align="middle" onchange="personas = this.value" />
+                                    <input class="required" type="text" name="cantidadPersonas" value="" style="width: 195px; height: 23px" align="middle" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>

@@ -39,7 +39,7 @@
             label { width: 10em; float: left; }
             label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
             p { clear: both; }
-            .submit { margin-left: 12em; }
+/*            .submit { margin-left: 12em; }*/
             em { font-weight: bold; padding-right: 1em; vertical-align: top; }
         </style>
 
@@ -58,12 +58,12 @@
         <script type="text/javascript" src="selectServicio.js"></script>
         <script type="text/javascript" src="selectServicioDesc.js"></script>
 
-        <title>Alimentos y Bebidas</title>
+        <title>Otros Servicios</title>
     </head>
     <body>
         <%
                     IServicioServicio servicioServicio = new ServicioServicio();
-                    List<Servicio> servicios = servicioServicio.listarServiciosHabilitados(null, null, "AB");
+                    List<Servicio> servicios = servicioServicio.listarServiciosHabilitados(null, null, "OT");
 
                     String idEvento = request.getParameter("idEvento");
 
@@ -77,7 +77,7 @@
         <div id="pageWrap">
             <jsp:include page="../../../include/menu.jsp"></jsp:include>
             <div id="content">
-                <h1 id="letra1">AGREGAR ALIMENTOS Y BEBIDAS</h1>
+                <h1 id="letra1">AGREGAR OTROS SERVICIOS</h1>
                 <div style="height: 10px"></div>
 
                 <div style="padding-left: 20px; background-color: #dadada; width: 35%; min-height: 400px">
@@ -85,7 +85,7 @@
                     <label id="letra2">RESERVA # <%= idEvento%></label>
                     <div id="espacio"></div>
 
-                    <form method="get" action="crearAB.jsp" class="cmxform" id="commentForm" name="form">
+                    <form method="get" action="crearOT.jsp" class="cmxform" id="commentForm" name="form">
                         <table width="85%" border="0">
                             <tr style="height: 40px">
                                 <td width="45%">Nombre: (*)</td>
@@ -253,11 +253,18 @@
                 <div id="espacio"></div>
 
                 <div id="alimentos">
-                    <jsp:include page="alimentosEvento.jsp" flush="true"></jsp:include>
+                    <jsp:include page="otrosEvento.jsp" flush="true"></jsp:include>
                 </div>
 
-                <div id="boton" class="demo" style="float: right; margin-bottom: 20px">
-                    <input class="submit" type="submit" name="siguiente" value="Siguiente >>" style="width: 85px; height: 25px; margin-right: 40px" onclick="redirect('/ProyectoBanquetes/jsp/inicio/reservar/serviciosAU/formAudiovisuales.jsp?idEvento=<%=idEvento%>')"/>
+                <%--
+                TODO:
+                AL HACER CLICK EN 'FINALIZAR' QUE ME MANDE A UNA PAGINA CON TODOS LOS DETALLES DE LA RESERVA QUE SE ACABA DE REALIZAR, DONDE "NADA" ES MODIFICABLE.
+                --%>
+                <div id="boton" class="demo" style="float: right; margin-bottom: 20px;">
+                    <input class="submit" type="submit" name="finalizar" value="Finalizar" style="width: 85px; height: 25px; margin-right: 40px" onclick=""/>
+                </div>
+                <div id="boton" class="demo" style="float: right; margin-bottom: 20px; margin-right: 10px">
+                    <input class="submit" type="submit" name="anterior" value="<< Anterior" style="width: 85px; height: 25px;" onclick="redirect('/ProyectoBanquetes/jsp/inicio/reservar/serviciosAU/formAudiovisuales.jsp?idEvento=<%=idEvento%>')"/>
                 </div>
 
                 <div id="espacio"></div>

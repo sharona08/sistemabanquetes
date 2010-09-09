@@ -45,7 +45,7 @@
             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
 
             IServicioReserva servicioReserva = new ServicioReserva();
-            List<ServicioServicioEvento> serviciosEvento = servicioReserva.listarServicioEventos(idEvento, "AB");
+            List<ServicioServicioEvento> serviciosEvento = servicioReserva.listarServicioEventos(idEvento, "AU");
 
             IServicioServicio servicioServicio = new ServicioServicio();
 
@@ -121,7 +121,7 @@
 %>
 
 <div id="alimento" style="width: 45%; min-height: 300px; background-color: #B9B9B9; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
-    <jsp:include page="detalleAB.jsp"></jsp:include>
+    <jsp:include page="detalleAU.jsp"></jsp:include>
 </div>
 
 <% }%>
