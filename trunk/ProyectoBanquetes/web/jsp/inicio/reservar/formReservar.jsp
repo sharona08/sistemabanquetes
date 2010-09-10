@@ -65,10 +65,6 @@
     </head>
 
     <%
-                Date today = new java.util.Date();
-                java.sql.Date fecha = new java.sql.Date(today.getTime());
-                //String hiddenFechaInicio = request.getParameter("fechaInicio");
-                // String hiddenFechaFin = request.getParameter("fechaFin");
                 String hiddenSalon = request.getParameter("salon");
                 String hiddenFecha = request.getParameter("fecha");
 
@@ -82,9 +78,8 @@
 
                 String rif = request.getParameter("empresa");
 
-
                 IServicioSalon iServicioSalon = new ServicioSalon();
-                List<Salon> salones = iServicioSalon.listarSalones();
+                Salon salon = iServicioSalon.getSalonNombre(hiddenSalon);
 
                 IServicioMontaje iServicioMontaje = new ServicioMontaje();
                 List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);
@@ -281,7 +276,7 @@
                             <tr style="height: 35px">
                                 <td>Nuevo Costo:</td>
                                 <td>
-                                    <input type="text" name="nuevoCosto" value="" style="width: 195px; height: 23px" align="middle" />
+                                    <input type="text" name="nuevoCosto" value="<%= salon.getCosto()%>" style="width: 195px; height: 23px" align="middle" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
