@@ -62,13 +62,13 @@
             <div id="content">
                 <h1 id="letra1">CREAR SERVICIO</h1>
                 <div style="height: 10px"></div>
-                <div style="padding-left: 20px; background-color: #dadada; width: 30%; min-height: 350px">
+                <div style="padding-left: 20px; background-color: #dadada; width: 33%; min-height: 350px">
                     <div id="espacio"></div>
 
                     <form method="get" action="crearAlimento.jsp" class="cmxform" id="commentForm">
-                        <table width="100%" border="0">
+                        <table width="90%" border="0">
                             <tr style="height: 40px">
-                                <td width="30%">Nombre: (*)</td>
+                                <td width="40%">Nombre: (*)</td>
                                 <td width="50%">
                                     <input class="required" value="" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 200px; height: 23px" align="middle" />
                                 </td>
