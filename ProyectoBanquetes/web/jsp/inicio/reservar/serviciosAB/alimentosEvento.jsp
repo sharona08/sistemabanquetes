@@ -42,6 +42,7 @@
 </script>
 
 <%
+            Boolean flag = false;
             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
 
             IServicioReserva servicioReserva = new ServicioReserva();
@@ -70,46 +71,51 @@
 
         %>
 
+        <tr align="center">
         <form method="get" action="">
-            <tr align="center">
-                <td>
-                    <%
-                                            if (!s.getNuevoNombre().equals("")) {
-                                                out.print(s.getNuevoNombre());
-                                            } else {
-                                                out.print(servicio.getNombre());
-                                            }
-                    %>
-                    <input type="hidden" name="hiddenId" value="<%= s.getIdEvento()%>"/>
-                </td>
-                <td>
-                    <%
-                                            if (s.getNuevoCosto() != null) {
-                                                out.print(s.getNuevoCosto());
-                                            } else {
-                                                out.print(servicio.getCostoUnitario());
-                                            }
-                    %>
-                </td>
-                <td>
-                    <%=servicioSalon.getSalon(s.getIdSalon()).getNombre()%>
-                </td>
-                <td>
-                    <%=s.getCantidad()%>
-                </td>
-                <td>
-                    <div id="boton" class="demo">
-                        <input type="hidden" name="idEvento" value="<%= idEvento%>">
-                        <input type="hidden" name="idSalon" value="<%= s.getIdSalon()%>"/>
-                        <input type="hidden" name="idServicio" value="<%= s.getIdServicio()%>"/>
-                        <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="includeDivAlimento()"/>
-                    </div>
-                </td>
-                <td>
-                    <input type="image" src="../../remove_24.png" name="eliminar" value="" style="width: 20px; height: 20px; margin-top: 2px; margin-bottom: 2px;" onclick=""/>
-                </td>
-            </tr>
+            <td>
+                <%
+                                        if (!s.getNuevoNombre().equals("")) {
+                                            out.print(s.getNuevoNombre());
+                                        } else {
+                                            out.print(servicio.getNombre());
+                                        }
+                %>
+                <input type="hidden" name="hiddenId" value="<%= s.getIdEvento()%>"/>
+            </td>
+            <td>
+                <%
+                                        if (s.getNuevoCosto() != null) {
+                                            out.print(s.getNuevoCosto());
+                                        } else {
+                                            out.print(servicio.getCostoUnitario());
+                                        }
+                %>
+            </td>
+            <td>
+                <%=servicioSalon.getSalon(s.getIdSalon()).getNombre()%>
+            </td>
+            <td>
+                <%=s.getCantidad()%>
+            </td>
+            <td>
+                <input type="hidden" name="idEvento" value="<%= idEvento%>">
+                <input type="hidden" name="idSalon" value="<%= s.getIdSalon()%>"/>
+                <input type="hidden" name="idServicio" value="<%= s.getIdServicio()%>"/>
+                <div id="boton" class="demo">
+                    <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="includeDivAlimento();"/>
+                </div>
+            </td>
         </form>
+        <form method="get" action="deleteAB.jsp">
+            <input type="hidden" name="idEvento" value="<%= idEvento%>">
+            <input type="hidden" name="idSalon" value="<%= s.getIdSalon()%>"/>
+            <input type="hidden" name="idServicio" value="<%= s.getIdServicio()%>"/>
+            <td>
+                <input type="image" src="../../remove_24.png" name="eliminar" value="" style="width: 20px; height: 20px; margin-top: 2px; margin-bottom: 2px;" onclick=""/>
+            </td>
+        </form>
+        </tr>
         <% }%>
     </table>
 </div>
@@ -118,6 +124,7 @@
 
 <%
             if (request.getParameter("hiddenId") != null) {
+
 %>
 
 <div id="alimento" style="width: 40%; min-height: 300px; background-color: #dadada; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">

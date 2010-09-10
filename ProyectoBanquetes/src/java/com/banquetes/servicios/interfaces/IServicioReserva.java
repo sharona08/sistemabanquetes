@@ -28,4 +28,6 @@ public interface IServicioReserva {
 
     public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio);
 
+    public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon);
+
 }

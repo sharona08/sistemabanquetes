@@ -174,4 +174,27 @@ public class ServicioReserva implements IServicioReserva {
         }
         return servicioEvento2;
     }
+
+    public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon) {
+        Boolean result = false;
+
+        try{
+            Map param = new HashMap();
+            param.put("idServicio", idServicio);
+            param.put("idEvento", idEvento);
+            param.put("idSalon", idSalon);
+            int resultado = sqlMap.delete("eliminarServicioEvento", param);
+
+            if (resultado == 1) {
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return result;
+    }
 }
