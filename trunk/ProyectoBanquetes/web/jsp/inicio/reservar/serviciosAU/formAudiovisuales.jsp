@@ -213,7 +213,7 @@
                                         <% if (servicio.getDescripcion() != null) {%>
                                         <textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%= servicio.getDescripcion()%></textarea>
                                         <% } else {%>
-                                        <textarea cols="" rows="4" name="descripcion" style="width: 200px;"></textarea>
+                                        <textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%=""%></textarea>
                                         <% }%>
                                     </div>
                                 </td>
