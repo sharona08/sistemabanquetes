@@ -111,10 +111,10 @@
                     <div id="espacio"></div>
 
                     <form method="GET" action="reservar.jsp" class="cmxform" id="commentForm" name="formulario" id="formulario">
-                        <table width="90%" border="0">
+                        <table width="97%" border="0">
 
                             <tr style="height: 35px">
-                                <td width="35%">Fecha Inicio: (*)</td>
+                                <td width="42%">Fecha Inicio: (*)</td>
                                 <td width="45%">
                                     <input class="inputDate3" id="inputDate3" value="<%=fechaInicio%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" />
                                 </td>
@@ -298,7 +298,8 @@
                                 </td>
                                 <td>
                                     <div id="boton" class="demo" style="float: left">
-                                        <input type="submit" name="nuevoSalon" value="+" style="width: 35px; height: 25px;" align="left" onclick=""/>
+                                        <!--                                        <input type="submit" name="nuevoSalon" value="+" style="width: 35px; height: 25px;" align="left" onclick=""/>-->
+                                        <input type="image" src="../add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
                                     </div>
                                 </td>
                             </tr>

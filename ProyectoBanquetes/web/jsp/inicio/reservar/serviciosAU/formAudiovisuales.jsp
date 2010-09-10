@@ -121,7 +121,7 @@
                             <tr style="height: 40px">
                                 <td>Cantidad: (*)</td>
                                 <td>
-                                    <input class="required" type="text" name="cantidad" value="<%= evento.getCantidadPersonas()%>" style="width: 195px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
+                                    <input class="required" type="text" name="cantidad" value="1" style="width: 195px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
                                 </td>
                             </tr>
                             <tr style="height: 40px">

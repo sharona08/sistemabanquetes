@@ -346,7 +346,6 @@
                 %>
                 <td>
                     <input type="image" src="add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
-
                 </td>
                 <% }%>
             </tr>
