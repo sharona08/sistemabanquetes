@@ -111,4 +111,12 @@
          AND SE.idSalon = #idSalon#
     </select>
 
+    <delete id="eliminarServicioEvento" parameterClass="java.util.HashMap">
+      DELETE SE
+      FROM SERVICIO_EVENTO as SE
+      WHERE SE.idServicio = #idServicio#
+      AND SE.idEvento = #idEvento#
+      AND SE.idSalon = #idSalon#
+    </delete>
+
 </sqlMap>

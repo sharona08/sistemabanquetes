@@ -12,8 +12,6 @@ import com.banquetes.dominio.ServicioServicioEvento;
 import com.banquetes.servicios.TO.DetallesReservaTO;
 import com.banquetes.servicios.interfaces.IServicioReserva;
 import java.util.List;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -60,10 +58,24 @@ public class ServicioReservaTest {
     }
 
     @Test
+    public void testEliminarServicioEvento(){
+        System.out.println("testCrearServicioEvento");
+
+        Integer idServicio = new Integer(27);
+        Integer idEvento = new Integer(5);
+        Integer idSalon = new Integer(4);
+        
+        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(idServicio, idEvento, idSalon, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "");
+
+        Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon);
+        System.out.println("Elimino: " + result);
+    }
+
+    @Test
     public void testGetServiciosEvento(){
         System.out.println("testGetServiciosEvento");
         
-        List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventos(10, "AB");
+        List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventos(5, "AB");
         for (ServicioServicioEvento s : servicios) {
             System.out.println("idEvento: " + s.getIdEvento() + ", idSalon: " + s.getIdSalon() + ", idServicio: " + s.getIdServicio());
         }
