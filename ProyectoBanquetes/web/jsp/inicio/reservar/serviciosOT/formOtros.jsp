@@ -39,7 +39,7 @@
             label { width: 10em; float: left; }
             label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
             p { clear: both; }
-/*            .submit { margin-left: 12em; }*/
+            /*            .submit { margin-left: 12em; }*/
             em { font-weight: bold; padding-right: 1em; vertical-align: top; }
         </style>
 
@@ -210,7 +210,11 @@
                                 <td>Descripcion:</td>
                                 <td>
                                     <div id="descripcion">
+                                        <% if (servicio.getDescripcion() != null) {%>
                                         <textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%= servicio.getDescripcion()%></textarea>
+                                        <% } else {%>
+                                        <textarea cols="" rows="4" name="descripcion" style="width: 200px;"></textarea>
+                                        <% }%>
                                     </div>
                                 </td>
                             </tr>
