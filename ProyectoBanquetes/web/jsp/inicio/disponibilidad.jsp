@@ -3,6 +3,21 @@
     Created on : Aug 13, 2010, 10:45:59 AM
     Author     : maya
 --%>
+<%@ page session="true" %>
+
+<%
+            String nombre = "";
+            HttpSession sesionOk = request.getSession();
+            if (sesionOk.getAttribute("username") == null) {
+%>
+
+<meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/login/login.jsp?error=Coloca tus datos">
+
+<%            } else {
+                nombre = (String) sesionOk.getAttribute("username");
+            }
+%>
+
 <%@page import="java.util.Date"%>
 <%@page import="org.apache.catalina.Session"%>
 <%@page import="java.util.Date"%>
@@ -46,7 +61,7 @@
                 </script>
 
                 <div id="disponibilidad" style="margin-left: 10px;">
-                    <h1 id="letra1">Disponibilidad de salones</h1>
+                    <h1 id="letra1">Disponibilidad de salones, hola <%=nombre%></h1>
 
                     <%
                                 String hiddenFechaInicio = request.getParameter("fechaInicio");
