@@ -150,4 +150,25 @@ public class ServicioUsuario implements IServicioUsuario {
         return usuario;
     }
 
+    public Boolean eliminarUsuario(String username) {
+        Boolean result = false;
+
+        try{
+            Map param = new HashMap();
+            param.put("username", username);
+            int resultado = sqlMap.delete("eliminarUsuario", param);
+
+            if (resultado == 1) {
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return result;
+    }
+
 }
