@@ -3,7 +3,20 @@
     Created on : Aug 28, 2010, 6:28:01 PM
     Author     : maya
 --%>
+<%@ page session="true" %>
 
+<%
+            String username = "";
+            HttpSession sesionOk = request.getSession();
+            if (sesionOk.getAttribute("username") == null) {
+%>
+
+<meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/login/login.jsp?error=Coloca tus datos">
+
+<%            } else {
+                username = (String) sesionOk.getAttribute("username");
+            }
+%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.util.List"%>
