@@ -83,7 +83,7 @@
                             <tr style="height: 40px;">
                                 <td width="5%">Nombre:</td>
                                 <td width="20%">
-                                    <input class="required" type="text" name="username" style="width: 100%; height: 23px" align="middle"><br>
+                                    <input class="required" type="text" name="username" style="width: 100%; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" ><br>
                                 </td>
                             </tr>
                             <tr style="height: 40px;">

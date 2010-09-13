@@ -48,4 +48,6 @@ public interface IServicioUsuario {
      */
     public Usuario getUsuario(String username);
 
+    public Boolean eliminarUsuario(String username);
+
 }

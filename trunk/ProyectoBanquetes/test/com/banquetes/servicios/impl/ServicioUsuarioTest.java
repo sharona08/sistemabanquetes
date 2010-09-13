@@ -64,14 +64,13 @@ public class ServicioUsuarioTest {
     /**
      * Test of listarUsuarios method, of class ServicioUsuario.
      */
-    //@Test
+    @Test
     public void testListarUsuarios() {
         System.out.println("listarUsuarios");
-        ServicioUsuario instance = new ServicioUsuario();
-        List expResult = null;
-        List result = instance.listarUsuarios();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        List<Usuario> users = servicioUsuario.listarUsuarios();
+        for (Usuario usuario : users) {
+        System.out.println(usuario.getUsername() + ", " + usuario.getNombre() + ", " + usuario.getApellido() + ", " + usuario.getPassword() + ", " + usuario.getCorreo() + ", " + usuario.getIdRol());
+        }
     }
 
     /**
@@ -93,7 +92,7 @@ public class ServicioUsuarioTest {
     /**
      * Test of getUsuario method, of class ServicioUsuario.
      */
-    @Test
+    //@Test
     public void testGetUsuario() {
         System.out.println("getUsuario");
         String username = "HUGO";

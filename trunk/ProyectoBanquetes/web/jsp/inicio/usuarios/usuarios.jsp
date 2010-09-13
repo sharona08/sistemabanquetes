@@ -118,7 +118,7 @@
             </td>
         </form>
         <form method="get" action="deleteUsuario.jsp">
-            <input type="hidden" name="id" value="<%= id%>">
+            <input type="hidden" name="id" value="<%= u.getUsername()%>">
             <td>
                 <input type="image" src="../../inicio/remove_24.png" name="eliminar" value="" style="width: 20px; height: 20px; margin-top: 2px; margin-bottom: 2px;" onclick=""/>
             </td>
@@ -133,7 +133,7 @@
             <td>&nbsp;</td>
             <td align="center">
                 <div id="boton" class="demo">
-                    <input type="submit" name="crear" value="Nuevo" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="redirect('formCrearContacto.jsp')"/>
+                    <input type="submit" name="crear" value="Nuevo" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="redirect('formCrearUsuario.jsp')"/>
                 </div>
             </td>
             <td>&nbsp;</td>
