@@ -3,7 +3,20 @@
     Created on : Sep 2, 2010, 10:12:46 AM
     Author     : maya
 --%>
+<%@ page session="true" %>
 
+<%
+            String username = "";
+            HttpSession sesionOk = request.getSession();
+            if (sesionOk.getAttribute("username") == null) {
+%>
+
+<meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/login/login.jsp?error=Coloca tus datos">
+
+<%            } else {
+                username = (String) sesionOk.getAttribute("username");
+            }
+%>
 <%@page import="com.banquetes.dominio.Contacto"%>
 <%@page import="com.banquetes.servicios.impl.ServicioContacto"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioContacto"%>
