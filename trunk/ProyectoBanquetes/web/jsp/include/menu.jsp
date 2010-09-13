@@ -86,7 +86,7 @@
         -->
         <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp" id="shop" class="top_link"><span class="down">Usuarios</span></a>
             <ul class="sub">
-                <li><a href="">Roles</a></li>
+                <li><a href="/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp">Roles</a></li>
             </ul>
         </li>
         <!-- -->
