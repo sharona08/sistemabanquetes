@@ -4,7 +4,6 @@
     Author     : maya
 --%>
 
-<%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,15 +33,15 @@
         <script type="text/javascript" src="jsp/jQuery/js/jquery.ui.button.js"></script>
         <link type="text/css" href="jsp/jQuery/css/demos.css" rel="stylesheet" />
 <!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp">
+<!--        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp">-->
+        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/login/login.jsp">
     </head>
 
     <body>
         <div id="pageWrap">
-            <jsp:include page="jsp/include/menu.jsp"></jsp:include>
+            <jsp:include page="jsp/include/menuInicio.jsp"></jsp:include>
             <div id="content">
-                <h1 id="letra1">BIENVENIDO!</h1>
-                
+                <h1 id="letra1">Redireccionando...</h1>
             </div>
             <jsp:include page="jsp/include/footer.jsp"></jsp:include>
         </div>

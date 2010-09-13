@@ -3,26 +3,43 @@
     Created on : Aug 12, 2010, 3:36:35 PM
     Author     : maya
 --%>
+<%@ page session="true" %>
+
+<%
+            String nombre = "";
+            HttpSession sesionOk = request.getSession();
+            if (sesionOk.getAttribute("username") == null) {
+%>
+
+<meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/login/login.jsp?error=Coloca tus datos">
+
+<%            } else {
+                nombre = (String) sesionOk.getAttribute("username");
+            }
+%>
 <div id="header">
     <div id="headerTop">
+        <div style="float: right; margin-right: 50px; margin-top: 50px">
+       
+            <label>Bienvenido, <%=nombre%> | <a href="/ProyectoBanquetes/jsp/login/logout.jsp">cerrar sesion</a></label>
+        </div>
+        <!--        <div id="warning" class="ui-widget" style="position: absolute; float: inherit; width: 100%">
+                    <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
+                        <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                            <strong>Hey!</strong> Sample ui-state-highlight style.</p>
+                    </div>
+                </div>-->
 
-<!--        <div id="warning" class="ui-widget" style="position: absolute; float: inherit; width: 100%">
-            <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
-                <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-                    <strong>Hey!</strong> Sample ui-state-highlight style.</p>
-            </div>
-        </div>-->
+        <!--        <div id="error" class="ui-widget">
+                    <div class="ui-state-error ui-corner-all" style="padding: 0 .7em; color: white">
+                        <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+                            <strong>Alert:</strong> Sample ui-state-error style.</p>
+                    </div>
+                </div>-->
 
-<!--        <div id="error" class="ui-widget">
-            <div class="ui-state-error ui-corner-all" style="padding: 0 .7em; color: white">
-                <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-                    <strong>Alert:</strong> Sample ui-state-error style.</p>
-            </div>
-        </div>-->
-
-<!--        <div id="logo">
-            <a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp"></a>
-        </div>-->
+        <!--        <div id="logo">
+                    <a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp"></a>
+                </div>-->
     </div>
     <ul id="nav">
         <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp" class="top_link"><span>Inicio</span></a></li>
