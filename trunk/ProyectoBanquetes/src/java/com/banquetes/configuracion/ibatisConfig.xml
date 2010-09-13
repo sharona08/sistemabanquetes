@@ -30,5 +30,7 @@
  <sqlMap resource="com/banquetes/sqlMaps/RESERVA.xml" />
  <sqlMap resource="com/banquetes/sqlMaps/TIPO_EVENTO.xml" />
  <sqlMap resource="com/banquetes/sqlMaps/SERVICIO_EVENTO.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/USUARIO.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/ROL.xml" />
  
 </sqlMapConfig>

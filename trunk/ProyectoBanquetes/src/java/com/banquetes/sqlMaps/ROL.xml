@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : MONTAJE.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Rol" alias="rol"/>
+
+    <insert id="crearRol" parameterClass="rol">
+        INSERT INTO ROL (tipoRol)
+        VALUES (#tipoRol#)
+
+        <selectKey resultClass="int">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="editarRol" parameterClass="rol">
+	UPDATE ROL SET
+          tipoRol = #tipoRol#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getRoles" resultClass="rol">
+      SELECT
+          id as id,
+          tipoRol as tipoRol
+       FROM ROL
+       WHERE id LIKE #id#
+       AND tipoRol LIKE #tipoRol#
+       ORDER BY tipoRol ASC
+    </select>
+
+    <select id="getRol" resultClass="rol">
+      SELECT
+          id as id,
+          tipoRol as tipoRol
+       FROM ROL
+	   WHERE id = #id#
+    </select>
+
+    <select id="getRolNombre" resultClass="rol">
+      SELECT
+          id as id,
+          tipoRol as tipoRol
+       FROM ROL
+	   WHERE tipoRol = #tipoRol#
+    </select>
+    
+</sqlMap>

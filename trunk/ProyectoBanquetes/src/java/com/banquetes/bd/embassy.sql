@@ -445,3 +445,23 @@ INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitari
 INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (28, 'SERVICIO OTRO', 'DESCRIPCION DEL SERVICIO', '34', 'OT', true, 5);
 
 COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `banquetes`.`ROL`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+USE `banquetes`;
+INSERT INTO `banquetes`.`ROL` (`id`, `tipoRol`) VALUES (1, 'ADMINISTRADOR');
+INSERT INTO `banquetes`.`ROL` (`id`, `tipoRol`) VALUES (2, 'COORDINADOR');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `banquetes`.`USUARIO`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+USE `banquetes`;
+INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('ADMIN', 'ADMIN', 'MARIA', 'URIBE', 'mariale.uribe@gmail.com', 1);
+INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('HUGO', '12345', 'HUGO', 'PEDROZA', 'hpedroza@gmail.com', 2);
+
+COMMIT;
