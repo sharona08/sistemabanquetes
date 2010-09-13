@@ -20,7 +20,7 @@
 <div id="header">
     <div id="headerTop">
         <div style="float: right; margin-right: 50px; margin-top: 50px">
-       
+
             <label>Bienvenido, <%=nombre%> | <a href="/ProyectoBanquetes/jsp/login/logout.jsp">cerrar sesion</a></label>
         </div>
         <!--        <div id="warning" class="ui-widget" style="position: absolute; float: inherit; width: 100%">
@@ -80,6 +80,17 @@
                 <li><a href="#nogo54">Salones</a></li>
             </ul>
         </li>
+
+        <!--TODO:
+            SI EL USUARIO ES ADMIN MOSTRAR :
+        -->
+        <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp" id="shop" class="top_link"><span class="down">Usuarios</span></a>
+            <ul class="sub">
+                <li><a href="">Roles</a></li>
+            </ul>
+        </li>
+        <!-- -->
+
         <li class="top"><a href="#nogo57" id="privacy" class="top_link"><span>Acerca De</span></a></li>
         <li class="top2">&nbsp;</li>
         <li class="top3">&nbsp;</li>

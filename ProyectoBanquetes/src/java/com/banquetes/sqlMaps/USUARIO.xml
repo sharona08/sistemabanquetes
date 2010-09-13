@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : USUARIO.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Usuario" alias="usuario"/>
+    
+    <insert id="crearUsuario" parameterClass="usuario">
+        INSERT INTO USUARIO (username, password, nombre, apellido, correo, idRol)
+        VALUES (#username#,
+                #password#,
+                #nombre#,
+                #apellido#,
+                #correo#,
+                #idRol#)
+
+        <selectKey resultClass="String">
+            SELECT
+              username as username
+            FROM USUARIO
+	      WHERE username = #username#
+        </selectKey>
+    </insert>
+
+    <update id="editarUsuario" parameterClass="usuario">
+	UPDATE USUARIO SET
+          password = #password#,
+          nombre = #nombre#,
+          apellido = #apellido#,
+          correo = #correo#,
+          idRol = #idRol#
+	WHERE
+	  username = #username#
+    </update>
+
+    <select id="getUsuario" resultClass="usuario">
+      SELECT
+          username as username,
+          password as password,
+          nombre as nombre,
+          apellido as apellido,
+          correo as correo,
+          idRol as idRol
+       FROM USUARIO
+	   WHERE username = #username#
+    </select>
+    
+    <select id="getUsuarios" resultClass="usuario">
+      SELECT
+          username as username,
+          password as password,
+          nombre as nombre,
+          apellido as apellido,
+          correo as correo,
+          idRol as idRol
+       FROM USUARIO
+       ORDER BY username ASC
+    </select>
+
+    <select id="getUsuariosTodos" resultClass="usuario">
+      SELECT
+          username as username,
+          password as password,
+          nombre as nombre,
+          apellido as apellido,
+          correo as correo,
+          idRol as idRol
+       FROM USUARIO
+       WHERE username LIKE #username#
+       AND nombre LIKE #nombre#
+       AND apellido LIKE #apellido#
+       ORDER BY username ASC
+    </select>
+
+    <select id="getUsuariosRol" resultClass="usuario">
+      SELECT
+          username as username,
+          password as password,
+          nombre as nombre,
+          apellido as apellido,
+          correo as correo,
+          idRol as idRol
+       FROM USUARIO
+	   WHERE idRol = #idRol#
+       ORDER BY username ASC
+    </select>
+
+    <delete id="eliminarUsuario" parameterClass="java.util.HashMap">
+      DELETE U
+      FROM USUARIO as U
+      WHERE U.username = #username#
+    </delete>
+    
+</sqlMap>
