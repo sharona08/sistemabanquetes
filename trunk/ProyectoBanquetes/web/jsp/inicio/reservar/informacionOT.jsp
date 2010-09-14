@@ -26,7 +26,7 @@
 
 %>
 
-<div id="result" style="margin-right: 10px">
+<div id="result">
     <table width="100%" border="1" cellspacing="0" cellpadding="0">
         <tr align="center" style="height: 30px; background-color: #919999; border-color: #556270; font-weight: bolder; color: white">
             <td width="20%">Nombre</td>
@@ -72,4 +72,3 @@
     </table>
 </div>
 
-<div id="espacio"></div>

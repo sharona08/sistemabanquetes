@@ -52,12 +52,20 @@
 
                     IServicioMontaje iServicioMontaje = new ServicioMontaje();
                     List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);
+
+                    Double costoSalones = servicioReserva.costoTotalSalones(idEvento);
+                    Double costoAB = servicioReserva.costoTotalServicios(idEvento, "AB");
+                    Double costoAU = servicioReserva.costoTotalServicios(idEvento, "AU");
+                    Double costoOT = servicioReserva.costoTotalServicios(idEvento, "OT");
+                    Double subtotal = servicioReserva.subtotalReserva(idEvento);
+                    Double costoIVA = servicioReserva.ivaReserva(idEvento);
+                    Double costoTotal = servicioReserva.costoTotalReserva(idEvento);
         %>
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1" style="margin-left: 20px; margin-bottom: 10px">INFORMACION RESERVA # <%=idEvento%></h1>
-                <div id="resumenReserva" style="width: 60%; margin-left: 30px; margin-right: 20px; padding-left: 30px; padding-top: 20px; padding-right: 20px; background-color: #eeeeee;">
+                <div id="resumenReserva" style="width: 60%; margin-left: 30px; margin-right: 20px; padding-left: 30px; padding-top: 20px; padding-right: 30px; background-color: #eeeeee;">
                     <table width="70%" border="0">
                         <tr style="height: 40px">
                             <td width=30%">Fecha Inicio:</td>
@@ -355,9 +363,22 @@
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                         </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <label>Costo Total Salones: <%=costoSalones%></label>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr style="height: 40px">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
                         <% }%>
                         <input type="hidden" name="cont" value="<%=cont%>"/>
                     </table>
+
                     <table width="70%" border="0">
                         <tr style="height: 40px">
                             <td width=30%" style="font-size: 18px">DETALLES SERVICIOS:</td>
@@ -371,6 +392,10 @@
                         </tr>
                     </table>
                     <jsp:include page="informacionAB.jsp" flush="true"></jsp:include>
+                    <label style="float: right; margin-top: 5px; font-weight: 700">Costo total Alimentos y Bebidas: <%=costoAB%></label>
+
+                    <div id="espacio"></div>
+                    
                     <table width="70%" border="0">
                         <tr style="height: 40px">
                             <td width=30%" style="font-size: 18px">Audiovisuales:</td>
@@ -379,6 +404,9 @@
                         </tr>
                     </table>
                     <jsp:include page="informacionAU.jsp" flush="true"></jsp:include>
+                    <label style="float: right; margin-top: 5px; font-weight: 700">Costo total Audiovisuales: <%=costoAU%></label>
+
+                    <div id="espacio"></div>
                     <table width="70%" border="0">
                         <tr style="height: 40px">
                             <td width=30%" style="font-size: 18px">Otros Servicios:</td>
@@ -387,50 +415,57 @@
                         </tr>
                     </table>
                     <jsp:include page="informacionOT.jsp" flush="true"></jsp:include>
+                    <label style="float: right; margin-top: 5px; font-weight: 700">Costo total OtrosServicios: <%=costoOT%></label>
 
-                    <div id="costosTotales" style="margin-left: 420px">
+                    <div id="espacio"></div>
+
+                    <div id="costosTotales" style="margin-left: 420px; margin-top: 20px">
                         <table width="90%" border="0">
-                            <tr>
+                            <tr style="height: 30px">
                                 <td width="70%">
                                     <label>Total Salones: </label>
                                 </td>
-                                <td width="20%"></td>
+                                <td width="20%" align="right"><%=costoSalones%></td>
                             </tr>
-                            <tr>
+                            <tr style="height: 30px">
                                 <td>
                                     <label>Total Alimentos y Bebidas: </label>
                                 </td>
-                                <td></td>
+                                <td align="right"><%=costoAB%></td>
                             </tr>
-                            <tr>
+                            <tr style="height: 30px">
                                 <td>
                                     <label>Total Audiovisuales: </label>
                                 </td>
-                                <td></td>
+                                <td align="right"><%=costoAU%></td>
                             </tr>
-                            <tr>
+                            <tr style="height: 30px">
                                 <td>
                                     <label>Total Otros Servicios: </label>
                                 </td>
-                                <td></td>
+                                <td align="right"><%=costoOT%></td>
                             </tr>
-                            <tr>
+                            <tr style="height: 30px">
                                 <td>
-                                    <label>Subtotal: </label>
+                                    <label style="font-weight: 700">Subtotal: </label>
                                 </td>
-                                <td></td>
+                                <td align="right">
+                                    <label style="font-weight: 700"><%=subtotal%></label>
+                                </td>
                             </tr>
-                            <tr>
+                            <tr style="height: 30px">
                                 <td>
-                                    <label>IVA (%): </label>
+                                    <label>IVA (12%): </label>
                                 </td>
-                                <td></td>
+                                <td align="right"><%=costoIVA%></td>
                             </tr>
-                            <tr>
+                            <tr style="height: 30px">
                                 <td>
-                                    <label>TOTAL: </label>
+                                    <label style="font-size: 16px; color: green; font-weight: 700">TOTAL: </label>
                                 </td>
-                                <td></td>
+                                <td align="right">
+                                    <label style="font-size: 16px; color: green; font-weight: 700"><%=costoTotal%></label>
+                                </td>
                             </tr>
                         </table>
                     </div>
