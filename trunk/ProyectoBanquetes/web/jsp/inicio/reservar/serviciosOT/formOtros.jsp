@@ -278,7 +278,7 @@
                 AL HACER CLICK EN 'FINALIZAR' QUE ME MANDE A UNA PAGINA CON TODOS LOS DETALLES DE LA RESERVA QUE SE ACABA DE REALIZAR, DONDE "NADA" ES MODIFICABLE.
                 --%>
                 <div id="boton" class="demo" style="float: right; margin-bottom: 20px;">
-                    <input class="submit" type="submit" name="finalizar" value="Finalizar" style="width: 85px; height: 25px; margin-right: 40px" onclick=""/>
+                    <input class="submit" type="submit" name="finalizar" value="Finalizar" style="width: 85px; height: 25px; margin-right: 40px" onclick="redirect('/ProyectoBanquetes/jsp/inicio/reservar/informacionReserva.jsp?idEvento=<%=idEvento%>')"/>
                 </div>
                 <div id="boton" class="demo" style="float: right; margin-bottom: 20px; margin-right: 10px">
                     <input class="submit" type="submit" name="anterior" value="<< Anterior" style="width: 85px; height: 25px;" onclick="redirect('/ProyectoBanquetes/jsp/inicio/reservar/serviciosAU/formAudiovisuales.jsp?idEvento=<%=idEvento%>')"/>
