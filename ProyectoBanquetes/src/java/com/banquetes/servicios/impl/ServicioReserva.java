@@ -3,12 +3,14 @@ package com.banquetes.servicios.impl;
 import com.banquetes.configuracion.Conexion;
 import com.banquetes.dominio.Evento;
 import com.banquetes.dominio.EventoSala;
+import com.banquetes.dominio.Servicio;
 import com.banquetes.dominio.ServicioServicioEvento;
 import com.banquetes.servicios.TO.DetallesReservaSalonTO;
 import com.banquetes.servicios.TO.DetallesReservaTO;
 import com.banquetes.servicios.interfaces.IServicioReserva;
 import com.banquetes.servicios.interfaces.IServicioEvento;
 import com.banquetes.servicios.interfaces.IServicioEventoSala;
+import com.banquetes.servicios.interfaces.IServicioServicio;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -38,7 +40,7 @@ public class ServicioReserva implements IServicioReserva {
             Boolean resultES = servicioEventoSala.crearEventoSala(eventoSala);
             if (resultES) {
                 System.out.println("Se inserto el evento sala correctamente.");
-                
+
             } else {
                 System.out.println("ERROR: no se inserto el evento sala.");
             }
@@ -178,7 +180,7 @@ public class ServicioReserva implements IServicioReserva {
     public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon) {
         Boolean result = false;
 
-        try{
+        try {
             Map param = new HashMap();
             param.put("idServicio", idServicio);
             param.put("idEvento", idEvento);
@@ -196,5 +198,70 @@ public class ServicioReserva implements IServicioReserva {
         }
 
         return result;
+    }
+
+    public Double costoTotalSalones(Integer idEvento) {
+        Double costoTotal = new Double(0);
+        List<DetallesReservaSalonTO> detallesReservaSalon = this.getDetallesReservaSalon(idEvento);
+        for (DetallesReservaSalonTO d : detallesReservaSalon) {
+            if (d.getNuevoCosto() != null) {
+                costoTotal = costoTotal + d.getNuevoCosto();
+            } else {
+                costoTotal = costoTotal + d.getCostoSalon();
+            }
+        }
+        return costoTotal;
+    }
+
+    public Double costoTotalServicios(Integer idEvento, String tipoServicio) {
+        Double costoTotal = new Double(0);
+        IServicioServicio servicioServicio = new ServicioServicio();
+        Servicio servicio = new Servicio();
+
+        List<ServicioServicioEvento> servicioServicioEventos = this.listarServicioEventos(idEvento, tipoServicio);
+        for (ServicioServicioEvento s : servicioServicioEventos) {
+            if (s.getNuevoCosto() != null) {
+                costoTotal = costoTotal + s.getNuevoCosto();
+            } else {
+                servicio = servicioServicio.getServicio(s.getIdServicio());
+                costoTotal = costoTotal + servicio.getCostoUnitario();
+            }
+        }
+        return costoTotal;
+    }
+
+    public Double subtotalReserva(Integer idEvento) {
+        Double subtotal = new Double(0);
+
+        Double costoSalones = this.costoTotalSalones(idEvento);
+        Double costoAB = this.costoTotalServicios(idEvento, "AB");
+        Double costoAU = this.costoTotalServicios(idEvento, "AU");
+        Double costoOT = this.costoTotalServicios(idEvento, "OT");
+
+        subtotal = costoSalones + costoAB + costoAU + costoOT;
+
+        return subtotal;
+    }
+
+    public Double ivaReserva(Integer idEvento) {
+        Double costoIVA = new Double(0);
+        Double iva = new Double(12);
+
+        Double subtotal = this.subtotalReserva(idEvento);
+
+        costoIVA = subtotal * (iva/100);
+
+        return costoIVA;
+    }
+
+    public Double costoTotalReserva(Integer idEvento) {
+        Double costoTotal = new Double(0);
+
+        Double subtotal = this.subtotalReserva(idEvento);
+        Double costoIVA = this.ivaReserva(idEvento);
+
+        costoTotal = subtotal + costoIVA;
+
+        return costoTotal;
     }
 }

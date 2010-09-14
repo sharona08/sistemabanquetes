@@ -57,7 +57,7 @@ public class ServicioReservaTest {
         System.out.println("Inserto: " + result);
     }
 
-    @Test
+    //@Test
     public void testEliminarServicioEvento(){
         System.out.println("testCrearServicioEvento");
 
@@ -71,7 +71,7 @@ public class ServicioReservaTest {
         System.out.println("Elimino: " + result);
     }
 
-    @Test
+   // @Test
     public void testGetServiciosEvento(){
         System.out.println("testGetServiciosEvento");
         
@@ -100,6 +100,51 @@ public class ServicioReservaTest {
         Integer idEvento = new Integer(3);
         DetallesReservaTO detalles = servicioReserva.getDetallesReserva(idEvento);
         System.out.println("ID: " + detalles.getIdEvento() + " nombre: " + detalles.getNombreEvento());
+
+    }
+
+//    @Test
+    public void testCostoTotalSalones() {
+        System.out.println("costoTotalSalones");
+        Integer idEvento = new Integer(2);
+        Double costoSalones = servicioReserva.costoTotalSalones(idEvento);
+        System.out.println("Costo total salones: " + costoSalones);
+
+    }
+
+//    @Test
+    public void testCostoTotalAB() {
+        System.out.println("costoTotalAB");
+        Integer idEvento = new Integer(5);
+        Double costoAB = servicioReserva.costoTotalServicios(idEvento, "OT");
+        System.out.println("Costo total AB: " + costoAB);
+
+    }
+
+  //  @Test
+    public void testsubtotalReserva() {
+        System.out.println("subtotal");
+        Integer idEvento = new Integer(5);
+        Double subtotal = servicioReserva.subtotalReserva(idEvento);
+        System.out.println("Subtotal: " + subtotal);
+
+    }
+
+   // @Test
+    public void testivaReserva() {
+        System.out.println("iva");
+        Integer idEvento = new Integer(5);
+        Double subtotal = servicioReserva.ivaReserva(idEvento);
+        System.out.println("Subtotal: " + subtotal);
+
+    }
+
+    @Test
+    public void testtotalReserva() {
+        System.out.println("total");
+        Integer idEvento = new Integer(5);
+        Double subtotal = servicioReserva.costoTotalReserva(idEvento);
+        System.out.println("Subtotal: " + subtotal);
 
     }
 

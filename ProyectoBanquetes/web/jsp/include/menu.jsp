@@ -70,22 +70,22 @@
         </li>
         <li class="top"><a href="" id="services" class="top_link"><span class="down">Reportes</span></a>
             <ul class="sub">
-                <li><a href="#nogo23">Reporte 1</a></li>
-                <li><a href="#nogo24">Reporte 2</a></li>
-                <li><a href="#nogo25">Reporte 3</a></li>
-                <li><a href="#nogo26">Reporte 4</a></li>
+                <li><a href="">Reporte 1</a></li>
+                <li><a href="">Reporte 2</a></li>
+                <li><a href="">Reporte 3</a></li>
+                <li><a href="">Reporte 4</a></li>
             </ul>
         </li>
         <li class="top"><a href="" id="contacts" class="top_link"><span class="down">Reserva</span></a>
             <ul class="sub">
-                <li><a href="#nogo28">Buscar Reserva</a></li>
+                <li><a href="">Buscar Reserva</a></li>
             </ul>
         </li>
-        <li class="top"><a href="" id="shop" class="top_link"><span class="down">Disponibilidad</span></a>
+<!--        <li class="top"><a href="" id="shop" class="top_link"><span class="down">Disponibilidad</span></a>
             <ul class="sub">
-                <li><a href="#nogo54">Salones</a></li>
+                <li><a href="">Salones</a></li>
             </ul>
-        </li>
+        </li>-->
         <%
                     if (usuario.getIdRol().equals(new Integer(1))) {
         %>

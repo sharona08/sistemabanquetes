@@ -30,4 +30,13 @@ public interface IServicioReserva {
 
     public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon);
 
+    public Double costoTotalSalones(Integer idEvento);
+
+    public Double costoTotalServicios(Integer idEvento, String tipoServicio);
+
+    public Double subtotalReserva(Integer idEvento);
+    
+    public Double ivaReserva(Integer idEvento);
+
+    public Double costoTotalReserva(Integer idEvento);
 }
