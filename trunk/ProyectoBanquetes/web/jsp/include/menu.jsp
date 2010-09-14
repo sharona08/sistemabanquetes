@@ -3,9 +3,13 @@
     Created on : Aug 12, 2010, 3:36:35 PM
     Author     : maya
 --%>
+<%@page import="com.banquetes.dominio.Usuario"%>
+<%@page import="com.banquetes.servicios.impl.ServicioUsuario"%>
+<%@page import="com.banquetes.servicios.interfaces.IServicioUsuario"%>
 <%@ page session="true" %>
 
 <%
+            Usuario usuario = new Usuario();
             String nombre = "";
             HttpSession sesionOk = request.getSession();
             if (sesionOk.getAttribute("username") == null) {
@@ -15,6 +19,8 @@
 
 <%            } else {
                 nombre = (String) sesionOk.getAttribute("username");
+                IServicioUsuario servicioUsuario = new ServicioUsuario();
+                usuario = servicioUsuario.getUsuario(nombre);
             }
 %>
 <div id="header">
@@ -80,16 +86,15 @@
                 <li><a href="#nogo54">Salones</a></li>
             </ul>
         </li>
-
-        <!--TODO:
-            SI EL USUARIO ES ADMIN MOSTRAR :
-        -->
+        <%
+                    if (usuario.getIdRol().equals(new Integer(1))) {
+        %>
         <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp" id="shop" class="top_link"><span class="down">Usuarios</span></a>
             <ul class="sub">
                 <li><a href="/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp">Roles</a></li>
             </ul>
         </li>
-        <!-- -->
+        <% } %>
 
         <li class="top"><a href="#nogo57" id="privacy" class="top_link"><span>Acerca De</span></a></li>
         <li class="top2">&nbsp;</li>
