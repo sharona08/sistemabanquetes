@@ -345,7 +345,7 @@
                          if (cont.equals(size)) {
                     %>
                     <td>
-                        <input type="image" src="add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='otroSalon.jsp'; document.formulario.submit()"/>
+                        <input type="image" src="add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='otroSalon2.jsp'; document.formulario.submit()"/>
                     </td>
                     <% }%>
                 </tr>
@@ -356,19 +356,13 @@
             <% }%>
             <input type="hidden" name="cont" value="<%=cont%>"/>
         </table>
-
-        <input type="hidden" name="hiddenFechaInicio" value="<%= request.getParameter("fechaInicio")%>"/>
-        <input type="hidden" name="hiddenFechaFin" value="<%= request.getParameter("fechaFin")%>"/>
-        <input type="hidden" name="hiddenSalon" value="<%= request.getParameter("salon")%>"/>
-        <% if (request.getParameter("anulados") != null) {%>
-        <input type="hidden" name="hiddenAnulados" value="<%= request.getParameter("anulados")%>"/>
-        <% }%>
+        
         <div id="espacio"></div>
         <div id="boton" class="demo" style="float: left">
             <input type="submit" name="update" value="Guardar y Continuar" style="width: 130px; height: 30px; margin-left: 130px; margin-right: 10px" onclick="document.formulario.action='updateEventoServicio.jsp'; document.formulario.submit()"/>
         </div>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-            <input type="submit" name="update" value="Guardar" style="width: 75px; height: 30px; margin-right: 10px" onclick="document.formulario.action='updateEvento.jsp'; document.formulario.submit()"/>
+            <input type="submit" name="update" value="Guardar" style="width: 75px; height: 30px; margin-right: 10px" onclick="document.formulario.action='updateEvento2.jsp'; document.formulario.submit()"/>
         </div>
     </form>
     <div id="boton" class="demo" style="float: left; margin-bottom: 20px">

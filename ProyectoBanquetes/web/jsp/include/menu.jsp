@@ -78,7 +78,8 @@
         </li>
         <li class="top"><a href="" id="contacts" class="top_link"><span class="down">Reserva</span></a>
             <ul class="sub">
-                <li><a href="">Buscar Reserva</a></li>
+                <li><a href="/ProyectoBanquetes/jsp/inicio/verReservaID.jsp">Ver Reserva</a></li>
+                <li><a href="/ProyectoBanquetes/jsp/inicio/editarReservaID.jsp">Editar Reserva</a></li>
             </ul>
         </li>
 <!--        <li class="top"><a href="" id="shop" class="top_link"><span class="down">Disponibilidad</span></a>

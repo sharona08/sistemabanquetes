@@ -273,10 +273,6 @@
                     <jsp:include page="otrosEvento.jsp" flush="true"></jsp:include>
                 </div>
 
-                <%--
-                TODO:
-                AL HACER CLICK EN 'FINALIZAR' QUE ME MANDE A UNA PAGINA CON TODOS LOS DETALLES DE LA RESERVA QUE SE ACABA DE REALIZAR, DONDE "NADA" ES MODIFICABLE.
-                --%>
                 <div id="boton" class="demo" style="float: right; margin-bottom: 20px;">
                     <input class="submit" type="submit" name="finalizar" value="Finalizar" style="width: 85px; height: 25px; margin-right: 40px" onclick="redirect('/ProyectoBanquetes/jsp/inicio/reservar/informacionReserva.jsp?idEvento=<%=idEvento%>')"/>
                 </div>

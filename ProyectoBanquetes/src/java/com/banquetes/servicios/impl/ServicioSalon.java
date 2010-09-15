@@ -319,4 +319,33 @@ public class ServicioSalon implements IServicioSalon {
 
         return result;
     }
+
+    public List<Salon> listarComboBoxEditar(Integer idEvento, Date fechaInicio, Date fechaFin){
+        List<Salon> salones = null;
+
+        try {
+            Map param = new HashMap();
+            param.put("idEvento", idEvento);
+            param.put("fechaInicio", fechaInicio);
+            param.put("fechaFin", fechaFin);
+            salones = sqlMap.queryForList("getComboBoxEditar", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return salones;
+    }
+
+    public List<Salon> listarComboBoxReservar(Date fechaInicio, Date fechaFin){
+        List<Salon> salones = null;
+
+        try {
+            Map param = new HashMap();
+            param.put("fechaInicio", fechaInicio);
+            param.put("fechaFin", fechaFin);
+            salones = sqlMap.queryForList("getComboBoxReservar", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return salones;
+    }
 }
