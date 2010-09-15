@@ -41,6 +41,13 @@
           AND idSalon = #idSalon#
     </update>
 
+    <delete id="eliminarEventoSala" parameterClass="java.util.HashMap">
+      DELETE ES
+      FROM EVENTO_SALA as ES
+      WHERE ES.idEvento = #idEvento#
+      AND ES.idSalon = #idSalon#
+    </delete>
+
     <select id="getEventoSalas" resultClass="eventoSala">
       SELECT
           idEvento as idEvento,

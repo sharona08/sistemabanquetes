@@ -300,7 +300,7 @@
                 <td>
                     <select name="<%=varSalon%>" style="width: 185px; height: 25px">
                         <% for (Salon s : salonesEvento) {%>
-                        <% if(s.getNombre().equals(d.getNombreSalon())){ %>
+                        <% if (s.getNombre().equals(d.getNombreSalon())) {%>
                         <option selected>
                             <%= s.getNombre()%>
                         </option>
@@ -358,8 +358,15 @@
                      Integer size = Integer.valueOf(detallesSalon.size());
                      if (cont.equals(size)) {
                 %>
+                <%
+                     if (cont > 1) {
+                %>
                 <td>
-                    <input type="image" src="add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='otroSalon.jsp'; document.formulario.submit()"/>
+                    <input type="image" src="remove_24.png" name="eliminar" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='formEliminarSalon.jsp'; document.formulario.submit()"/>
+                </td>
+                <% }%>
+                <td>
+                    <input type="image" src="add_24.png" name="nuevo" value="" style="margin-left: 10px; width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='otroSalon.jsp'; document.formulario.submit()"/>
                 </td>
                 <% }%>
             </tr>

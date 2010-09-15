@@ -300,7 +300,7 @@
                 <td>
                     <select name="<%=varSalon%>" style="width: 185px; height: 25px">
                         <% for (Salon s : salonesEvento) {%>
-                        <% if(s.getNombre().equals(d.getNombreSalon())){ %>
+                        <% if (s.getNombre().equals(d.getNombreSalon())) {%>
                         <option selected>
                             <%= s.getNombre()%>
                         </option>
@@ -338,31 +338,38 @@
                 </td>
             </tr>
             <% }%>
-                <tr style="height: 35px">
-                    <td>Montaje:</td>
-                    <td>
-                        <select name="<%=varMontaje%>" style="width: 185px; height: 25px">
-                            <% for (Montaje montaje : montajes) {%>
-                            <% if (montaje.getTipoMontaje().equals(d.getTipoMontaje())) {%>
-                            <option selected>
-                                <%= montaje.getTipoMontaje()%>
-                                <% } else {%>
-                            <option>
-                                <%= montaje.getTipoMontaje()%>
-                            </option>
-                            <% }%>
-                            <% }%>
-                        </select>
-                    </td>
-                    <%
-                         Integer size = Integer.valueOf(detallesSalon.size());
-                         if (cont.equals(size)) {
-                    %>
-                    <td>
-                        <input type="image" src="add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='otroSalon2.jsp'; document.formulario.submit()"/>
-                    </td>
-                    <% }%>
-                </tr>
+            <tr style="height: 35px">
+                <td>Montaje:</td>
+                <td>
+                    <select name="<%=varMontaje%>" style="width: 185px; height: 25px">
+                        <% for (Montaje montaje : montajes) {%>
+                        <% if (montaje.getTipoMontaje().equals(d.getTipoMontaje())) {%>
+                        <option selected>
+                            <%= montaje.getTipoMontaje()%>
+                            <% } else {%>
+                        <option>
+                            <%= montaje.getTipoMontaje()%>
+                        </option>
+                        <% }%>
+                        <% }%>
+                    </select>
+                </td>
+                <%
+                     Integer size = Integer.valueOf(detallesSalon.size());
+                     if (cont.equals(size)) {
+                %>
+                <%
+                     if (cont > 1) {
+                %>
+                <td>
+                    <input type="image" src="remove_24.png" name="eliminar" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='formEliminarSalon2.jsp'; document.formulario.submit()"/>
+                </td>
+                <% }%>
+                <td>
+                    <input type="image" src="add_24.png" name="nuevo" value="" style="margin-left: 10px; width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='otroSalon2.jsp'; document.formulario.submit()"/>
+                </td>
+                <% }%>
+            </tr>
             <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -370,7 +377,7 @@
             <% }%>
             <input type="hidden" name="cont" value="<%=cont%>"/>
         </table>
-        
+
         <div id="espacio"></div>
         <div id="boton" class="demo" style="float: left">
             <input type="submit" name="update" value="Guardar y Continuar" style="width: 130px; height: 30px; margin-left: 130px; margin-right: 10px" onclick="document.formulario.action='updateEventoServicio.jsp'; document.formulario.submit()"/>

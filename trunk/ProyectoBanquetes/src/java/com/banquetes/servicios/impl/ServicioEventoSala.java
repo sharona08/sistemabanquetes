@@ -72,6 +72,28 @@ public class ServicioEventoSala implements IServicioEventoSala {
         return result;
     }
 
+    public Boolean eliminarEventoSala(Integer idEvento, Integer idSalon) {
+        Boolean result = false;
+
+        try {
+            Map param = new HashMap();
+            param.put("idEvento", idEvento);
+            param.put("idSalon", idSalon);
+            int resultado = sqlMap.delete("eliminarEventoSala", param);
+
+            if (resultado == 1) {
+                result = Boolean.TRUE;
+            } else {
+                result = Boolean.FALSE;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return result;
+    }
+
     public List<EventoSala> listarEventoSalas(Integer idEvento) {
         List<EventoSala> eventoSalas = null;
 

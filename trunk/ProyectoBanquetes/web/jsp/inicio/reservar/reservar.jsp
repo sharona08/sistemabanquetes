@@ -107,20 +107,22 @@
                                     //ASIGNAR COMO SALON DEL EVENTO EL DIPLOMAT, ES DECIR salon.getIdSalon()
                                 } else {
                                     List<Salon> subSalones = servicioSalon.listarSubsalones(salon.getId());
-                                    IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
+                                    if (!subSalones.isEmpty()) {
+                                        IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
 
-                                    EventoSala eventoSala = new EventoSala();
-                                    for (Salon s : subSalones) {
-                                        eventoSala.setIdEvento(result);
-                                        eventoSala.setIdSalon(s.getId());
-                                        eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
-                                        eventoSala.setNuevoCosto(Double.valueOf(0));
-                                        eventoSala.setVisible(Boolean.FALSE);
+                                        EventoSala eventoSala = new EventoSala();
+                                        for (Salon s : subSalones) {
+                                            eventoSala.setIdEvento(result);
+                                            eventoSala.setIdSalon(s.getId());
+                                            eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
+                                            eventoSala.setNuevoCosto(Double.valueOf(0));
+                                            eventoSala.setVisible(Boolean.FALSE);
 
-                                        Boolean subSalon = servicioEventoSala.crearEventoSala(eventoSala);
+                                            Boolean subSalon = servicioEventoSala.crearEventoSala(eventoSala);
+                                        }
+                                        // BUSCAR SI ES COMO EL DIPLOMAT
+                                        // ASIGNAR COMO SALON DEL EVENTO LOS 3, ES DECIR
                                     }
-                                    // BUSCAR SI ES COMO EL DIPLOMAT
-                                    // ASIGNAR COMO SALON DEL EVENTO LOS 3, ES DECIR
                                 }
                 %>
                 <script type="text/javascript">

@@ -13,6 +13,8 @@ public interface IServicioEventoSala {
 
     public int editarEventoSala(EventoSala eventoSala);
 
+    public Boolean eliminarEventoSala(Integer idEvento, Integer idSalon);
+
     public List<EventoSala> listarEventoSalas(Integer idEvento);
     
     public EventoSala getEventoSala(Integer idEvento, Integer idSalon) ;

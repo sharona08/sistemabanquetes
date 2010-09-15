@@ -28,7 +28,7 @@ public class ServicioEventoSalaTest {
     /**
      * Test of crearEventoSala method, of class ServicioEventoSala.
      */
-    @Test
+   // @Test
     public void testCrearEventoSala() {
         System.out.println("crearEventoSala");
 //        EventoSala eventoSala = new EventoSala(6, new Double("275.3"), 8, 5, null);
@@ -63,15 +63,32 @@ public class ServicioEventoSalaTest {
         }
     }
 
+   // @Test
+    public void testEliminarEventoSala() {
+        System.out.println("eliminarEventoSala");
+        Integer idEvento = new Integer(5);
+        Integer idSalon = new Integer(4);
+
+        try {
+            System.out.println("EVENTO_SALA ANTES DEL UPDATE");
+            this.testListarEventoSalas();
+            Boolean result = servicioEventoSala.eliminarEventoSala(idEvento, idSalon);
+            System.out.println("resultado: " + result);
+            System.out.println("EVENTO_SALA DESPUES DEL UPDATE");
+            this.testListarEventoSalas();
+        } catch (Exception e) {
+        }
+    }
+
     /**
      * Test of listarEventoSalas method, of class ServicioEventoSala.
      */
-//    @Test
+   // @Test
     public void testListarEventoSalas() {
         System.out.println("listarEventoSalas");
 
         try {
-            List<EventoSala> eventoSalas = servicioEventoSala.listarEventoSalas(5);
+            List<EventoSala> eventoSalas = servicioEventoSala.listarEventoSalas(8);
             assertNotNull(eventoSalas);
             for (EventoSala newEventoSalas : eventoSalas) {
                 System.out.println("idEvento: " + newEventoSalas.getIdEvento() + ", idMontaje: " + newEventoSalas.getIdMontaje() + ", idSalon" + newEventoSalas.getIdSalon() + ", nuevoCosto: " + newEventoSalas.getNuevoCosto());

@@ -160,11 +160,11 @@ public class ServicioSalonTest {
         }
     }
 
-   //S @Test
+    @Test
     public void testListarSubSalones() {
         System.out.println("listarSubSalones");
         try {
-            Integer id = new Integer(1);
+            Integer id = new Integer(5);
             List<Salon> salones = servicioSalon.listarSubsalones(id);
             assertNotNull(salones);
             for (Salon newSalon : salones) {
@@ -199,7 +199,7 @@ public class ServicioSalonTest {
         }
     }
 
-    @Test
+   // @Test
     public void testComboBoxEditar() {
         System.out.println("comboBoxSalones");
         try {
