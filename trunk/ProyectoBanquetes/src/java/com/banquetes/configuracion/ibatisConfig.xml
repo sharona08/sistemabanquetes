@@ -32,5 +32,6 @@
  <sqlMap resource="com/banquetes/sqlMaps/SERVICIO_EVENTO.xml" />
  <sqlMap resource="com/banquetes/sqlMaps/USUARIO.xml" />
  <sqlMap resource="com/banquetes/sqlMaps/ROL.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/IVA.xml" />
  
 </sqlMapConfig>

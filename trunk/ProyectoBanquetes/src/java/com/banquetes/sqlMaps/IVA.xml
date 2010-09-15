@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : MONTAJE.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.dominio.Iva" alias="iva"/>
+
+    <update id="editarMontaje" parameterClass="iva">
+	UPDATE IVA SET
+          porcentaje = #porcentaje#
+	WHERE
+	  id = #id#
+    </update>
+
+    <select id="getIvas" resultClass="iva">
+      SELECT
+          id as id,
+          porcentaje as porcentaje
+       FROM IVA
+       WHERE id LIKE #id#
+       AND porcentaje LIKE #porcentaje#
+       ORDER BY porcentaje ASC
+    </select>
+
+    <select id="getIva" resultClass="iva">
+      SELECT
+          id as id,
+          porcentaje as porcentaje
+       FROM IVA
+	   WHERE id = #id#
+    </select>
+    
+</sqlMap>
