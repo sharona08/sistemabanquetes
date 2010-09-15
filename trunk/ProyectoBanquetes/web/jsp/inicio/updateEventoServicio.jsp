@@ -49,7 +49,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../include/head.jsp"></jsp:include>
         <title>Editar Evento</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=<%= request.getParameter("hiddenFechaInicio")%>&fechaFin=<%= request.getParameter("hiddenFechaFin")%>&salon=<%= request.getParameter("hiddenSalon")%>">
+        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%=request.getParameter("idEvento")%>">
     </head>
     <body>
         <div id="pageWrap">
@@ -69,8 +69,6 @@
                             Date fechaFin = util.getSqlDate(request.getParameter("fechaFinEvento"));
                             evento.setId(idEvento);
                             eventoSala.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
-
-                            Boolean ocupado = Boolean.FALSE;
 
                             String estado = null;
                             if (request.getParameter("estado") != null) {
@@ -106,7 +104,6 @@
                                     evento.setFechaFin(fechaFin);
 
                                 } else {
-                                    ocupado = Boolean.TRUE;
                                     out.print("Ya existe un evento confirmado para la fecha en el salon: " + request.getParameter(varHiddenSalon));
                                 }
                             } else {
@@ -197,16 +194,7 @@
 
                             }
 
-                            if (ocupado) {
-                %>
-                <script type="text/javascript">
-                    alert("Ya existe un evento confirmado para la fecha uno de los salones");
-                </script>
-                <%
-
-                                            } else {
-
-                                                if ((result == 1) && (result2 == 1)) {
+                            if ((result == 1) && (result2 == 1)) {
                 %>
                 <script type="text/javascript">
                     alert("Exito! la reserva ha sido editada exitosamente.");
@@ -226,7 +214,6 @@
                 <script type="text/javascript">
                     alert("Error! la reserva no pudo ser editada, revise campos.");
                 </script>
-                <% }%>
                 <% }%>
                 <% }%>
             </div>

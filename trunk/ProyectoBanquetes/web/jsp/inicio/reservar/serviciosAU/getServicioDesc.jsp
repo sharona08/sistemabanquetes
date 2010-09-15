@@ -19,8 +19,13 @@
             IServicioServicio servicioServicio = new ServicioServicio();
 
             String idServicio = (String) request.getParameter("idServicio");
-
             Servicio servicio = servicioServicio.getServicio(Integer.valueOf(idServicio));
+            String descripcion = "";
+            if (servicio.getDescripcion() != null) {
+                descripcion = servicio.getDescripcion();
+            } else {
+                descripcion = "";
+            }
 %>
 
-<textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%= servicio.getDescripcion() %></textarea>
+<textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%=descripcion%></textarea>

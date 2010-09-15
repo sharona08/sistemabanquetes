@@ -37,6 +37,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
+        <script type="text/javascript">
+            $(function() {
+                $("button, input:submit, a", ".demo").button();
+
+                $("a", ".demo").click(function() { return false; });
+            });
+        </script>
+        <script type="text/javascript">
+            function redirect(url){
+                window.location.href=url;
+            }
+        </script>
         <title>Informaci&oacute;n Reserva</title>
     </head>
     <body>
@@ -46,6 +58,16 @@
 
                     DetallesReservaTO detallesReserva = servicioReserva.getDetallesReserva(idEvento);
                     List<DetallesReservaSalonTO> detallesReservaSalon = servicioReserva.getDetallesReservaSalon(idEvento);
+
+                    String estado = detallesReserva.getEstadoEvento();
+                    String estadoEvento = "";
+                    if (estado.equals("T")) {
+                        estadoEvento = "TENTATIVO";
+                    } else if (estado.equals("C")) {
+                        estadoEvento = "CONFIRMADO";
+                    } else if (estado.equals("A")) {
+                        estadoEvento = "ANULADO";
+                    }
 
                     IServicioSalon iServicioSalon = new ServicioSalon();
                     List<Salon> salones = iServicioSalon.listarSalones();
@@ -65,7 +87,7 @@
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1" style="margin-left: 20px; margin-bottom: 10px">INFORMACION RESERVA # <%=idEvento%></h1>
-                <div id="resumenReserva" style="width: 60%; margin-left: 30px; margin-right: 20px; padding-left: 30px; padding-top: 20px; padding-right: 30px; background-color: #eeeeee;">
+                <div id="resumenReserva" style="width: 65%; margin-left: 30px; margin-right: 20px; padding-left: 30px; padding-top: 20px; padding-right: 30px; background-color: #eeeeee;">
                     <table width="70%" border="0">
                         <tr style="height: 40px">
                             <td width=30%">Fecha Inicio:</td>
@@ -252,7 +274,7 @@
                         <tr style="height: 40px">
                             <td>Estado:</td>
                             <td>
-                                <input type="text" name="estado" value="<%= detallesReserva.getEstadoEvento()%>" disabled="disabled"  style="width: 180px; height: 23px" align="middle" />
+                                <input type="text" name="estado" value="<%= estadoEvento%>" disabled="disabled"  style="width: 180px; height: 23px" align="middle" />
                             </td>
                             <td>&nbsp;</td>
                         </tr>
@@ -351,19 +373,13 @@
                                     <% }%>
                                 </select>
                             </td>
-                            <%
-                                 Integer size = Integer.valueOf(detallesReservaSalon.size());
-                                 if (cont.equals(size)) {
-                            %>
                             <td>&nbsp;</td>
-                            <% }%>
                         </tr>
+                        <%
+                             Integer size = Integer.valueOf(detallesReservaSalon.size());
+                             if (cont.equals(size)) {
+                        %>
                         <tr style="height: 40px">
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
                             <td>&nbsp;</td>
                             <td>
                                 <label>Costo Total Salones: <%=costoSalones%></label>
@@ -371,6 +387,12 @@
                             <td>&nbsp;</td>
                         </tr>
                         <tr style="height: 40px">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <% }%>
+                        <tr style="height: 10px">
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -395,7 +417,7 @@
                     <label style="float: right; margin-top: 5px; font-weight: 700">Costo total Alimentos y Bebidas: <%=costoAB%></label>
 
                     <div id="espacio"></div>
-                    
+
                     <table width="70%" border="0">
                         <tr style="height: 40px">
                             <td width=30%" style="font-size: 18px">Audiovisuales:</td>
@@ -470,6 +492,12 @@
                         </table>
                     </div>
                     <div id="espacio"></div>
+                </div>
+                <div id="espacio"></div>
+                <div style="width: 70%; margin-left: 30px; min-height: 50px">
+                    <div id="boton" class="demo" style="float: right">
+                        <input class="submit" type="submit" value="Listo" style="width: 70px; height: 30px;" onclick="redirect('/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp')"/>
+                    </div>
                 </div>
                 <div id="espacio"></div>
             </div>

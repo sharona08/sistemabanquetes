@@ -172,5 +172,45 @@
           AND E.estado = 'C'
           AND ES.idSalon = #idSalon#
     </select>
+
+    <select id="getComboBoxEditar" resultClass="salon">
+      SELECT
+          S.id as id,
+          S.nombre as nombre,
+          S.costo as costo,
+          S.habilitado as habilitado,
+          S.idSalon as idSalon
+      FROM SALON S
+      WHERE S.id NOT IN (SELECT S2.id
+			 FROM SALON S2, EVENTO E, EVENTO_SALA ES, MONTAJE M
+			 WHERE S2.id = ES.idSalon
+			 AND E.id = ES.idEvento
+			 AND M.id = ES.idMontaje
+			 AND E.id = #idEvento#)
+      AND S.id NOT IN (SELECT S3.id
+                       FROM EVENTO E3, SALON S3, EVENTO_SALA ES3
+		       WHERE E3.id = ES3.idEvento
+		       AND S3.id = ES3.idSalon
+		       AND (E3.fechaInicio BETWEEN #fechaInicio# AND #fechaFin#
+			    OR E3.fechaFin BETWEEN #fechaInicio# AND #fechaFin#)
+		       AND E3.estado = 'C')
+    </select>
+
+    <select id="getComboBoxReservar" resultClass="salon">
+      SELECT
+          S.id as id,
+          S.nombre as nombre,
+          S.costo as costo,
+          S.habilitado as habilitado,
+          S.idSalon as idSalon
+      FROM SALON S
+      WHERE S.id NOT IN (SELECT S3.id
+                       FROM EVENTO E3, SALON S3, EVENTO_SALA ES3
+		       WHERE E3.id = ES3.idEvento
+		       AND S3.id = ES3.idSalon
+		       AND (E3.fechaInicio BETWEEN #fechaInicio# AND #fechaFin#
+			    OR E3.fechaFin BETWEEN #fechaInicio# AND #fechaFin#)
+		       AND E3.estado = 'C')
+    </select>
     
 </sqlMap>

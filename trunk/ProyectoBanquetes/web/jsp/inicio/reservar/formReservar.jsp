@@ -93,6 +93,7 @@
 
                 IServicioSalon iServicioSalon = new ServicioSalon();
                 Salon salon = iServicioSalon.getSalonNombre(hiddenSalon);
+              //  List<Salon> salones = iServicioSalon.listarComboBoxReservar(evento.getFechaInicio(), evento.getFechaFin());
 
                 IServicioMontaje iServicioMontaje = new ServicioMontaje();
                 List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);

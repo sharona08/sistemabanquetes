@@ -188,6 +188,45 @@ public class ServicioSalonTest {
         }
     }
 
+    //@Test
+    public void testComboBoxEditar() {
+        System.out.println("comboBoxSalones");
+        try {
+            Integer idEvento = new Integer(5);
+            java.sql.Date fechaInicio = util.getSqlDate("2010-09-14");
+            java.sql.Date fechaFin = util.getSqlDate("2010-09-14");
+
+            List<Salon> salones = servicioSalon.listarComboBoxEditar(idEvento, fechaInicio, fechaFin);
+            assertNotNull(salones);
+            for (Salon s : salones) {
+            System.out.println(s.getId() + ", " + s.getNombre());
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testComboBoxReservar() {
+        System.out.println("comboBoxReservar");
+        try {
+            java.sql.Date fechaInicio = util.getSqlDate("2010-09-14");
+            java.sql.Date fechaFin = util.getSqlDate("2010-09-14");
+
+            List<Salon> salones = servicioSalon.listarComboBoxReservar(fechaInicio, fechaFin);
+            assertNotNull(salones);
+            for (Salon s : salones) {
+            System.out.println(s.getId() + ", " + s.getNombre());
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Test of listarSalones method, of class ServicioSalon.
      */
@@ -210,7 +249,7 @@ public class ServicioSalonTest {
         }
     }
 
-    @Test
+   // @Test
     public void testDisponibilidadConfirmados() {
         System.out.println("disponibilidadConfirmados");
         try {
