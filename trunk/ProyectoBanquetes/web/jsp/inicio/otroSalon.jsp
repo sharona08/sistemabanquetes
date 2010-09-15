@@ -62,6 +62,8 @@
                     IServicioSalon iServicioSalon = new ServicioSalon();
                     //List<Salon> salones = iServicioSalon.listarSalones();
                     List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(idEvento), evento.getFechaInicio(), evento.getFechaFin());
+                    List<Salon> salonesEvento = iServicioSalon.listarSalonesEvento(Integer.valueOf(idEvento));
+
                     Double costoSalonCero = salones.get(0).getCosto();
 
                     IServicioMontaje iServicioMontaje = new ServicioMontaje();
@@ -91,6 +93,13 @@
                                         </option>
                                         <% }%>
                                     </select>
+<!--                                    <select name="salon" style="width: 200px; height: 25px" onchange="mostrarCosto(this.value)">
+                                        < for (Salon salon : salones) {%>
+                                        <option value="< salon.getId()%>">
+                                            < salon.getNombre()%>
+                                        </option>
+                                        < }%>
+                                    </select>-->
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>

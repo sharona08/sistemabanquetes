@@ -27,10 +27,11 @@
 
 <%
             IServicioSalon iServicioSalon = new ServicioSalon();
-            List<Salon> salones = iServicioSalon.listarSalones();
+            //List<Salon> salones = iServicioSalon.listarSalones();
             IServicioEvento servicioEvento = new ServicioEvento();
             Evento evento = servicioEvento.getEvento(Integer.valueOf(request.getParameter("ID")));
-            //List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(request.getParameter("ID")), evento.getFechaInicio(), evento.getFechaFin());
+            List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(request.getParameter("ID")), evento.getFechaInicio(), evento.getFechaFin());
+            List<Salon> salonesEvento = iServicioSalon.listarSalonesEvento(Integer.valueOf(request.getParameter("ID")));
 %>
 
 <% IServicioMontaje iServicioMontaje = new ServicioMontaje();%>
@@ -298,11 +299,19 @@
                 <td>Salon:</td>
                 <td>
                     <select name="<%=varSalon%>" style="width: 185px; height: 25px">
+                        <% for (Salon s : salonesEvento) {%>
+                        <% if(s.getNombre().equals(d.getNombreSalon())){ %>
+                        <option selected>
+                            <%= s.getNombre()%>
+                        </option>
+                        <% }%>
+                        <% }%>
                         <% for (Salon salon : salones) {%>
                         <% if (salon.getNombre().equals(d.getNombreSalon())) {%>
                         <option selected>
                             <%= salon.getNombre()%>
-                            <% } else {%>
+                        </option>
+                        <% } else {%>
                         <option>
                             <%= salon.getNombre()%>
                         </option>
