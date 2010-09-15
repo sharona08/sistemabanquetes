@@ -25,8 +25,13 @@
 <%@page import="com.banquetes.dominio.Salon"%>
 <%@page import="com.sun.xml.internal.txw2.Document"%>
 
-<% IServicioSalon iServicioSalon = new ServicioSalon();%>
-<% List<Salon> salones = iServicioSalon.listarSalones();%>
+<%
+            IServicioSalon iServicioSalon = new ServicioSalon();
+            List<Salon> salones = iServicioSalon.listarSalones();
+            IServicioEvento servicioEvento = new ServicioEvento();
+            Evento evento = servicioEvento.getEvento(Integer.valueOf(request.getParameter("ID")));
+            //List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(request.getParameter("ID")), evento.getFechaInicio(), evento.getFechaFin());
+%>
 
 <% IServicioMontaje iServicioMontaje = new ServicioMontaje();%>
 <% List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);%>
@@ -324,31 +329,31 @@
                 </td>
             </tr>
             <% }%>
-                <tr style="height: 35px">
-                    <td>Montaje:</td>
-                    <td>
-                        <select name="<%=varMontaje%>" style="width: 185px; height: 25px">
-                            <% for (Montaje montaje : montajes) {%>
-                            <% if (montaje.getTipoMontaje().equals(d.getTipoMontaje())) {%>
-                            <option selected>
-                                <%= montaje.getTipoMontaje()%>
-                                <% } else {%>
-                            <option>
-                                <%= montaje.getTipoMontaje()%>
-                            </option>
-                            <% }%>
-                            <% }%>
-                        </select>
-                    </td>
-                    <%
-                         Integer size = Integer.valueOf(detallesSalon.size());
-                         if (cont.equals(size)) {
-                    %>
-                    <td>
-                        <input type="image" src="add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='otroSalon.jsp'; document.formulario.submit()"/>
-                    </td>
-                    <% }%>
-                </tr>
+            <tr style="height: 35px">
+                <td>Montaje:</td>
+                <td>
+                    <select name="<%=varMontaje%>" style="width: 185px; height: 25px">
+                        <% for (Montaje montaje : montajes) {%>
+                        <% if (montaje.getTipoMontaje().equals(d.getTipoMontaje())) {%>
+                        <option selected>
+                            <%= montaje.getTipoMontaje()%>
+                            <% } else {%>
+                        <option>
+                            <%= montaje.getTipoMontaje()%>
+                        </option>
+                        <% }%>
+                        <% }%>
+                    </select>
+                </td>
+                <%
+                     Integer size = Integer.valueOf(detallesSalon.size());
+                     if (cont.equals(size)) {
+                %>
+                <td>
+                    <input type="image" src="add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='otroSalon.jsp'; document.formulario.submit()"/>
+                </td>
+                <% }%>
+            </tr>
             <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

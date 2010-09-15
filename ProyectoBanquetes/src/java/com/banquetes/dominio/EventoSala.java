@@ -12,6 +12,7 @@ public class EventoSala {
     private Integer idSalon;
     private Integer idMontaje;
     private Integer nuevoIdSalon;
+    private Boolean visible;
 
     public EventoSala() {
     }
@@ -20,12 +21,13 @@ public class EventoSala {
         this.idEvento = idEvento;
     }
 
-    public EventoSala(Integer idEvento, Double nuevoCosto, Integer idSalon, Integer idMontaje, Integer nuevoIdSalon) {
+    public EventoSala(Integer idEvento, Double nuevoCosto, Integer idSalon, Integer idMontaje, Integer nuevoIdSalon, Boolean visible) {
         this.idEvento = idEvento;
         this.nuevoCosto = nuevoCosto;
         this.idSalon = idSalon;
         this.idMontaje = idMontaje;
         this.nuevoIdSalon = nuevoIdSalon;
+        this.visible = visible;
     }
 
     public Integer getIdEvento() {
@@ -67,4 +69,13 @@ public class EventoSala {
     public void setNuevoIdSalon(Integer nuevoIdSalon) {
         this.nuevoIdSalon = nuevoIdSalon;
     }
+
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
+
 }

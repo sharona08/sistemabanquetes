@@ -3,7 +3,6 @@ package com.banquetes.servicios.interfaces;
 import com.banquetes.dominio.Salon;
 import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
-import com.banquetes.servicios.TO.SalonesComboBoxTO;
 import java.sql.Date;
 import java.util.List;
 
@@ -99,4 +98,6 @@ public interface IServicioSalon {
     public List<Salon> listarComboBoxEditar(Integer idEvento, Date fechaInicio, Date fechaFin);
 
     public List<Salon> listarComboBoxReservar(Date fechaInicio, Date fechaFin);
+
+    public List<Salon> listarSubsalones(Integer id);
 }

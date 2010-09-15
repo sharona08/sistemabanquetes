@@ -15,11 +15,12 @@
     <typeAlias type="com.banquetes.dominio.EventoSala" alias="eventoSala"/>
 
     <insert id="crearEventoSala" parameterClass="eventoSala">
-        INSERT INTO EVENTO_SALA (idEvento, nuevoCosto, idSalon, idMontaje)
+        INSERT INTO EVENTO_SALA (idEvento, nuevoCosto, idSalon, idMontaje, visible)
         VALUES (#idEvento#,
                 #nuevoCosto#,
                 #idSalon#,
-                #idMontaje#)
+                #idMontaje#,
+                #visible#)
 
         <selectKey resultClass="Integer">
             SELECT

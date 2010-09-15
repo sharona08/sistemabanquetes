@@ -25,8 +25,13 @@
 <%@page import="com.banquetes.dominio.Salon"%>
 <%@page import="com.sun.xml.internal.txw2.Document"%>
 
-<% IServicioSalon iServicioSalon = new ServicioSalon();%>
-<% List<Salon> salones = iServicioSalon.listarSalones();%>
+<%
+            IServicioSalon iServicioSalon = new ServicioSalon();
+            List<Salon> salones = iServicioSalon.listarSalones();
+            IServicioEvento servicioEvento = new ServicioEvento();
+            Evento evento = servicioEvento.getEvento(Integer.valueOf(request.getParameter("ID")));
+            //List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(request.getParameter("ID")), evento.getFechaInicio(), evento.getFechaFin());
+%>
 
 <% IServicioMontaje iServicioMontaje = new ServicioMontaje();%>
 <% List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);%>

@@ -3,6 +3,10 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="java.util.List"%>
+<%@page import="com.banquetes.dominio.Salon"%>
+<%@page import="com.banquetes.servicios.impl.ServicioSalon"%>
+<%@page import="com.banquetes.servicios.interfaces.IServicioSalon"%>
 <%@ page session="true" %>
 
 <%
@@ -41,9 +45,6 @@
                 <h1 id="letra1">Agregar salon a reserva</h1>
                 <%
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
-                            String salonFiltro = request.getParameter("hiddenSalon");
-                            String fechaInicioFiltro = request.getParameter("hiddenFechaInicio");
-                            String fechaFinFiltro = request.getParameter("hiddenFechaFin");
 
                             IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
 
@@ -52,10 +53,44 @@
                             eventoSala.setIdSalon(Integer.valueOf(request.getParameter("salon")));
                             eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
                             eventoSala.setNuevoCosto(Double.valueOf(request.getParameter("nuevoCosto")));
+                            eventoSala.setVisible(Boolean.TRUE);
 
                             Boolean result = servicioEventoSala.crearEventoSala(eventoSala);
 
                             if (result) {
+                                IServicioSalon servicioSalon = new ServicioSalon();
+                                Salon salon = servicioSalon.getSalon(Integer.valueOf(request.getParameter("salon")));
+
+                                if (salon.getIdSalon() != null) {
+                                    servicioEventoSala = new ServicioEventoSala();
+
+                                    eventoSala = new EventoSala();
+                                    eventoSala.setIdEvento(idEvento);
+                                    eventoSala.setIdSalon(salon.getIdSalon());
+                                    eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
+                                    eventoSala.setNuevoCosto(Double.valueOf(0));
+                                    eventoSala.setVisible(Boolean.FALSE);
+
+                                    Boolean superSalon = servicioEventoSala.crearEventoSala(eventoSala);
+                                    //ES COMO EL CONSUL
+                                    //ASIGNAR COMO SALON DEL EVENTO EL DIPLOMAT, ES DECIR salon.getIdSalon()
+                                } else {
+                                    List<Salon> subSalones = servicioSalon.listarSubsalones(salon.getId());
+                                    servicioEventoSala = new ServicioEventoSala();
+
+                                    eventoSala = new EventoSala();
+                                    for (Salon s : subSalones) {
+                                        eventoSala.setIdEvento(idEvento);
+                                        eventoSala.setIdSalon(s.getId());
+                                        eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
+                                        eventoSala.setNuevoCosto(Double.valueOf(0));
+                                        eventoSala.setVisible(Boolean.FALSE);
+
+                                        Boolean subSalon = servicioEventoSala.crearEventoSala(eventoSala);
+                                    }
+                                    // BUSCAR SI ES COMO EL DIPLOMAT
+                                    // ASIGNAR COMO SALON DEL EVENTO LOS 3, ES DECIR
+                                }
                 %>
                 <script type="text/javascript">
                     alert("Exito! el salon ha sido asignado exitosamente.");

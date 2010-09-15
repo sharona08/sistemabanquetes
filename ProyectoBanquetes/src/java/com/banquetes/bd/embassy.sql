@@ -157,6 +157,7 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`EVENTO_SALA` (
   `nuevoCosto` DOUBLE NULL DEFAULT NULL ,
   `idSalon` INT(11)  NOT NULL ,
   `idMontaje` INT(11)  NOT NULL ,
+  `visible` TINYINT(1)  NOT NULL ,
   PRIMARY KEY (`idEvento`, `idSalon`) ,
   INDEX `fk_EVENTO_SALA_EVENTO1` (`idEvento` ASC) ,
   INDEX `fk_EVENTO_SALA_SALON1` (`idSalon` ASC) ,
@@ -389,11 +390,11 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `banquetes`;
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (1, NULL, 4, 1);
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (2, '205', 4, 2);
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (2, NULL, 5, 2);
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (3, '500', 3, 3);
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`) VALUES (4, NULL, 3, 3);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (1, NULL, 7, 1, true);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (2, '205', 7, 2, true);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (2, NULL, 8, 2, true);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (3, '500', 9, 3, true);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (4, NULL, 9, 3, true);
 
 COMMIT;
 
@@ -451,8 +452,8 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `banquetes`;
-INSERT INTO `banquetes`.`ROL` (`id`, `tipoRol`) VALUES (1, 'ADMINISTRADOR');
-INSERT INTO `banquetes`.`ROL` (`id`, `tipoRol`) VALUES (2, 'COORDINADOR');
+INSERT INTO `banquetes`.`ROL` (`id`, `tipoRol`) VALUES (1, 'administrador');
+INSERT INTO `banquetes`.`ROL` (`id`, `tipoRol`) VALUES (2, 'coordinador');
 
 COMMIT;
 
@@ -461,7 +462,7 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `banquetes`;
-INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('ADMIN', 'ADMIN', 'MARIA', 'URIBE', 'mariale.uribe@gmail.com', 1);
-INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('HUGO', '12345', 'HUGO', 'PEDROZA', 'hpedroza@gmail.com', 2);
+INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('ADMIN', 'ADMIN', 'Maria', 'Uribe', 'mariale.uribe@gmail.com', 1);
+INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('HUGO', '12345', 'Hugo', 'Pedroza', 'hpedroza@gmail.com', 2);
 
 COMMIT;

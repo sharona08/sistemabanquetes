@@ -14,11 +14,12 @@ public class DetallesReservaSalonTO {
     Double nuevoCosto;
     Integer idTipoMontaje;
     String tipoMontaje;
+    Boolean visible;
 
     public DetallesReservaSalonTO() {
     }
 
-    public DetallesReservaSalonTO(Integer idSalon, String nombreSalon, Double costoSalon, Boolean salonHabilitado, Integer idSalonFK, Double nuevoCosto, Integer idTipoMontaje, String tipoMontaje) {
+    public DetallesReservaSalonTO(Integer idSalon, String nombreSalon, Double costoSalon, Boolean salonHabilitado, Integer idSalonFK, Double nuevoCosto, Integer idTipoMontaje, String tipoMontaje, Boolean visible) {
         this.idSalon = idSalon;
         this.nombreSalon = nombreSalon;
         this.costoSalon = costoSalon;
@@ -27,6 +28,7 @@ public class DetallesReservaSalonTO {
         this.nuevoCosto = nuevoCosto;
         this.idTipoMontaje = idTipoMontaje;
         this.tipoMontaje = tipoMontaje;
+        this.visible = visible;
     }
 
     public Double getCostoSalon() {
@@ -91,6 +93,14 @@ public class DetallesReservaSalonTO {
 
     public void setTipoMontaje(String tipoMontaje) {
         this.tipoMontaje = tipoMontaje;
+    }
+
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
     }
 
 }
