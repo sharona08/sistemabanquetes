@@ -146,7 +146,7 @@ public class ServicioSalonTest {
         }
     }
 
-    @Test
+   // @Test
     public void testListarSalonesEvento() {
         System.out.println("listarSalonesEvento");
         try {
@@ -199,13 +199,13 @@ public class ServicioSalonTest {
         }
     }
 
-   // @Test
+    @Test
     public void testComboBoxEditar() {
         System.out.println("comboBoxSalones");
         try {
-            Integer idEvento = new Integer(6);
-            java.sql.Date fechaInicio = util.getSqlDate("2010-09-15");
-            java.sql.Date fechaFin = util.getSqlDate("2010-09-15");
+            Integer idEvento = new Integer(5);
+            java.sql.Date fechaInicio = util.getSqlDate("2010-09-16");
+            java.sql.Date fechaFin = util.getSqlDate("2010-09-16");
 
             List<Salon> salones = servicioSalon.listarComboBoxEditar(idEvento, fechaInicio, fechaFin);
             assertNotNull(salones);
@@ -213,6 +213,7 @@ public class ServicioSalonTest {
             System.out.println(s.getId() + ", " + s.getNombre());
 
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
