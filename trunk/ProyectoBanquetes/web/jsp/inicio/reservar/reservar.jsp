@@ -3,6 +3,10 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="java.util.List"%>
+<%@page import="com.banquetes.dominio.EventoSala"%>
+<%@page import="com.banquetes.servicios.interfaces.IServicioEventoSala"%>
+<%@page import="com.banquetes.servicios.impl.ServicioEventoSala"%>
 <%@ page session="true" %>
 
 <%
@@ -88,6 +92,36 @@
 
                             Integer result = servicioReserva.reservar(evento, idSalon, idMontaje, nuevoCosto);
                             if (result != null) {
+                                if (salon.getIdSalon() != null) {
+                                    IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
+
+                                    EventoSala eventoSala = new EventoSala();
+                                    eventoSala.setIdEvento(result);
+                                    eventoSala.setIdSalon(salon.getIdSalon());
+                                    eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
+                                    eventoSala.setNuevoCosto(Double.valueOf(0));
+                                    eventoSala.setVisible(Boolean.FALSE);
+
+                                    Boolean superSalon = servicioEventoSala.crearEventoSala(eventoSala);
+                                    //ES COMO EL CONSUL
+                                    //ASIGNAR COMO SALON DEL EVENTO EL DIPLOMAT, ES DECIR salon.getIdSalon()
+                                } else {
+                                    List<Salon> subSalones = servicioSalon.listarSubsalones(salon.getId());
+                                    IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
+
+                                    EventoSala eventoSala = new EventoSala();
+                                    for (Salon s : subSalones) {
+                                        eventoSala.setIdEvento(result);
+                                        eventoSala.setIdSalon(s.getId());
+                                        eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
+                                        eventoSala.setNuevoCosto(Double.valueOf(0));
+                                        eventoSala.setVisible(Boolean.FALSE);
+
+                                        Boolean subSalon = servicioEventoSala.crearEventoSala(eventoSala);
+                                    }
+                                    // BUSCAR SI ES COMO EL DIPLOMAT
+                                    // ASIGNAR COMO SALON DEL EVENTO LOS 3, ES DECIR
+                                }
                 %>
                 <script type="text/javascript">
                     alert("Exito! la reserva ha sido realizada exitosamente.");

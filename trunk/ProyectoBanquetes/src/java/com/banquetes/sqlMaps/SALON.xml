@@ -99,6 +99,7 @@
 	   WHERE S.id = ES.idSalon
            AND E.id = ES.idEvento
            AND ES.idEvento = #idEvento#
+           AND ES.visible is true
     </select>
 
     <select id="getSalonNombre" resultClass="salon">
@@ -211,6 +212,20 @@
 		       AND (E3.fechaInicio BETWEEN #fechaInicio# AND #fechaFin#
 			    OR E3.fechaFin BETWEEN #fechaInicio# AND #fechaFin#)
 		       AND E3.estado = 'C')
+    </select>
+
+    <select id="getSubSalonesHabilitados" resultClass="salon">
+      SELECT
+          S.id as id,
+          S.nombre as nombre,
+          S.costo as costo,
+          S.habilitado as habilitado,
+          S.idSalon as idSalon
+       FROM SALON S, SALON S2
+       WHERE S.habilitado is true
+	  AND S2.id = S.idSalon
+	  AND S2.id = #id#   <!-- S2 seria el DIPLOMAT por ejemplo, es el salon,  -->
+       ORDER BY S.nombre ASC <!-- mientras que S son los subsalones que pertenecen a S2 -->
     </select>
     
 </sqlMap>

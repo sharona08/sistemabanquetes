@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import com.banquetes.dominio.Salon;
 import com.banquetes.servicios.TO.DisponibilidadConfirmadosTO;
 import com.banquetes.servicios.TO.DisponibilidadSalonTO;
-import com.banquetes.servicios.TO.SalonesComboBoxTO;
 import com.banquetes.servicios.interfaces.IServicioSalon;
 import com.banquetes.util.UtilMethods;
 import java.util.ArrayList;
@@ -147,22 +146,34 @@ public class ServicioSalonTest {
         }
     }
 
-    /**
-     * Test of listarSalones method, of class ServicioSalon.
-     */
-//    @Test
-//    public void testListarSalonesComboBox() {
-//        System.out.println("listarSalonesComboBox");
-//        try {
-//            List<SalonesComboBoxTO> salones = servicioSalon.listarSalonesComboBox(new Integer(3), new Integer(4));
-//            assertNotNull(salones);
-//            for (SalonesComboBoxTO newSalon : salones) {
-//                System.out.println(newSalon.getIdEvento() + " " + newSalon.getIdSalon() + " " + newSalon.getNombreSalon());
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @Test
+    public void testListarSalonesEvento() {
+        System.out.println("listarSalonesEvento");
+        try {
+            List<Salon> salones = servicioSalon.listarSalonesEvento(new Integer(5));
+            assertNotNull(salones);
+            for (Salon newSalon : salones) {
+                System.out.println(newSalon.getId() + " " + newSalon.getNombre() + " " + newSalon.getCosto() + " " + newSalon.getHabilitado());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+   //S @Test
+    public void testListarSubSalones() {
+        System.out.println("listarSubSalones");
+        try {
+            Integer id = new Integer(1);
+            List<Salon> salones = servicioSalon.listarSubsalones(id);
+            assertNotNull(salones);
+            for (Salon newSalon : salones) {
+                System.out.println(newSalon.getId() + " " + newSalon.getNombre() + " " + newSalon.getCosto() + " " + newSalon.getHabilitado());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Test of listarSalones method, of class ServicioSalon.
@@ -188,13 +199,13 @@ public class ServicioSalonTest {
         }
     }
 
-    //@Test
+   // @Test
     public void testComboBoxEditar() {
         System.out.println("comboBoxSalones");
         try {
-            Integer idEvento = new Integer(5);
-            java.sql.Date fechaInicio = util.getSqlDate("2010-09-14");
-            java.sql.Date fechaFin = util.getSqlDate("2010-09-14");
+            Integer idEvento = new Integer(6);
+            java.sql.Date fechaInicio = util.getSqlDate("2010-09-15");
+            java.sql.Date fechaFin = util.getSqlDate("2010-09-15");
 
             List<Salon> salones = servicioSalon.listarComboBoxEditar(idEvento, fechaInicio, fechaFin);
             assertNotNull(salones);
@@ -208,7 +219,7 @@ public class ServicioSalonTest {
         }
     }
 
-    @Test
+   // @Test
     public void testComboBoxReservar() {
         System.out.println("comboBoxReservar");
         try {

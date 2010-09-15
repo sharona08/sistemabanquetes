@@ -59,6 +59,7 @@
            AND E.rif = C.rifEmpresa
            AND C.id = EV.idContacto
            AND EV.id = #idEvento#
+           AND ES.visible is true
     </select>
     
 </sqlMap>

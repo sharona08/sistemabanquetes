@@ -32,7 +32,7 @@ public class ServicioEventoSalaTest {
     public void testCrearEventoSala() {
         System.out.println("crearEventoSala");
 //        EventoSala eventoSala = new EventoSala(6, new Double("275.3"), 8, 5, null);
-        EventoSala eventoSala = new EventoSala(7, null, 4, 5, null);
+        EventoSala eventoSala = new EventoSala(7, null, 4, 5, null, Boolean.TRUE);
 
         try {
             this.testListarEventoSalas();
@@ -50,7 +50,7 @@ public class ServicioEventoSalaTest {
 //    @Test
     public void testEditarEventoSala() {
         System.out.println("editarEventoSala");
-        EventoSala eventoSala = new EventoSala(2, new Double("150"), new Integer(5), new Integer(2), null);
+        EventoSala eventoSala = new EventoSala(2, new Double("150"), new Integer(5), new Integer(2), null, Boolean.TRUE);
 
         try {
             System.out.println("EVENTO_SALA ANTES DEL UPDATE");

@@ -36,7 +36,7 @@ public class ServicioReserva implements IServicioReserva {
     public Integer reservar(Evento evento, Integer idSalon, Integer idMontaje, Double nuevoCosto) {
         Integer idEvento = servicioEvento.crearEvento(evento);
         if (idEvento != null) {
-            EventoSala eventoSala = new EventoSala(idEvento, nuevoCosto, idSalon, idMontaje, null);
+            EventoSala eventoSala = new EventoSala(idEvento, nuevoCosto, idSalon, idMontaje, null, Boolean.TRUE);
             Boolean resultES = servicioEventoSala.crearEventoSala(eventoSala);
             if (resultES) {
                 System.out.println("Se inserto el evento sala correctamente.");

@@ -348,4 +348,17 @@ public class ServicioSalon implements IServicioSalon {
         }
         return salones;
     }
+
+    public List<Salon> listarSubsalones(Integer id){
+        List<Salon> salones = null;
+
+        try {
+            Map param = new HashMap();
+            param.put("id", id);
+            salones = sqlMap.queryForList("getSubSalonesHabilitados", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioSalon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return salones;
+    }
 }

@@ -9,6 +9,7 @@ import java.sql.Time;
 import com.banquetes.util.UtilMethods;
 import com.banquetes.dominio.Evento;
 import com.banquetes.dominio.ServicioServicioEvento;
+import com.banquetes.servicios.TO.DetallesReservaSalonTO;
 import com.banquetes.servicios.TO.DetallesReservaTO;
 import com.banquetes.servicios.interfaces.IServicioReserva;
 import java.util.List;
@@ -139,7 +140,7 @@ public class ServicioReservaTest {
 
     }
 
-    @Test
+   // @Test
     public void testtotalReserva() {
         System.out.println("total");
         Integer idEvento = new Integer(5);
@@ -151,15 +152,14 @@ public class ServicioReservaTest {
     /**
      * Test of getDetallesReservaSalon method, of class ServicioReserva.
      */
-   // @Test
+    @Test
     public void testGetDetallesReservaSalon() {
         System.out.println("getDetallesReservaSalon");
-        Integer idEvento = null;
-        ServicioReserva instance = new ServicioReserva();
-        List expResult = null;
-        List result = instance.getDetallesReservaSalon(idEvento);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        Integer idEvento = new Integer(6);
+        List<DetallesReservaSalonTO> detalles = servicioReserva.getDetallesReservaSalon(idEvento);
+        for (DetallesReservaSalonTO d : detalles) {
+            System.out.println("idSalon: " + d.getIdSalon() + ", nombreSalon: " + d.getNombreSalon() +", idSalonFK: " + d.getIdSalonFK() + ". ");
+        }
     }
 
 }
