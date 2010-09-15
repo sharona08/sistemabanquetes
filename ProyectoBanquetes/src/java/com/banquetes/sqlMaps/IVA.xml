@@ -14,7 +14,7 @@
 
     <typeAlias type="com.banquetes.dominio.Iva" alias="iva"/>
 
-    <update id="editarMontaje" parameterClass="iva">
+    <update id="editarIva" parameterClass="iva">
 	UPDATE IVA SET
           porcentaje = #porcentaje#
 	WHERE
