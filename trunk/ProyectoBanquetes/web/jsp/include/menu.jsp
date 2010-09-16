@@ -95,6 +95,7 @@
                 <li><a href="/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp">Roles</a></li>
             </ul>
         </li>
+        <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/iva/detalleIva.jsp" id="privacy" class="top_link"><span>IVA</span></a></li>
         <% } %>
 
         <li class="top"><a href="#nogo57" id="privacy" class="top_link"><span>Acerca De</span></a></li>
