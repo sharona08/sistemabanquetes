@@ -28,11 +28,11 @@ public class ServicioEventoSalaTest {
     /**
      * Test of crearEventoSala method, of class ServicioEventoSala.
      */
-   // @Test
+  //  @Test
     public void testCrearEventoSala() {
         System.out.println("crearEventoSala");
 //        EventoSala eventoSala = new EventoSala(6, new Double("275.3"), 8, 5, null);
-        EventoSala eventoSala = new EventoSala(7, null, 4, 5, null, Boolean.TRUE);
+        EventoSala eventoSala = new EventoSala(5, null, 1, 5, null, Boolean.TRUE);
 
         try {
             this.testListarEventoSalas();
@@ -83,7 +83,7 @@ public class ServicioEventoSalaTest {
     /**
      * Test of listarEventoSalas method, of class ServicioEventoSala.
      */
-   // @Test
+    @Test
     public void testListarEventoSalas() {
         System.out.println("listarEventoSalas");
 
@@ -91,7 +91,7 @@ public class ServicioEventoSalaTest {
             List<EventoSala> eventoSalas = servicioEventoSala.listarEventoSalas(8);
             assertNotNull(eventoSalas);
             for (EventoSala newEventoSalas : eventoSalas) {
-                System.out.println("idEvento: " + newEventoSalas.getIdEvento() + ", idMontaje: " + newEventoSalas.getIdMontaje() + ", idSalon" + newEventoSalas.getIdSalon() + ", nuevoCosto: " + newEventoSalas.getNuevoCosto());
+                System.out.println("idEvento: " + newEventoSalas.getIdEvento() + ", idMontaje: " + newEventoSalas.getIdMontaje() + ", idSalon: " + newEventoSalas.getIdSalon() + ", nuevoCosto: " + newEventoSalas.getNuevoCosto());
             }
         } catch (Exception e) {
             e.printStackTrace();
