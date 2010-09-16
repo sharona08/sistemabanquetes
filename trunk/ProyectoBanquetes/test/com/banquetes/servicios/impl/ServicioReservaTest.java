@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.banquetes.servicios.impl;
 
 import java.sql.Time;
@@ -50,7 +49,7 @@ public class ServicioReservaTest {
     }
 
     //@Test
-    public void testCrearServicioEvento(){
+    public void testCrearServicioEvento() {
         System.out.println("testCrearServicioEvento");
         ServicioServicioEvento servicioEvento = new ServicioServicioEvento(1, 2, 4, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "");
 
@@ -59,34 +58,48 @@ public class ServicioReservaTest {
     }
 
     //@Test
-    public void testEliminarServicioEvento(){
+    public void testEliminarServicioEvento() {
         System.out.println("testCrearServicioEvento");
 
         Integer idServicio = new Integer(27);
         Integer idEvento = new Integer(5);
         Integer idSalon = new Integer(4);
-        
+
         ServicioServicioEvento servicioEvento = new ServicioServicioEvento(idServicio, idEvento, idSalon, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "");
 
         Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon);
         System.out.println("Elimino: " + result);
     }
 
-   // @Test
-    public void testGetServiciosEvento(){
+    //@Test
+    public void testGetServiciosEvento() {
         System.out.println("testGetServiciosEvento");
-        
+
         List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventos(5, "AB");
         for (ServicioServicioEvento s : servicios) {
             System.out.println("idEvento: " + s.getIdEvento() + ", idSalon: " + s.getIdSalon() + ", idServicio: " + s.getIdServicio());
         }
     }
 
-   // @Test
-    public void testGetServiciosEventoTodos(){
+    //@Test
+    public void testGetServicioEvento() {
+        System.out.println("testGetServicioEvento");
+        
+        Integer idServicio = new Integer(16);
+        Integer idEvento = new Integer(5);
+        Integer idSalon = new Integer(4);
+
+        ServicioServicioEvento s = servicioReserva.getServicioEvento(idEvento, idSalon, idServicio);
+
+        System.out.println("idEvento: " + s.getIdEvento() + ", idSalon: " + s.getIdSalon() + ", idServicio: " + s.getIdServicio());
+
+    }
+
+    // @Test
+    public void testGetServiciosEventoTodos() {
         System.out.println("testGetServiciosEventoTodos");
 
-        List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventosTodos(10);
+        List<ServicioServicioEvento> servicios = servicioReserva.listarServicioEventosTodos(5);
         for (ServicioServicioEvento s : servicios) {
             System.out.println("idEvento: " + s.getIdEvento() + ", idSalon: " + s.getIdSalon() + ", idServicio: " + s.getIdServicio());
         }
@@ -122,7 +135,7 @@ public class ServicioReservaTest {
 
     }
 
-  //  @Test
+    //  @Test
     public void testsubtotalReserva() {
         System.out.println("subtotal");
         Integer idEvento = new Integer(5);
@@ -131,7 +144,7 @@ public class ServicioReservaTest {
 
     }
 
-   // @Test
+    // @Test
     public void testivaReserva() {
         System.out.println("iva");
         Integer idEvento = new Integer(5);
@@ -140,7 +153,7 @@ public class ServicioReservaTest {
 
     }
 
-   // @Test
+    // @Test
     public void testtotalReserva() {
         System.out.println("total");
         Integer idEvento = new Integer(5);
@@ -158,8 +171,7 @@ public class ServicioReservaTest {
         Integer idEvento = new Integer(6);
         List<DetallesReservaSalonTO> detalles = servicioReserva.getDetallesReservaSalon(idEvento);
         for (DetallesReservaSalonTO d : detalles) {
-            System.out.println("idSalon: " + d.getIdSalon() + ", nombreSalon: " + d.getNombreSalon() +", idSalonFK: " + d.getIdSalonFK() + ". ");
+            System.out.println("idSalon: " + d.getIdSalon() + ", nombreSalon: " + d.getNombreSalon() + ", idSalonFK: " + d.getIdSalonFK() + ". ");
         }
     }
-
 }

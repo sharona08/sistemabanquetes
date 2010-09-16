@@ -106,6 +106,7 @@
        FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E
        WHERE SE.idServicio = S.id
          AND SE.idEvento = E.idEvento
+         AND SE.idSalon = E.idSalon
          AND SE.idEvento = #idEvento#
          AND SE.idServicio = #idServicio#
          AND SE.idSalon = #idSalon#

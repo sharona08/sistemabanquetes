@@ -46,6 +46,17 @@
                 $("a", ".demo").click(function() { return false; });
             });
         </script>
+        <script type="text/javascript">
+            function confirmar() {
+                var answer = confirm("¿Está seguro que desea eliminar este salón?\nEsta operación eliminará los servicios contratados para el mismo.")
+                if (answer){
+                    document.form.action='eliminarEventoSala.jsp';
+                    document.form.submit();
+                }
+                else{
+                }
+            }
+        </script>
 
         <title>Eliminar salon de reserva</title>
     </head>
@@ -75,7 +86,8 @@
                 <div id="disponibilidad" style="margin-left: 10px;">
                     <h1 id="letra1">Eliminar salon de la reserva #: <%=idEvento%></h1>
 
-                    <form action="eliminarEventoSala.jsp" method="get" name="form">
+                    <!--                    <form action="eliminarEventoSala.jsp" method="get" name="form">-->
+                    <form action="" method="get" name="form">
                         <table>
                             <tr style="height: 40px">
                                 <td style="font-size: 18px">Detalles sal&oacute;n</td>
@@ -125,7 +137,8 @@
                                         <% if (request.getParameter("anulados") != null) {%>
                                         <input type="hidden" name="hiddenAnulados" value="<%= request.getParameter("hiddenAnulados")%>"/>
                                         <% }%>
-                                        <input type="submit" value="Eliminar" style="width: 75px; height: 25px;" align="left" onclick=""/>
+                                        <input type="submit" value="Eliminar" style="width: 75px; height: 25px;" align="left" onclick="confirmar()"/>
+
                                     </div>
                                 </td>
                             </tr>

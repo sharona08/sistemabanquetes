@@ -60,8 +60,20 @@
                                 // si el salon es el diplomat, se deben eliminar los otros tres
 
                                 if (salon.getIdSalon() != null) {
-                                    Boolean superSalon = servicioEventoSala.eliminarEventoSala(idEvento, salon.getIdSalon());
+                                    //SI NO EXISTEN MAS SALONES EN ESA RESERVA QUE TENGAN COMO SUPER SALON A ESE SALON
 
+                                    List<EventoSala> eventosSala = servicioEventoSala.listarEventoSalas(idEvento);
+                                    Boolean eliminar = Boolean.TRUE;
+
+                                    for (EventoSala e : eventosSala) {
+                                        if (e.getIdSalon().equals(salon.getIdSalon())) {
+                                            eliminar = Boolean.FALSE;
+                                            break;
+                                        }
+                                    }
+                                    if (eliminar) {
+                                        Boolean superSalon = servicioEventoSala.eliminarEventoSala(idEvento, salon.getIdSalon());
+                                    }
                                 } else {
                                     List<Salon> subSalones = servicioSalon.listarSubsalones(salon.getId());
                                     if (!subSalones.isEmpty()) {
