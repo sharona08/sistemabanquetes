@@ -3,6 +3,12 @@
     Created on : Sep 14, 2010, 11:17:00 AM
     Author     : maya
 --%>
+<%@page import="com.banquetes.dominio.Evento"%>
+<%@page import="com.banquetes.servicios.impl.ServicioEvento"%>
+<%@page import="com.banquetes.servicios.interfaces.IServicioEvento"%>
+<%@page import="com.banquetes.dominio.Iva"%>
+<%@page import="com.banquetes.servicios.impl.ServicioIva"%>
+<%@page import="com.banquetes.servicios.interfaces.IServicioIva"%>
 <%@page import="com.banquetes.dominio.Montaje"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioMontaje"%>
 <%@page import="com.banquetes.servicios.impl.ServicioMontaje"%>
@@ -54,34 +60,46 @@
     <body>
         <%
                     Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
-                    IServicioReserva servicioReserva = new ServicioReserva();
 
-                    DetallesReservaTO detallesReserva = servicioReserva.getDetallesReserva(idEvento);
-                    List<DetallesReservaSalonTO> detallesReservaSalon = servicioReserva.getDetallesReservaSalon(idEvento);
+                    Evento event = new Evento(idEvento);
+                    IServicioEvento servicioEvento = new ServicioEvento();
 
-                    String estado = detallesReserva.getEstadoEvento();
-                    String estadoEvento = "";
-                    if (estado.equals("T")) {
-                        estadoEvento = "TENTATIVO";
-                    } else if (estado.equals("C")) {
-                        estadoEvento = "CONFIRMADO";
-                    } else if (estado.equals("A")) {
-                        estadoEvento = "ANULADO";
-                    }
+                    Boolean existeEvento = servicioEvento.existeEventoId(event);
 
-                    IServicioSalon iServicioSalon = new ServicioSalon();
-                    List<Salon> salones = iServicioSalon.listarSalones();
+                    if (existeEvento) {
 
-                    IServicioMontaje iServicioMontaje = new ServicioMontaje();
-                    List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);
 
-                    Double costoSalones = servicioReserva.costoTotalSalones(idEvento);
-                    Double costoAB = servicioReserva.costoTotalServicios(idEvento, "AB");
-                    Double costoAU = servicioReserva.costoTotalServicios(idEvento, "AU");
-                    Double costoOT = servicioReserva.costoTotalServicios(idEvento, "OT");
-                    Double subtotal = servicioReserva.subtotalReserva(idEvento);
-                    Double costoIVA = servicioReserva.ivaReserva(idEvento);
-                    Double costoTotal = servicioReserva.costoTotalReserva(idEvento);
+                        IServicioReserva servicioReserva = new ServicioReserva();
+
+                        IServicioIva servicioIva = new ServicioIva();
+                        Iva iva = servicioIva.getIva(new Integer(1));
+
+                        DetallesReservaTO detallesReserva = servicioReserva.getDetallesReserva(idEvento);
+                        List<DetallesReservaSalonTO> detallesReservaSalon = servicioReserva.getDetallesReservaSalon(idEvento);
+
+                        String estado = detallesReserva.getEstadoEvento();
+                        String estadoEvento = "";
+                        if (estado.equals("T")) {
+                            estadoEvento = "TENTATIVO";
+                        } else if (estado.equals("C")) {
+                            estadoEvento = "CONFIRMADO";
+                        } else if (estado.equals("A")) {
+                            estadoEvento = "ANULADO";
+                        }
+
+                        IServicioSalon iServicioSalon = new ServicioSalon();
+                        List<Salon> salones = iServicioSalon.listarSalones();
+
+                        IServicioMontaje iServicioMontaje = new ServicioMontaje();
+                        List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);
+
+                        Double costoSalones = servicioReserva.costoTotalSalones(idEvento);
+                        Double costoAB = servicioReserva.costoTotalServicios(idEvento, "AB");
+                        Double costoAU = servicioReserva.costoTotalServicios(idEvento, "AU");
+                        Double costoOT = servicioReserva.costoTotalServicios(idEvento, "OT");
+                        Double subtotal = servicioReserva.subtotalReserva(idEvento);
+                        Double costoIVA = servicioReserva.ivaReserva(idEvento);
+                        Double costoTotal = servicioReserva.costoTotalReserva(idEvento);
         %>
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
@@ -477,7 +495,7 @@
                             </tr>
                             <tr style="height: 30px">
                                 <td>
-                                    <label>IVA (12%): </label>
+                                    <label>IVA (<%= iva.getPorcentaje()%>%): </label>
                                 </td>
                                 <td align="right"><%=costoIVA%></td>
                             </tr>
@@ -503,5 +521,18 @@
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
+        <% } else {%>
+        <div id="pageWrap">
+            <jsp:include page="../../include/menu.jsp"></jsp:include>
+            <div id="content">
+                <h1 id="letra1" style="margin-left: 20px; margin-bottom: 10px">NUMERO DE RESERVA INVALIDO</h1>
+                <script type="text/javascript">
+                    alert("Error! numero de reserva invalido");
+                </script>
+                <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/verReservaID.jsp">
+            </div>
+            <jsp:include page="../../include/footer.jsp"></jsp:include>
+        </div>
+        <% }%>
     </body>
 </html>

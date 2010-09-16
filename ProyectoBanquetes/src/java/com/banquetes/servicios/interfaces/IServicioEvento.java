@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface IServicioEvento {
 
+    public boolean existeEventoId(Evento evento);
+
     public Integer crearEvento(Evento evento);
     
     public int editarEvento(Evento evento) ;

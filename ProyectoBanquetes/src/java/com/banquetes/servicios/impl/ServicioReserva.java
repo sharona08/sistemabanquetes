@@ -3,6 +3,7 @@ package com.banquetes.servicios.impl;
 import com.banquetes.configuracion.Conexion;
 import com.banquetes.dominio.Evento;
 import com.banquetes.dominio.EventoSala;
+import com.banquetes.dominio.Iva;
 import com.banquetes.dominio.Servicio;
 import com.banquetes.dominio.ServicioServicioEvento;
 import com.banquetes.servicios.TO.DetallesReservaSalonTO;
@@ -10,6 +11,7 @@ import com.banquetes.servicios.TO.DetallesReservaTO;
 import com.banquetes.servicios.interfaces.IServicioReserva;
 import com.banquetes.servicios.interfaces.IServicioEvento;
 import com.banquetes.servicios.interfaces.IServicioEventoSala;
+import com.banquetes.servicios.interfaces.IServicioIva;
 import com.banquetes.servicios.interfaces.IServicioServicio;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.sql.SQLException;
@@ -29,6 +31,7 @@ public class ServicioReserva implements IServicioReserva {
     private SqlMapClient sqlMap = conexion.conectar();
     private IServicioEvento servicioEvento = new ServicioEvento();
     private IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
+    private IServicioIva servicioIva = new ServicioIva();
 
     public ServicioReserva() {
     }
@@ -245,7 +248,11 @@ public class ServicioReserva implements IServicioReserva {
 
     public Double ivaReserva(Integer idEvento) {
         Double costoIVA = new Double(0);
-        Double iva = new Double(12);
+
+        Iva ivaObj = new Iva();
+        ivaObj = servicioIva.getIva(new Integer(1));
+
+        Double iva = ivaObj.getPorcentaje();
 
         Double subtotal = this.subtotalReserva(idEvento);
 

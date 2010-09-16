@@ -29,9 +29,15 @@
             IServicioSalon iServicioSalon = new ServicioSalon();
             //List<Salon> salones = iServicioSalon.listarSalones();
             IServicioEvento servicioEvento = new ServicioEvento();
-            Evento evento = servicioEvento.getEvento(Integer.valueOf(request.getParameter("ID")));
-            List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(request.getParameter("ID")), evento.getFechaInicio(), evento.getFechaFin());
-            List<Salon> salonesEvento = iServicioSalon.listarSalonesEvento(Integer.valueOf(request.getParameter("ID")));
+
+            Evento event = new Evento(Integer.valueOf(request.getParameter("ID")));
+            Boolean existeEvento = servicioEvento.existeEventoId(event);
+
+            if (existeEvento) {
+
+                Evento evento = servicioEvento.getEvento(Integer.valueOf(request.getParameter("ID")));
+                List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(request.getParameter("ID")), evento.getFechaInicio(), evento.getFechaFin());
+                List<Salon> salonesEvento = iServicioSalon.listarSalonesEvento(Integer.valueOf(request.getParameter("ID")));
 %>
 
 <% IServicioMontaje iServicioMontaje = new ServicioMontaje();%>
@@ -359,7 +365,7 @@
                      if (cont.equals(size)) {
                 %>
                 <%
-                     if (cont > 1) {
+                                         if (cont > 1) {
                 %>
                 <td>
                     <input type="image" src="remove_24.png" name="eliminar" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick="document.formulario.action='formEliminarSalon2.jsp'; document.formulario.submit()"/>
@@ -392,3 +398,9 @@
 
     <div id="espacio"></div>
 </div>
+<% } else {%>
+<meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/editarReservaID.jsp">
+<script type="text/javascript">
+    alert("Error! numero de reserva invalido");
+</script>
+<% }%>

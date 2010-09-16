@@ -21,6 +21,21 @@ public class ServicioEvento implements IServicioEvento {
     public ServicioEvento() {
     }
 
+    public boolean existeEventoId(Evento evento) {
+        Boolean existe = Boolean.TRUE;
+        Evento newEvento = null;
+        try {
+            newEvento = (Evento) sqlMap.queryForObject("getEvento", evento.getId());
+            if (newEvento == null) {
+                existe = Boolean.FALSE;
+            } else {
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioMontaje.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return existe;
+    }
+
     public Integer crearEvento(Evento evento) {
         Integer id = null;
         try {
