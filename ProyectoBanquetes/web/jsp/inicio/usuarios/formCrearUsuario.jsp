@@ -88,15 +88,15 @@
                                 </td>
                             </tr>
                             <tr style="height: 40px">
-                                <td width="30%">Nombre:</td>
-                                <td width="50%">
-                                    <input class="required" value="" name="nombreUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 200px; height: 23px" align="middle" />
-                                </td>
-                            </tr>
-                            <tr style="height: 40px">
                                 <td width="30%">Contrase&ntilde;a:</td>
                                 <td width="50%">
                                     <input type="password" class="required" value="" name="password" style="width: 200px; height: 23px" align="middle" />
+                                </td>
+                            </tr>
+                            <tr style="height: 40px">
+                                <td width="30%">Nombre:</td>
+                                <td width="50%">
+                                    <input class="required" value="" name="nombreUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 200px; height: 23px" align="middle" />
                                 </td>
                             </tr>
                             <tr style="height: 40px">

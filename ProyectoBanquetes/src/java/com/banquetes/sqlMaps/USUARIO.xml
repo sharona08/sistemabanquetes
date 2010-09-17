@@ -17,7 +17,7 @@
     <insert id="crearUsuario" parameterClass="usuario">
         INSERT INTO USUARIO (username, password, nombre, apellido, correo, idRol)
         VALUES (#username#,
-                #password#,
+                MD5(#password#),
                 #nombre#,
                 #apellido#,
                 #correo#,
@@ -33,11 +33,17 @@
 
     <update id="editarUsuario" parameterClass="usuario">
 	UPDATE USUARIO SET
-          password = #password#,
           nombre = #nombre#,
           apellido = #apellido#,
           correo = #correo#,
           idRol = #idRol#
+	WHERE
+	  username = #username#
+    </update>
+
+    <update id="editarPassword" parameterClass="usuario">
+	UPDATE USUARIO SET
+          password = MD5(#password#)
 	WHERE
 	  username = #username#
     </update>

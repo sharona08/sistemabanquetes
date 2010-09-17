@@ -30,6 +30,12 @@ public interface IServicioUsuario {
     public Boolean editarUsuario(Usuario usuario);
 
     /**
+     * Firma para editar un usuario
+     * @param empresa el objeto usuario que sera editado
+     */
+    public Boolean editarPassword(Usuario usuario);
+
+    /**
      * Firma para listar todas las usuarios
      * @return List<Usuario> lista de todos las usuarios
      */
