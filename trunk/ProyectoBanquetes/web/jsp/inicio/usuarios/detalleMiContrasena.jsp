@@ -62,7 +62,7 @@
             em { font-weight: bold; padding-right: 1em; vertical-align: top; }
         </style>
 
-        <script>
+        <script type="text/javascript">
             $(document).ready(function(){
                 $("#commentForm").validate();
             });
