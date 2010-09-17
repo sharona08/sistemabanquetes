@@ -63,9 +63,6 @@ public class ServicioUsuario implements IServicioUsuario {
         try {
             if (existe) {
                 Usuario newUsuario = (Usuario) sqlMap.queryForObject("getUsuario", usuario.getUsername());
-                if (usuario.getPassword() != null) {
-                    newUsuario.setPassword(usuario.getPassword());
-                }
                 if (usuario.getNombre() != null) {
                     newUsuario.setNombre(usuario.getNombre());
                 }
@@ -80,6 +77,35 @@ public class ServicioUsuario implements IServicioUsuario {
                 }
 
                 int resultado = sqlMap.update("editarUsuario", newUsuario);
+                if (resultado == 1) {
+                    result = Boolean.TRUE;
+                } else {
+                    result = Boolean.FALSE;
+                }
+
+            } else {
+                System.out.println("No existe el usuario");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    public Boolean editarPassword(Usuario usuario) {
+        Boolean result = Boolean.FALSE;
+        Boolean existe = Boolean.TRUE;
+        existe = this.existeUsuario(usuario);
+        try {
+            if (existe) {
+                Usuario newUsuario = (Usuario) sqlMap.queryForObject("getUsuario", usuario.getUsername());
+                if (usuario.getPassword() != null) {
+                    newUsuario.setPassword(usuario.getPassword());
+                } else {
+                    newUsuario.setPassword(newUsuario.getPassword());
+                }
+
+                int resultado = sqlMap.update("editarPassword", newUsuario);
                 if (resultado == 1) {
                     result = Boolean.TRUE;
                 } else {

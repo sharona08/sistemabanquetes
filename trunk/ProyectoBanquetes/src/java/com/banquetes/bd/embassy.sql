@@ -285,6 +285,18 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`USUARIO` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `banquetes`.`IVA`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banquetes`.`IVA` ;
+
+CREATE  TABLE IF NOT EXISTS `banquetes`.`IVA` (
+  `id` INT(11)  NOT NULL ,
+  `porcentaje` DOUBLE NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -346,10 +358,10 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `banquetes`;
-INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (1, 'T', 'GRADUACION', '2010-09-05', '2010-09-06', 50, '18:00:00', '23:00:00', 1, 'J-00000000-0', 7, NULL);
-INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (2, 'T', 'BODA', '2010-09-08', '2010-09-08', 60, '17:00:00', '23:00:00', 6, 'J-00000000-0', 8, 'ROSAS ROJAS');
-INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (3, 'C', 'CONFERENCIA KRAFT', '2010-09-10', '2010-09-11', 30, '12:00:00', '16:00:00', 4, 'J-30131018-7', 5, NULL);
-INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (4, 'C', 'PRESENTACION NUEVO PRODUCTO AVON', '2010-09-12', '2010-09-12', 50, '11:00:00', '15:00:00', 3, 'J-00002735-8', 3, NULL);
+INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (1, 'T', 'GRADUACION', '2010-09-19', '2010-09-20', 50, '18:00:00', '23:00:00', 1, 'J-00000000-0', 7, NULL);
+INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (2, 'T', 'BODA', '2010-09-17', '2010-09-17', 60, '17:00:00', '23:00:00', 6, 'J-00000000-0', 8, 'ROSAS ROJAS');
+INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (3, 'C', 'CONFERENCIA KRAFT', '2010-09-18', '2010-09-20', 30, '12:00:00', '16:00:00', 4, 'J-30131018-7', 5, NULL);
+INSERT INTO `banquetes`.`EVENTO` (`id`, `estado`, `nombre`, `fechaInicio`, `fechaFin`, `cantidadPersonas`, `horaInicio`, `horaFin`, `idTipoEvento`, `rifEmpresa`, `idContacto`, `nota`) VALUES (4, 'C', 'PRESENTACION NUEVO PRODUCTO AVON', '2010-09-20', '2010-09-21', 50, '11:00:00', '15:00:00', 3, 'J-00002735-8', 3, NULL);
 
 COMMIT;
 
@@ -394,7 +406,7 @@ INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idM
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (2, '205', 7, 2, true);
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (2, NULL, 8, 2, true);
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (3, '500', 9, 3, true);
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (4, NULL, 9, 3, true);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (4, NULL, 10, 3, true);
 
 COMMIT;
 
@@ -462,7 +474,16 @@ COMMIT;
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
 USE `banquetes`;
-INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('ADMIN', 'ADMIN', 'Maria', 'Uribe', 'mariale.uribe@gmail.com', 1);
-INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('HUGO', '12345', 'Hugo', 'Pedroza', 'hpedroza@gmail.com', 2);
+INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('ADMIN', '21232f297a57a5a743894a0e4a801fc3', 'Maria', 'Uribe', 'mariale.uribe@gmail.com', 1);
+INSERT INTO `banquetes`.`USUARIO` (`username`, `password`, `nombre`, `apellido`, `correo`, `idRol`) VALUES ('HUGO', '827ccb0eea8a706c4c34a16891f84e7b', 'Hugo', 'Pedroza', 'hpedroza@gmail.com', 2);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `banquetes`.`IVA`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+USE `banquetes`;
+INSERT INTO `banquetes`.`IVA` (`id`, `porcentaje`) VALUES (1, '12');
 
 COMMIT;

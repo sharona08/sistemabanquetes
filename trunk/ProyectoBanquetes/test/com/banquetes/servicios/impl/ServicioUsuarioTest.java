@@ -39,15 +39,13 @@ public class ServicioUsuarioTest {
     /**
      * Test of crearUsuario method, of class ServicioUsuario.
      */
-    //@Test
+    @Test
     public void testCrearUsuario() {
         System.out.println("crearUsuario");
-        Usuario usuario = null;
-        ServicioUsuario instance = new ServicioUsuario();
-        String expResult = "";
-        String result = instance.crearUsuario(usuario);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+
+        Usuario usuario = new Usuario("NUEVO", "12345", "MARIA", "URIBE", "mariale.uribe@gmail.com", new Integer(1));
+        String username = servicioUsuario.crearUsuario(usuario);
+        System.out.println("username: " + username);
     }
 
     /**

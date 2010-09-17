@@ -97,6 +97,7 @@
         </li>
         <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/iva/detalleIva.jsp" id="privacy" class="top_link"><span>IVA</span></a></li>
         <% } %>
+        <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/usuarios/detalleMiCuenta.jsp" id="privacy" class="top_link"><span>Mi Cuenta</span></a></li>
 
         <li class="top"><a href="#nogo57" id="privacy" class="top_link"><span>Acerca De</span></a></li>
         <li class="top2">&nbsp;</li>
