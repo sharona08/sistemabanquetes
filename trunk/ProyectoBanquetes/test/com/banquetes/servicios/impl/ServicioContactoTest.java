@@ -34,10 +34,10 @@ public class ServicioContactoTest {
         }
     }
 
-//    @Test
+    @Test
     public void testEditarContacto() {
         System.out.println("Editar Contacto");
-        Contacto contacto = new Contacto(2, null, "12345", "LOS RUICES", Boolean.TRUE, null);
+        Contacto contacto = new Contacto(7, null, "04126785511", "LOS RUICES", Boolean.TRUE, "J-0000000-0");
 
         try {
             servicioContacto.editarContacto(contacto);

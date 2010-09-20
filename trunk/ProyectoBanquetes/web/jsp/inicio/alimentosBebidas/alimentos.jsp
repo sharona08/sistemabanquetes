@@ -74,9 +74,9 @@
         <tr align="center" style="height: 30px; background-color: #919999; border-color: #556270; font-weight: bolder; color: white">
             <td width="5%">ID</td>
             <td width="15%">Nombre</td>
-            <td width="30%">Descripcion</td>
-            <td width="25%">Costo Unitario</td>
-            <td width="10%">Opcion</td>
+            <td width="47%">Descripcion</td>
+            <td width="10%">Costo Unitario</td>
+            <td width="8%">Opcion</td>
         </tr>
         <%
                     for (Servicio s : servicios) {
@@ -95,7 +95,7 @@
                 <td align="center">
                     <%=s.getNombre()%>
                 </td>
-                <td>
+                <td align="justify" style="padding: 5px">
                     <%
                                             if (s.getDescripcion() == null) {
                                                 out.print("--");
@@ -125,7 +125,7 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td align="center">
+            <td align="center" style="padding: 5px">
                 <div id="boton" class="demo">
                     <input type="submit" name="crear" value="Nuevo" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="redirect('formCrearAlimento.jsp')"/>
                 </div>
@@ -140,7 +140,7 @@
             if (request.getParameter("hiddenId") != null) {
 %>
 
-<div id="alimento" style="width: 50%; min-height: 300px; background-color: #dadada; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
+<div id="alimento" style="width: 40%; min-height: 300px; background-color: #dadada; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
     <jsp:include page="detalleAlimento.jsp"></jsp:include>
 </div>
 

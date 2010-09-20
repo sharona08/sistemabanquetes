@@ -15,7 +15,7 @@
     <typeAlias type="com.banquetes.dominio.ServicioServicioEvento" alias="servicioEvento"/>
 
     <insert id="crearServicioEvento" parameterClass="servicioEvento">
-        INSERT INTO SERVICIO_EVENTO (idServicio, idEvento, idSalon, cantidad, horaInicio, horaFin, notaEspecial, nuevoCosto, nuevoNombre, nuevaDescripcion)
+        INSERT INTO SERVICIO_EVENTO (idServicio, idEvento, idSalon, cantidad, horaInicio, horaFin, notaEspecial, nuevoCosto, nuevoNombre, nuevaDescripcion, fechaInicio, fechaFin)
         VALUES (#idServicio#,
                 #idEvento#,
                 #idSalon#,
@@ -25,7 +25,9 @@
                 #notaEspecial#,
                 #nuevoCosto#,
                 #nuevoNombre#,
-                #nuevaDescripcion#)
+                #nuevaDescripcion#,
+                #fechaInicio#,
+                #fechaFin#)
 
         <selectKey resultClass="Integer">
             SELECT
@@ -45,7 +47,9 @@
           notaEspecial = #notaEspecial#,
           nuevoCosto = #nuevoCosto#,
           nuevoNombre = #nuevoNombre#,
-          nuevaDescripcion = #nuevaDescripcion#
+          nuevaDescripcion = #nuevaDescripcion#,
+          fechaInicio = #fechaInicio#,
+          fechaFin = #fechaFin#
 	WHERE
 	  idEvento = #idEvento#
           AND idServicio = #idServicio#
@@ -63,7 +67,9 @@
           SE.notaEspecial as notaEspecial,
           SE.nuevoCosto as nuevoCosto,
           SE.nuevoNombre as nuevoNombre,
-          SE.nuevaDescripcion as nuevaDescripcion
+          SE.nuevaDescripcion as nuevaDescripcion,
+          SE.fechaInicio as fechaInicio,
+          SE.fechaFin as fechaFin
        FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E
        WHERE SE.idServicio = S.id
          AND SE.idEvento = E.idEvento
@@ -82,7 +88,9 @@
           SE.notaEspecial as notaEspecial,
           SE.nuevoCosto as nuevoCosto,
           SE.nuevoNombre as nuevoNombre,
-          SE.nuevaDescripcion as nuevaDescripcion
+          SE.nuevaDescripcion as nuevaDescripcion,
+          SE.fechaInicio as fechaInicio,
+          SE.fechaFin as fechaFin
        FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E
        WHERE SE.idServicio = S.id
          AND SE.idEvento = E.idEvento
@@ -102,7 +110,9 @@
           SE.notaEspecial as notaEspecial,
           SE.nuevoCosto as nuevoCosto,
           SE.nuevoNombre as nuevoNombre,
-          SE.nuevaDescripcion as nuevaDescripcion
+          SE.nuevaDescripcion as nuevaDescripcion,
+          SE.fechaInicio as fechaInicio,
+          SE.fechaFin as fechaFin
        FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E
        WHERE SE.idServicio = S.id
          AND SE.idEvento = E.idEvento

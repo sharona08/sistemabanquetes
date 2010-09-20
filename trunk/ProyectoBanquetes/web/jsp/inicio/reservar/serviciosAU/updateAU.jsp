@@ -3,6 +3,9 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="com.banquetes.dominio.Evento"%>
+<%@page import="com.banquetes.servicios.impl.ServicioEvento"%>
+<%@page import="com.banquetes.util.UtilMethods"%>
 <%@ page session="true" %>
 
 <%
@@ -41,6 +44,10 @@
                 <%
                             IServicioReserva servicioReserva = new ServicioReserva();
                             ServicioServicioEvento servicioEvento = new ServicioServicioEvento();
+                            UtilMethods util = new UtilMethods();
+
+                            ServicioEvento servEvento = new ServicioEvento();
+                            Evento evento = servEvento.getEvento(Integer.valueOf(request.getParameter("idEvento")));
 
                             servicioEvento.setIdServicio(Integer.valueOf(request.getParameter("idServicio")));
                             servicioEvento.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
@@ -51,7 +58,10 @@
                             String minutosInicio = request.getParameter("minutosInicio");
                             String fullTime = horaInicio + ":" + minutosInicio + ":00";
                             servicioEvento.setHoraInicio(Time.valueOf(fullTime));
-                            servicioEvento.setHoraFin(Time.valueOf(fullTime));
+                            servicioEvento.setHoraFin(evento.getHoraFin());
+
+                            servicioEvento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));
+                            servicioEvento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));
 
                             servicioEvento.setNotaEspecial(request.getParameter("notaEspecial"));
                             servicioEvento.setNuevoCosto(Double.valueOf(request.getParameter("costo")));

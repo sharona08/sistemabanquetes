@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="com.banquetes.util.UtilMethods"%>
 <%@ page session="true" %>
 
 <%
@@ -41,6 +42,7 @@
                 <%
                             IServicioReserva servicioReserva = new ServicioReserva();
                             ServicioServicioEvento servicioEvento = new ServicioServicioEvento();
+                            UtilMethods util = new UtilMethods();
 
                             servicioEvento.setIdServicio(Integer.valueOf(request.getParameter("nombre")));
                             servicioEvento.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
@@ -52,6 +54,9 @@
                             String fullTime = horaInicio + ":" + minutosInicio + ":00";
                             servicioEvento.setHoraInicio(Time.valueOf(fullTime));
                             servicioEvento.setHoraFin(Time.valueOf(fullTime));
+
+                            servicioEvento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));
+                            servicioEvento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));
 
                             servicioEvento.setNotaEspecial(request.getParameter("nota"));
                             servicioEvento.setNuevoCosto(Double.valueOf(request.getParameter("costoUnitario")));

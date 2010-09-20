@@ -42,29 +42,29 @@
             <tr style="height: 40px">
                 <td width="30%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= servicio.getNombre()%>" name="nombreServicio" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= servicio.getNombre()%>" name="nombreServicio" onKeyUp="this.value=this.value.toUpperCase();" style="width: 215px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 80px;">
                 <td>Descripcion:</td>
                 <td>
                     <% if (!descripcion.equals("")) {%>
-                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=descripcion%></textarea>
+                    <textarea name="descripcion" rows="5" cols="" style="width: 218px"><%=descripcion%></textarea>
                     <% } else {%>
-                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=""%></textarea>
+                    <textarea name="descripcion" rows="5" cols="" style="width: 218px"><%=""%></textarea>
                     <% }%>
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Costo Unitario:</td>
                 <td>
-                    <input value="<%= servicio.getCostoUnitario()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= servicio.getCostoUnitario()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 215px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Estado:</td>
                 <td>
-                    <select name="estados" style="width: 200px; height: 25px">
+                    <select name="estados" style="width: 220px; height: 25px">
                         <% if (servicio.getHabilitado()) {%>
                         <option selected>HABILITADO</option>
                         <option>INHABILITADO</option>
@@ -83,7 +83,7 @@
                                 List<Departamento> departamentos = servicioDepartamento.listarDepartamentos(null, null);
                     %>
 
-                    <select name="departamento" style="width: 200px; height: 25px">
+                    <select name="departamento" style="width: 220px; height: 25px">
                         <% for (Departamento d : departamentos) {%>
                         <%
                              if (d.getId().equals(departamento.getId())) {

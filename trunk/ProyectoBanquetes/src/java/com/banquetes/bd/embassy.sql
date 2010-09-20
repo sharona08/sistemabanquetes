@@ -234,6 +234,8 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`SERVICIO_EVENTO` (
   `nuevoCosto` DOUBLE NULL ,
   `nuevoNombre` VARCHAR(100) NULL ,
   `nuevaDescripcion` VARCHAR(5000) NULL ,
+  `fechaInicio` DATE NOT NULL ,
+  `fechaFin` DATE NOT NULL ,
   PRIMARY KEY (`idServicio`, `idEvento`, `idSalon`) ,
   INDEX `fk_SERVICIO_has_EVENTO_SERVICIO1` (`idServicio` ASC) ,
   INDEX `fk_SERVICIO_EVENTO_EVENTO_SALA1` (`idEvento` ASC, `idSalon` ASC) ,
@@ -406,7 +408,7 @@ INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idM
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (2, '205', 7, 2, true);
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (2, NULL, 8, 2, true);
 INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (3, '500', 9, 3, true);
-INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (4, NULL, 10, 3, true);
+INSERT INTO `banquetes`.`EVENTO_SALA` (`idEvento`, `nuevoCosto`, `idSalon`, `idMontaje`, `visible`) VALUES (4, NULL, 6, 3, true);
 
 COMMIT;
 
@@ -450,12 +452,13 @@ INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitari
 INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (20, 'LAPTOP', NULL, '500', 'AU', true, 1);
 INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (21, 'TARIMA', NULL, '100', 'AU', true, 1);
 INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (22, 'WI-FI', NULL, '80', 'AU', true, 1);
-INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (23, 'COFFEE BREAK 1', 'DESCRIPCION DEL COFFEE BREAK 1', '50', 'AB', true, 3);
-INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (24, 'COFFEE BREAK 2', 'DESCRIPCION DEL COFFEE BREAK 2', '50', 'AB', true, 3);
-INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (25, 'COFFEE BREAK 3', 'DESCRIPCION DEL COFFEE BREAK 3', '50', 'AB', true, 3);
-INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (26, 'COFFEE BREAK 4', 'DESCRIPCION DEL COFFEE BREAK 4', '50', 'AB', true, 3);
-INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (27, 'COFFEE BREAK 5', 'DESCRIPCION DEL COFFEE BREAK 5', '45', 'AB', true, 3);
-INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (28, 'SERVICIO OTRO', 'DESCRIPCION DEL SERVICIO', '34', 'OT', true, 5);
+INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (23, 'COFFEE BREAK 01', 'CAFE REGULAR O DESCAFEINADO, TE Y LECHE.\nJUGO DE FRUTAS FRESCAS: DOS SABORES A ELECCION. CROISSANTS DE JAMON Y QUESO.\nPASTELITOS DE RICOTA Y ESPINACA.', '70', 'AB', true, 3);
+INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (24, 'COFFEE BREAK 02', 'DESCRIPCION DEL COFFEE BREAK 2', '90', 'AB', true, 3);
+INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (25, 'COFFEE BREAK 03', 'DESCRIPCION DEL COFFEE BREAK 3', '70', 'AB', true, 3);
+INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (26, 'COFFEE BREAK 04', 'DESCRIPCION DEL COFFEE BREAK 4', '90', 'AB', true, 3);
+INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (27, 'COFFEE BREAK 05', 'DESCRIPCION DEL COFFEE BREAK 5', '100', 'AB', true, 3);
+INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (28, 'COFFEE BREAK 06', 'DESCRIPCION DEL COFFEE BREAK 6', '75', 'AB', true, 3);
+INSERT INTO `banquetes`.`SERVICIO` (`id`, `nombre`, `descripcion`, `costoUnitario`, `tipoServicio`, `habilitado`, `idDepartamento`) VALUES (29, 'SERVICIO OTRO', 'DESCRIPCION DEL SERVICIO OTRO', '60', 'OT', true, 5);
 
 COMMIT;
 
