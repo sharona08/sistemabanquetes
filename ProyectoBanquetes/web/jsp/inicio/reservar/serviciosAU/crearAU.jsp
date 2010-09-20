@@ -3,6 +3,9 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="com.banquetes.dominio.Evento"%>
+<%@page import="com.banquetes.servicios.impl.ServicioEvento"%>
+<%@page import="com.banquetes.util.UtilMethods"%>
 <%@ page session="true" %>
 
 <%
@@ -40,25 +43,32 @@
                 <h1 id="letra1">Crear Audiovisuales</h1>
                 <%
                             IServicioReserva servicioReserva = new ServicioReserva();
-                            ServicioServicioEvento servicioEvento = new ServicioServicioEvento();
+                            ServicioServicioEvento servicioServicioEvento = new ServicioServicioEvento();
+                            UtilMethods util = new UtilMethods();
 
-                            servicioEvento.setIdServicio(Integer.valueOf(request.getParameter("nombre")));
-                            servicioEvento.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
-                            servicioEvento.setIdSalon(Integer.valueOf(request.getParameter("salon")));
-                            servicioEvento.setCantidad(Integer.valueOf(request.getParameter("cantidad")));
+                            ServicioEvento servicioEvento = new ServicioEvento();
+                            Evento evento = servicioEvento.getEvento(Integer.valueOf(request.getParameter("idEvento")));
+
+                            servicioServicioEvento.setIdServicio(Integer.valueOf(request.getParameter("nombre")));
+                            servicioServicioEvento.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
+                            servicioServicioEvento.setIdSalon(Integer.valueOf(request.getParameter("salon")));
+                            servicioServicioEvento.setCantidad(Integer.valueOf(request.getParameter("cantidad")));
 
                             String horaInicio = request.getParameter("horaInicio");
                             String minutosInicio = request.getParameter("minutosInicio");
                             String fullTime = horaInicio + ":" + minutosInicio + ":00";
-                            servicioEvento.setHoraInicio(Time.valueOf(fullTime));
-                            servicioEvento.setHoraFin(Time.valueOf(fullTime));
+                            servicioServicioEvento.setHoraInicio(Time.valueOf(fullTime));
+                            servicioServicioEvento.setHoraFin(evento.getHoraFin());
 
-                            servicioEvento.setNotaEspecial(request.getParameter("nota"));
-                            servicioEvento.setNuevoCosto(Double.valueOf(request.getParameter("costoUnitario")));
-                            servicioEvento.setNuevoNombre("");
-                            servicioEvento.setNuevaDescripcion(request.getParameter("descripcion"));
+                            servicioServicioEvento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));
+                            servicioServicioEvento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));
 
-                            Boolean result = servicioReserva.crearServicioEvento(servicioEvento);
+                            servicioServicioEvento.setNotaEspecial(request.getParameter("nota"));
+                            servicioServicioEvento.setNuevoCosto(Double.valueOf(request.getParameter("costoUnitario")));
+                            servicioServicioEvento.setNuevoNombre("");
+                            servicioServicioEvento.setNuevaDescripcion(request.getParameter("descripcion"));
+
+                            Boolean result = servicioReserva.crearServicioEvento(servicioServicioEvento);
                             if (result) {
                 %>
                 <script type="text/javascript">

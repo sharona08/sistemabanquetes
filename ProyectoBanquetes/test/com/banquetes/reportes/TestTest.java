@@ -22,10 +22,18 @@ public class TestTest {
     /**
      * Reportes of reporteTest method, of class Reportes.
      */
-    @Test
+    //@Test
     public void testReporteTest() {
         System.out.println("reporteTest");
         test.reporteSalonesPDF();
+    }
+
+    @Test
+    public void testReporteContactosEmpresa() {
+        System.out.println("reporteContactosEmpresa");
+        String rifEmpresa = "J-00000000-0";
+
+        test.reporteContactosEmpresaPDF(rifEmpresa);
     }
 
 }

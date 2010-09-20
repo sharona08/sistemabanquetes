@@ -22,6 +22,7 @@ import static org.junit.Assert.*;
 public class ServicioReservaTest {
 
     private IServicioReserva servicioReserva = new ServicioReserva();
+    private UtilMethods util = new UtilMethods();
 
     public ServicioReservaTest() {
     }
@@ -32,7 +33,6 @@ public class ServicioReservaTest {
     //@Test
     public void testReservar() {
         System.out.println("reservar");
-        UtilMethods util = new UtilMethods();
         java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
         java.sql.Date fechaFin = util.getSqlDate("2010-09-12");
         java.sql.Time horaInicio = Time.valueOf("23:50:00");
@@ -51,7 +51,9 @@ public class ServicioReservaTest {
     //@Test
     public void testCrearServicioEvento() {
         System.out.println("testCrearServicioEvento");
-        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(1, 2, 4, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "");
+        java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
+        java.sql.Date fechaFin = util.getSqlDate("2010-09-12");
+        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(1, 2, 4, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin);
 
         Boolean result = servicioReserva.crearServicioEvento(servicioEvento);
         System.out.println("Inserto: " + result);
@@ -65,7 +67,9 @@ public class ServicioReservaTest {
         Integer idEvento = new Integer(5);
         Integer idSalon = new Integer(4);
 
-        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(idServicio, idEvento, idSalon, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "");
+        java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
+        java.sql.Date fechaFin = util.getSqlDate("2010-09-12");
+        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(idServicio, idEvento, idSalon, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin);
 
         Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon);
         System.out.println("Elimino: " + result);
@@ -84,7 +88,7 @@ public class ServicioReservaTest {
     //@Test
     public void testGetServicioEvento() {
         System.out.println("testGetServicioEvento");
-        
+
         Integer idServicio = new Integer(16);
         Integer idEvento = new Integer(5);
         Integer idSalon = new Integer(4);

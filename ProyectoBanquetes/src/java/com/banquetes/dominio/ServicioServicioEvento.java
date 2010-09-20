@@ -1,5 +1,6 @@
 package com.banquetes.dominio;
 
+import java.sql.Date;
 import java.sql.Time;
 
 /**
@@ -19,11 +20,13 @@ public class ServicioServicioEvento {
     private Double nuevoCosto;
     private String nuevoNombre;
     private String nuevaDescripcion;
+    private Date fechaInicio;
+    private Date fechaFin;
 
     public ServicioServicioEvento() {
     }
 
-    public ServicioServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Integer cantidad, Time horaInicio, Time horaFin, String notaEspecial, Double nuevoCosto, String nuevoNombre, String nuevaDescripcion) {
+    public ServicioServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Integer cantidad, Time horaInicio, Time horaFin, String notaEspecial, Double nuevoCosto, String nuevoNombre, String nuevaDescripcion, Date fechaInicio, Date fechaFin) {
         this.idServicio = idServicio;
         this.idEvento = idEvento;
         this.idSalon = idSalon;
@@ -34,6 +37,8 @@ public class ServicioServicioEvento {
         this.nuevoCosto = nuevoCosto;
         this.nuevoNombre = nuevoNombre;
         this.nuevaDescripcion = nuevaDescripcion;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
     }
 
     public Integer getIdServicio() {
@@ -115,6 +120,22 @@ public class ServicioServicioEvento {
 
     public void setNuevoNombre(String nuevoNombre) {
         this.nuevoNombre = nuevoNombre.toUpperCase();
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
 }

@@ -137,6 +137,23 @@
                                     <input class="required" type="text" name="cantidad" value="1" style="width: 195px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
                                 </td>
                             </tr>
+
+                            <tr style="height: 38px">
+                                <td>Fecha Inicio: (*)</td>
+                                <td>
+                                    <input class="inputDate" id="inputDate" value="<%= evento.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 190px; height: 20px" />
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            
+                            <tr style="height: 38px">
+                                <td>Fecha Fin: (*)</td>
+                                <td>
+                                    <input class="inputDate2" id="inputDate2" value="<%= evento.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 190px; height: 20px" />
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+
                             <tr style="height: 40px">
                                 <td>Hora:</td>
                                 <td>

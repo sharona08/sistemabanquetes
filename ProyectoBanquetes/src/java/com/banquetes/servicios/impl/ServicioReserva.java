@@ -125,6 +125,12 @@ public class ServicioReserva implements IServicioReserva {
             if (servicioEvento.getNuevaDescripcion() != null) {
                 newServicioEvento.setNuevaDescripcion(servicioEvento.getNuevaDescripcion());
             }
+            if (servicioEvento.getFechaInicio() != null) {
+                newServicioEvento.setFechaInicio(servicioEvento.getFechaInicio());
+            }
+            if (servicioEvento.getFechaFin() != null) {
+                newServicioEvento.setFechaFin(servicioEvento.getFechaFin());
+            }
 
             int resultado = sqlMap.update("editarServicioEvento", newServicioEvento);
 

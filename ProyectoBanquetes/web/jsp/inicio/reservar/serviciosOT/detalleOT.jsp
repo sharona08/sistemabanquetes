@@ -85,6 +85,20 @@
                 </td>
             </tr>
             <tr style="height: 35px">
+                <td>Fecha Inicio: (*)</td>
+                <td>
+                    <input class="inputDate3" id="inputDate3" value="<%= servicioEvento.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr style="height: 35px">
+                <td>Fecha Fin: (*)</td>
+                <td>
+                    <input class="inputDate4" id="inputDate4" value="<%= servicioEvento.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr style="height: 35px">
                 <% String fullTime = servicioEvento.getHoraInicio().toString();%>
                 <% String[] arregloHora = fullTime.split(":");%>
                 <% Integer hora = Integer.valueOf(arregloHora[0]);%>
