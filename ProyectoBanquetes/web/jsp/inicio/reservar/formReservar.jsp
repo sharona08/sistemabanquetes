@@ -175,7 +175,7 @@
                                             <%= "0" + i%>
                                         </option>
                                         <% } else {%>
-                                        <option selected>
+                                        <option>
                                             <%= i%>
                                         </option>
                                         <% }%>
@@ -185,11 +185,11 @@
                                         <% for (int i = 0; i < 60; i = i + 10) {%>
 
                                         <% if (i < 10) {%>
-                                        <option selected>
+                                        <option>
                                             <%= "0" + i%>
                                         </option>
                                         <% } else {%>
-                                        <option selected>
+                                        <option>
                                             <%= i%>
                                         </option>
                                         <% }%>
@@ -209,7 +209,7 @@
                                             <%= "0" + i%>
                                         </option>
                                         <% } else {%>
-                                        <option selected>
+                                        <option>
                                             <%= i%>
                                         </option>
                                         <% }%>
@@ -219,11 +219,11 @@
                                         <% for (int i = 0; i < 60; i = i + 10) {%>
 
                                         <% if (i < 10) {%>
-                                        <option selected>
+                                        <option>
                                             <%= "0" + i%>
                                         </option>
                                         <% } else {%>
-                                        <option selected>
+                                        <option>
                                             <%= i%>
                                         </option>
                                         <% }%>
