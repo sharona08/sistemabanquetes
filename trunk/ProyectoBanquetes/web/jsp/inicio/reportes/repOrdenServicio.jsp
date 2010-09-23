@@ -75,9 +75,9 @@
 
                                 Map masterParams = new HashMap();
                                 masterParams.put("idEvento", idEvento);
-                                //masterParams.put("ruta1", application.getRealPath("jsp/inicio/reportes/jasper/reporteOrdenServicioSubreporteSalones.jasper"));
-                                masterParams.put("ruta2", application.getRealPath("jsp/inicio/reportes/jasper/reporteOrdenServicioSubreporteServiciosAU.jasper"));
-                                masterParams.put("ruta3", application.getRealPath("jsp/inicio/reportes/jasper/reporteOrdenServicioSubreporteServiciosAB.jasper"));
+                                masterParams.put("rutaAU", application.getRealPath("jsp/inicio/reportes/jasper/reporteOrdenServicioSubreporteServiciosAU.jasper"));
+                                masterParams.put("rutaAB", application.getRealPath("jsp/inicio/reportes/jasper/reporteOrdenServicioSubreporteServiciosAB.jasper"));
+                                masterParams.put("rutaOT", application.getRealPath("jsp/inicio/reportes/jasper/reporteOrdenServicioSubreporteServiciosOT.jasper"));
                                 jasperPrint = JasperFillManager.fillReport(masterReport, masterParams, conn);
                                 JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/reporteOrdenServicio" + idEvento + "PDF.pdf"));
                                 File file = new File(application.getRealPath("jsp/inicio/reportes/PDF/reporteOrdenServicio" + idEvento + "PDF.pdf"));

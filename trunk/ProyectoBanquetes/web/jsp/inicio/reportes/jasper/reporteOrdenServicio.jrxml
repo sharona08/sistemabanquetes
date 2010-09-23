@@ -24,8 +24,9 @@
 	<import value="net.sf.jasperreports.engine.data.*" />
 
 	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
-	<parameter name="ruta2" isForPrompting="false" class="java.lang.String"/>
-	<parameter name="ruta3" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="rutaAU" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaAB" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaOT" isForPrompting="true" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT
          EV.id as idEvento,
          EV.nombre as nombreEvento,
@@ -74,7 +75,7 @@
 			</band>
 		</background>
 		<title>
-			<band height="106"  isSplitAllowed="true" >
+			<band height="34"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="168"
@@ -88,58 +89,6 @@
 					</textElement>
 				<text><![CDATA[ORDEN DE SERVICIO]]></text>
 				</staticText>
-				<staticText>
-					<reportElement
-						x="1"
-						y="55"
-						width="117"
-						height="18"
-						key="staticText-3"/>
-					<box></box>
-					<textElement verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
-					</textElement>
-				<text><![CDATA[EVENTO:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="1"
-						y="75"
-						width="117"
-						height="18"
-						key="staticText-4"/>
-					<box></box>
-					<textElement verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
-					</textElement>
-				<text><![CDATA[ORGANIZADOR:]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="126"
-						y="55"
-						width="180"
-						height="18"
-						key="textField"/>
-					<box></box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="11"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreEvento}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="126"
-						y="75"
-						width="180"
-						height="18"
-						key="textField"/>
-					<box></box>
-					<textElement verticalAlignment="Middle">
-						<font size="11"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreEmpresa}]]></textFieldExpression>
-				</textField>
 			</band>
 		</title>
 		<pageHeader>
@@ -151,40 +100,82 @@
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="136"  isSplitAllowed="true" >
+			<band height="171"  isSplitAllowed="true" >
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="1"
-						y="35"
+						y="1"
 						width="534"
 						height="44"
-						key="subreport-2"/>
+						key="subreport-2"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="idEvento">
 						<subreportParameterExpression><![CDATA[$F{idEvento}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{ruta2}]]></subreportExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaAU}]]></subreportExpression>
 				</subreport>
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="1"
-						y="90"
+						y="62"
 						width="534"
 						height="44"
-						key="subreport-3"/>
+						key="subreport-3"
+						isRemoveLineWhenBlank="true"/>
 					<subreportParameter  name="idEvento">
 						<subreportParameterExpression><![CDATA[$F{idEvento}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression  class="java.lang.String"><![CDATA[$P{ruta3}]]></subreportExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaOT}]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="1"
+						y="125"
+						width="534"
+						height="44"
+						key="subreport-4"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="idEvento">
+						<subreportParameterExpression><![CDATA[$F{idEvento}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaAB}]]></subreportExpression>
 				</subreport>
 				<break>
 					<reportElement
-						x="0"
-						y="82"
+						x="-3"
+						y="111"
 						width="535"
 						height="0"
-						key="element-1"/>
+						key="element-2"/>
+				</break>
+				<break>
+					<reportElement
+						x="0"
+						y="50"
+						width="535"
+						height="0"
+						key="element-3"/>
+				</break>
+				<break>
+					<reportElement
+						x="-3"
+						y="118"
+						width="535"
+						height="0"
+						key="element-4"
+						isRemoveLineWhenBlank="true"/>
+				</break>
+				<break>
+					<reportElement
+						x="-3"
+						y="56"
+						width="535"
+						height="0"
+						key="element-5"
+						isRemoveLineWhenBlank="true"/>
 				</break>
 			</band>
 		</detail>
