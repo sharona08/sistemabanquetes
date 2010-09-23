@@ -28,12 +28,20 @@ public class TestTest {
         test.reporteSalonesPDF();
     }
 
-    @Test
+//    @Test
     public void testReporteContactosEmpresa() {
         System.out.println("reporteContactosEmpresa");
         String rifEmpresa = "J-00000000-0";
 
         test.reporteContactosEmpresaPDF(rifEmpresa);
+    }
+
+    @Test
+    public void testReporteOrdenServicio() {
+        System.out.println("reporteOrdenServicio");
+        Integer idEvento = new Integer(5);
+
+        test.reporteOrdenServicioPDF(idEvento);
     }
 
 }

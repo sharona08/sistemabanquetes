@@ -69,11 +69,13 @@
             </ul>
         </li>
         <li class="top"><a href="" id="services" class="top_link"><span class="down">Reportes</span></a>
-            <ul class="sub">
-                <li><a href="">Reporte 1</a></li>
-                <li><a href="">Reporte 2</a></li>
-                <li><a href="">Reporte 3</a></li>
-                <li><a href="">Reporte 4</a></li>
+            <ul class="sub" >
+                <li><a href="/ProyectoBanquetes/jsp/inicio/reportes/formOrdenServicio.jsp">Orden de Servicio</a></li>
+                <li><a href="">Cotización</a></li>
+                <li><a href="">Servicio más vendido</a></li>
+                <li><a href="">Salón más vendido</a></li>
+                <li><a href="">Ventas salón</a></li>
+                <li><a href="">Cierre ventas</a></li>
             </ul>
         </li>
         <li class="top"><a href="" id="contacts" class="top_link"><span class="down">Reserva</span></a>
