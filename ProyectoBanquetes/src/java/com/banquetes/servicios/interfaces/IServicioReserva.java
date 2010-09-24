@@ -4,6 +4,7 @@ import com.banquetes.dominio.Evento;
 import com.banquetes.dominio.ServicioServicioEvento;
 import com.banquetes.servicios.TO.DetallesReservaSalonTO;
 import com.banquetes.servicios.TO.DetallesReservaTO;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -26,9 +27,9 @@ public interface IServicioReserva {
 
     public List<ServicioServicioEvento> listarServicioEventosTodos(Integer idEvento);
 
-    public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio);
+    public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio, Date fechaInicio);
 
-    public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon);
+    public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Date fechaInicio);
 
     public Double costoTotalSalones(Integer idEvento);
 

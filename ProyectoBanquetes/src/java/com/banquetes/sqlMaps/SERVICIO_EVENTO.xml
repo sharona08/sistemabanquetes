@@ -36,6 +36,7 @@
 	      WHERE idEvento = #idEvento#
 	      AND idServicio = #idServicio#
 	      AND idSalon = #idSalon#
+	      AND fechaInicio = #fechaInicio#
         </selectKey>
     </insert>
 
@@ -48,12 +49,13 @@
           nuevoCosto = #nuevoCosto#,
           nuevoNombre = #nuevoNombre#,
           nuevaDescripcion = #nuevaDescripcion#,
-          fechaInicio = #fechaInicio#,
+          fechaInicio = #nuevaFechaInicio#,
           fechaFin = #fechaFin#
 	WHERE
 	  idEvento = #idEvento#
           AND idServicio = #idServicio#
           AND idSalon = #idSalon#
+	  AND fechaInicio = #fechaInicio#
     </update>
 
     <select id="getServicioEventosTodos" resultClass="servicioEvento">
@@ -120,6 +122,7 @@
          AND SE.idEvento = #idEvento#
          AND SE.idServicio = #idServicio#
          AND SE.idSalon = #idSalon#
+         AND fechaInicio = #fechaInicio#
     </select>
 
     <delete id="eliminarServicioEvento" parameterClass="java.util.HashMap">
@@ -128,6 +131,7 @@
       WHERE SE.idServicio = #idServicio#
       AND SE.idEvento = #idEvento#
       AND SE.idSalon = #idSalon#
+      AND fechaInicio = #fechaInicio#
     </delete>
 
 </sqlMap>

@@ -22,11 +22,12 @@ public class ServicioServicioEvento {
     private String nuevaDescripcion;
     private Date fechaInicio;
     private Date fechaFin;
+    private Date nuevaFechaInicio;
 
     public ServicioServicioEvento() {
     }
 
-    public ServicioServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Integer cantidad, Time horaInicio, Time horaFin, String notaEspecial, Double nuevoCosto, String nuevoNombre, String nuevaDescripcion, Date fechaInicio, Date fechaFin) {
+    public ServicioServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Integer cantidad, Time horaInicio, Time horaFin, String notaEspecial, Double nuevoCosto, String nuevoNombre, String nuevaDescripcion, Date fechaInicio, Date fechaFin, Date nuevaFechaInicio) {
         this.idServicio = idServicio;
         this.idEvento = idEvento;
         this.idSalon = idSalon;
@@ -39,6 +40,7 @@ public class ServicioServicioEvento {
         this.nuevaDescripcion = nuevaDescripcion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.nuevaFechaInicio = nuevaFechaInicio;
     }
 
     public Integer getIdServicio() {
@@ -136,6 +138,14 @@ public class ServicioServicioEvento {
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
+    }
+
+    public Date getNuevaFechaInicio() {
+        return nuevaFechaInicio;
+    }
+
+    public void setNuevaFechaInicio(Date nuevaFechaInicio) {
+        this.nuevaFechaInicio = nuevaFechaInicio;
     }
 
 }

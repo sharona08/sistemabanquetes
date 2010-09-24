@@ -4,6 +4,8 @@
     Author     : maya
 --%>
 
+<%@page import="java.sql.Date"%>
+<%@page import="com.banquetes.util.UtilMethods"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioSalon"%>
 <%@page import="com.banquetes.servicios.impl.ServicioSalon"%>
 <%@page import="com.banquetes.dominio.Salon"%>
@@ -26,14 +28,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-            IServicioDepartamento servicioDepartamento = new ServicioDepartamento();
+            UtilMethods util = new UtilMethods();
 
             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
             Integer idSalon = Integer.valueOf(request.getParameter("idSalon"));
             Integer idServicio = Integer.valueOf(request.getParameter("idServicio"));
+            Date fechaInicio = util.getSqlDate(request.getParameter("fechaInicio"));
 
             IServicioReserva servicioReserva = new ServicioReserva();
-            ServicioServicioEvento servicioEvento = servicioReserva.getServicioEvento(idEvento, idSalon, idServicio);
+            ServicioServicioEvento servicioEvento = servicioReserva.getServicioEvento(idEvento, idSalon, idServicio, fechaInicio);
 
             IServicioServicio servicioServicio = new ServicioServicio();
             Servicio servicio = servicioServicio.getServicio(idServicio);
@@ -202,6 +205,7 @@
         <input type="hidden" name="idEvento" value="<%= idEvento%>"/>
         <input type="hidden" name="idSalon" value="<%= idSalon%>"/>
         <input type="hidden" name="idServicio" value="<%= idServicio%>"/>
+        <input type="hidden" name="fechaInicio" value="<%= fechaInicio%>"/>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
             <input type="submit" name="update" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
         </div>

@@ -236,7 +236,7 @@ CREATE  TABLE IF NOT EXISTS `banquetes`.`SERVICIO_EVENTO` (
   `nuevaDescripcion` VARCHAR(5000) NULL ,
   `fechaInicio` DATE NOT NULL ,
   `fechaFin` DATE NOT NULL ,
-  PRIMARY KEY (`idServicio`, `idEvento`, `idSalon`) ,
+  PRIMARY KEY (`idServicio`, `idEvento`, `idSalon`, `fechaInicio`) ,
   INDEX `fk_SERVICIO_has_EVENTO_SERVICIO1` (`idServicio` ASC) ,
   INDEX `fk_SERVICIO_EVENTO_EVENTO_SALA1` (`idEvento` ASC, `idSalon` ASC) ,
   CONSTRAINT `fk_SERVICIO_has_EVENTO_SERVICIO1`
