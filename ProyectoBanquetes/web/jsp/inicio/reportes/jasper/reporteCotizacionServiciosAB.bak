@@ -2,12 +2,12 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="reporteCotizacionSubreporteSalones"
+		 name="reporteCotizacionServiciosAB"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Portrait"
 		 pageWidth="535"
-		 pageHeight="802"
+		 pageHeight="842"
 		 columnWidth="535"
 		 columnSpacing="0"
 		 leftMargin="0"
@@ -24,46 +24,53 @@
 	<import value="net.sf.jasperreports.engine.data.*" />
 
 	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
-	<parameter name="totalSalones" isForPrompting="false" class="java.lang.Double"/>
+	<parameter name="totalAB" isForPrompting="true" class="java.lang.Double"/>
 	<queryString><![CDATA[SELECT
-         S.id as idSalon,
-         S.nombre as nombreSalon,
-         S.costo as costoSalon,
-         S.habilitado as salonHabilitado,
-         S.idSalon as idSalonFK,
-         ES.nuevoCosto as nuevoCosto,
-         M.id as idTipoMontaje,
-         M.tipoMontaje as tipoMontaje,
-         EV.fechaInicio as fechaInicio,
-         EV.fechaFin as fechaFin,
-         EV.horaInicio as horaInicio,
-         EV.horaFin as horaFin,
-         EV.cantidadPersonas as cantidad
-       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
-	   WHERE S.id = ES.idSalon
-           AND M.id = ES.idMontaje
-           AND EV.idTipoEvento = TE.id
-           AND EV.id = ES.idEvento
-           AND E.rif = EV.rifEmpresa
-           AND E.rif = C.rifEmpresa
-           AND C.id = EV.idContacto
-           AND EV.id = $P{idEvento}
-           AND ES.visible is true]]></queryString>
+          SE.idEvento as idEvento,
+          SE.idServicio as idServicio,
+          S.nombre as nombreServicio,
+          SE.idSalon as idSalon,
+          SE.cantidad as cantidad,
+          SE.horaInicio as horaInicio,
+          SE.horaFin as horaFin,
+          SE.notaEspecial as notaEspecial,
+          SE.nuevoCosto as nuevoCosto,
+          SE.nuevoNombre as nuevoNombre,
+          SE.nuevaDescripcion as nuevaDescripcion,
+          SE.fechaInicio as fechaInicio,
+          SE.fechaFin as fechaFin, 
+          SA.nombre as nombreSalon,
+          M.tipoMontaje as tipoMontaje,
+          S.costoUnitario as costoServicio
+       FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E, SALON SA, MONTAJE M
+       WHERE SE.idServicio = S.id
+         AND SE.idEvento = E.idEvento
+         AND SE.idSalon = E.idSalon
+         AND E.idSalon = SA.id
+         AND E.idMontaje = M.id
+         AND SE.idEvento = $P{idEvento}
+         AND S.tipoServicio = 'AB'
+ORDER BY fechaInicio ASC]]></queryString>
 
+	<field name="idEvento" class="java.lang.Integer"/>
+	<field name="idServicio" class="java.lang.Integer"/>
+	<field name="nombreServicio" class="java.lang.String"/>
 	<field name="idSalon" class="java.lang.Integer"/>
-	<field name="nombreSalon" class="java.lang.String"/>
-	<field name="costoSalon" class="java.lang.Double"/>
-	<field name="salonHabilitado" class="java.lang.Boolean"/>
-	<field name="idSalonFK" class="java.lang.Integer"/>
-	<field name="nuevoCosto" class="java.lang.Double"/>
-	<field name="idTipoMontaje" class="java.lang.Integer"/>
-	<field name="tipoMontaje" class="java.lang.String"/>
-	<field name="fechaInicio" class="java.sql.Date"/>
-	<field name="fechaFin" class="java.sql.Date"/>
+	<field name="cantidad" class="java.lang.Integer"/>
 	<field name="horaInicio" class="java.sql.Time"/>
 	<field name="horaFin" class="java.sql.Time"/>
-	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="notaEspecial" class="java.lang.String"/>
+	<field name="nuevoCosto" class="java.lang.Double"/>
+	<field name="nuevoNombre" class="java.lang.String"/>
+	<field name="nuevaDescripcion" class="java.lang.String"/>
+	<field name="fechaInicio" class="java.sql.Date"/>
+	<field name="fechaFin" class="java.sql.Date"/>
+	<field name="nombreSalon" class="java.lang.String"/>
+	<field name="tipoMontaje" class="java.lang.String"/>
+	<field name="costoServicio" class="java.lang.Double"/>
 
+	<variable name="totalServicio" class="java.lang.Double" resetType="Report" calculation="Nothing">
+	</variable>
 		<background>
 			<band height="0"  isSplitAllowed="true" >
 			</band>
@@ -87,20 +94,20 @@
 				</rectangle>
 				<staticText>
 					<reportElement
-						x="22"
+						x="6"
 						y="9"
 						width="62"
 						height="19"
 						key="staticText-1"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Fecha]]></text>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
-						x="102"
+						x="74"
 						y="1"
 						width="0"
 						height="35"
@@ -110,8 +117,8 @@
 				</line>
 				<line direction="TopDown">
 					<reportElement
-						x="185"
-						y="2"
+						x="134"
+						y="1"
 						width="0"
 						height="35"
 						forecolor="#919999"
@@ -120,20 +127,20 @@
 				</line>
 				<staticText>
 					<reportElement
-						x="113"
+						x="81"
 						y="9"
-						width="62"
+						width="47"
 						height="19"
 						key="staticText-2"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Hora]]></text>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
-						x="271"
+						x="206"
 						y="2"
 						width="0"
 						height="35"
@@ -143,20 +150,20 @@
 				</line>
 				<staticText>
 					<reportElement
-						x="197"
+						x="142"
 						y="9"
-						width="62"
+						width="56"
 						height="19"
 						key="staticText-3"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Salón]]></text>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
-						x="392"
+						x="322"
 						y="1"
 						width="0"
 						height="35"
@@ -166,21 +173,21 @@
 				</line>
 				<staticText>
 					<reportElement
-						x="298"
+						x="231"
 						y="9"
 						width="62"
 						height="19"
 						key="staticText-4"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Montaje]]></text>
+				<text><![CDATA[Servicio]]></text>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
-						x="442"
-						y="2"
+						x="368"
+						y="1"
 						width="0"
 						height="35"
 						forecolor="#919999"
@@ -189,29 +196,52 @@
 				</line>
 				<staticText>
 					<reportElement
-						x="397"
+						x="327"
 						y="9"
 						width="36"
 						height="19"
 						key="staticText-5"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[PAX]]></text>
+				<text><![CDATA[Cant]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="448"
+						x="375"
 						y="9"
-						width="79"
+						width="67"
 						height="19"
 						key="staticText-6"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Costo Salon]]></text>
+				<text><![CDATA[Costo Unit.]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="446"
+						y="1"
+						width="0"
+						height="35"
+						forecolor="#919999"
+						key="line-11"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="448"
+						y="9"
+						width="68"
+						height="19"
+						key="staticText-8"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Total]]></text>
 				</staticText>
 			</band>
 		</pageHeader>
@@ -224,7 +254,7 @@
 				<rectangle>
 					<reportElement
 						x="1"
-						y="-1"
+						y="0"
 						width="534"
 						height="37"
 						forecolor="#919999"
@@ -233,7 +263,7 @@
 				</rectangle>
 				<line direction="TopDown">
 					<reportElement
-						x="102"
+						x="74"
 						y="-3"
 						width="0"
 						height="38"
@@ -245,32 +275,19 @@
 					<reportElement
 						x="1"
 						y="-1"
-						width="102"
-						height="19"
+						width="75"
+						height="37"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="11"/>
+						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Del " + $F{fechaInicio}.toString()]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="1"
-						y="17"
-						width="102"
-						height="19"
-						key="textField-1"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="11"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Al " + $F{fechaFin}.toString()]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{fechaInicio}.toString()]]></textFieldExpression>
 				</textField>
 				<line direction="TopDown">
 					<reportElement
-						x="185"
-						y="-1"
+						x="134"
+						y="-2"
 						width="0"
 						height="38"
 						forecolor="#919999"
@@ -279,20 +296,20 @@
 				</line>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="102"
-						y="-1"
-						width="84"
-						height="19"
+						x="74"
+						y="0"
+						width="60"
+						height="37"
 						key="textField-2"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="11"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaInicio}.toString()]]></textFieldExpression>
 				</textField>
 				<line direction="TopDown">
 					<reportElement
-						x="271"
+						x="206"
 						y="-2"
 						width="0"
 						height="38"
@@ -302,33 +319,20 @@
 				</line>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="102"
-						y="17"
-						width="84"
-						height="19"
-						key="textField-3"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="11"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaFin}.toString()]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="185"
-						y="-1"
-						width="87"
+						x="134"
+						y="0"
+						width="72"
 						height="37"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="11"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreSalon}]]></textFieldExpression>
 				</textField>
 				<line direction="TopDown">
 					<reportElement
-						x="392"
+						x="322"
 						y="-2"
 						width="0"
 						height="38"
@@ -336,23 +340,10 @@
 						key="line-7"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="271"
-						y="-1"
-						width="122"
-						height="37"
-						key="textField"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="11"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tipoMontaje}]]></textFieldExpression>
-				</textField>
 				<line direction="TopDown">
 					<reportElement
-						x="442"
-						y="-2"
+						x="368"
+						y="-3"
 						width="0"
 						height="38"
 						forecolor="#919999"
@@ -361,29 +352,65 @@
 				</line>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="392"
-						y="-1"
-						width="51"
+						x="323"
+						y="0"
+						width="43"
 						height="37"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="11"/>
+						<font size="10"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cantidad}]]></textFieldExpression>
 				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="446"
+						y="-1"
+						width="0"
+						height="38"
+						forecolor="#919999"
+						key="line-12"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
 				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="442"
-						y="-1"
-						width="93"
+						x="372"
+						y="0"
+						width="73"
 						height="37"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="11"/>
+						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{costoSalon}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[(($F{costoServicio} == null)? $F{nuevoCosto} : $F{costoServicio})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="206"
+						y="0"
+						width="116"
+						height="37"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreServicio}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="448"
+						y="0"
+						width="87"
+						height="37"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[new Double($F{cantidad}.doubleValue() * $F{costoServicio}.doubleValue() )]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
@@ -392,32 +419,32 @@
 			</band>
 		</columnFooter>
 		<pageFooter>
-			<band height="30"  isSplitAllowed="true" >
+			<band height="27"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="343"
-						y="4"
-						width="99"
+						x="269"
+						y="2"
+						width="170"
 						height="22"
 						key="staticText-7"/>
 					<box></box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="12"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
-				<text><![CDATA[Total Salones:]]></text>
+				<text><![CDATA[Total Alimentos y Bebidas:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="441"
-						y="4"
+						x="438"
+						y="2"
 						width="93"
 						height="22"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[$P{totalSalones}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$P{totalAB}]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageFooter>

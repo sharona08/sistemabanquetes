@@ -24,6 +24,7 @@
 	<import value="net.sf.jasperreports.engine.data.*" />
 
 	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
+	<parameter name="totalSalones" isForPrompting="false" class="java.lang.Double"/>
 	<queryString><![CDATA[SELECT
          S.id as idSalon,
          S.nombre as nombreSalon,
@@ -292,7 +293,7 @@
 				<line direction="TopDown">
 					<reportElement
 						x="271"
-						y="-1"
+						y="-2"
 						width="0"
 						height="38"
 						forecolor="#919999"
@@ -351,7 +352,7 @@
 				<line direction="TopDown">
 					<reportElement
 						x="442"
-						y="-1"
+						y="-2"
 						width="0"
 						height="38"
 						forecolor="#919999"
@@ -376,7 +377,7 @@
 						x="442"
 						y="-1"
 						width="93"
-						height="36"
+						height="37"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -391,7 +392,33 @@
 			</band>
 		</columnFooter>
 		<pageFooter>
-			<band height="0"  isSplitAllowed="true" >
+			<band height="30"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="343"
+						y="4"
+						width="99"
+						height="22"
+						key="staticText-7"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[Total Salones:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="441"
+						y="4"
+						width="93"
+						height="22"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$P{totalSalones}]]></textFieldExpression>
+				</textField>
 			</band>
 		</pageFooter>
 		<summary>
