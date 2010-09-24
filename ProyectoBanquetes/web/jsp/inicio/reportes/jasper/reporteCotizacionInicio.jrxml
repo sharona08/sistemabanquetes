@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="reporteCotizacionInicio"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="535"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="BlankPage"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="ISO-8859-1" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
+	<parameter name="montoTotal" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaSalones" isForPrompting="false" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT
+         CURRENT_DATE() as fechaActual,
+         MONTH(CURRENT_DATE()) as mesActual,
+         YEAR(CURRENT_DATE()) as anoActual,
+         EV.id as idEvento,
+         EV.nombre as nombreEvento,
+         EV.estado as estadoEvento,
+         EV.fechaInicio as fechaInicio,
+         EV.fechaFin as fechaFin,
+         EV.cantidadPersonas as cantidadPersonas,
+         EV.horaInicio as horaInicio,
+         EV.horaFin as horaFin,
+         TE.id as idTipoEvento,
+         TE.tipoEvento as tipoEvento,
+         E.rif as rifEmpresa,
+         E.nombre as nombreEmpresa,
+         E.direccion as direccionEmpresa,
+         E.telefono as telefonoEmpresa,
+         C.id as idContacto,
+         C.nombre as nombreContacto,
+         EV.nota as nota
+       FROM EMPRESA E, EVENTO EV, TIPO_EVENTO TE, CONTACTO C
+	   WHERE EV.idTipoEvento = TE.id
+           AND E.rif = EV.rifEmpresa
+           AND E.rif = C.rifEmpresa
+           AND C.id = EV.idContacto
+           AND EV.id = $P{idEvento}]]></queryString>
+
+	<field name="fechaActual" class="java.sql.Date"/>
+	<field name="mesActual" class="java.lang.String"/>
+	<field name="anoActual" class="java.lang.Long"/>
+	<field name="idEvento" class="java.lang.Integer"/>
+	<field name="nombreEvento" class="java.lang.String"/>
+	<field name="estadoEvento" class="java.lang.String"/>
+	<field name="fechaInicio" class="java.sql.Date"/>
+	<field name="fechaFin" class="java.sql.Date"/>
+	<field name="cantidadPersonas" class="java.lang.Integer"/>
+	<field name="horaInicio" class="java.sql.Time"/>
+	<field name="horaFin" class="java.sql.Time"/>
+	<field name="idTipoEvento" class="java.lang.Integer"/>
+	<field name="tipoEvento" class="java.lang.String"/>
+	<field name="rifEmpresa" class="java.lang.String"/>
+	<field name="nombreEmpresa" class="java.lang.String"/>
+	<field name="direccionEmpresa" class="java.lang.String"/>
+	<field name="telefonoEmpresa" class="java.lang.String"/>
+	<field name="idContacto" class="java.lang.Integer"/>
+	<field name="nombreContacto" class="java.lang.String"/>
+	<field name="nota" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="664"  isSplitAllowed="true" >
+				<image  hAlign="Center" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="118"
+						y="2"
+						width="286"
+						height="107"
+						key="image-1"/>
+					<box></box>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA["/home/maya/NetBeansProjects/ProyectoBanquetes/web/images/embassy.jpg"]]></imageExpression>
+				</image>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="351"
+						y="119"
+						width="182"
+						height="22"
+						forecolor="#000000"
+						key="textField-8"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Caracas, " + String.valueOf($F{fechaActual}.getDate()) + " " + String.valueOf((($F{mesActual}.equals("1"))? "Enero" : (($F{mesActual}.equals("2"))? "Febrero" : (($F{mesActual}.equals("3"))? "Marzo" : (($F{mesActual}.equals("4"))? "Abril" : (($F{mesActual}.equals("5"))? "Mayo" : (($F{mesActual}.equals("6"))? "Junio" : (($F{mesActual}.equals("7"))? "Julio" : (($F{mesActual}.equals("8"))? "Agosto" : (($F{mesActual}.equals("9"))? "Septiembre" : (($F{mesActual}.equals("10"))? "Octubre" : (($F{mesActual}.equals("11"))? "Noviembre" : (($F{mesActual}.equals("12"))? "Diciembre" : ""))))))))))))) + " " + String.valueOf($F{anoActual})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="185"
+						width="282"
+						height="22"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreEmpresa}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="1"
+						y="206"
+						width="129"
+						height="22"
+						key="staticText-2"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[Presente.-]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="0"
+						y="164"
+						width="61"
+						height="22"
+						key="staticText-3"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[Sres.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="1"
+						y="254"
+						width="534"
+						height="62"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" lineSpacing="1_1_2">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[            Reciba un cordial saludo de parte de la Familia Embassy Suites, agradecemos que nos hayan considerado como alternativa para la realización de su evento.]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="318"
+						width="534"
+						height="80"
+						key="textField-9"/>
+					<box></box>
+					<textElement textAlignment="Justified" lineSpacing="1_1_2">
+						<font size="12"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["           A continuación le enviamos la cotización solicitada para su evento de fecha " + $F{fechaInicio}.toString() + " el cual arroja un total de BsF " + $P{montoTotal} + " incluyendo el impuesto al valor agregado y el 10% de Servicio. Adjunto podrá encontrar el detalle de la misma."]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="1"
+						y="402"
+						width="534"
+						height="31"
+						key="staticText-4"/>
+					<box></box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" lineSpacing="Single">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[                Para cualquier información adicional no dude en comunicarse con nosotros.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="1"
+						y="432"
+						width="534"
+						height="219"
+						key="staticText-5"/>
+					<box></box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" lineSpacing="Double">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[Sin más a que hacer referencia, se despide.
+
+Atentamente,
+
+Departamento de Banquetes
+Hotel Embassy Suites Caracas
+Telefono: 0212-7004200
+Fax: 0212-2662623]]></text>
+				</staticText>
+				<break>
+					<reportElement
+						x="0"
+						y="656"
+						width="535"
+						height="0"
+						key="element-1"/>
+				</break>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

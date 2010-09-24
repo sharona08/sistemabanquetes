@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="reporteCotizacionSubreporteSalones"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="535"
+		 pageHeight="802"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
+	<queryString><![CDATA[SELECT
+         S.id as idSalon,
+         S.nombre as nombreSalon,
+         S.costo as costoSalon,
+         S.habilitado as salonHabilitado,
+         S.idSalon as idSalonFK,
+         ES.nuevoCosto as nuevoCosto,
+         M.id as idTipoMontaje,
+         M.tipoMontaje as tipoMontaje,
+         EV.fechaInicio as fechaInicio,
+         EV.fechaFin as fechaFin,
+         EV.horaInicio as horaInicio,
+         EV.horaFin as horaFin,
+         EV.cantidadPersonas as cantidad
+       FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
+	   WHERE S.id = ES.idSalon
+           AND M.id = ES.idMontaje
+           AND EV.idTipoEvento = TE.id
+           AND EV.id = ES.idEvento
+           AND E.rif = EV.rifEmpresa
+           AND E.rif = C.rifEmpresa
+           AND C.id = EV.idContacto
+           AND EV.id = $P{idEvento}
+           AND ES.visible is true]]></queryString>
+
+	<field name="idSalon" class="java.lang.Integer"/>
+	<field name="nombreSalon" class="java.lang.String"/>
+	<field name="costoSalon" class="java.lang.Double"/>
+	<field name="salonHabilitado" class="java.lang.Boolean"/>
+	<field name="idSalonFK" class="java.lang.Integer"/>
+	<field name="nuevoCosto" class="java.lang.Double"/>
+	<field name="idTipoMontaje" class="java.lang.Integer"/>
+	<field name="tipoMontaje" class="java.lang.String"/>
+	<field name="fechaInicio" class="java.sql.Date"/>
+	<field name="fechaFin" class="java.sql.Date"/>
+	<field name="horaInicio" class="java.sql.Time"/>
+	<field name="horaFin" class="java.sql.Time"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="37"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						x="1"
+						y="1"
+						width="534"
+						height="36"
+						forecolor="#919999"
+						backcolor="#D8D8D8"
+						key="rectangle-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="22"
+						y="9"
+						width="62"
+						height="19"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="102"
+						y="1"
+						width="0"
+						height="35"
+						forecolor="#919999"
+						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="185"
+						y="2"
+						width="0"
+						height="35"
+						forecolor="#919999"
+						key="line-4"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="113"
+						y="9"
+						width="62"
+						height="19"
+						key="staticText-2"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Hora]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="271"
+						y="2"
+						width="0"
+						height="35"
+						forecolor="#919999"
+						key="line-6"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="197"
+						y="9"
+						width="62"
+						height="19"
+						key="staticText-3"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Salón]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="392"
+						y="1"
+						width="0"
+						height="35"
+						forecolor="#919999"
+						key="line-8"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="298"
+						y="9"
+						width="62"
+						height="19"
+						key="staticText-4"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Montaje]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="442"
+						y="2"
+						width="0"
+						height="35"
+						forecolor="#919999"
+						key="line-10"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="397"
+						y="9"
+						width="36"
+						height="19"
+						key="staticText-5"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[PAX]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="448"
+						y="9"
+						width="79"
+						height="19"
+						key="staticText-6"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Costo Salon]]></text>
+				</staticText>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="37"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						x="1"
+						y="-1"
+						width="534"
+						height="37"
+						forecolor="#919999"
+						key="rectangle-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<line direction="TopDown">
+					<reportElement
+						x="102"
+						y="-3"
+						width="0"
+						height="38"
+						forecolor="#919999"
+						key="line-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="-1"
+						width="102"
+						height="19"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Del " + $F{fechaInicio}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="17"
+						width="102"
+						height="19"
+						key="textField-1"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Al " + $F{fechaFin}.toString()]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="185"
+						y="-1"
+						width="0"
+						height="38"
+						forecolor="#919999"
+						key="line-3"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="102"
+						y="-1"
+						width="84"
+						height="19"
+						key="textField-2"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaInicio}.toString()]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="271"
+						y="-1"
+						width="0"
+						height="38"
+						forecolor="#919999"
+						key="line-5"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="102"
+						y="17"
+						width="84"
+						height="19"
+						key="textField-3"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaFin}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="185"
+						y="-1"
+						width="87"
+						height="37"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreSalon}]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="392"
+						y="-2"
+						width="0"
+						height="38"
+						forecolor="#919999"
+						key="line-7"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="271"
+						y="-1"
+						width="122"
+						height="37"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{tipoMontaje}]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="442"
+						y="-1"
+						width="0"
+						height="38"
+						forecolor="#919999"
+						key="line-9"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="392"
+						y="-1"
+						width="51"
+						height="37"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cantidad}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="442"
+						y="-1"
+						width="93"
+						height="36"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{costoSalon}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

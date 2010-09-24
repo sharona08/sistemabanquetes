@@ -37,6 +37,8 @@ public interface IServicioReserva {
 
     public Double subtotalReserva(Integer idEvento);
     
+    public Double diezPorciento(Integer idEvento);
+
     public Double ivaReserva(Integer idEvento);
 
     public Double costoTotalReserva(Integer idEvento);

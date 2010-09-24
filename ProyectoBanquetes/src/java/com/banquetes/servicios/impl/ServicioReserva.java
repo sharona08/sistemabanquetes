@@ -259,6 +259,18 @@ public class ServicioReserva implements IServicioReserva {
         return subtotal;
     }
 
+    public Double diezPorciento(Integer idEvento) {
+        Double costoPorc = new Double(0);
+
+        Double porcentaje = new Double(10);
+
+        Double subtotal = this.subtotalReserva(idEvento);
+
+        costoPorc = subtotal * (porcentaje/100);
+
+        return costoPorc;
+    }
+
     public Double ivaReserva(Integer idEvento) {
         Double costoIVA = new Double(0);
 
@@ -278,9 +290,10 @@ public class ServicioReserva implements IServicioReserva {
         Double costoTotal = new Double(0);
 
         Double subtotal = this.subtotalReserva(idEvento);
+        Double servicio = this.diezPorciento(idEvento);
         Double costoIVA = this.ivaReserva(idEvento);
 
-        costoTotal = subtotal + costoIVA;
+        costoTotal = subtotal + servicio + costoIVA;
 
         return costoTotal;
     }
