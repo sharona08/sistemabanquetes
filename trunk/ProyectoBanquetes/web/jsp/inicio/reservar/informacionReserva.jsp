@@ -99,6 +99,7 @@
                         Double costoOT = servicioReserva.costoTotalServicios(idEvento, "OT");
                         Double subtotal = servicioReserva.subtotalReserva(idEvento);
                         Double costoIVA = servicioReserva.ivaReserva(idEvento);
+                        Double servicio = servicioReserva.diezPorciento(idEvento);
                         Double costoTotal = servicioReserva.costoTotalReserva(idEvento);
         %>
         <div id="pageWrap">
@@ -458,48 +459,63 @@
                     <label style="float: right; margin-top: 5px; font-weight: 700">Costo total OtrosServicios: <%=costoOT%></label>
 
                     <div id="espacio"></div>
+                    <div id="espacio"></div>
 
                     <div id="costosTotales" style="margin-left: 420px; margin-top: 20px">
                         <table width="90%" border="0">
-                            <tr style="height: 30px">
+                            <tr style="height: 30px" align="right">
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr style="height: 30px" align="right">
                                 <td width="70%">
                                     <label>Total Salones: </label>
                                 </td>
                                 <td width="20%" align="right"><%=costoSalones%></td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 30px" align="right">
                                 <td>
                                     <label>Total Alimentos y Bebidas: </label>
                                 </td>
                                 <td align="right"><%=costoAB%></td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 30px" align="right">
                                 <td>
                                     <label>Total Audiovisuales: </label>
                                 </td>
                                 <td align="right"><%=costoAU%></td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 30px" align="right">
                                 <td>
                                     <label>Total Otros Servicios: </label>
                                 </td>
                                 <td align="right"><%=costoOT%></td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 30px" align="right">
                                 <td>
-                                    <label style="font-weight: 700">Subtotal: </label>
+                                    <label style="font-weight: 700">Subtotal General: </label>
                                 </td>
                                 <td align="right">
                                     <label style="font-weight: 700"><%=subtotal%></label>
                                 </td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 30px" align="right">
+                                <td>&nbsp;</td>
+                                <td align="right">&nbsp;</td>
+                            </tr>
+                            <tr style="height: 30px" align="right">
+                                <td>
+                                    <label>Servicio Alimentos y Bebidas (10%): </label>
+                                </td>
+                                <td align="right"><%=servicio%></td>
+                            </tr>
+                            <tr style="height: 30px" align="right">
                                 <td>
                                     <label>IVA (<%= iva.getPorcentaje()%>%): </label>
                                 </td>
                                 <td align="right"><%=costoIVA%></td>
                             </tr>
-                            <tr style="height: 30px">
+                            <tr style="height: 30px" align="right">
                                 <td>
                                     <label style="font-size: 16px; color: green; font-weight: 700">TOTAL: </label>
                                 </td>
@@ -515,6 +531,9 @@
                 <div style="width: 70%; margin-left: 30px; min-height: 50px">
                     <div id="boton" class="demo" style="float: right">
                         <input class="submit" type="submit" value="Listo" style="width: 70px; height: 30px;" onclick="redirect('/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp')"/>
+                    </div>
+                    <div id="boton" class="demo" style="float: right">
+                        <input class="submit" type="submit" value="Orden de Servicio" style="width: 120px; height: 30px; margin-right: 10px" onclick="redirect('/ProyectoBanquetes/jsp/inicio/reservar/repOrdenServicio.jsp?idEvento=<%=idEvento%>')"/>
                     </div>
                 </div>
                 <div id="espacio"></div>
