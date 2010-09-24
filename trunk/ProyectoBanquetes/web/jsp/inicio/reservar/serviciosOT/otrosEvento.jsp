@@ -102,6 +102,7 @@
                     <input type="hidden" name="idEvento" value="<%= idEvento%>">
                     <input type="hidden" name="idSalon" value="<%= s.getIdSalon()%>"/>
                     <input type="hidden" name="idServicio" value="<%= s.getIdServicio()%>"/>
+                    <input type="hidden" name="fechaInicio" value="<%= s.getFechaInicio()%>"/>
                     <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="includeDivAlimento()"/>
                 </div>
             </td>
@@ -111,6 +112,7 @@
                 <input type="hidden" name="idEvento" value="<%= idEvento%>">
                 <input type="hidden" name="idSalon" value="<%= s.getIdSalon()%>"/>
                 <input type="hidden" name="idServicio" value="<%= s.getIdServicio()%>"/>
+                <input type="hidden" name="fechaInicio" value="<%= s.getFechaInicio()%>"/>
                 <input type="image" src="../../remove_24.png" name="eliminar" value="" style="width: 20px; height: 20px; margin-top: 2px; margin-bottom: 2px;" onclick=""/>
             </td>
         </form>

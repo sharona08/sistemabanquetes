@@ -3,6 +3,8 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="java.sql.Date"%>
+<%@page import="com.banquetes.util.UtilMethods"%>
 <%@ page session="true" %>
 
 <%
@@ -39,13 +41,16 @@
             <div id="content">
                 <h1 id="letra1">Eliminar Alimentos y Bebidas</h1>
                 <%
+                            UtilMethods util = new UtilMethods();
+
                             IServicioReserva servicioReserva = new ServicioReserva();
-                            
+
                             Integer idServicio = Integer.valueOf(request.getParameter("idServicio"));
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
                             Integer idSalon = Integer.valueOf(request.getParameter("idSalon"));
+                            Date fechaInicio = util.getSqlDate(request.getParameter("fechaInicio"));
 
-                            Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon);
+                            Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon, fechaInicio);
                             if (result) {
                 %>
                 <script type="text/javascript">

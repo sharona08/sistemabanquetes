@@ -53,7 +53,7 @@ public class ServicioReservaTest {
         System.out.println("testCrearServicioEvento");
         java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
         java.sql.Date fechaFin = util.getSqlDate("2010-09-12");
-        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(1, 2, 4, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin);
+        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(1, 2, 4, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin, fechaInicio);
 
         Boolean result = servicioReserva.crearServicioEvento(servicioEvento);
         System.out.println("Inserto: " + result);
@@ -69,9 +69,9 @@ public class ServicioReservaTest {
 
         java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
         java.sql.Date fechaFin = util.getSqlDate("2010-09-12");
-        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(idServicio, idEvento, idSalon, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin);
+        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(idServicio, idEvento, idSalon, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin, fechaInicio);
 
-        Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon);
+        Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon, fechaInicio);
         System.out.println("Elimino: " + result);
     }
 
@@ -92,8 +92,9 @@ public class ServicioReservaTest {
         Integer idServicio = new Integer(16);
         Integer idEvento = new Integer(5);
         Integer idSalon = new Integer(4);
+        java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
 
-        ServicioServicioEvento s = servicioReserva.getServicioEvento(idEvento, idSalon, idServicio);
+        ServicioServicioEvento s = servicioReserva.getServicioEvento(idEvento, idSalon, idServicio, fechaInicio);
 
         System.out.println("idEvento: " + s.getIdEvento() + ", idSalon: " + s.getIdSalon() + ", idServicio: " + s.getIdServicio());
 

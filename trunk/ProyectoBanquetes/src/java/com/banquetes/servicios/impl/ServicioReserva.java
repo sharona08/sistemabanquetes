@@ -14,6 +14,7 @@ import com.banquetes.servicios.interfaces.IServicioEventoSala;
 import com.banquetes.servicios.interfaces.IServicioIva;
 import com.banquetes.servicios.interfaces.IServicioServicio;
 import com.ibatis.sqlmap.client.SqlMapClient;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -98,6 +99,7 @@ public class ServicioReserva implements IServicioReserva {
             param.put("idEvento", servicioEvento.getIdEvento());
             param.put("idServicio", servicioEvento.getIdServicio());
             param.put("idSalon", servicioEvento.getIdSalon());
+            param.put("fechaInicio", servicioEvento.getFechaInicio());
 
             ServicioServicioEvento newServicioEvento = (ServicioServicioEvento) sqlMap.queryForObject("getServicioEvento", param);
 
@@ -125,8 +127,11 @@ public class ServicioReserva implements IServicioReserva {
             if (servicioEvento.getNuevaDescripcion() != null) {
                 newServicioEvento.setNuevaDescripcion(servicioEvento.getNuevaDescripcion());
             }
-            if (servicioEvento.getFechaInicio() != null) {
+            if (servicioEvento.getNuevaFechaInicio() != null) {
                 newServicioEvento.setFechaInicio(servicioEvento.getFechaInicio());
+                newServicioEvento.setNuevaFechaInicio(servicioEvento.getNuevaFechaInicio());
+            } else {
+                newServicioEvento.setNuevaFechaInicio(servicioEvento.getFechaInicio());
             }
             if (servicioEvento.getFechaFin() != null) {
                 newServicioEvento.setFechaFin(servicioEvento.getFechaFin());
@@ -171,7 +176,7 @@ public class ServicioReserva implements IServicioReserva {
         return servicioEventos;
     }
 
-    public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio) {
+    public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio, Date fechaInicio) {
         ServicioServicioEvento servicioEvento2 = null;
 
         try {
@@ -179,6 +184,7 @@ public class ServicioReserva implements IServicioReserva {
             param.put("idEvento", idEvento);
             param.put("idSalon", idSalon);
             param.put("idServicio", idServicio);
+            param.put("fechaInicio", fechaInicio);
             servicioEvento2 = (ServicioServicioEvento) sqlMap.queryForObject("getServicioEvento", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
@@ -186,7 +192,7 @@ public class ServicioReserva implements IServicioReserva {
         return servicioEvento2;
     }
 
-    public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon) {
+    public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Date fechaInicio) {
         Boolean result = false;
 
         try {
@@ -194,6 +200,7 @@ public class ServicioReserva implements IServicioReserva {
             param.put("idServicio", idServicio);
             param.put("idEvento", idEvento);
             param.put("idSalon", idSalon);
+            param.put("fechaInicio", fechaInicio);
             int resultado = sqlMap.delete("eliminarServicioEvento", param);
 
             if (resultado == 1) {

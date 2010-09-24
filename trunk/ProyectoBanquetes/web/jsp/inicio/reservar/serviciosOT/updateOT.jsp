@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="java.sql.Date"%>
 <%@page import="com.banquetes.util.UtilMethods"%>
 <%@ page session="true" %>
 
@@ -44,6 +45,10 @@
                             ServicioServicioEvento servicioEvento = new ServicioServicioEvento();
                             UtilMethods util = new UtilMethods();
 
+                            Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
+                            Integer idSalon = Integer.valueOf(request.getParameter("idSalon"));
+                            Integer idServicio = Integer.valueOf(request.getParameter("idServicio"));
+
                             servicioEvento.setIdServicio(Integer.valueOf(request.getParameter("idServicio")));
                             servicioEvento.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
                             servicioEvento.setIdSalon(Integer.valueOf(request.getParameter("idSalon")));
@@ -55,7 +60,12 @@
                             servicioEvento.setHoraInicio(Time.valueOf(fullTime));
                             servicioEvento.setHoraFin(Time.valueOf(fullTime));
 
-                            servicioEvento.setFechaInicio(util.getSqlDate(request.getParameter("fechaInicioEvento")));
+                            Date currentfechaInicio = util.getSqlDate(request.getParameter("fechaInicio"));
+                            Date newFechaInicio = util.getSqlDate(request.getParameter("fechaInicioEvento"));
+
+                            servicioEvento.setFechaInicio(currentfechaInicio);
+                            servicioEvento.setNuevaFechaInicio(newFechaInicio);
+
                             servicioEvento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));
 
                             servicioEvento.setNotaEspecial(request.getParameter("notaEspecial"));
