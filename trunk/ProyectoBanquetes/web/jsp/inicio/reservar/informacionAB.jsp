@@ -30,10 +30,11 @@
 <div id="result">
     <table width="100%" border="1" cellspacing="0" cellpadding="0">
         <tr align="center" style="height: 30px; background-color: #919999; border-color: #556270; font-weight: bolder; color: white">
-            <td width="20%">Nombre</td>
-            <td width="20%">Costo Unitario</td>
-            <td width="25%">Salon</td>
-            <td width="20%">Cantidad</td>
+            <td width="40%">Nombre</td>
+            <td width="15%">Costo Unitario</td>
+            <td width="15%">Salon</td>
+            <td width="15%">Cantidad</td>
+            <td width="15%">Total</td>
         </tr>
 
         <%
@@ -67,6 +68,15 @@
             </td>
             <td>
                 <%=s.getCantidad()%>
+            </td>
+            <td>
+                <%
+                                        if (s.getNuevoCosto() != null) {
+                                            out.print(s.getNuevoCosto() * s.getCantidad());
+                                        } else {
+                                            out.print(servicio.getCostoUnitario() * s.getCantidad());
+                                        }
+                %>
             </td>
         </tr>
         <% }%>

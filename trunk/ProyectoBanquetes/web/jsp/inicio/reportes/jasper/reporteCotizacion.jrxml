@@ -24,9 +24,12 @@
 	<import value="net.sf.jasperreports.engine.data.*" />
 
 	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
-	<parameter name="montoTotal" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="montoTotal" isForPrompting="true" class="java.lang.Double"/>
 	<parameter name="rutaSalones" isForPrompting="true" class="java.lang.String"/>
 	<parameter name="rutaInicio" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="totalSalones" isForPrompting="true" class="java.lang.Double"/>
+	<parameter name="rutaAB" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="totalAB" isForPrompting="true" class="java.lang.Double"/>
 	<queryString><![CDATA[SELECT
          CURRENT_DATE() as fechaActual,
          MONTH(CURRENT_DATE()) as mesActual,
@@ -110,7 +113,7 @@
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="247"  isSplitAllowed="true" >
+			<band height="345"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="66"
@@ -226,9 +229,50 @@
 					<subreportParameter  name="idEvento">
 						<subreportParameterExpression><![CDATA[$F{idEvento}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter  name="totalSalones">
+						<subreportParameterExpression><![CDATA[$P{totalSalones}]]></subreportParameterExpression>
+					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaSalones}]]></subreportExpression>
 				</subreport>
+				<staticText>
+					<reportElement
+						x="1"
+						y="268"
+						width="202"
+						height="22"
+						key="staticText-11"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Alimentos y Bebidas]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="1"
+						y="297"
+						width="551"
+						height="28"
+						key="subreport-3"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="idEvento">
+						<subreportParameterExpression><![CDATA[$F{idEvento}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="totalAB">
+						<subreportParameterExpression><![CDATA[$P{totalAB}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaAB}]]></subreportExpression>
+				</subreport>
+				<break>
+					<reportElement
+						x="0"
+						y="256"
+						width="552"
+						height="0"
+						key="element-1"/>
+				</break>
 			</band>
 		</detail>
 		<columnFooter>

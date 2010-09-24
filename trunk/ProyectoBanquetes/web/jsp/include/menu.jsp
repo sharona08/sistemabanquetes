@@ -71,7 +71,7 @@
         <li class="top"><a href="" id="services" class="top_link"><span class="down">Reportes</span></a>
             <ul class="sub" >
                 <li><a href="/ProyectoBanquetes/jsp/inicio/reportes/formOrdenServicio.jsp">Orden de Servicio</a></li>
-                <li><a href="">Cotización</a></li>
+                <li><a href="/ProyectoBanquetes/jsp/inicio/reportes/formCotizacion.jsp">Cotización</a></li>
                 <li><a href="">Servicio más vendido</a></li>
                 <li><a href="">Salón más vendido</a></li>
                 <li><a href="">Ventas salón</a></li>

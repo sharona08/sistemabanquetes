@@ -237,10 +237,10 @@ public class ServicioReserva implements IServicioReserva {
         List<ServicioServicioEvento> servicioServicioEventos = this.listarServicioEventos(idEvento, tipoServicio);
         for (ServicioServicioEvento s : servicioServicioEventos) {
             if (s.getNuevoCosto() != null) {
-                costoTotal = costoTotal + s.getNuevoCosto();
+                costoTotal = costoTotal + (s.getNuevoCosto() * s.getCantidad());
             } else {
                 servicio = servicioServicio.getServicio(s.getIdServicio());
-                costoTotal = costoTotal + servicio.getCostoUnitario();
+                costoTotal = costoTotal + (servicio.getCostoUnitario() * s.getCantidad());
             }
         }
         return costoTotal;

@@ -24,7 +24,7 @@
 	<import value="net.sf.jasperreports.engine.data.*" />
 
 	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
-	<parameter name="montoTotal" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="montoTotal" isForPrompting="true" class="java.lang.Double"/>
 	<parameter name="rutaSalones" isForPrompting="false" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT
          CURRENT_DATE() as fechaActual,
