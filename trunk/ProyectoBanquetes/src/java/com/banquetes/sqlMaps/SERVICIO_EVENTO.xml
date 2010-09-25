@@ -42,6 +42,7 @@
 
     <update id="editarServicioEvento" parameterClass="servicioEvento">
 	UPDATE SERVICIO_EVENTO SET
+          idSalon = #nuevoIdSalon#,
           cantidad = #cantidad#,
           horaInicio = #horaInicio#,
           horaFin = #horaFin#,
@@ -77,6 +78,28 @@
          AND SE.idEvento = E.idEvento
          AND SE.idSalon = E.idSalon
          AND SE.idEvento = #idEvento#
+    </select>
+
+    <select id="getServicioEventosSalon" resultClass="servicioEvento">
+      SELECT
+          SE.idEvento as idEvento,
+          SE.idServicio as idServicio,
+          SE.idSalon as idSalon,
+          SE.cantidad as cantidad,
+          SE.horaInicio as horaInicio,
+          SE.horaFin as horaFin,
+          SE.notaEspecial as notaEspecial,
+          SE.nuevoCosto as nuevoCosto,
+          SE.nuevoNombre as nuevoNombre,
+          SE.nuevaDescripcion as nuevaDescripcion,
+          SE.fechaInicio as fechaInicio,
+          SE.fechaFin as fechaFin
+       FROM SERVICIO_EVENTO SE, SERVICIO S, EVENTO_SALA E
+       WHERE SE.idServicio = S.id
+         AND SE.idEvento = E.idEvento
+         AND SE.idSalon = E.idSalon
+         AND SE.idEvento = #idEvento#
+         AND SE.idSalon = #idSalon#
     </select>
 
     <select id="getServicioEventos" resultClass="servicioEvento">

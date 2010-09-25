@@ -3,6 +3,11 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="com.banquetes.dominio.ServicioServicioEvento"%>
+<%@page import="com.banquetes.servicios.impl.ServicioReserva"%>
+<%@page import="com.banquetes.servicios.interfaces.IServicioReserva"%>
+<%@page import="com.banquetes.servicios.interfaces.IServicioServicio"%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.banquetes.dominio.Salon"%>
@@ -38,8 +43,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=<%=request.getParameter("hiddenFechaInicio")%>&fechaFin=<%=request.getParameter("hiddenFechaFin")%>&salon=<%=request.getParameter("hiddenSalon")%>&ID=<%=request.getParameter("idEvento")%>"/>
     </head>
-    <body>
 
+    <body>
         <div id="pageWrap">
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
@@ -49,53 +54,163 @@
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
                             Integer idSalon = Integer.valueOf(request.getParameter("salon"));
 
-                            IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
                             IServicioSalon servicioSalon = new ServicioSalon();
+                            IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
 
-                            Boolean result = servicioEventoSala.eliminarEventoSala(idEvento, idSalon);
+                            Salon salonConfirm = servicioSalon.getSalon(idSalon);
 
-                            Salon salon = servicioSalon.getSalon(idSalon);
+                            Object[] options = {"Si",
+                                "No",
+                                "Cancelar"};
+                            int confirm = JOptionPane.showOptionDialog(null,
+                                    "Esta operación eliminará los servicios contratados en dicho \n "
+                                    + "salón.\n"
+                                    + "¿Deseas exportar estos servicios del " + salonConfirm.getNombre() + " a otro salón?",
+                                    "Advertencia",
+                                    JOptionPane.YES_NO_CANCEL_OPTION,
+                                    JOptionPane.WARNING_MESSAGE,
+                                    null,
+                                    options,
+                                    options[2]);
 
-                            if (result) {
-                                // si el salon es el consul, se debe eliminar el diplomat tambien,
-                                // si el salon es el diplomat, se deben eliminar los otros tres
+                            //confirm: 0 = si, 1 = no, 2 = cancel
+                            if (confirm == 0) { //Si es 0, entonces se exportan los servicios a otro salon
 
-                                if (salon.getIdSalon() != null) {
-                                    //SI NO EXISTEN MAS SALONES EN ESA RESERVA QUE TENGAN COMO SUPER SALON A ESE SALON
+                                List<Salon> salonesReserva = servicioSalon.listarSalonesReservaConfirm(idEvento, idSalon);
+                                List list = new ArrayList();
+                                for (Salon s : salonesReserva) {
+                                    list.add(s.getNombre());
+                                }
 
-                                    List<EventoSala> eventosSala = servicioEventoSala.listarEventoSalas(idEvento);
-                                    Boolean eliminar = Boolean.TRUE;
+                                Object[] salones = list.toArray();
+                                String seleccion = (String) JOptionPane.showInputDialog(
+                                        null,
+                                        "Seleccione el salón:\n"
+                                        + "",
+                                        "Seleccione salón",
+                                        JOptionPane.INFORMATION_MESSAGE,
+                                        null,
+                                        salones,
+                                        salonesReserva.get(0).getNombre());
 
-                                    for (EventoSala e : eventosSala) {
-                                        if (e.getIdSalon().equals(salon.getIdSalon())) {
-                                            eliminar = Boolean.FALSE;
-                                            break;
+                                if (seleccion != null) {
+                                    Salon salonSeleccionado = servicioSalon.getSalonNombre(seleccion);
+
+                                    IServicioReserva servReserva = new ServicioReserva();
+                                    List<ServicioServicioEvento> serviciosEventoOld = servReserva.listarServicioEventosSalon(idEvento, idSalon);
+
+                                    for (ServicioServicioEvento s : serviciosEventoOld) {
+                                        s.setIdSalon(salonSeleccionado.getId());
+
+                                        if (!servReserva.existeServicioEvento(s)) {
+                                            servReserva.crearServicioEvento(s);
+                                        } else {
+                                            //ya existe el servicio en ese salon
                                         }
+
                                     }
-                                    if (eliminar) {
-                                        Boolean superSalon = servicioEventoSala.eliminarEventoSala(idEvento, salon.getIdSalon());
+
+                                    Boolean result = servicioEventoSala.eliminarEventoSala(idEvento, idSalon);
+
+                                    Salon salon = servicioSalon.getSalon(idSalon);
+
+                                    if (result) {
+                                        // si el salon es el consul, se debe eliminar el diplomat tambien,
+                                        // si el salon es el diplomat, se deben eliminar los otros tres
+
+                                        if (salon.getIdSalon() != null) {
+                                            //SI NO EXISTEN MAS SALONES EN ESA RESERVA QUE TENGAN COMO SUPER SALON A ESE SALON
+
+                                            List<EventoSala> eventosSala = servicioEventoSala.listarEventoSalas(idEvento);
+                                            Boolean eliminar = Boolean.TRUE;
+
+                                            for (EventoSala e : eventosSala) {
+                                                if (e.getIdSalon().equals(salon.getIdSalon())) {
+                                                    eliminar = Boolean.FALSE;
+                                                    break;
+                                                }
+                                            }
+                                            if (eliminar) {
+                                                Boolean superSalon = servicioEventoSala.eliminarEventoSala(idEvento, salon.getIdSalon());
+                                            }
+
+                                        } else {
+                                            List<Salon> subSalones = servicioSalon.listarSubsalones(salon.getId());
+                                            if (!subSalones.isEmpty()) {
+
+                                                for (Salon s : subSalones) {
+                                                    Boolean subSalon = servicioEventoSala.eliminarEventoSala(idEvento, s.getId());
+                                                }
+                                            }
+                                        }
+
+                                        JOptionPane.showMessageDialog(null,
+                                                "Exito! el salon " + salonConfirm.getNombre() + " ha sido eliminado exitosamente.",
+                                                "Exito",
+                                                JOptionPane.INFORMATION_MESSAGE);
+
+                                    } else {
+                                        JOptionPane.showMessageDialog(null,
+                                                "Error! el salon " + salonConfirm.getNombre() + " no pudo ser eliminado.",
+                                                "Error",
+                                                JOptionPane.ERROR_MESSAGE);
                                     }
 
                                 } else {
-                                    List<Salon> subSalones = servicioSalon.listarSubsalones(salon.getId());
-                                    if (!subSalones.isEmpty()) {
-
-                                        for (Salon s : subSalones) {
-                                            Boolean subSalon = servicioEventoSala.eliminarEventoSala(idEvento, s.getId());
-                                        }
-                                    }
+                                    //el usuario le dio a cancelar por lo que no se elimina nada 
                                 }
 
+                            } else if (confirm == 1) { //Si es 1 no se exportan, y se elimina el salon 
 
+                                Boolean result = servicioEventoSala.eliminarEventoSala(idEvento, idSalon);
+
+                                Salon salon = servicioSalon.getSalon(idSalon);
+
+                                if (result) {
+                                    // si el salon es el consul, se debe eliminar el diplomat tambien,
+                                    // si el salon es el diplomat, se deben eliminar los otros tres
+
+                                    if (salon.getIdSalon() != null) {
+                                        //SI NO EXISTEN MAS SALONES EN ESA RESERVA QUE TENGAN COMO SUPER SALON A ESE SALON
+
+                                        List<EventoSala> eventosSala = servicioEventoSala.listarEventoSalas(idEvento);
+                                        Boolean eliminar = Boolean.TRUE;
+
+                                        for (EventoSala e : eventosSala) {
+                                            if (e.getIdSalon().equals(salon.getIdSalon())) {
+                                                eliminar = Boolean.FALSE;
+                                                break;
+                                            }
+                                        }
+                                        if (eliminar) {
+                                            Boolean superSalon = servicioEventoSala.eliminarEventoSala(idEvento, salon.getIdSalon());
+                                        }
+
+                                    } else {
+                                        List<Salon> subSalones = servicioSalon.listarSubsalones(salon.getId());
+                                        if (!subSalones.isEmpty()) {
+
+                                            for (Salon s : subSalones) {
+                                                Boolean subSalon = servicioEventoSala.eliminarEventoSala(idEvento, s.getId());
+                                            }
+                                        }
+                                    }
+
+                                    JOptionPane.showMessageDialog(null,
+                                            "Exito! el salon ha sido eliminado exitosamente.",
+                                            "Exito",
+                                            JOptionPane.INFORMATION_MESSAGE);
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null,
+                                            "Error! el salon no pudo ser eliminado.",
+                                            "Error",
+                                            JOptionPane.ERROR_MESSAGE);
+                                }
+
+                            } else if (confirm == 2) {
+                            }
                 %>
-                <script type="text/javascript">
-                    alert("Exito! el salon ha sido eliminado exitosamente.");
-                </script>
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el salon no pudo ser eliminado.");
-                </script>
-                <% }%>
             </div>
             <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>

@@ -26,8 +26,12 @@ public interface IServicioReserva {
     public List<ServicioServicioEvento> listarServicioEventos(Integer idEvento, String tipoEvento);
 
     public List<ServicioServicioEvento> listarServicioEventosTodos(Integer idEvento);
+    
+    public List<ServicioServicioEvento> listarServicioEventosSalon(Integer idEvento, Integer idSalon);
 
     public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio, Date fechaInicio);
+
+    public boolean existeServicioEvento(ServicioServicioEvento servicioEvento);
 
     public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Date fechaInicio);
 

@@ -103,6 +103,12 @@ public class ServicioReserva implements IServicioReserva {
 
             ServicioServicioEvento newServicioEvento = (ServicioServicioEvento) sqlMap.queryForObject("getServicioEvento", param);
 
+            if (servicioEvento.getNuevoIdSalon() != null) {
+                newServicioEvento.setIdSalon(servicioEvento.getIdSalon());
+                newServicioEvento.setNuevoIdSalon(servicioEvento.getNuevoIdSalon());
+            } else {
+                newServicioEvento.setNuevoIdSalon(servicioEvento.getIdSalon());
+            }
             if (servicioEvento.getCantidad() != null) {
                 newServicioEvento.setCantidad(servicioEvento.getCantidad());
             }
@@ -176,6 +182,20 @@ public class ServicioReserva implements IServicioReserva {
         return servicioEventos;
     }
 
+    public List<ServicioServicioEvento> listarServicioEventosSalon(Integer idEvento, Integer idSalon) {
+        List<ServicioServicioEvento> servicioEventos = null;
+
+        try {
+            Map param = new HashMap();
+            param.put("idEvento", idEvento);
+            param.put("idSalon", idSalon);
+            servicioEventos = sqlMap.queryForList("getServicioEventosSalon", param);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return servicioEventos;
+    }
+
     public ServicioServicioEvento getServicioEvento(Integer idEvento, Integer idSalon, Integer idServicio, Date fechaInicio) {
         ServicioServicioEvento servicioEvento2 = null;
 
@@ -190,6 +210,26 @@ public class ServicioReserva implements IServicioReserva {
             Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
         return servicioEvento2;
+    }
+
+    public boolean existeServicioEvento(ServicioServicioEvento servicioEvento) {
+        Boolean existe = Boolean.TRUE;
+        ServicioServicioEvento newServicioEvento = null;
+        try {
+            Map param = new HashMap();
+            param.put("idEvento", servicioEvento.getIdEvento());
+            param.put("idSalon", servicioEvento.getIdSalon());
+            param.put("idServicio", servicioEvento.getIdServicio());
+            param.put("fechaInicio", servicioEvento.getFechaInicio());
+            newServicioEvento = (ServicioServicioEvento) sqlMap.queryForObject("getServicioEvento", param);
+            if (newServicioEvento == null) {
+                existe = Boolean.FALSE;
+            } else {
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioDepartamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return existe;
     }
 
     public Boolean eliminarServicioEvento(Integer idServicio, Integer idEvento, Integer idSalon, Date fechaInicio) {
