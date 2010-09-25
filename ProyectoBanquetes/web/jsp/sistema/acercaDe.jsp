@@ -25,7 +25,7 @@
 
     <body>
         <div id="pageWrap">
-            <jsp:include page="../include/menuInicio.jsp"></jsp:include>
+            <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
 
                 <div id="disponibilidad" style="margin-left: 40px; margin-right: 90px">
