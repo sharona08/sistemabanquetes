@@ -100,4 +100,6 @@ public interface IServicioSalon {
     public List<Salon> listarComboBoxReservar(Date fechaInicio, Date fechaFin);
 
     public List<Salon> listarSubsalones(Integer id);
+
+    public List<Salon> listarSalonesReservaConfirm(Integer idEvento, Integer idSalon);
 }

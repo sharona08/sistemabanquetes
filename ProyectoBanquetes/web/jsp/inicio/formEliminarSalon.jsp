@@ -3,6 +3,7 @@
     Created on : Sep 14, 2010, 4:40:28 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="com.banquetes.dominio.Evento"%>
 <%@page import="com.banquetes.servicios.impl.ServicioEvento"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioEvento"%>
@@ -71,8 +72,6 @@
                     Evento evento = servicioEvento.getEvento(Integer.valueOf(idEvento));
 
                     IServicioSalon iServicioSalon = new ServicioSalon();
-                    //List<Salon> salones = iServicioSalon.listarSalones();
-                    //List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(idEvento), evento.getFechaInicio(), evento.getFechaFin());
                     List<Salon> salones = iServicioSalon.listarSalonesEvento(Integer.valueOf(idEvento));
 
                     Double costoSalonCero = salones.get(0).getCosto();
@@ -137,7 +136,7 @@
                                         <% if (request.getParameter("anulados") != null) {%>
                                         <input type="hidden" name="hiddenAnulados" value="<%= request.getParameter("hiddenAnulados")%>"/>
                                         <% }%>
-                                        <input type="submit" value="Eliminar" style="width: 75px; height: 25px;" align="left" onclick="confirmar()"/>
+                                        <input type="submit" value="Eliminar" style="width: 75px; height: 25px;" align="left" onclick="document.form.action='eliminarEventoSala.jsp';document.form.submit();"/>
 
                                     </div>
                                 </td>

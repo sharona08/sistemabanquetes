@@ -53,7 +53,7 @@ public class ServicioReservaTest {
         System.out.println("testCrearServicioEvento");
         java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
         java.sql.Date fechaFin = util.getSqlDate("2010-09-12");
-        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(1, 2, 4, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin, fechaInicio);
+        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(1, 2, 4, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin, fechaInicio, 4);
 
         Boolean result = servicioReserva.crearServicioEvento(servicioEvento);
         System.out.println("Inserto: " + result);
@@ -69,7 +69,7 @@ public class ServicioReservaTest {
 
         java.sql.Date fechaInicio = util.getSqlDate("2010-09-12");
         java.sql.Date fechaFin = util.getSqlDate("2010-09-12");
-        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(idServicio, idEvento, idSalon, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin, fechaInicio);
+        ServicioServicioEvento servicioEvento = new ServicioServicioEvento(idServicio, idEvento, idSalon, 30, Time.valueOf("23:50:00"), Time.valueOf("23:50:00"), "", Double.valueOf("50.0"), "", "", fechaInicio, fechaFin, fechaInicio, idSalon);
 
         Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon, fechaInicio);
         System.out.println("Elimino: " + result);

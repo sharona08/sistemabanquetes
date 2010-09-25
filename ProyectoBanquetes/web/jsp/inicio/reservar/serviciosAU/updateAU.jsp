@@ -56,7 +56,13 @@
 
                             servicioEvento.setIdServicio(Integer.valueOf(request.getParameter("idServicio")));
                             servicioEvento.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
-                            servicioEvento.setIdSalon(Integer.valueOf(request.getParameter("idSalon")));
+
+                            Integer currentIdSalon = Integer.valueOf(request.getParameter("idSalon"));
+                            Integer newIdSalon = Integer.valueOf(request.getParameter("salon"));
+
+                            servicioEvento.setIdSalon(currentIdSalon);
+                            servicioEvento.setNuevoIdSalon(newIdSalon);
+
                             servicioEvento.setCantidad(Integer.valueOf(request.getParameter("cantidad")));
 
                             String horaInicio = request.getParameter("horaInicio");

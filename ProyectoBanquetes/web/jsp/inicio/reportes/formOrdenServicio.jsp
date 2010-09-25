@@ -26,7 +26,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
-        <title>Ver Reserva</title>
+        <title>Orden Servicio</title>
         <script type="text/javascript">
             $(function() {
                 $("button, input:submit, a", ".demo").button();
@@ -40,7 +40,7 @@
             label { width: 10em; float: left; }
             label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
             p { clear: both; }
-            /*            .submit { margin-left: 12em; }*/
+/*                        .submit { margin-left: 12em; }*/
             em { font-weight: bold; padding-right: 1em; vertical-align: top; }
         </style>
 
@@ -60,7 +60,8 @@
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
-                    <h1 id="letra1">Introduzca Numero de Reserva:</h1>
+                <h1 id="letra1">Orden de Servicio:</h1>
+                <h1 id="letra2">Introduzca Numero de Reserva:</h1>
                 <div style="margin-left: 10px; width: 30%">
                     <form action="repOrdenServicio.jsp" method="get" class="cmxform" id="commentForm">
                         <table width="100%">

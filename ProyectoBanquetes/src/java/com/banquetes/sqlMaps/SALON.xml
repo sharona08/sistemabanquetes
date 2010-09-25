@@ -197,6 +197,22 @@
 		       AND E3.estado = 'C')
     </select>
 
+    <select id="getSalonesReservaConfirm" resultClass="salon">
+      SELECT
+          S.id as id,
+          S.nombre as nombre,
+          S.costo as costo,
+          S.habilitado as habilitado,
+          S.idSalon as idSalon
+      FROM SALON S, EVENTO E, EVENTO_SALA ES, MONTAJE M
+      WHERE S.id = ES.idSalon
+      AND E.id = ES.idEvento
+      AND M.id = ES.idMontaje
+      AND E.id = #idEvento#
+      AND S.id != #idSalon#
+      AND ES.visible is true
+    </select>
+
     <select id="getComboBoxReservar" resultClass="salon">
       SELECT
           S.id as id,

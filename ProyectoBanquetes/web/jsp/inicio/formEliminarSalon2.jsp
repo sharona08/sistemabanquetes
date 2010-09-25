@@ -70,8 +70,6 @@
                     Evento evento = servicioEvento.getEvento(Integer.valueOf(idEvento));
 
                     IServicioSalon iServicioSalon = new ServicioSalon();
-                    //List<Salon> salones = iServicioSalon.listarSalones();
-                    //List<Salon> salones = iServicioSalon.listarComboBoxEditar(Integer.valueOf(idEvento), evento.getFechaInicio(), evento.getFechaFin());
                     List<Salon> salones = iServicioSalon.listarSalonesEvento(Integer.valueOf(idEvento));
 
                     Double costoSalonCero = salones.get(0).getCosto();
@@ -135,7 +133,7 @@
                                         <% if (request.getParameter("anulados") != null) {%>
                                         <input type="hidden" name="hiddenAnulados" value="<%= request.getParameter("hiddenAnulados")%>"/>
                                         <% }%>
-                                        <input type="submit" value="Eliminar" style="width: 75px; height: 25px;" align="left" onclick="confirmar()"/>
+                                        <input type="submit" value="Eliminar" style="width: 75px; height: 25px;" align="left" onclick="document.form.action='eliminarEventoSala2.jsp';document.form.submit();"/>
                                     </div>
                                 </td>
                             </tr>
