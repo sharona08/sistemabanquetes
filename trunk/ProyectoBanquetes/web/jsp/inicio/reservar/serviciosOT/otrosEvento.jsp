@@ -56,10 +56,11 @@
 <div id="result" style="margin-right: 10px">
     <table width="100%" border="1" cellspacing="0" cellpadding="0">
         <tr align="center" style="height: 30px; background-color: #919999; border-color: #556270; font-weight: bolder; color: white">
-            <td width="20%">Nombre</td>
-            <td width="20%">Costo Unitario</td>
-            <td width="25%">Salon</td>
-            <td width="20%">Cantidad</td>
+            <td width="10%">Fecha</td>
+            <td width="15%">Salon</td>
+            <td width="35%">Servicio</td>
+            <td width="15%">Costo Unitario</td>
+            <td width="10%">Cantidad</td>
             <td width="10%">Opcion</td>
             <td width="5%"></td>
         </tr>
@@ -72,6 +73,12 @@
 
         <tr align="center">
         <form method="get" action="">
+            <td>
+                <%= s.getFechaInicio() %>
+            </td>
+            <td>
+                <%=servicioSalon.getSalon(s.getIdSalon()).getNombre()%>
+            </td>
             <td>
                 <%
                                         if (!s.getNuevoNombre().equals("")) {
@@ -90,9 +97,6 @@
                                             out.print(servicio.getCostoUnitario());
                                         }
                 %>
-            </td>
-            <td>
-                <%=servicioSalon.getSalon(s.getIdSalon()).getNombre()%>
             </td>
             <td>
                 <%=s.getCantidad()%>
