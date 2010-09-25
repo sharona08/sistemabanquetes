@@ -12,7 +12,7 @@
     </div>
     <ul id="nav">
         <li class="top"><a href="/ProyectoBanquetes/jsp/login/login.jsp" class="top_link"><span>Inicio</span></a></li>
-        <li class="top"><a href="" id="privacy" class="top_link"><span>Acerca De</span></a></li>
+        <li class="top"><a href="/ProyectoBanquetes/jsp/sistema/acercaDeInicio.jsp" id="privacy" class="top_link"><span>Acerca De</span></a></li>
         <li class="top2">&nbsp;</li>
         <li class="top3">&nbsp;</li>
     </ul>

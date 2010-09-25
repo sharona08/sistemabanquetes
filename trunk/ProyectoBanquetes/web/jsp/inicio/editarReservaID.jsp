@@ -37,10 +37,10 @@
 
         <script type="text/javascript" src="../../jsp/js/jquery.validate.js"></script>
         <style type="text/css">
-            label { width: 10em; float: left; }
+/*            label { width: 10em; float: left; }*/
             label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
             p { clear: both; }
-            /*            .submit { margin-left: 12em; }*/
+/*            .submit { margin-left: 12em; }*/
             em { font-weight: bold; padding-right: 1em; vertical-align: top; }
         </style>
 
@@ -60,7 +60,8 @@
         <div id="pageWrap">
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
-                    <h1 id="letra1">Introduzca Numero de Reserva:</h1>
+                <h1 id="letra1">Editar Reserva:</h1>
+                <h1 id="letra2">Introduzca Numero de Reserva:</h1>
                 <div style="margin-left: 10px; width: 30%">
                     <form action="vistaEditarReserva.jsp" method="get" class="cmxform" id="commentForm">
                         <table width="100%">

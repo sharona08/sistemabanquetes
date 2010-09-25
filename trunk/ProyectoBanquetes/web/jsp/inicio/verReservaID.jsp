@@ -60,7 +60,8 @@
         <div id="pageWrap">
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
-                    <h1 id="letra1">Introduzca Numero de Reserva:</h1>
+                <h1 id="letra1">Ver Reserva:</h1>
+                <h1 id="letra2">Introduzca Numero de Reserva:</h1>
                 <div style="margin-left: 10px; width: 30%">
                     <form action="reservar/informacionReserva.jsp" method="get" class="cmxform" id="commentForm">
                         <table width="100%">
