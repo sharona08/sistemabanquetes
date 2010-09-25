@@ -109,7 +109,7 @@
                     <% }%>
                 </form>
             </div>
-            <jsp:include page="../include/footer.jsp"></jsp:include>
+                    <jsp:include page="../include/footerInicio.jsp"></jsp:include>
         </div>
     </body>
 </html>

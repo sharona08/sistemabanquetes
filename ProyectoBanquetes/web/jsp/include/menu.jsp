@@ -84,11 +84,6 @@
                 <li><a href="/ProyectoBanquetes/jsp/inicio/editarReservaID.jsp">Editar Reserva</a></li>
             </ul>
         </li>
-<!--        <li class="top"><a href="" id="shop" class="top_link"><span class="down">Disponibilidad</span></a>
-            <ul class="sub">
-                <li><a href="">Salones</a></li>
-            </ul>
-        </li>-->
         <%
                     if (usuario.getIdRol().equals(new Integer(1))) {
         %>
@@ -101,7 +96,7 @@
         <% } %>
         <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/usuarios/detalleMiCuenta.jsp" id="privacy" class="top_link"><span>Mi Cuenta</span></a></li>
 
-        <li class="top"><a href="#nogo57" id="privacy" class="top_link"><span>Acerca De</span></a></li>
+        <li class="top"><a href="/ProyectoBanquetes/jsp/sistema/acercaDe.jsp" id="privacy" class="top_link"><span>Acerca De</span></a></li>
         <li class="top2">&nbsp;</li>
         <li class="top3">&nbsp;</li>
     </ul>
