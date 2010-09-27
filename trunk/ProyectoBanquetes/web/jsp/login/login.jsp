@@ -4,6 +4,8 @@
     Author     : maya
 --%>
 
+<%@page import="javax.swing.UnsupportedLookAndFeelException"%>
+<%@page import="javax.swing.UIManager"%>
 <%@page contentType="text/html; charset=iso-8859-1" session="true" language="java" import="java.util.*" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -57,6 +59,19 @@
 
     <body>
         <%
+                    try {
+                        // Set System L&F
+                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    } catch (UnsupportedLookAndFeelException e) {
+                        // handle exception
+                    } catch (ClassNotFoundException e) {
+                        // handle exception
+                    } catch (InstantiationException e) {
+                        // handle exception
+                    } catch (IllegalAccessException e) {
+                        // handle exception
+                    }
+
                     if (request.getParameter("error") != null) {
         %>
         <div id="error" class="ui-widget">
@@ -109,7 +124,7 @@
                     <% }%>
                 </form>
             </div>
-                    <jsp:include page="../include/footerInicio.jsp"></jsp:include>
+            <jsp:include page="../include/footerInicio.jsp"></jsp:include>
         </div>
     </body>
 </html>

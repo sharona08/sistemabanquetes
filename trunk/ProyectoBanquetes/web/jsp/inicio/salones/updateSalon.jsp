@@ -3,6 +3,7 @@
     Created on : Sep 1, 2010, 4:36:29 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@ page session="true" %>
 
 <%
@@ -42,12 +43,12 @@
                     } else {
                         id = request.getParameter("id");
                     }
-                  //  String idSalonFK = "";
-                   // if (request.getParameter("rifEmpresa") == null) {
+                    //  String idSalonFK = "";
+                    // if (request.getParameter("rifEmpresa") == null) {
                     //    rif = "";
-                   // } else {
-                     //   rif = request.getParameter("rifEmpresa");
-                   // }
+                    // } else {
+                    //   rif = request.getParameter("rifEmpresa");
+                    // }
                     String nombre = "";
                     if (request.getParameter("nombre") == null) {
                         nombre = "";
@@ -87,16 +88,19 @@
                             Boolean result = servicioSalon.editarSalon(salon);
 
                             if (result) {
-                %>
-                <script type="text/javascript">
-                    alert("Exito! el salon ha sido editado exitosamente.");
-                </script>
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el salon no pudo ser editado.");
-                </script>
 
-                <% }%>
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! el salon ha sido editado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! el salon no pudo ser editado.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

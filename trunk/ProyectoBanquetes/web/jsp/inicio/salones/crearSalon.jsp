@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@ page session="true" %>
 
 <%
@@ -57,15 +58,19 @@
 
                             Integer result = servicioSalon.crearSalon(salon);
                             if (result != null) {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! el salon ha sido registrado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! el salon no se pudo registrar.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
                 %>
-                <script type="text/javascript">
-                    alert("Exito! el salon ha sido registrado exitosamente.");
-                </script> 
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el salon no se pudo registrar.");
-                </script>
-                <% }%>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

@@ -3,6 +3,7 @@
     Created on : Sep 1, 2010, 4:36:29 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@ page session="true" %>
 
 <%
@@ -77,16 +78,19 @@
 
                             Boolean result = servicioEmpresa.editarEmpresa(empresa);
                             if (result) {
-                %>
-                <script type="text/javascript">
-                    alert("Exito! la empresa ha sido editada exitosamente.");
-                </script>
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! la empresa no pudo ser editada.");
-                </script>
 
-                <% }%>
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! la empresa ha sido editada exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+
+                            } else {
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! la empresa no pudo ser editada.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

@@ -23,9 +23,11 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
-	<parameter name="idEvento" isForPrompting="false" class="java.lang.Integer"/>
+	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
 	<queryString><![CDATA[SELECT
   DAYOFWEEK(SE.fechaInicio) as numDia,
+  MONTH(SE.fechaInicio) as mes,
+  YEAR(SE.fechaInicio) as ano,
   SE.idEvento as idEvento,
   EV.nombre as nombreEvento,
   SA.nombre as nombreSalon,
@@ -52,15 +54,17 @@ WHERE SE.idServicio = S.id
 ORDER BY fechaInicio ASC]]></queryString>
 
 	<field name="numDia" class="java.lang.Long"/>
+	<field name="mes" class="java.lang.String"/>
+	<field name="ano" class="java.lang.Long"/>
 	<field name="idEvento" class="java.lang.Integer"/>
 	<field name="nombreEvento" class="java.lang.String"/>
 	<field name="nombreSalon" class="java.lang.String"/>
 	<field name="nombreServicio" class="java.lang.String"/>
 	<field name="cantidad" class="java.lang.Integer"/>
-	<field name="fechaInicio" class="java.lang.String"/>
+	<field name="fechaInicio" class="java.sql.Date"/>
 	<field name="fechaFin" class="java.sql.Date"/>
 	<field name="horaInicio" class="java.lang.String"/>
-	<field name="horaFin" class="java.sql.Time"/>
+	<field name="horaFin" class="java.lang.String"/>
 	<field name="notaEspecial" class="java.lang.String"/>
 	<field name="nuevoCosto" class="java.lang.Double"/>
 	<field name="nuevoNombre" class="java.lang.String"/>
@@ -124,19 +128,6 @@ ORDER BY fechaInicio ASC]]></queryString>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreDepartamento}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="143"
-						y="114"
-						width="100"
-						height="18"
-						key="textField"/>
-					<box></box>
-					<textElement verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{fechaInicio}]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement
 						x="1"
@@ -151,19 +142,6 @@ ORDER BY fechaInicio ASC]]></queryString>
 					</textElement>
 				<text><![CDATA[AUDIOVISUALES]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="78"
-						y="114"
-						width="66"
-						height="18"
-						key="textField-1"/>
-					<box></box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{numDia}.equals("1"))? "DOMINGO" : (($F{numDia}.equals("2"))? "LUNES" : (($F{numDia}.equals("3"))? "MARTES" : (($F{numDia}.equals("4"))? "MIERCOLES" : (($F{numDia}.equals("5"))? "JUEVES" : (($F{numDia}.equals("6"))? "VIERNES" : "SABADO")))))) + ", "]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement
 						x="0"
@@ -190,6 +168,24 @@ ORDER BY fechaInicio ASC]]></queryString>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreEvento}]]></textFieldExpression>
 				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="78"
+						y="114"
+						width="247"
+						height="18"
+						forecolor="#000000"
+						key="textField-3"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{numDia}.equals("1"))? "DOMINGO" : (($F{numDia}.equals("2"))? "LUNES" : (($F{numDia}.equals("3"))? "MARTES" : (($F{numDia}.equals("4"))? "MIERCOLES" : (($F{numDia}.equals("5"))? "JUEVES" : (($F{numDia}.equals("6"))? "VIERNES" : "SABADO")))))) + ", " + String.valueOf($F{fechaInicio}.getDate()) + " " + String.valueOf((($F{mes}.equals("1"))? "Enero" : (($F{mes}.equals("2"))? "Febrero" : (($F{mes}.equals("3"))? "Marzo" : (($F{mes}.equals("4"))? "Abril" : (($F{mes}.equals("5"))? "Mayo" : (($F{mes}.equals("6"))? "Junio" : (($F{mes}.equals("7"))? "Julio" : (($F{mes}.equals("8"))? "Agosto" : (($F{mes}.equals("9"))? "Septiembre" : (($F{mes}.equals("10"))? "Octubre" : (($F{mes}.equals("11"))? "Noviembre" : (($F{mes}.equals("12"))? "Diciembre" : ""))))))))))))) + " " + String.valueOf($F{ano})]]></textFieldExpression>
+				</textField>
 			</band>
 		</title>
 		<pageHeader>
@@ -201,7 +197,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="86"  isSplitAllowed="true" >
+			<band height="114"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="101"
@@ -232,18 +228,18 @@ ORDER BY fechaInicio ASC]]></queryString>
 					<reportElement
 						x="101"
 						y="64"
-						width="36"
+						width="47"
 						height="18"
 						key="staticText-4"/>
 					<box></box>
 					<textElement verticalAlignment="Middle">
 						<font pdfFontName="Helvetica" size="11" isBold="false"/>
 					</textElement>
-				<text><![CDATA[A las:]]></text>
+				<text><![CDATA[Desde:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="136"
+						x="147"
 						y="64"
 						width="100"
 						height="18"
@@ -292,6 +288,32 @@ ORDER BY fechaInicio ASC]]></queryString>
 						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Detalles:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="147"
+						y="85"
+						width="100"
+						height="18"
+						key="textField-4"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{horaFin}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="101"
+						y="85"
+						width="47"
+						height="18"
+						key="staticText-14"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica" size="11" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Hasta:]]></text>
 				</staticText>
 			</band>
 		</detail>

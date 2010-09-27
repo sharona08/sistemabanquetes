@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.util.List"%>
 <%@page import="com.banquetes.dominio.EventoSala"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioEventoSala"%>
@@ -124,16 +125,23 @@
                                         // ASIGNAR COMO SALON DEL EVENTO LOS 3, ES DECIR
                                     }
                                 }
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! la reserva ha sido realizada exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
                 %>
                 <script type="text/javascript">
-                    alert("Exito! la reserva ha sido realizada exitosamente.");
                     window.location.href='serviciosAB/formAlimentos.jsp?idEvento=<%=result%>';
-                </script> 
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! la reserva no pudo ser realizada, revise campos.");
                 </script>
-                <% }%>
+                <%    } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! la reserva no pudo ser realizada, revise campos.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

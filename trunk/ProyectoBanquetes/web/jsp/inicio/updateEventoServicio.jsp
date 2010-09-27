@@ -3,6 +3,7 @@
     Created on : Aug 28, 2010, 6:28:01 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@ page session="true" %>
 
 <%
@@ -195,27 +196,34 @@
                             }
 
                             if ((result == 1) && (result2 == 1)) {
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! La reserva ha sido editada exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+
+                            } else {
+                                if ((result != 1) && (result2 == 1)) {
+                                    JOptionPane.showMessageDialog(null,
+                                            "Error! La informacion del evento no pudo ser editada, revise campos.",
+                                            "Error",
+                                            JOptionPane.ERROR_MESSAGE);
+
+                                }
+                                if ((result == 1) && (result2 != 1)) {
+                                    JOptionPane.showMessageDialog(null,
+                                            "Error! La informacion del salon no pudo ser editada, revise campos.",
+                                            "Error",
+                                            JOptionPane.ERROR_MESSAGE);
+
+                                }
+                                if ((result != 1) && (result2 != 1)) {
+                                    JOptionPane.showMessageDialog(null,
+                                            "Error! La reserva no pudo ser editada, revise campos.",
+                                            "Error",
+                                            JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
                 %>
-                <script type="text/javascript">
-                    alert("Exito! la reserva ha sido editada exitosamente.");
-                </script>
-                <% } else {%>
-                <% if ((result != 1) && (result2 == 1)) {%>
-                <script type="text/javascript">
-                    alert("Error! la informacion del evento no pudo ser editada, revise campos.");
-                </script>
-                <% }%>
-                <%if ((result == 1) && (result2 != 1)) {%>
-                <script type="text/javascript">
-                    alert("Error! la informacion del salon no pudo ser editada, revise campos.");
-                </script>
-                <% }%>
-                <%if ((result != 1) && (result2 != 1)) {%>
-                <script type="text/javascript">
-                    alert("Error! la reserva no pudo ser editada, revise campos.");
-                </script>
-                <% }%>
-                <% }%>
             </div>
             <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>

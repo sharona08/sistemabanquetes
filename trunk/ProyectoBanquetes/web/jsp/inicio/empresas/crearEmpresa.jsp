@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@ page session="true" %>
 
 <%
@@ -51,22 +52,26 @@
                             if (!existe) {
                                 Boolean result = servicioEmpresa.crearEmpresa(empresa);
                                 if (result) {
-                %>
-                <script type="text/javascript">
-                    alert("Exito! la empresa ha sido registrada exitosamente.");
-                </script>
-                <% } else {
-                %>
-                <script type="text/javascript">
-                    alert("Error! la empresa no se pudo registrar.");
-                </script>
-                <%                                                }
-                                            } else {
-                %>
-                <script type="text/javascript">
-                    alert("Error! la empresa ya esta registrada.");
-                </script>
-                <%                            }
+
+                                    JOptionPane.showMessageDialog(null,
+                                            "Exito! la empresa ha sido registrada exitosamente.",
+                                            "Exito",
+                                            JOptionPane.INFORMATION_MESSAGE);
+
+                                } else {
+
+                                    JOptionPane.showMessageDialog(null,
+                                            "Error! la empresa no se pudo registrar.",
+                                            "Error",
+                                            JOptionPane.ERROR_MESSAGE);
+                                }
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! la empresa ya esta registrada.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
                 %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
