@@ -65,14 +65,20 @@
                                 if (salon.getIdSalon() != null) {
                                     servicioEventoSala = new ServicioEventoSala();
 
-                                    eventoSala = new EventoSala();
-                                    eventoSala.setIdEvento(idEvento);
-                                    eventoSala.setIdSalon(salon.getIdSalon());
-                                    eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
-                                    eventoSala.setNuevoCosto(Double.valueOf(0));
-                                    eventoSala.setVisible(Boolean.FALSE);
+                                    EventoSala salonSuper = servicioEventoSala.getEventoSala(idEvento, salon.getIdSalon());
+                                    if (salonSuper != null) {
+                                        //ya esta insertado el super salon
+                                    } else {
+                                        eventoSala = new EventoSala();
+                                        eventoSala.setIdEvento(idEvento);
+                                        eventoSala.setIdSalon(salon.getIdSalon());
+                                        eventoSala.setIdMontaje(Integer.valueOf(request.getParameter("montaje")));
+                                        eventoSala.setNuevoCosto(Double.valueOf(0));
+                                        eventoSala.setVisible(Boolean.FALSE);
 
-                                    Boolean superSalon = servicioEventoSala.crearEventoSala(eventoSala);
+                                        Boolean superSalon = servicioEventoSala.crearEventoSala(eventoSala);
+                                    }
+
                                     //ES COMO EL CONSUL
                                     //ASIGNAR COMO SALON DEL EVENTO EL DIPLOMAT, ES DECIR salon.getIdSalon()
                                 } else {
