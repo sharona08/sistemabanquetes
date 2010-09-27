@@ -213,7 +213,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="165"  isSplitAllowed="true" >
+			<band height="207"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
@@ -325,6 +325,33 @@ ORDER BY fechaInicio ASC]]></queryString>
 					</textElement>
 				<text><![CDATA[a las]]></text>
 				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="62"
+						y="154"
+						width="473"
+						height="51"
+						key="textField-4"
+						isRemoveLineWhenBlank="true"/>
+					<box></box>
+					<textElement>
+						<font size="13"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{notaEspecial}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="154"
+						width="61"
+						height="18"
+						key="textField-5"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="13" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{notaEspecial}.equals(""))? "" : "NOTA: ")]]></textFieldExpression>
+				</textField>
 			</band>
 		</detail>
 		<columnFooter>

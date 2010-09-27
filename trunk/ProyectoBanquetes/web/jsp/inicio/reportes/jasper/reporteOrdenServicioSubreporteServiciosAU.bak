@@ -88,7 +88,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 			</band>
 		</background>
 		<title>
-			<band height="132"  isSplitAllowed="true" >
+			<band height="157"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="1"
@@ -197,11 +197,11 @@ ORDER BY fechaInicio ASC]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="114"  isSplitAllowed="true" >
+			<band height="138"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="101"
-						y="43"
+						y="23"
 						width="25"
 						height="18"
 						key="textField"/>
@@ -214,7 +214,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="125"
-						y="43"
+						y="23"
 						width="335"
 						height="18"
 						key="textField"/>
@@ -227,7 +227,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 				<staticText>
 					<reportElement
 						x="101"
-						y="64"
+						y="44"
 						width="47"
 						height="18"
 						key="staticText-4"/>
@@ -240,7 +240,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="147"
-						y="64"
+						y="44"
 						width="100"
 						height="18"
 						key="textField"/>
@@ -253,7 +253,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 				<staticText>
 					<reportElement
 						x="1"
-						y="22"
+						y="2"
 						width="92"
 						height="18"
 						key="staticText-6"/>
@@ -266,7 +266,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="101"
-						y="22"
+						y="2"
 						width="100"
 						height="18"
 						key="textField"/>
@@ -279,7 +279,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 				<staticText>
 					<reportElement
 						x="1"
-						y="43"
+						y="23"
 						width="92"
 						height="18"
 						key="staticText-7"/>
@@ -292,7 +292,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="147"
-						y="85"
+						y="65"
 						width="100"
 						height="18"
 						key="textField-4"/>
@@ -305,7 +305,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 				<staticText>
 					<reportElement
 						x="101"
-						y="85"
+						y="65"
 						width="47"
 						height="18"
 						key="staticText-14"/>
@@ -315,6 +315,33 @@ ORDER BY fechaInicio ASC]]></queryString>
 					</textElement>
 				<text><![CDATA[Hasta:]]></text>
 				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="101"
+						y="87"
+						width="434"
+						height="51"
+						key="textField"
+						isRemoveLineWhenBlank="true"/>
+					<box></box>
+					<textElement>
+						<font size="11"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{notaEspecial}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="87"
+						width="92"
+						height="18"
+						key="textField-5"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{notaEspecial}.equals(""))? "" : "NOTA: ")]]></textFieldExpression>
+				</textField>
 			</band>
 		</detail>
 		<columnFooter>
