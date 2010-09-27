@@ -3,6 +3,7 @@
     Created on : Sep 1, 2010, 4:36:29 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@ page session="true" %>
 
 <%
@@ -66,16 +67,19 @@
                             Boolean result = servicioRol.editarRol(rol);
 
                             if (result) {
-                %>
-                <script type="text/javascript">
-                    alert("Exito! el rol ha sido editado exitosamente.");
-                </script>
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el rol no pudo ser editado.");
-                </script>
 
-                <% }%>
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! el rol ha sido editado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! el rol no pudo ser editado.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

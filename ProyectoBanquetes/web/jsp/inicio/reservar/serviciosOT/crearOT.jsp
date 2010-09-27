@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="com.banquetes.util.UtilMethods"%>
 <%@ page session="true" %>
 
@@ -65,15 +66,19 @@
 
                             Boolean result = servicioReserva.crearServicioEvento(servicioEvento);
                             if (result) {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! el servicio ha sido registrado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! el servicio no se pudo registrar.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
                 %>
-                <script type="text/javascript">
-                    alert("Exito! el servicio ha sido registrado exitosamente.");
-                </script> 
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el servicio no se pudo registrar.");
-                </script>
-                <% }%>
             </div>
             <jsp:include page="../../../include/footer.jsp"></jsp:include>
         </div>

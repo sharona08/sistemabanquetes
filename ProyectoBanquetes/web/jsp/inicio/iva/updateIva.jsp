@@ -3,6 +3,7 @@
     Created on : Sep 1, 2010, 4:36:29 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioIva"%>
 <%@page import="com.banquetes.servicios.impl.ServicioIva"%>
 <%@page import="com.banquetes.dominio.Iva"%>
@@ -50,16 +51,20 @@
                             Boolean result = servicioIva.editarIva(iva);
 
                             if (result) {
-                %>
-                <script type="text/javascript">
-                    alert("Exito! el IVA ha sido editado exitosamente.");
-                </script>
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el IVA no pudo ser editado.");
-                </script>
 
-                <% }%>
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! el IVA ha sido editado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! el IVA no pudo ser editado.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.banquetes.util.UtilMethods"%>
 <%@ page session="true" %>
@@ -52,15 +53,19 @@
 
                             Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon, fechaInicio);
                             if (result) {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! el servicio ha sido eliminado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! el servicio ha sido eliminado exitosamente.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
                 %>
-                <script type="text/javascript">
-                    alert("Exito! el servicio ha sido eliminado exitosamente.");
-                </script> 
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el servicio no se pudo eliminado.");
-                </script>
-                <% }%>
             </div>
             <jsp:include page="../../../include/footer.jsp"></jsp:include>
         </div>

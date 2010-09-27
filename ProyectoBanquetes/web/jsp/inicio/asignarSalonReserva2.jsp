@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioSalon"%>
 <%@page import="com.banquetes.servicios.impl.ServicioSalon"%>
 <%@page import="com.banquetes.dominio.Salon"%>
@@ -91,15 +92,19 @@
                                     // BUSCAR SI ES COMO EL DIPLOMAT
                                     // ASIGNAR COMO SALON DEL EVENTO LOS 3, ES DECIR
                                 }
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! El salon ha sido asignado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! El salon no pudo ser asignado.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
                 %>
-                <script type="text/javascript">
-                    alert("Exito! el salon ha sido asignado exitosamente.");
-                </script> 
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el salon no pudo ser asignado.");
-                </script>
-                <% }%>
             </div>
             <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>

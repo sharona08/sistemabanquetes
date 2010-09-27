@@ -3,6 +3,7 @@
     Created on : Sep 1, 2010, 5:16:29 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@ page session="true" %>
 
 <%
@@ -65,10 +66,10 @@
                 <%
                             IServicioDepartamento servicioDepartamento = new ServicioDepartamento();
                             Departamento departamento = servicioDepartamento.getDepartamentoNombre(request.getParameter("departamento"));
-  
+
                             IServicioServicio servicioServicio = new ServicioServicio();
                             Servicio servicio = new Servicio();
-                            
+
                             servicio.setId(Integer.valueOf(hiddenId));
                             servicio.setNombre(request.getParameter("nombreServicio"));
                             servicio.setDescripcion(request.getParameter("descripcion"));
@@ -89,16 +90,18 @@
                             Boolean result = servicioServicio.editarServicio(servicio);
 
                             if (result) {
-                %>
-                <script type="text/javascript">
-                    alert("Exito! el servicio ha sido editado exitosamente.");
-                </script>
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el servicio no pudo ser editado.");
-                </script>
 
-                <% }%>
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! el servicio ha sido editado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! el servicio no se pudo ser editado.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

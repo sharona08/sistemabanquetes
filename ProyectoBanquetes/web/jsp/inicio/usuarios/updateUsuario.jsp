@@ -3,6 +3,7 @@
     Created on : Sep 1, 2010, 4:36:29 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="com.banquetes.dominio.Usuario"%>
 <%@page import="com.banquetes.servicios.impl.ServicioUsuario"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioUsuario"%>
@@ -80,16 +81,19 @@
                             Boolean result = servicioUsuario.editarUsuario(usuario);
 
                             if (result) {
-                %>
-                <script type="text/javascript">
-                    alert("Exito! el usuario ha sido editado exitosamente.");
-                </script>
-                <% } else{ %>
-                <script type="text/javascript">
-                    alert("Error! el usuario no pudo ser editado.");
-                </script>
 
-                <% } %>
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! el usuario ha sido editado exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! el usuario no pudo ser editado.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

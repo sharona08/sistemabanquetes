@@ -3,6 +3,7 @@
     Created on : Sep 1, 2010, 4:36:29 PM
     Author     : maya
 --%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="com.banquetes.dominio.Usuario"%>
 <%@page import="com.banquetes.servicios.impl.ServicioUsuario"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioUsuario"%>
@@ -31,7 +32,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
-        <title>Editar usuario</title>
+        <title>Editar contraseña</title>
         <%
                     String id = "";
                     if (request.getParameter("id") == null) {
@@ -39,7 +40,7 @@
                     } else {
                         id = request.getParameter("id");
                     }
-                    
+
                     String passActual = request.getParameter("contrasenaActual");
                     String passNueva = request.getParameter("contrasenaNueva");
 
@@ -61,7 +62,7 @@
 
                     String hashedPassActual = hashedpasswd.toString();
 
-                    
+
         %>
         <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/detalleMiCuenta.jsp">
     </head>
@@ -91,18 +92,20 @@
                                 usuario.setPassword(null);
                             }
 
-
                             if (result) {
-                %>
-                <script type="text/javascript">
-                    alert("Exito! el usuario ha sido editado exitosamente.");
-                </script>
-                <% } else {%>
-                <script type="text/javascript">
-                    alert("Error! el usuario no pudo ser editado.");
-                </script>
 
-                <% }%>
+                                JOptionPane.showMessageDialog(null,
+                                        "Exito! la contraseña ha sido editada exitosamente.",
+                                        "Exito",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null,
+                                        "Error! la contraseña no pudo ser editada.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                %>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

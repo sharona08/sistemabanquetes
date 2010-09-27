@@ -3,6 +3,8 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="javax.swing.UnsupportedLookAndFeelException"%>
+<%@page import="javax.swing.UIManager"%>
 <%@page import="com.banquetes.dominio.ServicioServicioEvento"%>
 <%@page import="com.banquetes.servicios.impl.ServicioReserva"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioReserva"%>
@@ -51,6 +53,19 @@
                 <h1 id="letra1">Eliminar salon de reserva</h1>
 
                 <%
+                            try {
+                                // Set System L&F
+                                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                            } catch (UnsupportedLookAndFeelException e) {
+                                // handle exception
+                            } catch (ClassNotFoundException e) {
+                                // handle exception
+                            } catch (InstantiationException e) {
+                                // handle exception
+                            } catch (IllegalAccessException e) {
+                                // handle exception
+                            }
+
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
                             Integer idSalon = Integer.valueOf(request.getParameter("salon"));
 
@@ -63,8 +78,8 @@
                                 "No",
                                 "Cancelar"};
                             int confirm = JOptionPane.showOptionDialog(null,
-                                    "Esta operación eliminará los servicios contratados en dicho \n "
-                                    + "salón.\n"
+                                    "Esta operación eliminará los servicios contratados en \n "
+                                    + "dicho salón.\n"
                                     + "¿Deseas exportar estos servicios del " + salonConfirm.getNombre() + " a otro salón?",
                                     "Advertencia",
                                     JOptionPane.YES_NO_CANCEL_OPTION,
