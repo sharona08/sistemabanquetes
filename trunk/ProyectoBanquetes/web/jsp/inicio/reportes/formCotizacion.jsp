@@ -26,7 +26,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
-        <title>Ver Reserva</title>
+        <title>Cotizacion</title>
         <script type="text/javascript">
             $(function() {
                 $("button, input:submit, a", ".demo").button();

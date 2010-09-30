@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="java.math.BigDecimal"%>
 <%@page import="com.banquetes.servicios.impl.ServicioReserva"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioReserva"%>
 <%@page import="com.banquetes.servicios.impl.ServicioEventoSala"%>
@@ -77,13 +78,29 @@
                             if (moneda.equals("D")) {
 
                                 montoTotal = servicioReserva.costoTotalReserva(idEvento) / tasaCambio;
-                                totalSalones = servicioReserva.costoTotalSalones(idEvento) / tasaCambio;
-                                totalAB = servicioReserva.costoTotalServicios(idEvento, "AB") / tasaCambio;
-                                totalAU = servicioReserva.costoTotalServicios(idEvento, "AU") / tasaCambio;
-                                totalOT = servicioReserva.costoTotalServicios(idEvento, "OT") / tasaCambio;
+
+                                Double totalS = servicioReserva.costoTotalSalones(idEvento) / tasaCambio;
+                                BigDecimal bd = new BigDecimal(totalS.toString()).setScale(2, BigDecimal.ROUND_HALF_UP);
+                                totalSalones = Double.valueOf(bd.doubleValue());
+
+                                Double totalab = servicioReserva.costoTotalServicios(idEvento, "AB") / tasaCambio;
+                                BigDecimal bdAB = new BigDecimal(totalab.toString()).setScale(2, BigDecimal.ROUND_HALF_UP);
+                                totalAB = Double.valueOf(bdAB.doubleValue());
+
+                                Double totalau = servicioReserva.costoTotalServicios(idEvento, "AU") / tasaCambio;
+                                BigDecimal bdAU = new BigDecimal(totalau.toString()).setScale(2, BigDecimal.ROUND_HALF_UP);
+                                totalAU = Double.valueOf(bdAU.doubleValue());
+
+                                Double totalot = servicioReserva.costoTotalServicios(idEvento, "OT") / tasaCambio;
+                                BigDecimal bdOT = new BigDecimal(totalot.toString()).setScale(2, BigDecimal.ROUND_HALF_UP);
+                                totalOT = Double.valueOf(bdOT.doubleValue());
+
                                 totalIVA = servicioReserva.ivaReserva(idEvento) / tasaCambio;
                                 totalServicio = servicioReserva.diezPorciento(idEvento) / tasaCambio;
                                 subtotal = servicioReserva.subtotalReserva(idEvento) / tasaCambio;
+
+
+
 
                             } else if (moneda.equals("B")) {
 
