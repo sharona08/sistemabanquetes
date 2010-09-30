@@ -68,21 +68,21 @@
                     <form name="form" method="get" action="">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr style="height: 10px">
-                                <td width="12%">&nbsp;</td>
-                                <td width="15%">&nbsp;</td>
-                                <td width="73%">&nbsp;</td>
+                                <td width="6%">&nbsp;</td>
+                                <td width="17%">&nbsp;</td>
+                                <td width="75%">&nbsp;</td>
                             </tr>
                             <tr style="height: 30px">
-                                <td>ID</td>
+                                <td>ID: </td>
                                 <td>
-                                    <input value="<%= hiddenId%>" name="id" onKeyUp="this.value=this.value.toUpperCase();" style="width: 160px; height: 23px" align="middle"/>
+                                    <input value="<%= hiddenId%>" name="id" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle"/>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr style="height: 30px">
-                                <td>Nombre</td>
+                                <td>Nombre: </td>
                                 <td>
-                                    <input value="<%= hiddenNombre%>" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 160px; height: 23px" align="middle"/>
+                                    <input value="<%= hiddenNombre%>" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle"/>
                                 </td>
                                 <td>
                                     <div id="boton" class="demo">

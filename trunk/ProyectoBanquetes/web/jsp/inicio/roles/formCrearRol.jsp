@@ -84,7 +84,7 @@
                             </tr>
                         </table>
                         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-                            <input class="submit" type="submit" name="create" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
+                            <input class="submit" type="submit" name="create" value="Guardar" style="width: 80px; height: 25px; margin-left: 270px; margin-right: 10px" onclick=""/>
                         </div>
                     </form>
                 </div>

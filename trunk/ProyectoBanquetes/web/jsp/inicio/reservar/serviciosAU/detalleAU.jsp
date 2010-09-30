@@ -210,11 +210,11 @@
         <input type="hidden" name="idServicio" value="<%= idServicio%>"/>
         <input type="hidden" name="fechaInicio" value="<%= fechaInicio%>"/>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-            <input type="submit" name="update" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
+            <input type="submit" name="update" value="Guardar" style="width: 80px; height: 25px; margin-left: 270px; margin-right: 10px" onclick=""/>
         </div>
     </form>
     <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-        <input type="submit" name="cancel" value="Cancelar" onclick="hideDivAlimento()" style="width: 65px;"/>
+        <input type="submit" name="cancel" value="Cancelar" onclick="hideDivAlimento()" style="width: 80px; height: 25px;"/>
     </div>
     <div id="espacio"></div>
 </div>

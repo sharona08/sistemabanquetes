@@ -76,7 +76,7 @@
             <div id="content">
                 <h1 id="letra1">CREAR USUARIO</h1>
                 <div style="height: 10px"></div>
-                <div style="padding-left: 20px; background-color: #dadada; width: 33%; min-height: 410px">
+                <div style="padding-left: 20px; background-color: #dadada; width: 34%; min-height: 410px">
                     <div id="espacio"></div>
 
                     <form method="get" action="crearUsuario.jsp" class="cmxform" id="commentForm">
@@ -137,7 +137,7 @@
                             </tr>
                         </table>
                         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-                            <input class="submit" type="submit" name="create" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
+                            <input class="submit" type="submit" name="create" value="Guardar" style="width: 80px; height: 25px; margin-left: 300px; margin-right: 10px" onclick=""/>
                         </div>
                     </form>
                 </div>
