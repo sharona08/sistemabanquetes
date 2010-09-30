@@ -73,10 +73,10 @@
     <table width="100%" border="1" cellspacing="0" cellpadding="0">
         <tr align="center" style="height: 30px; background-color: #919999; border-color: #556270; font-weight: bolder; color: white">
             <td width="5%">ID</td>
-            <td width="15%">Nombre</td>
-            <td width="30%">Descripcion</td>
-            <td width="25%">Costo Unitario</td>
-            <td width="10%">Opcion</td>
+            <td width="20%">Nombre</td>
+            <td width="40%">Descripcion</td>
+            <td width="12%">Costo Unitario</td>
+            <td width="8%">Opcion</td>
         </tr>
         <%
                     for (Servicio s : servicios) {
@@ -140,7 +140,7 @@
             if (request.getParameter("hiddenId") != null) {
 %>
 
-<div id="audiovisual" style="width: 40%; min-height: 300px; background-color: #B9B9B9; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
+<div id="audiovisual" style="width: 40%; min-height: 300px; background-color: #dadada; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
     <jsp:include page="detalleAudiovisual.jsp"></jsp:include>
 </div>
 

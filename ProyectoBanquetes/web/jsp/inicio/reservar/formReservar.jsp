@@ -125,28 +125,28 @@
                             <tr style="height: 35px">
                                 <td width="42%">Fecha Inicio: (*)</td>
                                 <td width="45%">
-                                    <input class="inputDate3" id="inputDate3" value="<%=fechaInicio%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" />
+                                    <input class="inputDate3" id="inputDate3" value="<%=fechaInicio%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 205px; height: 23px" />
                                 </td>
                                 <td width="10%">&nbsp;</td>
                             </tr>
                             <tr style="height: 35px">
                                 <td>Fecha Fin: (*)</td>
                                 <td>
-                                    <input class="inputDate4" id="inputDate4" value="<%= hiddenFecha%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" />
+                                    <input class="inputDate4" id="inputDate4" value="<%= hiddenFecha%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 205px; height: 23px" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr style="height: 35px">
                                 <td>Nombre Evento: (*)</td>
                                 <td>
-                                    <input class="required" type="text" name="nombreEvento" value="" style="width: 195px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
+                                    <input class="required" type="text" name="nombreEvento" value="" style="width: 205px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr style="height: 35px">
                                 <td>Tipo Evento: (*)</td>
                                 <td>
-                                    <select name="tipoEvento" style="width: 200px; height: 25px" >
+                                    <select name="tipoEvento" style="width: 210px; height: 25px" >
                                         <% for (TipoEvento tipoEvento : tipoEventos) {%>
                                         <option value="<%= tipoEvento.getId()%>">
                                             <%= tipoEvento.getTipoEvento()%>
@@ -159,7 +159,7 @@
                             <tr style="height: 35px">
                                 <td>Cantidad Personas: (*)</td>
                                 <td>
-                                    <input class="required" type="text" name="cantidadPersonas" value="" style="width: 195px; height: 23px" align="middle" />
+                                    <input class="required" type="text" name="cantidadPersonas" value="" style="width: 205px; height: 23px" align="middle" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -237,7 +237,7 @@
                                 <td width="30%">
                                     <!--                                    <select name="empresa" style="width: 165px; height: 25px" onchange="location.href='formReservar.jsp?empresa='+this.value+'&fechaInicioEvento='+<fechaInicio%>" >-->
 <!--                                    <select name="empresa" style="width: 165px; height: 25px" onchange="redirect('/ProyectoBanquetes/jsp/inicio/reservar/formReservar.jsp?empresa='+this.value+'&cantidadPersonas='+<%=request.getParameter("cantidadPersonas")%>)" >-->
-                                    <select id="empresa" name="empresa" style="width: 200px; height: 25px" onchange="showCustomer(this.value)">
+                                    <select id="empresa" name="empresa" style="width: 210px; height: 25px" onchange="showCustomer(this.value)">
                                         <% for (Empresa empresa : empresas) {%>
                                         <% if (empresa.getRif().equals("J-00000000-0")) {%>
                                         <option selected value="<%= empresa.getRif()%>">
@@ -257,7 +257,7 @@
                                 <td width="10%">Contacto: (*)</td>
                                 <td width="30%">
                                     <div id="txtHint">
-                                        <select id="contacto" name="contacto" style="width: 200px; height: 25px" >
+                                        <select id="contacto" name="contacto" style="width: 210px; height: 25px" >
                                             <% contactos = iServicioContacto.listarContactosRif("J-00000000-0");%>
                                             <% for (Contacto contacto : contactos) {%>
                                             <option selected value="<%= contacto.getId()%>">
@@ -283,21 +283,21 @@
                             <tr style="height: 35px">
                                 <td>Salon: </td>
                                 <td>
-                                    <input type="text" name="salon" value="<%= hiddenSalon%>" style="width: 195px; height: 23px" align="middle" disabled/>
+                                    <input type="text" name="salon" value="<%= hiddenSalon%>" style="width: 205px; height: 23px" align="middle" disabled/>
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr style="height: 35px">
                                 <td>Nuevo Costo:</td>
                                 <td>
-                                    <input type="text" name="nuevoCosto" value="<%= salon.getCosto()%>" style="width: 195px; height: 23px" align="middle" />
+                                    <input type="text" name="nuevoCosto" value="<%= salon.getCosto()%>" style="width: 205px; height: 23px" align="middle" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr style="height: 35px">
                                 <td>Montaje: (*)</td>
                                 <td>
-                                    <select name="montaje" style="width: 200px; height: 25px">
+                                    <select name="montaje" style="width: 210px; height: 25px">
                                         <% for (Montaje montaje : montajes) {%>
                                         <option selected value="<%= montaje.getId()%>">
                                             <%= montaje.getTipoMontaje()%>
@@ -340,7 +340,7 @@
                                 <td>
                                     <div id="boton" class="demo" style="float: right;">
                                         <input type="hidden" name="hiddenSalon" value="<%= request.getParameter("salon")%>"/>
-                                        <input class="submit" type="submit" name="create" value="Siguente" style="width: 65px; margin-right: 10px" onclick=""/>
+                                        <input class="submit" type="submit" name="create" value="Siguente" style="width: 85px; height: 30px; margin-right: 10px" onclick=""/>
                                     </div>
                                 </td>
                                 <td>&nbsp;</td>

@@ -102,7 +102,7 @@
             if (request.getParameter("hiddenId") != null) {
 %>
 
-<div id="montaje" style="width: 40%; min-height: 200px; background-color: #B9B9B9; padding-left: 20px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px">
+<div id="montaje" style="width: 40%; min-height: 200px; background-color: #dadada; padding-left: 20px; padding-top: 20px; padding-right: 10px; padding-bottom: 20px">
     <jsp:include page="detalleMontaje.jsp"></jsp:include>
 </div>
 
