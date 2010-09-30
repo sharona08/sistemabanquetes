@@ -3,6 +3,7 @@
     Created on : Sep 2, 2010, 10:44:25 AM
     Author     : maya
 --%>
+<%@page import="com.banquetes.util.UtilMethods"%>
 <%@page import="com.banquetes.servicios.impl.ServicioReserva"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioReserva"%>
 <%@page import="com.banquetes.servicios.impl.ServicioEventoSala"%>
@@ -50,18 +51,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Reservar</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reportes/formCierreMes.jsp"/>
+        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reportes/formServicioMasVendido.jsp"/>
     </head>
     <body>
 
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
-                <h1 id="letra1">Cierre del Mes</h1>
+                <h1 id="letra1">Servicio más vendido</h1>
                 <h1 id="letra2">Cargando...</h1>
                 <%
-                            String mes = request.getParameter("mes");
-                            String ano = request.getParameter("ano");
+                            String fechaInicio = request.getParameter("fechaInicio");
+                            String fechaFin = request.getParameter("fechaFin");
+                            String tipoServicio = request.getParameter("servicio");
 
                             Connection conn = null;
 
@@ -77,24 +79,16 @@
                             try {
                                 JasperReport masterReport = null;
 
-                                masterReport = JasperCompileManager.compileReport(application.getRealPath("jsp/inicio/reportes/jasper/repCierreMes.jrxml"));
+                                masterReport = JasperCompileManager.compileReport(application.getRealPath("jsp/inicio/reportes/jasper/repServicioMasVendido.jrxml"));
 
                                 Map masterParams = new HashMap();
-                                masterParams.put("rutaSalones", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesServiciosSalones.jasper"));
-                                masterParams.put("rutaAB", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesServiciosAB.jasper"));
-                                masterParams.put("rutaAU", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesServiciosAU.jasper"));
-                                masterParams.put("rutaOT", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesServiciosOT.jasper"));
-                                masterParams.put("rutaTotal", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesTOTAL.jasper"));
-                                masterParams.put("rutaSubtotalSalones", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesSubtotalSalones.jasper"));
-                                masterParams.put("rutaSubtotalAB", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesSubtotalAB.jasper"));
-                                masterParams.put("rutaSubtotalAU", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesSubtotalAU.jasper"));
-                                masterParams.put("rutaSubtotalOT", application.getRealPath("jsp/inicio/reportes/jasper/repCierreMesSubtotalOT.jasper"));
-                                masterParams.put("mes", mes);
-                                masterParams.put("ano", ano);
+                                masterParams.put("fechaInicio", fechaInicio);
+                                masterParams.put("fechaFin", fechaFin);
+                                masterParams.put("tipoServicio", tipoServicio);
 
                                 jasperPrint = JasperFillManager.fillReport(masterReport, masterParams, conn);
-                                JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/cierreMes" + mes + "-" + ano + "PDF.pdf"));
-                                File file = new File(application.getRealPath("jsp/inicio/reportes/PDF/cierreMes" + mes + "-" + ano + "PDF.pdf"));
+                                JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/servicioMasVendido" + tipoServicio + ".pdf"));
+                                File file = new File(application.getRealPath("jsp/inicio/reportes/PDF/servicioMasVendido" + tipoServicio + ".pdf"));
 
                                 Desktop.getDesktop().open(file);
 

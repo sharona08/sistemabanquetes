@@ -58,6 +58,7 @@
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">Cotizacion</h1>
+                <h1 id="letra2">Cargando...</h1>
                 <%
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
 
