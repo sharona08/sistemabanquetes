@@ -33,6 +33,7 @@
 					AND   SE.idServicio = S.id
 					AND   SE.idSalon = ES.idSalon
 					AND   E.estado = 'C'
+					AND   ES.visible is TRUE
 					AND   S.tipoServicio = 'AB'
 					AND MONTH(E.fechaInicio) = $P{mes}
 					AND YEAR(E.fechaInicio) = $P{ano}), 0.0)) as totalAB
@@ -45,6 +46,7 @@
 					AND   SE.idServicio = S.id
 					AND   SE.idSalon = ES.idSalon
 					AND   E.estado = 'C'
+					AND   ES.visible is TRUE
 					AND   S.tipoServicio = 'AU'
 					AND MONTH(E.fechaInicio) = $P{mes}
 					AND YEAR(E.fechaInicio) = $P{ano}), 0.0)) as totalAB
@@ -57,6 +59,7 @@
 					AND   SE.idServicio = S.id
 					AND   SE.idSalon = ES.idSalon
 					AND   E.estado = 'C'
+					AND   ES.visible is TRUE
 					AND   S.tipoServicio = 'OT'
 					AND MONTH(E.fechaInicio) = $P{mes}
 					AND YEAR(E.fechaInicio) = $P{ano}), 0.0)) as totalAB 
@@ -69,10 +72,12 @@
 			AND   ES.visible is TRUE
 			AND MONTH(E.fechaInicio) = $P{mes}
 			AND YEAR(E.fechaInicio) = $P{ano}), 0.0)) as totalSalones
-         FROM SALON SA)) as totalIngresos
-]]></queryString>
+         FROM SALON SA)) as totalServicios, I.porcentaje as iva
+FROM IVA I
+WHERE I.id = 1]]></queryString>
 
-	<field name="totalIngresos" class="java.lang.Double"/>
+	<field name="totalServicios" class="java.lang.Double"/>
+	<field name="iva" class="java.lang.Double"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -91,19 +96,84 @@
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="23"  isSplitAllowed="true" >
+			<band height="68"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="2"
-						y="2"
+						x="247"
+						y="47"
 						width="110"
 						height="18"
 						key="textField"/>
 					<box></box>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[(($F{totalIngresos}) == null ? new Double(0.0) : $F{totalIngresos})]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[new java.lang.Double($F{totalServicios}.doubleValue() + ($F{totalServicios}.doubleValue() * ($F{iva}.doubleValue()/100)) + ($F{totalServicios}.doubleValue() * (new Double(10).doubleValue()/100)))]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="47"
+						width="242"
+						height="18"
+						key="textField-1"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["TOTAL INGRESOS " + String.valueOf((($P{mes}.equals("1")) ? "ENERO" : (($P{mes}.equals("2")) ? "FEBRERO" : (($P{mes}.equals("3")) ? "MARZO" : (($P{mes}.equals("4")) ? "ABRIL" : (($P{mes}.equals("5")) ? "MAYO" : (($P{mes}.equals("6")) ? "JUNIO" : (($P{mes}.equals("7")) ? "JULIO" : (($P{mes}.equals("8")) ? "AGOSTO" : (($P{mes}.equals("9")) ? "SEPTIEMBRE" : (($P{mes}.equals("10")) ? "OCTUBRE" : (($P{mes}.equals("11")) ? "NOVIEMBRE" : "DICIEMBRE")))))))))))) + ": "]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="247"
+						y="25"
+						width="110"
+						height="18"
+						key="textField-2"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica" size="12" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[new java.lang.Double($F{totalServicios}.doubleValue() * (new Double(10).doubleValue()/100))]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="25"
+						width="242"
+						height="18"
+						key="textField-3"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Servicio (10%): "]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="247"
+						y="3"
+						width="110"
+						height="18"
+						key="textField-4"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica" size="12" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[new java.lang.Double($F{totalServicios}.doubleValue() * ($F{iva}.doubleValue()/100))]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="3"
+						width="242"
+						height="18"
+						key="textField-5"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["IVA (" + $F{iva} + "%): "]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

@@ -35,7 +35,7 @@ public class ServicioReportes {
             param.put("idSalon", idSalon);
             param.put("mes", mes);
             param.put("ano", ano);
-            costoSalon = (CostoSalones) sqlMap.queryForObject("getTotalSalon", param);
+            costoSalon = (CostoSalones) sqlMap.queryForObject("repGetTotalSalon", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,7 +51,7 @@ public class ServicioReportes {
             param.put("tipoServicio", tipoServicio);
             param.put("mes", mes);
             param.put("ano", ano);
-            costoServicios = (TotalServicioSalon) sqlMap.queryForObject("getTotalServicios", param);
+            costoServicios = (TotalServicioSalon) sqlMap.queryForObject("repGetTotalServicios", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -65,7 +65,7 @@ public class ServicioReportes {
             Map param = new HashMap();
             param.put("mes", mes);
             param.put("ano", ano);
-            salonesTodos = (TotalServicioSalon) sqlMap.queryForObject("getTotalSalonesTodos", param);
+            salonesTodos = (TotalServicioSalon) sqlMap.queryForObject("repGetTotalSalonesTodos", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +80,7 @@ public class ServicioReportes {
             param.put("tipoServicio", tipoServicio);
             param.put("mes", mes);
             param.put("ano", ano);
-            serviciosTodos = (TotalServicioSalon) sqlMap.queryForObject("getTotalServiciosPorTipo", param);
+            serviciosTodos = (TotalServicioSalon) sqlMap.queryForObject("repGetTotalServiciosPorTipo", param);
         } catch (SQLException ex) {
             Logger.getLogger(ServicioReserva.class.getName()).log(Level.SEVERE, null, ex);
         }

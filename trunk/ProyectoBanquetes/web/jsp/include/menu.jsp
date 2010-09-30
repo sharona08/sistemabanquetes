@@ -75,7 +75,7 @@
                 <li><a href="">Servicio más vendido</a></li>
                 <li><a href="">Salón más vendido</a></li>
                 <li><a href="">Cantidad ventas salón</a></li>
-                <li><a href="">Cierre del Mes</a></li>
+                <li><a href="/ProyectoBanquetes/jsp/inicio/reportes/formCierreMes.jsp">Cierre del Mes</a></li>
             </ul>
         </li>
         <li class="top"><a href="" id="contacts" class="top_link"><span class="down">Reserva</span></a>
