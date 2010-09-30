@@ -93,17 +93,17 @@
                 <h1 id="letra1">AGREGAR OTROS SERVICIOS</h1>
                 <div style="height: 10px"></div>
 
-                <div style="padding-left: 20px; background-color: #dadada; width: 35%; min-height: 400px">
+                <div style="padding-left: 40px; background-color: #dadada; width: 38%; min-height: 400px">
                     <div id="espacio"></div>
                     <label id="letra2">RESERVA # <%= idEvento%></label>
                     <div id="espacio"></div>
 
                     <form method="get" action="crearOT.jsp" class="cmxform" id="commentForm" name="form">
-                        <table width="85%" border="0">
+                        <table width="88%" border="0">
                             <tr style="height: 40px">
-                                <td width="45%">Nombre: (*)</td>
+                                <td width="48%">Nombre: (*)</td>
                                 <td width="40%">
-                                    <select name="nombre" style="width: 200px; height: 25px" onchange="mostrarInfo(this.value, <%=request.getParameter("idEvento")%>); mostrarDesc(this.value, <%=request.getParameter("idEvento")%>);">
+                                    <select name="nombre" style="width: 255px; height: 25px" onchange="mostrarInfo(this.value, <%=request.getParameter("idEvento")%>); mostrarDesc(this.value, <%=request.getParameter("idEvento")%>);">
                                         <%
                                                     Servicio serv = servicios.get(0);
                                                     for (Servicio s : servicios) {
@@ -125,8 +125,7 @@
                                 <td>Costo Unitario: (*)</td>
                                 <td>
                                     <div id="ab">
-
-                                        <input class="required" value="<%= servicio.getCostoUnitario()%>" name="costoUnitario" style="width: 195px; height: 23px" onKeyUp="this.value=this.value.toUpperCase();" />
+                                        <input class="required" value="<%= servicio.getCostoUnitario()%>" name="costoUnitario" style="width: 250px; height: 23px" onKeyUp="this.value=this.value.toUpperCase();" />
                                     </div>
                                 </td>
                             </tr>
@@ -134,20 +133,20 @@
                             <tr style="height: 40px">
                                 <td>Cantidad: (*)</td>
                                 <td>
-                                    <input class="required" type="text" name="cantidad" value="1" style="width: 195px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
+                                    <input class="required" type="text" name="cantidad" value="1" style="width: 250px; height: 23px" align="middle" onKeyUp="this.value=this.value.toUpperCase();" />
                                 </td>
                             </tr>
                             <tr style="height: 38px">
                                 <td>Fecha Inicio: (*)</td>
                                 <td>
-                                    <input class="inputDate" id="inputDate" value="<%= evento.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 190px; height: 20px" />
+                                    <input class="inputDate" id="inputDate" value="<%= evento.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 245px; height: 20px" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr style="height: 38px">
                                 <td>Fecha Fin: (*)</td>
                                 <td>
-                                    <input class="inputDate2" id="inputDate2" value="<%= evento.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 190px; height: 20px" />
+                                    <input class="inputDate2" id="inputDate2" value="<%= evento.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 245px; height: 20px" />
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -223,7 +222,7 @@
                             <tr style="height: 40px">
                                 <td>Salon: </td>
                                 <td>
-                                    <select name="salon" style="width: 200px; height: 25px">
+                                    <select name="salon" style="width: 255px; height: 25px">
                                         <%
                                                     for (Salon s : salones) {
                                                         out.write("<option value=" + s.getId() + ">" + s.getNombre() + "</option>");
@@ -233,22 +232,22 @@
                                     </select>
                                 </td>
                             </tr>
-                            <tr style="height: 80px">
+                            <tr style="height: 100px">
                                 <td>Descripcion:</td>
                                 <td>
                                     <div id="descripcion">
                                         <% if (servicio.getDescripcion() != null) {%>
-                                        <textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%= servicio.getDescripcion()%></textarea>
+                                        <textarea cols="" rows="5" name="descripcion" style="width: 255px;"><%= servicio.getDescripcion()%></textarea>
                                         <% } else {%>
-                                        <textarea cols="" rows="4" name="descripcion" style="width: 200px;"></textarea>
+                                        <textarea cols="" rows="5" name="descripcion" style="width: 255px;"></textarea>
                                         <% }%>
                                     </div>
                                 </td>
                             </tr>
-                            <tr style="height: 80px">
+                            <tr style="height: 100px">
                                 <td>Nota:</td>
                                 <td>
-                                    <textarea cols="" rows="4" name="nota" style="width: 200px;"></textarea>
+                                    <textarea cols="" rows="5" name="nota" style="width: 255px;"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -268,7 +267,7 @@
                                 <td>
                                     <input type="hidden" name="idEvento" value="<%=idEvento%>"/>
                                     <div id="boton" class="demo" style="float: right; margin-bottom: 20px">
-                                        <input class="submit" type="submit" name="create" value="Crear" style="width: 65px; margin-right: 10px" onclick=""/>
+                                        <input class="submit" type="submit" name="create" value="Crear" style="width: 80px; height: 25px; margin-right: 10px" onclick=""/>
                                     </div>
                                 </td>
                             </tr>

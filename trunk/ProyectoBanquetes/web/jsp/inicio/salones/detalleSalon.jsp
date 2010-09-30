@@ -23,19 +23,19 @@
             <tr style="height: 40px">
                 <td width="30%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= salon.getNombre()%>" name="nombreSalon" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= salon.getNombre()%>" name="nombreSalon" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Costo:</td>
                 <td>
-                    <input value="<%= salon.getCosto()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= salon.getCosto()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Estado:</td>
                 <td>
-                    <select name="estados" style="width: 200px; height: 25px">
+                    <select name="estados" style="width: 255px; height: 25px">
                         <% if (salon.getHabilitado()) {%>
                         <option selected>HABILITADO</option>
                         <option>INHABILITADO</option>
@@ -59,7 +59,7 @@
                                     salonfk = "";
                                 }
                     %>
-                    <input value="<%= salonfk%>" name="salonFK" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" disabled />
+                    <input value="<%= salonfk%>" name="salonFK" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" disabled />
                 </td>
             </tr>
             <tr>
@@ -76,10 +76,10 @@
         <input type="hidden" name="nombre" value="<%= request.getParameter("nombre")%>"/>
         <input type="hidden" name="idSalonFK" value="<%= request.getParameter("idSalonFK")%>"/>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-            <input type="submit" name="update" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
+            <input type="submit" name="update" value="Guardar" style="width: 80px; height: 25px; margin-left: 270px; margin-right: 10px" onclick=""/>
         </div>
     </form>
     <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-        <input type="submit" name="cancel" value="Cancelar" onclick="hideDivSalon()" style="width: 65px;"/>
+        <input type="submit" name="cancel" value="Cancelar" onclick="hideDivSalon()" style="width: 80px; height: 25px;"/>
     </div>
 </div>

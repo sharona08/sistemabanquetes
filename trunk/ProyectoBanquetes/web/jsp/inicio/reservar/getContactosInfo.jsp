@@ -18,7 +18,7 @@
 
             String sid = (String) request.getParameter("sid");
 %>
-<select name="contacto" style="width: 165px; height: 25px">
+<select name="contacto" style="width: 210px; height: 25px">
     <%
                 for (Contacto c : contactosRif) {
                     out.write("<option value=" + c.getId() + ">" + c.getNombre() + "</option>");

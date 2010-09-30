@@ -29,35 +29,35 @@
 %>
 
 <h1 id="letra2">INFORMACION EMPRESA RIF: <% out.println(rif);%></h1>
-<div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
+<div id="detalle" style="margin-left: 20px; margin-right: 5px; padding-top: 15px" align="center">
     <form method="get" action="updateEmpresa.jsp">
-        <table width="70%" border="0">
+        <table width="80%" border="0">
             <tr style="height: 40px">
-                <td width="20%">Nombre:</td>
+                <td width="30%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= empresa.getNombre()%>" name="nombreEmpresa" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= empresa.getNombre()%>" name="nombreEmpresa" onKeyUp="this.value=this.value.toUpperCase();" style="width: 305px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Telefono:</td>
                 <td>
-                    <input value="<%= telefono%>" name="telefono" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= telefono%>" name="telefono" onKeyUp="this.value=this.value.toUpperCase();" style="width: 305px; height: 23px" align="middle" />
                 </td>
             </tr>
-            <tr style="height: 70px;">
+            <tr style="height: 110px;">
                 <td>Direccion:</td>
                 <td>
                     <% if (!direccion.equals("")) {%>
-                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=direccion%></textarea>
+                    <textarea name="descripcion" rows="6" cols="" style="width: 308px"><%=direccion%></textarea>
                     <% } else {%>
-                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=""%></textarea>
+                    <textarea name="descripcion" rows="6" cols="" style="width: 308px"><%=""%></textarea>
                     <% }%>
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Estado:</td>
                 <td>
-                    <select name="estados" style="width: 200px; height: 25px">
+                    <select name="estados" style="width: 310px; height: 25px">
                         <% if (empresa.getHabilitado()) {%>
                         <option selected>HABILITADO</option>
                         <option>INHABILITADO</option>
@@ -81,11 +81,11 @@
         <input type="hidden" name="rif" value="<%= request.getParameter("rif")%>"/>
         <input type="hidden" name="nombre" value="<%= request.getParameter("nombre")%>"/>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-            <input type="submit" name="update" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
+            <input type="submit" name="update" value="Guardar" style="width: 80px; height: 25px; margin-left: 310px; margin-right: 10px" onclick=""/>
         </div>
     </form>
     <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-        <input type="submit" name="cancel" value="Cancelar" onclick="hideDivEmpresa()" style="width: 65px;"/>
+        <input type="submit" name="cancel" value="Cancelar" onclick="hideDivEmpresa()" style="width: 80px; height: 25px;"/>
     </div>
     <div id="espacio"></div>
 </div>
