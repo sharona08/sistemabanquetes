@@ -16,6 +16,7 @@ import com.banquetes.servicios.interfaces.IServicioServicio;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -300,18 +301,30 @@ public class ServicioReserva implements IServicioReserva {
     }
 
     public Double diezPorciento(Integer idEvento) {
+
+     //   NumberFormat nf = NumberFormat.getInstance();
+     //   nf.setMaximumFractionDigits(2);
+
         Double costoPorc = new Double(0);
 
         Double porcentaje = new Double(10);
 
         Double subtotal = this.subtotalReserva(idEvento);
 
-        costoPorc = subtotal * (porcentaje/100);
+        costoPorc = subtotal * (porcentaje / 100);
+
+      //  String st = nf.format(costoPorc);
+
+     //   Double porcentajeTruncado = Double.valueOf(st);
 
         return costoPorc;
     }
 
     public Double ivaReserva(Integer idEvento) {
+
+       // NumberFormat nf = NumberFormat.getInstance();
+      //  nf.setMaximumFractionDigits(2);
+
         Double costoIVA = new Double(0);
 
         Iva ivaObj = new Iva();
@@ -321,7 +334,11 @@ public class ServicioReserva implements IServicioReserva {
 
         Double subtotal = this.subtotalReserva(idEvento);
 
-        costoIVA = subtotal * (iva/100);
+        costoIVA = subtotal * (iva / 100);
+
+    //    String st = nf.format(costoIVA);
+
+       // Double ivaTruncado = Double.valueOf(st);
 
         return costoIVA;
     }

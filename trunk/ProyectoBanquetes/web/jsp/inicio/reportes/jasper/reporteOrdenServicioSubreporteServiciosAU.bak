@@ -197,7 +197,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="138"  isSplitAllowed="true" >
+			<band height="142"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="101"

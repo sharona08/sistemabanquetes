@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="reporteCotizacionContrato2"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="535"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="BlankPage"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="ISO-8859-1" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="username" isForPrompting="true" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT U.nombre as nombreUsuario,
+       U.apellido as apellidoUsuario,
+       U.correo as correoUsuario
+FROM USUARIO U
+WHERE U.username = $P{username}]]></queryString>
+
+	<field name="nombreUsuario" class="java.lang.String"/>
+	<field name="apellidoUsuario" class="java.lang.String"/>
+	<field name="correoUsuario" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="624"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="1"
+						y="2"
+						width="534"
+						height="491"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="1_1_2">
+						<font size="8"/>
+					</textElement>
+				<text><![CDATA[11. Cualquier montaje que afecte la planta física de 'El Hotel' deberá ser autorizado por la gerencia y supervisado por el departamento de ingeniería de 'El Hotel'.  'El Cliente' deberá indemnizar a 'El Hotel' por cualquier daño o perdida que sufran las instalaciones o equipos durante la realización de su evento.
+
+12. El evento establecido deberá culminar en la hora establecida en este contrato y se someterá a discreción de 'El Hotel' de exceder la hora establecida pudiendo 'El Hotel' realizar cargos adicionales por este concepto.  El ingreso de los invitados y/o asistentes a reuniones y/o eventos será limitado a los horarios de comienzo y termino estipulados, salvo que los invitados tengan Suites reservadas, no será permitido el acceso a las pisos de Suites del Hotel.
+
+13. 'El Hotel' no se hará responsable por el incumplimiento de este contrato debiéndose la causa a disputas laborales, huelgas, accidentes, restricciones gubernamentales o municipales de transporte, la insuficiencia de alimentos, bebidas o suministros, paros, manifestaciones, emergencias nacionales, actos de Dios o cualquier otra causa de fuerza mayor no mencionada en este contrato que razonablemente escape el control de 'El Hotel', previniendo e interfiriendo con la operación de este.
+
+14. Donde corresponda, el termino 'El Hotel', se refiere a su administración legal, sus ejecutivos, directores, agentes, empleados y prestadores de servicios independientes y no se refiere a la propiedad del inmueble donde se realiza el evento.  'El Cliente' comprende que este hotel Embassy Suites no es propiedad de Embassy Suites Inc., resultando en cualquiera de los casos que Embassy Suites Inc. No se hará responsable ante 'El Cliente' por cualquier situación generada de aquello.
+
+15. Las tarifas cotizadas son en dólares americanos (US$) y serán cancelados en bolívares (Bs.) al cambio oficial del día del servicio prestado.  Las tarifas no incluyen los impuestos de ISV (12.00%) y el cargo por servicios (10.00%).
+
+16. Cualquier equipo y/o material que el cliente y/o Empresas afiliadas o contratadas desean ingresar al Hotel para  el Evento debe ser comunicado por escrito con 12 horas de anticipación al Departamento de Banquetes del Hotel y registrarlo tanto en la entrada como su respectiva salida por el Departamento de seguridad del Hotel con el entendimiento que el Hotel NO SE RESPONSABILIZA por dicho equipo o material.
+
+17. Con la firma de este contrato 'El Cliente' deberá depositar el 50% del monto total que representa la garantía del evento.  El monto del depósito es: Bs. ______________
+
+
+
+
+Yo, ___________________________________, representante de 'El Cliente' acepto los términos presentados en este contrato.
+
+Firma:  ____________________________________       c.i. _____________________________________
+]]></text>
+				</staticText>
+				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="67"
+						y="589"
+						width="88"
+						height="29"
+						key="image-1"/>
+					<box></box>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA["/home/maya/NetBeansProjects/ProyectoBanquetes/web/images/hilton.jpg"]]></imageExpression>
+				</image>
+				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="368"
+						y="587"
+						width="82"
+						height="34"
+						key="image-2"/>
+					<box></box>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA["/home/maya/NetBeansProjects/ProyectoBanquetes/web/images/hiltonHonors.jpg"]]></imageExpression>
+				</image>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

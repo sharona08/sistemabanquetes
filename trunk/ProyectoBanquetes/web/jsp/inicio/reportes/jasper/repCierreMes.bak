@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="repCierreMes"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="BlankPage"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="mes" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="ano" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaSalones" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaAB" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaAU" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaOT" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaTotal" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaSubtotalSalones" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaSubtotalAB" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaSubtotalAU" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="rutaSubtotalOT" isForPrompting="true" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT SA.id as idSalon, SA.nombre
+FROM SALON SA]]></queryString>
+
+	<field name="idSalon" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="40"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="179"
+						y="7"
+						width="174"
+						height="26"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CIERRE DEL MES]]></text>
+				</staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="28"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="317"
+						height="28"
+						key="textField"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="14" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[String.valueOf((($P{mes}.equals("1")) ? "ENERO" : (($P{mes}.equals("2")) ? "FEBRERO" : (($P{mes}.equals("3")) ? "MARZO" : (($P{mes}.equals("4")) ? "ABRIL" : (($P{mes}.equals("5")) ? "MAYO" : (($P{mes}.equals("6")) ? "JUNIO" : (($P{mes}.equals("7")) ? "JULIO" : (($P{mes}.equals("8")) ? "AGOSTO" : (($P{mes}.equals("9")) ? "SEPTIEMBRE" : (($P{mes}.equals("10")) ? "OCTUBRE" : (($P{mes}.equals("11")) ? "NOVIEMBRE" : "DICIEMBRE")))))))))))) + " del " + $P{ano}]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="18"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="136"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="398"
+						height="18"
+						key="textField"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="13" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="197"
+						y="51"
+						width="338"
+						height="18"
+						key="subreport-1"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="idSalon">
+						<subreportParameterExpression><![CDATA[$F{idSalon}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaAB}]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="197"
+						y="76"
+						width="338"
+						height="18"
+						key="subreport-2"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="idSalon">
+						<subreportParameterExpression><![CDATA[$F{idSalon}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaAU}]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="197"
+						y="100"
+						width="338"
+						height="18"
+						key="subreport-3"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="idSalon">
+						<subreportParameterExpression><![CDATA[$F{idSalon}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaOT}]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="41"
+						y="51"
+						width="156"
+						height="18"
+						key="staticText-2"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Alimentos y Bebidas: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="41"
+						y="76"
+						width="156"
+						height="18"
+						key="staticText-3"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Equipos Audiovisuales: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="41"
+						y="100"
+						width="156"
+						height="18"
+						key="staticText-4"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Otros Servicios:]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="197"
+						y="27"
+						width="338"
+						height="18"
+						key="subreport-4"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="idSalon">
+						<subreportParameterExpression><![CDATA[$F{idSalon}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaSalones}]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="41"
+						y="27"
+						width="156"
+						height="18"
+						key="staticText-5"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Salones:]]></text>
+				</staticText>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="128"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="163"
+						y="98"
+						width="242"
+						height="18"
+						key="textField-1"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["TOTAL INGRESOS " + String.valueOf((($P{mes}.equals("1")) ? "ENERO" : (($P{mes}.equals("2")) ? "FEBRERO" : (($P{mes}.equals("3")) ? "MARZO" : (($P{mes}.equals("4")) ? "ABRIL" : (($P{mes}.equals("5")) ? "MAYO" : (($P{mes}.equals("6")) ? "JUNIO" : (($P{mes}.equals("7")) ? "JULIO" : (($P{mes}.equals("8")) ? "AGOSTO" : (($P{mes}.equals("9")) ? "SEPTIEMBRE" : (($P{mes}.equals("10")) ? "OCTUBRE" : (($P{mes}.equals("11")) ? "NOVIEMBRE" : "DICIEMBRE")))))))))))) + ": "]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="409"
+						y="6"
+						width="125"
+						height="18"
+						key="subreport-6"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaSubtotalSalones}]]></subreportExpression>
+				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="163"
+						y="6"
+						width="242"
+						height="18"
+						key="textField-2"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Salones: " ]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="409"
+						y="29"
+						width="125"
+						height="18"
+						key="subreport-7"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaSubtotalAB}]]></subreportExpression>
+				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="163"
+						y="29"
+						width="242"
+						height="18"
+						key="textField-3"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Alimentos y Bebidas: " ]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="409"
+						y="52"
+						width="125"
+						height="18"
+						key="subreport-8"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaSubtotalAU}]]></subreportExpression>
+				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="163"
+						y="52"
+						width="242"
+						height="18"
+						key="textField-4"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Equipos Audiovisuales: " ]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="409"
+						y="75"
+						width="125"
+						height="18"
+						key="subreport-9"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaSubtotalOT}]]></subreportExpression>
+				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="163"
+						y="75"
+						width="242"
+						height="18"
+						key="textField-5"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Otros Servicios: " ]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="409"
+						y="98"
+						width="125"
+						height="18"
+						key="subreport-10"/>
+					<subreportParameter  name="mes">
+						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaTotal}]]></subreportExpression>
+				</subreport>
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

@@ -65,6 +65,11 @@
                             Double montoTotal = servicioReserva.costoTotalReserva(idEvento);
                             Double totalSalones = servicioReserva.costoTotalSalones(idEvento);
                             Double totalAB = servicioReserva.costoTotalServicios(idEvento, "AB");
+                            Double totalAU = servicioReserva.costoTotalServicios(idEvento, "AU");
+                            Double totalOT = servicioReserva.costoTotalServicios(idEvento, "OT");
+                            Double totalIVA = servicioReserva.ivaReserva(idEvento);
+                            Double totalServicio = servicioReserva.diezPorciento(idEvento);
+                            Double subtotal = servicioReserva.subtotalReserva(idEvento);
 
                             Connection conn = null;
 
@@ -84,12 +89,22 @@
 
                                 Map masterParams = new HashMap();
                                 masterParams.put("idEvento", idEvento);
+                                masterParams.put("rutaInicio", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionInicio.jasper"));
+                                masterParams.put("rutaSalones", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionSubreporteSalones.jasper"));
+                                masterParams.put("rutaAB", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionServiciosAB.jasper"));
+                                masterParams.put("rutaAU", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionServiciosAU.jasper"));
+                                masterParams.put("rutaOT", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionServiciosOT.jasper"));
+                                masterParams.put("rutaFin", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionFin.jasper"));
                                 masterParams.put("montoTotal", montoTotal);
                                 masterParams.put("totalSalones", totalSalones);
                                 masterParams.put("totalAB", totalAB);
-                                masterParams.put("rutaSalones", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionSubreporteSalones.jasper"));
-                                masterParams.put("rutaInicio", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionInicio.jasper"));
-                                masterParams.put("rutaAB", application.getRealPath("jsp/inicio/reportes/jasper/reporteCotizacionServiciosAB.jasper"));
+                                masterParams.put("totalAU", totalAU);
+                                masterParams.put("totalOT", totalOT);
+                                masterParams.put("totalIVA", totalIVA);
+                                masterParams.put("totalServicio", totalServicio);
+                                masterParams.put("subtotal", subtotal);
+                                masterParams.put("username", username);
+
                                 jasperPrint = JasperFillManager.fillReport(masterReport, masterParams, conn);
                                 JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/cotizacion" + idEvento + "PDF.pdf"));
                                 File file = new File(application.getRealPath("jsp/inicio/reportes/PDF/cotizacion" + idEvento + "PDF.pdf"));

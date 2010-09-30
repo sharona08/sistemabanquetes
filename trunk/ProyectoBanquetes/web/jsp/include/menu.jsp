@@ -74,8 +74,8 @@
                 <li><a href="/ProyectoBanquetes/jsp/inicio/reportes/formCotizacion.jsp">Cotización</a></li>
                 <li><a href="">Servicio más vendido</a></li>
                 <li><a href="">Salón más vendido</a></li>
-                <li><a href="">Ventas salón</a></li>
-                <li><a href="">Cierre ventas</a></li>
+                <li><a href="">Cantidad ventas salón</a></li>
+                <li><a href="">Cierre del Mes</a></li>
             </ul>
         </li>
         <li class="top"><a href="" id="contacts" class="top_link"><span class="down">Reserva</span></a>

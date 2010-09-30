@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="reporteCotizacionContrato1"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="535"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="BlankPage"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="ISO-8859-1" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="username" isForPrompting="true" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT U.nombre as nombreUsuario,
+       U.apellido as apellidoUsuario,
+       U.correo as correoUsuario
+FROM USUARIO U
+WHERE U.username = $P{username}]]></queryString>
+
+	<field name="nombreUsuario" class="java.lang.String"/>
+	<field name="apellidoUsuario" class="java.lang.String"/>
+	<field name="correoUsuario" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="660"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="1"
+						y="22"
+						width="534"
+						height="626"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="1_1_2">
+						<font size="8"/>
+					</textElement>
+				<text><![CDATA[1. El contenido de este contrato establece el acuerdo entre _____________________ (Cliente) y Embassy Suites Hotel Caracas (El Hotel) y deberá ser devuelto en las fechas indicadas con el primer depósito establecido en el Presupuesto.
+
+2. En caso que 'El Cliente' no tiene aprobado el crédito con el 'El Hotel', se aplicaran las siguientes condiciones: a)  El pago completo de los servicios cotizados debe ser realizado por 'El Cliente' antes de 7 días del evento y cualquier consumo adicional de los servicios originalmente coordinados deberán ser cancelados al haber culminado el evento.  En caso que 'El Cliente' desee obtener crédito para el pago de los servicios deberá aplicar y someter una solicitud de crédito y 'El Hotel' se reserva el derecho de aprobar dicha solicitud a su solo criterio.
+
+3. Para confirmar un evento y numero final garantizado de participantes 'El Cliente' debe cancelar el 50% del valor cotizado con la firma de este contrato y al momento de efectuar las reservaciones.  Con 7 días de anticipación y sobre esta base 'El Cliente' se obliga a cancelar el restante 50%.  Todas las cuentas deben ser firmadas por la persona a cargo del evento o un representante designado por 'El Cliente', cualquier discrepancia debe ser identificada y resuelta en aquel momento, de no ser así 'El Cliente' acepta los cargos presentados.
+
+4. 'El Cliente' tendrá derecho de utilizar  las instalaciones para el propósito acordado y sus horarios.  Al efectuar un cambio de lo estipulado en preparación, montaje, distribución del salón u otro para el mismo día, un recargo de servicios será agregado y aceptado por 'El Cliente'.  'El Hotel' se reserva el derecho de cambiar cualquier evento a otro salón o ubicarlo fuera del hotel, inclusive a otro hotel si llegase a ser necesario, en tal caso 'El Hotel' avisara  a 'El Cliente' por escrito.
+
+5. Ningún tipo de comida ni bebida que no sea expedida por 'El Hotel' será permitido en las instalaciones a menos que se tenga el consentimiento por escrito de la gerencia de 'El Hotel'.  Cualquier excepción esta sujeta a un costo por servicio.  'El Hotel' se reserva el derecho de efectuar cambios al menú debido a la falta  de disponibilidad de cualquier producto de la selección original.
+
+6. Todas las cotizaciones tendrán una vigencia de 7 días a partir de su expedición.
+
+7. Cualquier cambio a ser realizado en los detalles del evento, deberán ser comunicados por escrito con un mínimo de 72 horas de anticipación.
+
+8. Si las condiciones de prepago no son cumplidas en los tiempos establecidos por 'El Hotel', este se reserva el derecho de cancelar los espacios en la medida que sean solicitados por otros clientes.  Dicha decisión será informada tanto verbal como por escrito a 'El Cliente'
+
+9. Para la cancelación de servicios ya confirmados, se aplicara el siguiente esquema:
+    - Cancelación recibida con 12 semanas de anticipación - no tiene cargo
+    - Cancelación recibida entre 12 y 8 semanas al evento - 10% de cargo
+    - Cancelación recibida entre 8 y 4 semanas al evento - 30% de cargo
+    - Cancelación recibida entre 4 y 2 semanas al evento - 70% de cargo
+    - Cancelación recibida entre 14 y 7 días al evento - 85% de cargo
+    - Cancelación recibida con menos de 7 días al evento - el Total presupuestado
+
+10. 'El Hotel' no se hacer responsable por las pertenencias de 'El Cliente' y/o sus invitados, previo, durante o después del evento, tampoco por el transporte  o cancelación desde y hacia el hotel.  En caso de extravío o daño deberá ser reportado en un máximo de 12 horas del hecho y que a su medida  'El Hotel' se encargara de notificar a las autoridades locales pertinentes.  'El Hotel' podrá solicitar la contratación por parte de 'El Cliente' de personal de seguridad para resguardar cualquier exposición  u objeto de valor que deberá permanecer en el hotel por la noche.  'El Cliente' se responsabilizara y reembolsara a 'El Hotel' por cualquier daño, perdida o causa legal como resultado de las acciones de un integrante del evento o cualquier persona o entidad contratada por 'El Cliente', durante o después del evento en cuestión.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="0"
+						y="2"
+						width="535"
+						height="18"
+						key="staticText-6"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CONTRATO DE POLITICAS Y PROCEDIMIENTOS DE REUNIONES Y EVENTOS]]></text>
+				</staticText>
+				<break>
+					<reportElement
+						x="0"
+						y="652"
+						width="535"
+						height="0"
+						key="element-1"/>
+				</break>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

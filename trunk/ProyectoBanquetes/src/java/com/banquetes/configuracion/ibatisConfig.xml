@@ -33,5 +33,6 @@
  <sqlMap resource="com/banquetes/sqlMaps/USUARIO.xml" />
  <sqlMap resource="com/banquetes/sqlMaps/ROL.xml" />
  <sqlMap resource="com/banquetes/sqlMaps/IVA.xml" />
+ <sqlMap resource="com/banquetes/sqlMaps/REPORTES.xml" />
  
 </sqlMapConfig>
