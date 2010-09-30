@@ -17,7 +17,7 @@
 		 whenNoDataType="BlankPage"
 		 isTitleNewPage="false"
 		 isSummaryNewPage="false">
-	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.scriptlethandling" value="0" />
 	<property name="ireport.encoding" value="UTF-8" />
 	<import value="java.util.*" />
 	<import value="net.sf.jasperreports.engine.*" />
@@ -236,20 +236,7 @@ FROM SALON SA]]></queryString>
 			</band>
 		</pageFooter>
 		<lastPageFooter>
-			<band height="128"  isSplitAllowed="true" >
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="163"
-						y="98"
-						width="242"
-						height="18"
-						key="textField-1"/>
-					<box></box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["TOTAL INGRESOS " + String.valueOf((($P{mes}.equals("1")) ? "ENERO" : (($P{mes}.equals("2")) ? "FEBRERO" : (($P{mes}.equals("3")) ? "MARZO" : (($P{mes}.equals("4")) ? "ABRIL" : (($P{mes}.equals("5")) ? "MAYO" : (($P{mes}.equals("6")) ? "JUNIO" : (($P{mes}.equals("7")) ? "JULIO" : (($P{mes}.equals("8")) ? "AGOSTO" : (($P{mes}.equals("9")) ? "SEPTIEMBRE" : (($P{mes}.equals("10")) ? "OCTUBRE" : (($P{mes}.equals("11")) ? "NOVIEMBRE" : "DICIEMBRE")))))))))))) + ": "]]></textFieldExpression>
-				</textField>
+			<band height="184"  isSplitAllowed="true" >
 				<subreport  isUsingCache="true">
 					<reportElement
 						x="409"
@@ -277,7 +264,7 @@ FROM SALON SA]]></queryString>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Salones: " ]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Salones: "]]></textFieldExpression>
 				</textField>
 				<subreport  isUsingCache="true">
 					<reportElement
@@ -306,7 +293,7 @@ FROM SALON SA]]></queryString>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Alimentos y Bebidas: " ]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Alimentos y Bebidas: "]]></textFieldExpression>
 				</textField>
 				<subreport  isUsingCache="true">
 					<reportElement
@@ -335,7 +322,7 @@ FROM SALON SA]]></queryString>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Equipos Audiovisuales: " ]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Equipos Audiovisuales: "]]></textFieldExpression>
 				</textField>
 				<subreport  isUsingCache="true">
 					<reportElement
@@ -364,14 +351,14 @@ FROM SALON SA]]></queryString>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Otros Servicios: " ]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal Otros Servicios: "]]></textFieldExpression>
 				</textField>
 				<subreport  isUsingCache="true">
 					<reportElement
-						x="409"
+						x="163"
 						y="98"
-						width="125"
-						height="18"
+						width="371"
+						height="45"
 						key="subreport-10"/>
 					<subreportParameter  name="mes">
 						<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>

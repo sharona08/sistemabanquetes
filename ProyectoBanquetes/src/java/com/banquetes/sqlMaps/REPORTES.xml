@@ -17,7 +17,7 @@
     <typeAlias type="com.banquetes.reportes.TO.TotalServiciosTodos" alias="totalServiciosTodos"/>
     <typeAlias type="com.banquetes.reportes.TO.TotalSalonesTodos" alias="totalSalonesTodos"/>
 
-    <select id="getTotalSalon" resultClass="totalSalon">
+    <select id="repGetTotalSalon" resultClass="totalSalon">
       SELECT SA.nombre, IFNULL((SELECT SUM(IFNULL(ES.nuevoCosto, SA.costo))
 			  FROM EVENTO E, EVENTO_SALA ES
 			  WHERE E.id = ES.idEvento
@@ -30,7 +30,7 @@
       WHERE SA.id = #idSalon#
     </select>
     
-    <select id="getTotalServicios" resultClass="totalServicios">
+    <select id="repGetTotalServicios" resultClass="totalServicios">
       SELECT SA.nombre, IFNULL((SELECT SUM(IFNULL(SE.nuevoCosto * SE.cantidad, S.costoUnitario * SE.cantidad))
 			  FROM EVENTO E, EVENTO_SALA ES, SERVICIO_EVENTO SE, SERVICIO S, IVA I
 			  WHERE E.id = ES.idEvento
@@ -46,7 +46,7 @@
        WHERE SA.id = #idSalon#
     </select>
 
-    <select id="getTotalSalonesTodos" resultClass="totalSalonesTodos">
+    <select id="repGetTotalSalonesTodos" resultClass="totalSalonesTodos">
       SELECT SUM(IFNULL((SELECT SUM(IFNULL(ES.nuevoCosto, SA.costo))
 			FROM EVENTO E, EVENTO_SALA ES
 			WHERE E.id = ES.idEvento
@@ -58,7 +58,7 @@
       FROM SALON SA
     </select>
 
-    <select id="getTotalServiciosPorTipo" resultClass="totalServiciosAB">
+    <select id="repGetTotalServiciosPorTipo" resultClass="totalServiciosTodos">
       SELECT SUM(IFNULL((SELECT SUM(IFNULL(SE.nuevoCosto * SE.cantidad, S.costoUnitario * SE.cantidad))
 			 FROM EVENTO E, EVENTO_SALA ES, SERVICIO_EVENTO SE, SERVICIO S, IVA I
 			 WHERE E.id = ES.idEvento
@@ -74,7 +74,7 @@
     </select>
 
 
-    <select id="getTotalServiciosTodos" resultClass="totalServiciosTodos">
+    <select id="repGetTotalServiciosTodos" resultClass="totalServiciosTodos">
     SELECT((SELECT SUM(IFNULL((SELECT SUM(IFNULL(SE.nuevoCosto * SE.cantidad, S.costoUnitario * SE.cantidad))
 					FROM EVENTO E, EVENTO_SALA ES, SERVICIO_EVENTO SE, SERVICIO S
 					WHERE E.id = ES.idEvento
