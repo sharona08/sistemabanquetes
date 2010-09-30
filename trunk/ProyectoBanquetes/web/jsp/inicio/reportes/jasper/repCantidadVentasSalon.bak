@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="repCantidadVentasSalon"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="2" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="fechaInicio" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="fechaFin" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="idSalon" isForPrompting="true" class="java.lang.Integer"/>
+	<queryString><![CDATA[SELECT COUNT(ES.idSalon) as ventasSalon, 
+       SA.nombre as nombreSalon,
+       DAYOFWEEK($P{fechaInicio}) as numDiaInicio,
+       DAYOFMONTH($P{fechaInicio}) as diaInicio,
+       MONTH($P{fechaInicio}) as mesInicio,
+       YEAR($P{fechaInicio}) as anoInicio,
+       DAYOFWEEK($P{fechaFin}) as numDiaFin,
+       DAYOFMONTH($P{fechaFin}) as diaFin,
+       MONTH($P{fechaFin}) as mesFin,
+       YEAR($P{fechaFin}) as anoFin
+FROM SALON SA, EVENTO_SALA ES, EVENTO E
+WHERE SA.id = ES.idSalon
+AND   E.id = ES.idEvento
+AND   E.fechaInicio BETWEEN $P{fechaInicio} AND $P{fechaFin}
+AND   E.fechaFin BETWEEN $P{fechaInicio} AND $P{fechaFin}
+AND   SA.id = $P{idSalon}
+AND   ES.visible is TRUE
+AND   E.estado = 'C'
+GROUP BY SA.nombre]]></queryString>
+
+	<field name="ventasSalon" class="java.lang.Long"/>
+	<field name="nombreSalon" class="java.lang.String"/>
+	<field name="numDiaInicio" class="java.lang.Long"/>
+	<field name="diaInicio" class="java.lang.Long"/>
+	<field name="mesInicio" class="java.lang.String"/>
+	<field name="anoInicio" class="java.lang.Long"/>
+	<field name="numDiaFin" class="java.lang.Long"/>
+	<field name="diaFin" class="java.lang.Long"/>
+	<field name="mesFin" class="java.lang.String"/>
+	<field name="anoFin" class="java.lang.Long"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="69"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="112"
+						y="33"
+						width="324"
+						height="27"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="14" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CANTIDAD VENTAS SALON]]></text>
+				</staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="23"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="151"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="535"
+						height="137"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" lineSpacing="Double">
+						<font size="14"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["El salon " + $F{nombreSalon} + " se ha vendido " + $F{ventasSalon}.toString() + " veces entre la fecha: " + (($F{numDiaInicio}.toString().equals("1"))? "DOMINGO" : (($F{numDiaInicio}.toString().equals("2"))? "LUNES" : (($F{numDiaInicio}.toString().equals("3"))? "MARTES" : (($F{numDiaInicio}.toString().equals("4"))? "MIERCOLES" : (($F{numDiaInicio}.toString().equals("5"))? "JUEVES" : (($F{numDiaInicio}.toString().equals("6"))? "VIERNES" : "SABADO")))))) + ", " + $F{diaInicio} + " " + String.valueOf((($F{mesInicio}.equals("1"))? "Enero" : (($F{mesInicio}.equals("2"))? "Febrero" : (($F{mesInicio}.equals("3"))? "Marzo" : (($F{mesInicio}.equals("4"))? "Abril" : (($F{mesInicio}.equals("5"))? "Mayo" : (($F{mesInicio}.equals("6"))? "Junio" : (($F{mesInicio}.equals("7"))? "Julio" : (($F{mesInicio}.equals("8"))? "Agosto" : (($F{mesInicio}.equals("9"))? "Septiembre" : (($F{mesInicio}.equals("10"))? "Octubre" : (($F{mesInicio}.equals("11"))? "Noviembre" : (($F{mesInicio}.equals("12"))? "Diciembre" : ""))))))))))))) + " " + String.valueOf($F{anoInicio}) + " y la fecha: " + (($F{numDiaFin}.toString().equals("1"))? "DOMINGO" : (($F{numDiaFin}.toString().equals("2"))? "LUNES" : (($F{numDiaFin}.toString().equals("3"))? "MARTES" : (($F{numDiaFin}.toString().equals("4"))? "MIERCOLES" : (($F{numDiaFin}.toString().equals("5"))? "JUEVES" : (($F{numDiaFin}.toString().equals("6"))? "VIERNES" : "SABADO")))))) + ", " + $F{diaFin} + " " + String.valueOf((($F{mesFin}.equals("1"))? "Enero" : (($F{mesFin}.equals("2"))? "Febrero" : (($F{mesFin}.equals("3"))? "Marzo" : (($F{mesFin}.equals("4"))? "Abril" : (($F{mesFin}.equals("5"))? "Mayo" : (($F{mesFin}.equals("6"))? "Junio" : (($F{mesFin}.equals("7"))? "Julio" : (($F{mesFin}.equals("8"))? "Agosto" : (($F{mesFin}.equals("9"))? "Septiembre" : (($F{mesFin}.equals("10"))? "Octubre" : (($F{mesFin}.equals("11"))? "Noviembre" : (($F{mesFin}.equals("12"))? "Diciembre" : ""))))))))))))) + " " + String.valueOf($F{anoFin})]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="50"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="50"  isSplitAllowed="true" >
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="50"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

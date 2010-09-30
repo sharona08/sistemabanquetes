@@ -56,6 +56,7 @@
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">Reservar</h1>
+                <h1 id="letra2">Procesando...</h1>
                 <%
                             IServicioEmpresa servicioEmpresa = new ServicioEmpresa();
                             IServicioSalon servicioSalon = new ServicioSalon();
