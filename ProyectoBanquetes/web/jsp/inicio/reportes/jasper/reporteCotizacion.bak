@@ -41,6 +41,8 @@
 	<parameter name="totalServicio" isForPrompting="true" class="java.lang.Double"/>
 	<parameter name="subtotal" isForPrompting="true" class="java.lang.Double"/>
 	<parameter name="username" isForPrompting="true" class="java.lang.String"/>
+	<parameter name="tasaCambio" isForPrompting="true" class="java.lang.Double"/>
+	<parameter name="moneda" isForPrompting="true" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT
          CURRENT_DATE() as fechaActual,
          MONTH(CURRENT_DATE()) as mesActual,
@@ -109,6 +111,9 @@
 					</subreportParameter>
 					<subreportParameter  name="montoTotal">
 						<subreportParameterExpression><![CDATA[$P{montoTotal}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="moneda">
+						<subreportParameterExpression><![CDATA[$P{moneda}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaInicio}]]></subreportExpression>
@@ -243,6 +248,9 @@
 					<subreportParameter  name="totalSalones">
 						<subreportParameterExpression><![CDATA[$P{totalSalones}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter  name="tasaCambio">
+						<subreportParameterExpression><![CDATA[$P{tasaCambio}]]></subreportParameterExpression>
+					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaSalones}]]></subreportExpression>
 				</subreport>
@@ -259,6 +267,9 @@
 					</subreportParameter>
 					<subreportParameter  name="totalAU">
 						<subreportParameterExpression><![CDATA[$P{totalAU}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="tasaCambio">
+						<subreportParameterExpression><![CDATA[$P{tasaCambio}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaAU}]]></subreportExpression>
@@ -284,6 +295,9 @@
 					</subreportParameter>
 					<subreportParameter  name="totalOT">
 						<subreportParameterExpression><![CDATA[$P{totalOT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="tasaCambio">
+						<subreportParameterExpression><![CDATA[$P{tasaCambio}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaOT}]]></subreportExpression>
@@ -330,6 +344,12 @@
 					</subreportParameter>
 					<subreportParameter  name="subtotal">
 						<subreportParameterExpression><![CDATA[$P{subtotal}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="tasaCambio">
+						<subreportParameterExpression><![CDATA[$P{tasaCambio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="moneda">
+						<subreportParameterExpression><![CDATA[$P{moneda}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{rutaAB}]]></subreportExpression>
@@ -433,7 +453,7 @@
 				</subreport>
 				<break>
 					<reportElement
-						x="-4"
+						x="0"
 						y="473"
 						width="552"
 						height="0"

@@ -25,6 +25,7 @@
 
 	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
 	<parameter name="montoTotal" isForPrompting="true" class="java.lang.Double"/>
+	<parameter name="moneda" isForPrompting="true" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT
          CURRENT_DATE() as fechaActual,
          MONTH(CURRENT_DATE()) as mesActual,
@@ -190,7 +191,7 @@
 					<textElement textAlignment="Justified" lineSpacing="1_1_2">
 						<font size="12"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["           A continuación le enviamos la cotización solicitada para su evento de fecha " + (($F{numDia}.equals("1"))? "DOMINGO" : (($F{numDia}.equals("2"))? "LUNES" : (($F{numDia}.equals("3"))? "MARTES" : (($F{numDia}.equals("4"))? "MIERCOLES" : (($F{numDia}.equals("5"))? "JUEVES" : (($F{numDia}.equals("6"))? "VIERNES" : "SABADO")))))) + ", " + String.valueOf($F{fechaInicio}.getDate()) + " " + String.valueOf((($F{mes}.equals("1"))? "Enero" : (($F{mes}.equals("2"))? "Febrero" : (($F{mes}.equals("3"))? "Marzo" : (($F{mes}.equals("4"))? "Abril" : (($F{mes}.equals("5"))? "Mayo" : (($F{mes}.equals("6"))? "Junio" : (($F{mes}.equals("7"))? "Julio" : (($F{mes}.equals("8"))? "Agosto" : (($F{mes}.equals("9"))? "Septiembre" : (($F{mes}.equals("10"))? "Octubre" : (($F{mes}.equals("11"))? "Noviembre" : (($F{mes}.equals("12"))? "Diciembre" : ""))))))))))))) + " de " + String.valueOf($F{ano}) + " el cual arroja un total de BsF " + $P{montoTotal} + " incluyendo el impuesto al valor agregado y el 10% de Servicio. Adjunto podrá encontrar el detalle de la misma."]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["           A continuación le enviamos la cotización solicitada para su evento de fecha " + (($F{numDia}.equals("1"))? "DOMINGO" : (($F{numDia}.equals("2"))? "LUNES" : (($F{numDia}.equals("3"))? "MARTES" : (($F{numDia}.equals("4"))? "MIERCOLES" : (($F{numDia}.equals("5"))? "JUEVES" : (($F{numDia}.equals("6"))? "VIERNES" : "SABADO")))))) + ", " + String.valueOf($F{fechaInicio}.getDate()) + " " + String.valueOf((($F{mes}.equals("1"))? "Enero" : (($F{mes}.equals("2"))? "Febrero" : (($F{mes}.equals("3"))? "Marzo" : (($F{mes}.equals("4"))? "Abril" : (($F{mes}.equals("5"))? "Mayo" : (($F{mes}.equals("6"))? "Junio" : (($F{mes}.equals("7"))? "Julio" : (($F{mes}.equals("8"))? "Agosto" : (($F{mes}.equals("9"))? "Septiembre" : (($F{mes}.equals("10"))? "Octubre" : (($F{mes}.equals("11"))? "Noviembre" : (($F{mes}.equals("12"))? "Diciembre" : ""))))))))))))) + " de " + String.valueOf($F{ano}) + " el cual arroja un total de " + (($P{moneda}.equals("B")) ? "BsF" : "$") + " " + $P{montoTotal} + " incluyendo el impuesto al valor agregado y el 10% de Servicio. Adjunto podrá encontrar el detalle de la misma."]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement

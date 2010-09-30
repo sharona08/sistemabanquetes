@@ -32,6 +32,8 @@
 	<parameter name="totalIVA" isForPrompting="true" class="java.lang.Double"/>
 	<parameter name="totalServicio" isForPrompting="true" class="java.lang.Double"/>
 	<parameter name="subtotal" isForPrompting="true" class="java.lang.Double"/>
+	<parameter name="tasaCambio" isForPrompting="true" class="java.lang.Double"/>
+	<parameter name="moneda" isForPrompting="true" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT
           SE.idEvento as idEvento,
           SE.idServicio as idServicio,
@@ -409,7 +411,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[(($F{costoServicio} == null)? $F{nuevoCosto} : $F{costoServicio})]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[(($F{costoServicio} == null)? new Double($F{nuevoCosto}.doubleValue() / $P{tasaCambio}.doubleValue()) : new Double($F{costoServicio}.doubleValue() / $P{tasaCambio}.doubleValue()))]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -435,7 +437,9 @@ ORDER BY fechaInicio ASC]]></queryString>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[new Double($F{cantidad}.doubleValue() * $F{costoServicio}.doubleValue() )]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[(($F{costoServicio} == null)? new Double($F{cantidad}.doubleValue() * ($F{nuevoCosto}.doubleValue() / $P{tasaCambio}.doubleValue())) : new Double($F{cantidad}.doubleValue() * ($F{costoServicio}.doubleValue() / $P{tasaCambio}.doubleValue())))
+
+]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>
@@ -484,19 +488,6 @@ ORDER BY fechaInicio ASC]]></queryString>
 						key="rectangle-3"/>
 					<graphicElement stretchType="NoStretch"/>
 				</rectangle>
-				<staticText>
-					<reportElement
-						x="271"
-						y="52"
-						width="170"
-						height="16"
-						key="staticText-10"/>
-					<box></box>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font size="10"/>
-					</textElement>
-				<text><![CDATA[Total Salones: ]]></text>
-				</staticText>
 				<rectangle>
 					<reportElement
 						x="441"
@@ -645,45 +636,6 @@ ORDER BY fechaInicio ASC]]></queryString>
 						key="rectangle-35"/>
 					<graphicElement stretchType="NoStretch"/>
 				</rectangle>
-				<staticText>
-					<reportElement
-						x="271"
-						y="69"
-						width="170"
-						height="16"
-						key="staticText-19"/>
-					<box></box>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font size="10"/>
-					</textElement>
-				<text><![CDATA[Total Audiovisuales: ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="271"
-						y="86"
-						width="170"
-						height="16"
-						key="staticText-20"/>
-					<box></box>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font size="10"/>
-					</textElement>
-				<text><![CDATA[Total Otros Servicios: ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="271"
-						y="103"
-						width="170"
-						height="16"
-						key="staticText-21"/>
-					<box></box>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font size="10"/>
-					</textElement>
-				<text><![CDATA[Total Alimentos y Bebidas: ]]></text>
-				</staticText>
 				<rectangle>
 					<reportElement
 						x="0"
@@ -702,19 +654,6 @@ ORDER BY fechaInicio ASC]]></queryString>
 						key="rectangle-37"/>
 					<graphicElement stretchType="NoStretch"/>
 				</rectangle>
-				<staticText>
-					<reportElement
-						x="271"
-						y="120"
-						width="170"
-						height="16"
-						key="staticText-22"/>
-					<box></box>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font size="10"/>
-					</textElement>
-				<text><![CDATA[Subtotal General: ]]></text>
-				</staticText>
 				<staticText>
 					<reportElement
 						x="271"
@@ -741,19 +680,6 @@ ORDER BY fechaInicio ASC]]></queryString>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["IVA (" + $F{iva}.toString() + "%): "]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement
-						x="271"
-						y="188"
-						width="170"
-						height="16"
-						key="staticText-24"/>
-					<box></box>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
-					</textElement>
-				<text><![CDATA[TOTAL:]]></text>
-				</staticText>
 				<textField isStretchWithOverflow="false" pattern="##0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="442"
@@ -924,6 +850,84 @@ ORDER BY fechaInicio ASC]]></queryString>
 						key="line-15"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="262"
+						y="52"
+						width="179"
+						height="16"
+						key="textField-19"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Total Salones " + (($P{moneda}.equals("B")) ? "(BsF.): " : "($): ")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="262"
+						y="69"
+						width="179"
+						height="16"
+						key="textField-20"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Total Audiovisuales " + (($P{moneda}.equals("B")) ? "(BsF.): " : "($): ")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="262"
+						y="86"
+						width="179"
+						height="16"
+						key="textField-21"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Total Otros Servicios " + (($P{moneda}.equals("B")) ? "(BsF.): " : "($): ")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="262"
+						y="103"
+						width="179"
+						height="16"
+						key="textField-22"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Total Alimentos y Bebidas " + (($P{moneda}.equals("B")) ? "(BsF.): " : "($): ")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="262"
+						y="188"
+						width="179"
+						height="16"
+						key="textField-23"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["TOTAL " + (($P{moneda}.equals("B")) ? "(BsF.): " : "($): ")]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="262"
+						y="120"
+						width="179"
+						height="16"
+						key="textField-24"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Subtotal General " + (($P{moneda}.equals("B")) ? "(BsF.): " : "($): ")]]></textFieldExpression>
+				</textField>
 			</band>
 		</lastPageFooter>
 		<summary>
