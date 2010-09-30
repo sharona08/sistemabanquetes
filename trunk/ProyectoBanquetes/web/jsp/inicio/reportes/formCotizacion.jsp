@@ -37,7 +37,7 @@
 
         <script type="text/javascript" src="../../jsp/js/jquery.validate.js"></script>
         <style type="text/css">
-/*            label { width: 10em; float: left; }*/
+            /*            label { width: 10em; float: left; }*/
             label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
             p { clear: both; }
             /*            .submit { margin-left: 12em; }*/
@@ -55,6 +55,8 @@
                 window.location.href=url;
             }
         </script>
+        <script type="text/javascript" src="showHideTasaCambio.js"></script>
+        <script type="text/javascript" src="showHideTasaCambioLabel.js"></script>
     </head>
     <body>
         <div id="pageWrap">
@@ -62,19 +64,42 @@
             <div id="content">
                 <h1 id="letra1">Cotizacion:</h1>
                 <h1 id="letra2">Introduzca Numero de Reserva:</h1>
-                <div style="margin-left: 10px; width: 30%">
+                <div style="margin-left: 10px; width: 35%">
                     <form action="repCotizacion.jsp" method="get" class="cmxform" id="commentForm">
-                        <table width="100%">
+                        <table width="95%" border="0">
                             <tr style="height: 40px">
-                                <td width="30%">No Reserva:</td>
-                                <td width="55%">
-                                    <input class="required" type="text" name="idEvento" style="width: 180px; height: 23px">
+                                <td width="5%">No Reserva:</td>
+                                <td width="53%">
+                                    <input class="required" type="text" name="idEvento" style="width: 185px; height: 23px">
                                 </td>
-                                <td width="15%">
+                                <td width="37%">&nbsp;</td>
+                            </tr>
+                            <tr style="height: 40px">
+                                <td width="45%">Moneda:</td>
+                                <td width="40%">
+                                    <select name="moneda" style="width: 190px; height: 25px" onchange="showHideTasa(this.value); showHideTasaLabel(this.value)">
+                                        <option selected value="B">Bolívares</option>
+                                        <option value="D">Dólares</option>
+                                    </select>
+                                </td>
+                                <td>
                                     <div id="boton" class="demo">
                                         <input class="submit" type="submit" value="IR" style="width: 40px; height: 23px;" onclick=""/>
                                     </div>
                                 </td>
+                            </tr>
+                            <tr style="height: 40px; ">
+                                <td>
+                                    <div id="tasaCambioLabel">
+                                        <label style="display: none">Tasa Cambio:</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="tasaCambio">
+                                        <input type="text" name="tasaCambio" value="1" style="width: 185px; height: 25px; display: none"/>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
                             </tr>
                         </table>
                     </form>

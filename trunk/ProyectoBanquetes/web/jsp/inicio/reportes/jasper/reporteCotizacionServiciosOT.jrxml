@@ -25,6 +25,7 @@
 
 	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
 	<parameter name="totalOT" isForPrompting="true" class="java.lang.Double"/>
+	<parameter name="tasaCambio" isForPrompting="true" class="java.lang.Double"/>
 	<queryString><![CDATA[SELECT
           SE.idEvento as idEvento,
           SE.idServicio as idServicio,
@@ -397,7 +398,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[(($F{costoServicio} == null)? $F{nuevoCosto} : $F{costoServicio})]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[(($F{costoServicio} == null)? new Double($F{nuevoCosto}.doubleValue() / $P{tasaCambio}.doubleValue()) : new Double($F{costoServicio}.doubleValue() / $P{tasaCambio}.doubleValue()))]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -423,7 +424,7 @@ ORDER BY fechaInicio ASC]]></queryString>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[new Double($F{cantidad}.doubleValue() * $F{costoServicio}.doubleValue() )]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[(($F{costoServicio} == null)? new Double($F{cantidad}.doubleValue() * ($F{nuevoCosto}.doubleValue() / $P{tasaCambio}.doubleValue())) : new Double($F{cantidad}.doubleValue() * ($F{costoServicio}.doubleValue() / $P{tasaCambio}.doubleValue())))]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

@@ -25,6 +25,7 @@
 
 	<parameter name="idEvento" isForPrompting="true" class="java.lang.Integer"/>
 	<parameter name="totalSalones" isForPrompting="false" class="java.lang.Double"/>
+	<parameter name="tasaCambio" isForPrompting="true" class="java.lang.Double"/>
 	<queryString><![CDATA[SELECT
          S.id as idSalon,
          S.nombre as nombreSalon,
@@ -385,7 +386,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Double"><![CDATA[$F{costoSalon}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Double"><![CDATA[new Double($F{costoSalon}.doubleValue() / $P{tasaCambio}.doubleValue())]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

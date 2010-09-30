@@ -61,16 +61,42 @@
                 <h1 id="letra2">Cargando...</h1>
                 <%
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
+                            String moneda = request.getParameter("moneda");
+                            Double tasaCambio = Double.valueOf(request.getParameter("tasaCambio"));
 
                             IServicioReserva servicioReserva = new ServicioReserva();
-                            Double montoTotal = servicioReserva.costoTotalReserva(idEvento);
-                            Double totalSalones = servicioReserva.costoTotalSalones(idEvento);
-                            Double totalAB = servicioReserva.costoTotalServicios(idEvento, "AB");
-                            Double totalAU = servicioReserva.costoTotalServicios(idEvento, "AU");
-                            Double totalOT = servicioReserva.costoTotalServicios(idEvento, "OT");
-                            Double totalIVA = servicioReserva.ivaReserva(idEvento);
-                            Double totalServicio = servicioReserva.diezPorciento(idEvento);
-                            Double subtotal = servicioReserva.subtotalReserva(idEvento);
+                            Double montoTotal = new Double(0.0);
+                            Double totalSalones = new Double(0.0);
+                            Double totalAB = new Double(0.0);
+                            Double totalAU = new Double(0.0);
+                            Double totalOT = new Double(0.0);
+                            Double totalIVA = new Double(0.0);
+                            Double totalServicio = new Double(0.0);
+                            Double subtotal = new Double(0.0);
+
+                            if (moneda.equals("D")) {
+
+                                montoTotal = servicioReserva.costoTotalReserva(idEvento) / tasaCambio;
+                                totalSalones = servicioReserva.costoTotalSalones(idEvento) / tasaCambio;
+                                totalAB = servicioReserva.costoTotalServicios(idEvento, "AB") / tasaCambio;
+                                totalAU = servicioReserva.costoTotalServicios(idEvento, "AU") / tasaCambio;
+                                totalOT = servicioReserva.costoTotalServicios(idEvento, "OT") / tasaCambio;
+                                totalIVA = servicioReserva.ivaReserva(idEvento) / tasaCambio;
+                                totalServicio = servicioReserva.diezPorciento(idEvento) / tasaCambio;
+                                subtotal = servicioReserva.subtotalReserva(idEvento) / tasaCambio;
+
+                            } else if (moneda.equals("B")) {
+
+                                montoTotal = servicioReserva.costoTotalReserva(idEvento);
+                                totalSalones = servicioReserva.costoTotalSalones(idEvento);
+                                totalAB = servicioReserva.costoTotalServicios(idEvento, "AB");
+                                totalAU = servicioReserva.costoTotalServicios(idEvento, "AU");
+                                totalOT = servicioReserva.costoTotalServicios(idEvento, "OT");
+                                totalIVA = servicioReserva.ivaReserva(idEvento);
+                                totalServicio = servicioReserva.diezPorciento(idEvento);
+                                subtotal = servicioReserva.subtotalReserva(idEvento);
+
+                            }
 
                             Connection conn = null;
 
@@ -105,6 +131,8 @@
                                 masterParams.put("totalServicio", totalServicio);
                                 masterParams.put("subtotal", subtotal);
                                 masterParams.put("username", username);
+                                masterParams.put("moneda", moneda);
+                                masterParams.put("tasaCambio", tasaCambio);
 
                                 jasperPrint = JasperFillManager.fillReport(masterReport, masterParams, conn);
                                 JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/cotizacion" + idEvento + "PDF.pdf"));
