@@ -37,19 +37,19 @@
             <tr style="height: 40px">
                 <td width="30%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= usuario.getNombre()%>" name="nombreUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= usuario.getNombre()%>" name="nombreUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Apellido:</td>
                 <td>
-                    <input value="<%= usuario.getApellido()%>" name="apellidoUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= usuario.getApellido()%>" name="apellidoUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Correo:</td>
                 <td>
-                    <input value="<%= usuario.getCorreo()%>" name="correo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= usuario.getCorreo()%>" name="correo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
@@ -58,7 +58,7 @@
                     <%
                                 Rol rol = servicioRol.getRol(Integer.valueOf(request.getParameter("idRol")));
                     %>
-                    <select name="rol" style="width: 200px; height: 23px">
+                    <select name="rol" style="width: 255px; height: 23px">
                         <%
                                     for (Rol r : roles) {
                                         if (r.getId().equals(rol.getId())) {
@@ -88,11 +88,11 @@
         <input type="hidden" name="nombre" value="<%= request.getParameter("nombre")%>"/>
         <input type="hidden" name="apellido" value="<%= request.getParameter("apellido")%>"/>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-            <input type="submit" name="update" value="Guardar" style="width: 65px; margin-left: 270px; margin-right: 10px" onclick=""/>
+            <input type="submit" name="update" value="Guardar" style="width: 80px; height: 25px; margin-left: 270px; margin-right: 10px" onclick=""/>
         </div>
     </form>
     <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-        <input type="submit" name="cancel" value="Cancelar" onclick="hideDivContacto()" style="width: 65px;"/>
+        <input type="submit" name="cancel" value="Cancelar" onclick="hideDivContacto()" style="width: 80px; height: 25px;"/>
     </div>
     <div id="espacio"></div>
 </div>
