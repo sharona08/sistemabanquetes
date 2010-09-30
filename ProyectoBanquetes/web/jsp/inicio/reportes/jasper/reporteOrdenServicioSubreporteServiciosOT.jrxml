@@ -133,7 +133,7 @@ GROUP BY fechaInicio ASC]]></queryString>
 				<staticText>
 					<reportElement
 						x="0"
-						y="4"
+						y="3"
 						width="61"
 						height="18"
 						key="staticText-11"/>
@@ -146,7 +146,7 @@ GROUP BY fechaInicio ASC]]></queryString>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="60"
-						y="4"
+						y="3"
 						width="180"
 						height="18"
 						key="textField-2"/>
@@ -185,7 +185,7 @@ GROUP BY fechaInicio ASC]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="119"  isSplitAllowed="true" >
+			<band height="121"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="101"

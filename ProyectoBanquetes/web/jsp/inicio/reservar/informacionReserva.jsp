@@ -468,10 +468,10 @@
                                 <td>&nbsp;</td>
                             </tr>
                             <tr style="height: 30px" align="right">
-                                <td width="70%">
+                                <td width="75%">
                                     <label>Total Salones: </label>
                                 </td>
-                                <td width="20%" align="right"><%=costoSalones%></td>
+                                <td width="15%" align="right"><%=costoSalones%></td>
                             </tr>
                             <tr style="height: 30px" align="right">
                                 <td>
@@ -534,6 +534,9 @@
                     </div>
                     <div id="boton" class="demo" style="float: right">
                         <input class="submit" type="submit" value="Orden de Servicio" style="width: 120px; height: 30px; margin-right: 10px" onclick="redirect('/ProyectoBanquetes/jsp/inicio/reservar/repOrdenServicio.jsp?idEvento=<%=idEvento%>')"/>
+                    </div>
+                    <div id="boton" class="demo" style="float: right">
+                        <input class="submit" type="submit" value="Cotizacion" style="width: 120px; height: 30px; margin-right: 10px" onclick="redirect('/ProyectoBanquetes/jsp/inicio/reservar/repCotizacion.jsp?idEvento=<%=idEvento%>')"/>
                     </div>
                 </div>
                 <div id="espacio"></div>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="reporteCotizacionFin"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="535"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="BlankPage"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="ISO-8859-1" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="username" isForPrompting="true" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT U.nombre as nombreUsuario,
+       U.apellido as apellidoUsuario,
+       U.correo as correoUsuario
+FROM USUARIO U
+WHERE U.username = $P{username}]]></queryString>
+
+	<field name="nombreUsuario" class="java.lang.String"/>
+	<field name="apellidoUsuario" class="java.lang.String"/>
+	<field name="correoUsuario" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="648"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="1"
+						y="23"
+						width="534"
+						height="330"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="1_1_2">
+						<font size="10"/>
+					</textElement>
+				<text><![CDATA[El presente documento es una cotización solamente y es valida hasta  el ________ de __________ del _______________. No estamos bloqueando espacios, ni fechas.
+
+Debido a la alta demanda le ruego confirmar esta cotización con su firma de aprobación y mediante un depósito del 50% del total del presupuesto, el cual puede ser en:
+
+a) Efectivo
+b) Tarjeta de Crédito en Garantía:
+    - No. De Tarjeta de Crédito  ______________________________
+    - Fecha de Expiración          ______________________________
+    - Pin                                  ______________________________
+    - Nombre Tarjeta habiente   ______________________________
+    - Cedula o Pasaporte          ______________________________
+c) Transferencia Bancaria: Banco Mercantil, Cta. Cte. # 0105-0026-51-1026-327032 
+    Banesco, Cta. Cte. # 0134-0277-90277305-4501 o cheque conformable a nombre de GOLDEN SUITES HOTEL C.A.
+d) Carta Compromiso en caso de contar con Línea de Crédito Abierta con el Hotel.
+
+Una vez recibido su depósito, le enviaremos el Contrato Definitivo que garantiza la Confirmación de su Evento.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="1"
+						y="2"
+						width="298"
+						height="22"
+						key="staticText-6"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[INFORMACION IMPORTANTE:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="1"
+						y="356"
+						width="298"
+						height="19"
+						key="staticText-7"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<text><![CDATA[HILTON HONORS:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="1"
+						y="375"
+						width="534"
+						height="200"
+						key="staticText-8"/>
+					<box></box>
+					<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="1_1_2">
+						<font size="10"/>
+					</textElement>
+				<text><![CDATA[Usted podrá participar  de los beneficios del Programa  Hilton Honors, acumulando Puntos y Millas al mismo tiempo  en grupo de 10 habitaciones, salones y alimentos y bebidas.
+Si no esta suscrito a Hilton Honors, solo solicítelo y lo suscribiremos sin costo alguno.  Así podrá comenzar a acumular puntos y millas y empezar a ganar fabulosos premios.
+Para cualquier información adicional no dude en comunicarse conmigo, o visite nuestra página web al www.embassysuitescaracas.com en la sección de banquetes.
+
+Agradecemos su interés en nuestro Hotel y será un placer poder atenderle personalmente en Embassy Suites Hotel Caracas.
+
+
+Atentamente,]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="578"
+						width="534"
+						height="19"
+						key="textField-1"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font pdfFontName="Helvetica-Bold" size="11" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nombreUsuario} + " " + $F{apellidoUsuario}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="596"
+						width="534"
+						height="52"
+						key="textField-2"/>
+					<box></box>
+					<textElement lineSpacing="1_1_2">
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Telef. 0212-7004200\nFax: 0212-2662623\nCorreo: " + $F{correoUsuario}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

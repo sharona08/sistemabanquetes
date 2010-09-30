@@ -38,7 +38,8 @@
          EV.fechaFin as fechaFin,
          EV.horaInicio as horaInicio,
          EV.horaFin as horaFin,
-         EV.cantidadPersonas as cantidad
+         EV.cantidadPersonas as cantidad,
+         EV.nota as nota
        FROM SALON S, EMPRESA E, EVENTO EV, EVENTO_SALA ES, MONTAJE M, TIPO_EVENTO TE, CONTACTO C
 	   WHERE S.id = ES.idSalon
            AND M.id = ES.idMontaje
@@ -63,6 +64,7 @@
 	<field name="horaInicio" class="java.sql.Time"/>
 	<field name="horaFin" class="java.sql.Time"/>
 	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="nota" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -392,32 +394,59 @@
 			</band>
 		</columnFooter>
 		<pageFooter>
-			<band height="30"  isSplitAllowed="true" >
+			<band height="122"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
-						x="343"
+						x="357"
 						y="4"
 						width="99"
 						height="22"
 						key="staticText-7"/>
 					<box></box>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
+					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="12"/>
 					</textElement>
 				<text><![CDATA[Total Salones:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="441"
+						x="455"
 						y="4"
-						width="93"
+						width="79"
 						height="22"
 						key="textField"/>
 					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.Double"><![CDATA[$P{totalSalones}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="54"
+						width="534"
+						height="67"
+						key="textField-4"
+						isRemoveLineWhenBlank="true"/>
+					<box></box>
+					<textElement textAlignment="Justified">
+						<font size="13"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{nota}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="1"
+						y="32"
+						width="83"
+						height="18"
+						key="textField-5"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="13" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{nota}.equals(""))? "" : "NOTA: ")]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageFooter>

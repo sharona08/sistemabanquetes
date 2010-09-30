@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : SALON.xml
+    Created on : August 6, 2010, 2:09 PM
+    Author     : maya
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap >
+
+    <typeAlias type="com.banquetes.reportes.TO.CostoSalones" alias="totalSalon"/>
+    <typeAlias type="com.banquetes.reportes.TO.TotalServicioSalon" alias="totalServicios"/>
+    <typeAlias type="com.banquetes.reportes.TO.TotalServiciosTodos" alias="totalServiciosTodos"/>
+    <typeAlias type="com.banquetes.reportes.TO.TotalSalonesTodos" alias="totalSalonesTodos"/>
+
+    <select id="getTotalSalon" resultClass="totalSalon">
+      SELECT SA.nombre, IFNULL((SELECT SUM(IFNULL(ES.nuevoCosto, SA.costo))
+			  FROM EVENTO E, EVENTO_SALA ES
+			  WHERE E.id = ES.idEvento
+			  AND   ES.idSalon = SA.id
+			  AND   E.estado = 'C'
+			  AND   ES.visible is TRUE
+			  AND MONTH(E.fechaInicio) = #mes#
+			  AND YEAR(E.fechaInicio) = #ano#), 0.0) as totalSalon
+      FROM SALON SA
+      WHERE SA.id = #idSalon#
+    </select>
+    
+    <select id="getTotalServicios" resultClass="totalServicios">
+      SELECT SA.nombre, IFNULL((SELECT SUM(IFNULL(SE.nuevoCosto * SE.cantidad, S.costoUnitario * SE.cantidad))
+			  FROM EVENTO E, EVENTO_SALA ES, SERVICIO_EVENTO SE, SERVICIO S, IVA I
+			  WHERE E.id = ES.idEvento
+			  AND   ES.idSalon = SA.id
+			  AND   ES.idEvento = SE.idEvento
+			  AND   SE.idServicio = S.id
+			  AND   SE.idSalon = ES.idSalon
+			  AND   E.estado = 'C'
+			  AND   S.tipoServicio = #tipoServicio#
+			  AND MONTH(E.fechaInicio) = #mes#
+			  AND YEAR(E.fechaInicio) = #ano#), 0.0) as totalServicio
+       FROM SALON SA
+       WHERE SA.id = #idSalon#
+    </select>
+
+    <select id="getTotalSalonesTodos" resultClass="totalSalonesTodos">
+      SELECT SUM(IFNULL((SELECT SUM(IFNULL(ES.nuevoCosto, SA.costo))
+			FROM EVENTO E, EVENTO_SALA ES
+			WHERE E.id = ES.idEvento
+			AND   ES.idSalon = SA.id
+			AND   E.estado = 'C'
+			AND   ES.visible is TRUE
+			AND MONTH(E.fechaInicio) = #mes#
+			AND YEAR(E.fechaInicio) = #ano#), 0.0)) as totalSalones
+      FROM SALON SA
+    </select>
+
+    <select id="getTotalServiciosPorTipo" resultClass="totalServiciosAB">
+      SELECT SUM(IFNULL((SELECT SUM(IFNULL(SE.nuevoCosto * SE.cantidad, S.costoUnitario * SE.cantidad))
+			 FROM EVENTO E, EVENTO_SALA ES, SERVICIO_EVENTO SE, SERVICIO S, IVA I
+			 WHERE E.id = ES.idEvento
+			 AND   ES.idSalon = SA.id
+			 AND   ES.idEvento = SE.idEvento
+			 AND   SE.idServicio = S.id
+			 AND   SE.idSalon = ES.idSalon
+			 AND   E.estado = 'C'
+			 AND   S.tipoServicio = #tipoServicio#
+			 AND MONTH(E.fechaInicio) = #mes#
+			 AND YEAR(E.fechaInicio) = #ano#), 0.0)) as totalServicios
+       FROM SALON SA
+    </select>
+
+
+    <select id="getTotalServiciosTodos" resultClass="totalServiciosTodos">
+    SELECT((SELECT SUM(IFNULL((SELECT SUM(IFNULL(SE.nuevoCosto * SE.cantidad, S.costoUnitario * SE.cantidad))
+					FROM EVENTO E, EVENTO_SALA ES, SERVICIO_EVENTO SE, SERVICIO S
+					WHERE E.id = ES.idEvento
+					AND   ES.idSalon = SA.id
+					AND   ES.idEvento = SE.idEvento
+					AND   SE.idServicio = S.id
+					AND   SE.idSalon = ES.idSalon
+					AND   E.estado = 'C'
+					AND   S.tipoServicio = 'AB'
+					AND MONTH(E.fechaInicio) = #mes#
+					AND YEAR(E.fechaInicio) = #ano#), 0.0)) as totalAB
+         FROM SALON SA) +
+        (SELECT SUM(IFNULL((SELECT SUM(IFNULL(SE.nuevoCosto * SE.cantidad, S.costoUnitario * SE.cantidad))
+					FROM EVENTO E, EVENTO_SALA ES, SERVICIO_EVENTO SE, SERVICIO S
+					WHERE E.id = ES.idEvento
+					AND   ES.idSalon = SA.id
+					AND   ES.idEvento = SE.idEvento
+					AND   SE.idServicio = S.id
+					AND   SE.idSalon = ES.idSalon
+					AND   E.estado = 'C'
+					AND   S.tipoServicio = 'AU'
+					AND MONTH(E.fechaInicio) = #mes#
+					AND YEAR(E.fechaInicio) = #ano#), 0.0)) as totalAB
+        FROM SALON SA) +
+       (SELECT SUM(IFNULL((SELECT SUM(IFNULL(SE.nuevoCosto * SE.cantidad, S.costoUnitario * SE.cantidad))
+					FROM EVENTO E, EVENTO_SALA ES, SERVICIO_EVENTO SE, SERVICIO S
+					WHERE E.id = ES.idEvento
+					AND   ES.idSalon = SA.id
+					AND   ES.idEvento = SE.idEvento
+					AND   SE.idServicio = S.id
+					AND   SE.idSalon = ES.idSalon
+					AND   E.estado = 'C'
+					AND   S.tipoServicio = 'OT'
+					AND MONTH(E.fechaInicio) = #mes#
+					AND YEAR(E.fechaInicio) = #ano#), 0.0)) as totalAB
+         FROM SALON SA) +
+        (SELECT SUM(IFNULL((SELECT SUM(IFNULL(ES.nuevoCosto, SA.costo))
+			FROM EVENTO E, EVENTO_SALA ES
+			WHERE E.id = ES.idEvento
+			AND   ES.idSalon = SA.id
+			AND   E.estado = 'C'
+			AND   ES.visible is TRUE
+			AND MONTH(E.fechaInicio) = #mes#
+			AND YEAR(E.fechaInicio) = #ano#), 0.0)) as totalSalones
+         FROM SALON SA)) as totalServicios
+    </select>
+
+</sqlMap>
