@@ -27,6 +27,7 @@
 <%@page import="com.banquetes.servicios.interfaces.IServicioSalon"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -35,6 +36,12 @@
         <title>Home page</title>
         <jsp:include page="../include/head.jsp"></jsp:include>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="../js/jquery.validate.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#commentForm").validate();
+            });
+        </script>
 
     </head>
 

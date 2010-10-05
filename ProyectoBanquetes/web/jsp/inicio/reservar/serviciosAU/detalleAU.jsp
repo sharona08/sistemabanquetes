@@ -66,34 +66,34 @@
 <h1 id="letra2">INFORMACION AUDIOVISUALES # <% out.println(idEvento);%></h1>
 <div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
     <form method="get" action="updateAU.jsp">
-        <table width="85%" border="0">
+        <table width="88%" border="0">
             <tr style="height: 40px">
-                <td width="35%">Nombre:</td>
-                <td width="50%">
-                    <input value="<%= servicio.getNombre()%>" name="nombreServicio" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" disabled />
+                <td width="48%">Nombre:</td>
+                <td width="40%">
+                    <input value="<%= servicio.getNombre()%>" name="nombreServicio" onKeyUp="this.value=this.value.toUpperCase();" style="width: 255px; height: 23px" align="middle" disabled />
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Costo Unitario:</td>
                 <td>
                     <% if (servicioEvento.getNuevoCosto() != null) {%>
-                    <input value="<%= servicioEvento.getNuevoCosto()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= servicioEvento.getNuevoCosto()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 255px; height: 23px" align="middle" />
                     <% } else {%>
-                    <input value="<%= servicio.getCostoUnitario()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= servicio.getCostoUnitario()%>" name="costo" onKeyUp="this.value=this.value.toUpperCase();" style="width: 255px; height: 23px" align="middle" />
                     <% }%>
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Cantidad:</td>
                 <td>
-                    <input value="<%= servicioEvento.getCantidad()%>" name="cantidad" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" align="middle" />
+                    <input value="<%= servicioEvento.getCantidad()%>" name="cantidad" onKeyUp="this.value=this.value.toUpperCase();" style="width: 255px; height: 23px" align="middle" />
                 </td>
             </tr>
 
             <tr style="height: 35px">
                 <td>Fecha Inicio: (*)</td>
                 <td>
-                    <input class="inputDate3" id="inputDate3" value="<%= servicioEvento.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" />
+                    <input class="inputDate3" id="inputDate3" value="<%= servicioEvento.getFechaInicio()%>" name="fechaInicioEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 255px; height: 23px" />
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -101,7 +101,7 @@
             <tr style="height: 35px">
                 <td>Fecha Fin: (*)</td>
                 <td>
-                    <input class="inputDate4" id="inputDate4" value="<%= servicioEvento.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 195px; height: 23px" />
+                    <input class="inputDate4" id="inputDate4" value="<%= servicioEvento.getFechaFin()%>" name="fechaFinEvento" onKeyUp="this.value=this.value.toUpperCase();" style="width: 255px; height: 23px" />
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -174,7 +174,7 @@
             <tr style="height: 40px">
                 <td>Salon: </td>
                 <td>
-                    <select name="salon" style="width: 200px; height: 25px">
+                    <select name="salon" style="width: 255px; height: 25px">
                         <%
                                     for (Salon s : salones) {
                                         if (s.getId().equals(idSalon)) {
@@ -188,16 +188,16 @@
                     </select>
                 </td>
             </tr>
-            <tr style="height: 80px;">
+            <tr style="height: 100px;">
                 <td>Descripcion:</td>
                 <td>
-                    <textarea name="descripcion" rows="4" cols="" style="width: 198px"><%=descripcion%></textarea>
+                    <textarea name="descripcion" rows="5" cols="" style="width: 255px"><%=descripcion%></textarea>
                 </td>
             </tr>
-            <tr style="height: 80px;">
+            <tr style="height: 100px;">
                 <td>Nota Especial:</td>
                 <td>
-                    <textarea name="notaEspecial" rows="4" cols="" style="width: 198px"><%=notaEspecial%></textarea>
+                    <textarea name="notaEspecial" rows="5" cols="" style="width: 255px"><%=notaEspecial%></textarea>
                 </td>
             </tr>
             <tr>

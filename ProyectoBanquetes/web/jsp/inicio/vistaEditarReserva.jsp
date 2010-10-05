@@ -39,6 +39,12 @@
                 window.location.href=url;
             }
         </script>
+        <script type="text/javascript" src="../js/jquery.validate.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#commentForm").validate();
+            });
+        </script>
     </head>
     <body>
         <div id="pageWrap">

@@ -20,6 +20,21 @@
 <%@page import="com.banquetes.servicios.interfaces.IServicioEmpresa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<script type="text/javascript" src="../../js/jquery.validate.js"></script>
+<style type="text/css">
+    /*            label { width: 10em; float: left; }*/
+    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+    p { clear: both; }
+    .submit { margin-left: 12em; }
+    em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#commentForm").validate();
+    });
+</script>
+
 <%
             IServicioUsuario servicioUsuario = new ServicioUsuario();
             String id = request.getParameter("hiddenId");
@@ -32,18 +47,18 @@
 
 <h1 id="letra2">INFORMACION USUARIO: <% out.println(id);%></h1>
 <div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
-    <form method="get" action="updateUsuario.jsp">
+    <form method="get" action="updateUsuario.jsp" class="cmxform" id="commentForm">
         <table width="80%" border="0">
             <tr style="height: 40px">
                 <td width="30%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= usuario.getNombre()%>" name="nombreUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
+                    <input class="required" value="<%= usuario.getNombre()%>" name="nombreUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
                 <td>Apellido:</td>
                 <td>
-                    <input value="<%= usuario.getApellido()%>" name="apellidoUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
+                    <input class="required" value="<%= usuario.getApellido()%>" name="apellidoUsuario" onKeyUp="this.value=this.value.toUpperCase();" style="width: 250px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 40px">
