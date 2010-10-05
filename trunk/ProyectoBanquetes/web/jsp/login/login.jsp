@@ -92,7 +92,7 @@
             <div id="content">
                 <h1 id="letra1">BIENVENIDO!</h1>
                 <form action="../login/comprobar.jsp" method="post" class="cmxform" id="commentForm">
-                    <label>Coloca tus datos</label><br><br>
+                    <label>Introduce tus datos:</label><br><br>
                     <fieldset>
                         <table width="25%">
                             <tr style="height: 40px;">

@@ -28,4 +28,4 @@
             }
 %>
 
-<textarea cols="" rows="4" name="descripcion" style="width: 200px;"><%=descripcion%></textarea>
+<textarea cols="" rows="5" name="descripcion" style="width: 255px;"><%=descripcion%></textarea>

@@ -25,9 +25,34 @@
 <%@page import="com.banquetes.dominio.Salon"%>
 <%@page import="com.sun.xml.internal.txw2.Document"%>
 
+<script type="text/javascript" src="../js/jquery.validate.js"></script>
+
+<style type="text/css">
+    /*            label { width: 10em; float: left; }*/
+    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+    p { clear: both; }
+    .submit { margin-left: 12em; }
+    em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+</style>
+
+<script type="text/javascript">
+    function funcionGuardar2(){
+        document.formulario.action='updateEvento2.jsp';
+        document.formulario.validate();
+        document.formulario.submit();
+    }
+</script>
+
+<script type="text/javascript">
+    function funcionGuardarContinuar2(){
+        document.formulario.action='updateEventoServicio.jsp';
+        document.formulario.validate();
+        document.formulario.submit();
+    }
+</script>
+
 <%
             IServicioSalon iServicioSalon = new ServicioSalon();
-            //List<Salon> salones = iServicioSalon.listarSalones();
             IServicioEvento servicioEvento = new ServicioEvento();
 
             Evento event = new Evento(Integer.valueOf(request.getParameter("ID")));
@@ -53,7 +78,7 @@
 
 <h1>INFORMACION RESERVA # <% out.println(request.getParameter("ID"));%></h1>
 <div id="infoReserva" style="margin-left: 20px; margin-right: 20px; padding-top: 15px">
-    <form name="formulario" method="get" action="">
+    <form id="commentForm" class="cmxform" name="formulario" method="get" action="">
         <table width="94%" border="0">
             <tr style="height: 35px">
                 <td width="44%">Fecha Inicio:</td>
@@ -70,7 +95,7 @@
             <tr style="height: 35px">
                 <td>Nombre Evento:</td>
                 <td>
-                    <input type="text" name="nombreEvento" value="<%= detalles.getNombreEvento()%>" style="width: 180px; height: 23px" align="middle" onkeyup="toUpperCase()" />
+                    <input class="required" type="text" name="nombreEvento" value="<%= detalles.getNombreEvento()%>" style="width: 180px; height: 23px" align="middle" onkeyup="toUpperCase()" />
                     <input type="hidden" name="idEvento" value="<%= detalles.getIdEvento()%>"/>
                 </td>
             </tr>
@@ -96,7 +121,7 @@
             <tr style="height: 35px">
                 <td>Cantidad Personas:</td>
                 <td>
-                    <input type="text" name="cantidadPersonas" value="<%= detalles.getCantidadPersonas()%>" style="width: 180px; height: 23px" align="middle" />
+                    <input class="required" type="text" name="cantidadPersonas" value="<%= detalles.getCantidadPersonas()%>" style="width: 180px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 35px">
@@ -332,7 +357,7 @@
             <tr style="height: 30px">
                 <td>Costo:</td>
                 <td>
-                    <input type="text" name="<%=varCostoSalon%>" value="<%= d.getCostoSalon()%>" style="width: 180px; height: 23px" align="middle" />
+                    <input class="required" type="text" name="<%=varCostoSalon%>" value="<%= d.getCostoSalon()%>" style="width: 180px; height: 23px" align="middle" />
                 </td>
             </tr>
             <% } else {%>
@@ -340,7 +365,7 @@
             <tr style="height: 35px">
                 <td>Costo:</td>
                 <td>
-                    <input type="text" name="<%=varNuevoCostoSalon%>" value="<%= d.getNuevoCosto()%>" style="width: 180px; height: 23px" align="middle" />
+                    <input class="required" type="text" name="<%=varNuevoCostoSalon%>" value="<%= d.getNuevoCosto()%>" style="width: 180px; height: 23px" align="middle" />
                 </td>
             </tr>
             <% }%>
@@ -386,10 +411,10 @@
 
         <div id="espacio"></div>
         <div id="boton" class="demo" style="float: left">
-            <input type="submit" name="update" value="Guardar y Continuar" style="width: 130px; height: 30px; margin-left: 130px; margin-right: 10px" onclick="document.formulario.action='updateEventoServicio.jsp'; document.formulario.submit()"/>
+            <input type="submit" name="update" value="Guardar y Continuar" style="width: 130px; height: 30px; margin-left: 130px; margin-right: 10px" onclick="funcionGuardarContinuar2()"/>
         </div>
         <div id="boton" class="demo" style="float: left; margin-bottom: 20px">
-            <input type="submit" name="update" value="Guardar" style="width: 75px; height: 30px; margin-right: 10px" onclick="document.formulario.action='updateEvento2.jsp'; document.formulario.submit()"/>
+            <input type="submit" name="update" value="Guardar" style="width: 75px; height: 30px; margin-right: 10px" onclick="funcionGuardar2()"/>
         </div>
     </form>
     <div id="boton" class="demo" style="float: left; margin-bottom: 20px">

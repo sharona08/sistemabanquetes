@@ -24,4 +24,4 @@
             Double costo = servicio.getCostoUnitario();
 
 %>
-<input value="<%= costo %>" name="costoUnitario" style="width: 195px; height: 23px" onKeyUp="this.value=this.value.toUpperCase();" />
+<input value="<%= costo %>" name="costoUnitario" style="width: 250px; height: 23px" onKeyUp="this.value=this.value.toUpperCase();" />

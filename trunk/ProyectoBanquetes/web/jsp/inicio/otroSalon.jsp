@@ -46,6 +46,19 @@
                 $("a", ".demo").click(function() { return false; });
             });
         </script>
+        <style type="text/css">
+            /*            label { width: 10em; float: left; }*/
+            label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+            p { clear: both; }
+            .submit { margin-left: 12em; }
+            em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+        </style>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#commentForm").validate();
+            });
+        </script>
 
         <title>Agregar salon a reserva</title>
     </head>
@@ -75,7 +88,7 @@
                 <div id="disponibilidad" style="margin-left: 10px;">
                     <h1 id="letra1">Asignar salon a la reserva #: <%=idEvento%></h1>
 
-                    <form action="asignarSalonReserva.jsp" method="get" name="form">
+                    <form action="asignarSalonReserva.jsp" method="get" name="form" class="cmxform" id="commentForm">
                         <table>
                             <tr style="height: 40px">
                                 <td style="font-size: 18px">Detalles sal&oacute;n</td>
@@ -93,13 +106,6 @@
                                         </option>
                                         <% }%>
                                     </select>
-<!--                                    <select name="salon" style="width: 200px; height: 25px" onchange="mostrarCosto(this.value)">
-                                        < for (Salon salon : salones) {%>
-                                        <option value="< salon.getId()%>">
-                                            < salon.getNombre()%>
-                                        </option>
-                                        < }%>
-                                    </select>-->
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -107,7 +113,7 @@
                                 <td>Costo:</td>
                                 <td>
                                     <div id="costo">
-                                        <input type="text" name="nuevoCosto" value="<%=costoSalonCero%>" style="width: 195px; height: 23px" align="middle" />
+                                        <input class="required" type="text" name="nuevoCosto" value="<%=costoSalonCero%>" style="width: 195px; height: 23px" align="middle" />
                                     </div>
                                 </td>
                                 <td>&nbsp;</td>

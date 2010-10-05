@@ -19,6 +19,21 @@
 <%@page import="com.banquetes.servicios.interfaces.IServicioEmpresa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<script type="text/javascript" src="../../js/jquery.validate.js"></script>
+<style type="text/css">
+    /*            label { width: 10em; float: left; }*/
+    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+    p { clear: both; }
+    .submit { margin-left: 12em; }
+    em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#commentForm").validate();
+    });
+</script>
+
 <%
             IServicioDepartamento servicioDepartamento = new ServicioDepartamento();
 
@@ -37,12 +52,12 @@
 
 <h1 id="letra2">INFORMACION SERVICIO # <% out.println(id);%></h1>
 <div id="detalle" style="margin-left: 20px; margin-right: 20px; padding-top: 15px" align="center">
-    <form method="get" action="updateOtro.jsp">
+    <form method="get" action="updateOtro.jsp" class="cmxform" id="commentForm">
         <table width="90%" border="0">
             <tr style="height: 40px">
                 <td width="40%">Nombre:</td>
                 <td width="50%">
-                    <input value="<%= servicio.getNombre()%>" name="nombreServicio" onKeyUp="this.value=this.value.toUpperCase();" style="width: 275px; height: 23px" align="middle" />
+                    <input class="required" value="<%= servicio.getNombre()%>" name="nombreServicio" onKeyUp="this.value=this.value.toUpperCase();" style="width: 275px; height: 23px" align="middle" />
                 </td>
             </tr>
             <tr style="height: 100px;">
