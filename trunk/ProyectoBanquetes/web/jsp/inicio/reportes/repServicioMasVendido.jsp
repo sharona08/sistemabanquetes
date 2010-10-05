@@ -51,7 +51,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Reservar</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reportes/formServicioMasVendido.jsp"/>
+        <!--        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reportes/formServicioMasVendido.jsp"/>-->
     </head>
     <body>
 
@@ -59,7 +59,8 @@
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">Servicio más vendido</h1>
-                <h1 id="letra2">Cargando...</h1>
+                <div id="espacio"></div>
+                <div id="espacio"></div>
                 <%
                             String fechaInicio = request.getParameter("fechaInicio");
                             String fechaFin = request.getParameter("fechaFin");
@@ -88,17 +89,21 @@
 
                                 jasperPrint = JasperFillManager.fillReport(masterReport, masterParams, conn);
                                 JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/servicioMasVendido" + tipoServicio + ".pdf"));
-                                File file = new File(application.getRealPath("jsp/inicio/reportes/PDF/servicioMasVendido" + tipoServicio + ".pdf"));
 
-                                Desktop.getDesktop().open(file);
+                                JasperExportManager.exportReportToPdfFile(jasperPrint, "/ProyectoBanquetes/jsp/inicio/reportes/PDF/servicioMasVendido" + tipoServicio + ".pdf");
 
-                            } catch (IOException ex) {
-                                Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (JRException e) {
                                 e.printStackTrace();
                             }
 
+                            String nombrePDF = "servicioMasVendido" + tipoServicio + ".pdf";
+
                 %>
+            <div style="width: 100%;" align="center">
+                <iframe src="../reportes/PDF/<%=nombrePDF%>" style="width:800px; height:1000px;" frameborder="0"></iframe>
+            </div>
+
+            <div id="espacio"></div>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>

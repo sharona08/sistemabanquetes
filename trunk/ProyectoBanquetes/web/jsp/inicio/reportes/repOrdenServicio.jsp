@@ -46,7 +46,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Reservar</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reportes/formOrdenServicio.jsp"/>
+<!--        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reportes/formOrdenServicio.jsp"/>-->
     </head>
     <body>
 
@@ -54,7 +54,8 @@
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">Orden de Servicio</h1>
-                <h1 id="letra2">Cargando...</h1>
+                <div id="espacio"></div>
+                <div id="espacio"></div>
                 <%
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
 
@@ -80,18 +81,21 @@
                                 masterParams.put("rutaAB", application.getRealPath("jsp/inicio/reportes/jasper/reporteOrdenServicioSubreporteServiciosAB.jasper"));
                                 masterParams.put("rutaOT", application.getRealPath("jsp/inicio/reportes/jasper/reporteOrdenServicioSubreporteServiciosOT.jasper"));
                                 jasperPrint = JasperFillManager.fillReport(masterReport, masterParams, conn);
-                                JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/reporteOrdenServicio" + idEvento + "PDF.pdf"));
-                                File file = new File(application.getRealPath("jsp/inicio/reportes/PDF/reporteOrdenServicio" + idEvento + "PDF.pdf"));
+                                JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/OrdenServicio" + idEvento + ".pdf"));
 
-                                Desktop.getDesktop().open(file);
+                                JasperExportManager.exportReportToPdfFile(jasperPrint, "/ProyectoBanquetes/jsp/inicio/reportes/PDF/OrdenServicio" + idEvento + ".pdf");
 
-                            } catch (IOException ex) {
-                                Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (JRException e) {
                                 e.printStackTrace();
                             }
+                            String nombrePDF = "OrdenServicio" + idEvento + ".pdf";
 
                 %>
+                <div style="width: 100%;" align="center">
+                    <iframe src="../reportes/PDF/<%=nombrePDF%>" style="width:800px; height:1000px;" frameborder="0"></iframe>
+                </div>
+
+                <div id="espacio"></div>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
