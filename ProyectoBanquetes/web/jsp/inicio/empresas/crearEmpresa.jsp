@@ -31,7 +31,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Empresa</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp"/>
+        
     </head>
     <body>
 
@@ -40,6 +40,8 @@
             <div id="content">
                 <h1 id="letra1">Crear Empresa</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             IServicioEmpresa servicioEmpresa = new ServicioEmpresa();
                             Empresa empresa = new Empresa();
                             empresa.setRif(request.getParameter("rif"));
@@ -52,28 +54,21 @@
                             if (!existe) {
                                 Boolean result = servicioEmpresa.crearEmpresa(empresa);
                                 if (result) {
-
-                                    JOptionPane.showMessageDialog(null,
-                                            "Exito! la empresa ha sido registrada exitosamente.",
-                                            "Exito",
-                                            JOptionPane.INFORMATION_MESSAGE);
+                                    mensaje = "exito";
+                                    texto = "La empresa ha sido registrado exitosamente.";
 
                                 } else {
-
-                                    JOptionPane.showMessageDialog(null,
-                                            "Error! la empresa no se pudo registrar.",
-                                            "Error",
-                                            JOptionPane.ERROR_MESSAGE);
+                                    mensaje = "error";
+                                    texto = "La empresa no se pudo registrar.";
                                 }
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! la empresa ya esta registrada.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "La empresa ya existe.";
                             }
+
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

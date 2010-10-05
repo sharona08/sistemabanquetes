@@ -37,7 +37,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Usuario</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp"/>
+        
     </head>
     <body>
 
@@ -46,6 +46,8 @@
             <div id="content">
                 <h1 id="letra1">Crear Usuario</h1>
                 <%
+                String mensaje = "";
+                            String texto = "";
                             IServicioUsuario servicioUsuario = new ServicioUsuario();
                             Usuario usuario = new Usuario();
 
@@ -57,21 +59,18 @@
                             usuario.setIdRol(Integer.valueOf(request.getParameter("rol")));
 
                             String result = servicioUsuario.crearUsuario(usuario);
+                            
                             if (result != null) {
+                                mensaje = "exito";
+                                texto = "El usuario ha sido registrado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el usuario ha sido registrado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el usuario no se pudo registrar.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El usuario no se pudo registrar.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

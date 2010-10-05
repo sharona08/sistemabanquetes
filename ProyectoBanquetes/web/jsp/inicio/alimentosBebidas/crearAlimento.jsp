@@ -42,7 +42,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Servicio</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/alimentosBebidas/alimentoFiltros.jsp"/>
     </head>
     <body>
 
@@ -51,6 +50,8 @@
             <div id="content">
                 <h1 id="letra1">Crear Alimento y Bebida</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             try {
                                 // Set System L&F
                                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -63,7 +64,7 @@
                             } catch (IllegalAccessException e) {
                                 // handle exception
                             }
-            
+
                             IServicioDepartamento servicioDepartamento = new ServicioDepartamento();
 
                             IServicioServicio servicioServicio = new ServicioServicio();
@@ -82,20 +83,16 @@
 
                             Integer result = servicioServicio.crearServicio(servicio);
                             if (result != null) {
+                                mensaje = "exito";
+                                texto = "El servicio ha sido registrado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el servicio ha sido registrado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el servicio no se pudo registrar.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El servicio no se pudo registrar.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/alimentosBebidas/alimentoFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

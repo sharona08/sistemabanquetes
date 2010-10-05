@@ -33,7 +33,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Eliminar Usuario</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp"/>
+        
     </head>
     <body>
 
@@ -42,26 +42,25 @@
             <div id="content">
                 <h1 id="letra1">Eliminar Usuario</h1>
                 <%
+                String mensaje = "";
+                    String texto = "";
                             IServicioUsuario servicioUsuario = new ServicioUsuario();
 
                             String idUsuario = request.getParameter("id");
 
                             Boolean result = servicioUsuario.eliminarUsuario(idUsuario);
+                            
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El usuario ha sido eliminado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el usuario ha sido eliminado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el usuario no se pudo eliminado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El usuario no pudo ser eliminado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

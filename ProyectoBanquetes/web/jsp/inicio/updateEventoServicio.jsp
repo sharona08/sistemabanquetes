@@ -50,9 +50,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../include/head.jsp"></jsp:include>
         <title>Editar Evento</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%=request.getParameter("idEvento")%>">
+
     </head>
     <body>
+        <%
+                    String mensaje = "";
+                    String texto = "";
+        %>
         <div id="pageWrap">
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
@@ -196,35 +200,28 @@
                             }
 
                             if ((result == 1) && (result2 == 1)) {
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! La reserva ha sido editada exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
+                                mensaje = "exito";
+                                texto = "La reserva ha sido editada exitosamente.";
 
                             } else {
                                 if ((result != 1) && (result2 == 1)) {
-                                    JOptionPane.showMessageDialog(null,
-                                            "Error! La informacion del evento no pudo ser editada, revise campos.",
-                                            "Error",
-                                            JOptionPane.ERROR_MESSAGE);
+                                    mensaje = "error";
+                                    texto = "La informacion del evento no pudo ser editada, revise campos.";
 
                                 }
                                 if ((result == 1) && (result2 != 1)) {
-                                    JOptionPane.showMessageDialog(null,
-                                            "Error! La informacion del salon no pudo ser editada, revise campos.",
-                                            "Error",
-                                            JOptionPane.ERROR_MESSAGE);
+                                    mensaje = "error";
+                                    texto = "La informacion del salon no pudo ser editada, revise campos.";
 
                                 }
                                 if ((result != 1) && (result2 != 1)) {
-                                    JOptionPane.showMessageDialog(null,
-                                            "Error! La reserva no pudo ser editada, revise campos.",
-                                            "Error",
-                                            JOptionPane.ERROR_MESSAGE);
+                                    mensaje = "error";
+                                    texto = "La reserva no pudo ser editada, revise campos.";
                                 }
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%=request.getParameter("idEvento")%>&mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>
     </body>

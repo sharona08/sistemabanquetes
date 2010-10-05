@@ -44,6 +44,8 @@
             <div id="content">
                 <h1 id="letra1">Editar Audiovisuales</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             IServicioReserva servicioReserva = new ServicioReserva();
                             ServicioServicioEvento servicioEvento = new ServicioServicioEvento();
                             UtilMethods util = new UtilMethods();
@@ -77,7 +79,7 @@
 
                             servicioEvento.setFechaInicio(currentfechaInicio);
                             servicioEvento.setNuevaFechaInicio(newFechaInicio);
-                            
+
                             servicioEvento.setFechaFin(util.getSqlDate(request.getParameter("fechaFinEvento")));
 
                             servicioEvento.setNotaEspecial(request.getParameter("notaEspecial"));
@@ -87,20 +89,16 @@
 
                             Boolean result = servicioReserva.editarServicioEvento(servicioEvento);
                             if (result) {
-                
-                                     JOptionPane.showMessageDialog(null,
-                                        "Exito! el servicio ha sido editado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                            } else {
+                                mensaje = "exito";
+                                texto = "El servicio ha sido editado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el servicio no se pudo editado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                mensaje = "error";
+                                texto = "El servicio no pudo ser editado.";
                             }
-                            %>
+                %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAU/formAudiovisuales.jsp?idEvento=<%= request.getParameter("idEvento")%>&mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../../include/footer.jsp"></jsp:include>
         </div>
     </body>

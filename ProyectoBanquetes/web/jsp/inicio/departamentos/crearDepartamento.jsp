@@ -46,27 +46,26 @@
             <div id="content">
                 <h1 id="letra1">Crear Departamento</h1>
                 <%
+                String mensaje = "";
+                            String texto = "";
                             IServicioDepartamento servicioDepartamento = new ServicioDepartamento();
                             Departamento departamento = new Departamento();
 
                             departamento.setNombre(request.getParameter("nombre"));
 
                             Integer result = servicioDepartamento.crearDepartamento(departamento);
+                           
                             if (result != null) {
+                                mensaje = "exito";
+                                texto = "El departamento ha sido registrado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el departamento ha sido registrado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el departamento no se pudo registrar.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El departamento no se pudo registrar.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/departamentos/departamentoFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

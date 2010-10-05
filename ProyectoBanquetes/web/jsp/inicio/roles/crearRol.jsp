@@ -30,7 +30,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Montaje</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp"/>
+        
     </head>
     <body>
 
@@ -39,27 +39,26 @@
             <div id="content">
                 <h1 id="letra1">Crear Rol</h1>
                 <%
+                String mensaje = "";
+                            String texto = "";
                             IServicioRol servicioRol = new ServicioRol();
                             Rol rol = new Rol();
 
                             rol.setTipoRol(request.getParameter("nombre"));
 
                             Integer result = servicioRol.crearRol(rol);
+                            
                             if (result != null) {
+                                mensaje = "exito";
+                                texto = "El rol ha sido registrado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el rol ha sido registrado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el rol no se pudo registrar.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El rol no se pudo registrar.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

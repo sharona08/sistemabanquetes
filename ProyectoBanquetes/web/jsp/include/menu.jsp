@@ -29,23 +29,6 @@
 
             <label>Bienvenido, <%=nombre%> | <a href="/ProyectoBanquetes/jsp/login/logout.jsp">cerrar sesion</a></label>
         </div>
-        <!--        <div id="warning" class="ui-widget" style="position: absolute; float: inherit; width: 100%">
-                    <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
-                        <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-                            <strong>Hey!</strong> Sample ui-state-highlight style.</p>
-                    </div>
-                </div>-->
-
-        <!--        <div id="error" class="ui-widget">
-                    <div class="ui-state-error ui-corner-all" style="padding: 0 .7em; color: white">
-                        <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-                            <strong>Alert:</strong> Sample ui-state-error style.</p>
-                    </div>
-                </div>-->
-
-        <!--        <div id="logo">
-                    <a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp"></a>
-                </div>-->
     </div>
     <ul id="nav">
         <li class="top"><a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp" class="top_link"><span>Inicio</span></a></li>

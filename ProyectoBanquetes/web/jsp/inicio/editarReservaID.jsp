@@ -55,6 +55,7 @@
                 window.location.href=url;
             }
         </script>
+        <script type="text/javascript" src="mensajeExito.js"></script>
     </head>
     <body>
         <div id="pageWrap">

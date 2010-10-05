@@ -49,7 +49,7 @@
 
         <script type="text/javascript" src="../../../js/jquery.validate.js"></script>
         <style type="text/css">
-/*            label { width: 10em; float: left; }*/
+            /*            label { width: 10em; float: left; }*/
             label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
             p { clear: both; }
             /*            .submit { margin-left: 12em; }*/
@@ -70,6 +70,7 @@
 
         <script type="text/javascript" src="selectServicio.js"></script>
         <script type="text/javascript" src="selectServicioDesc.js"></script>
+        <script type="text/javascript" src="../../mensajeExito.js"></script>
 
         <title>Alimentos y Bebidas</title>
     </head>
@@ -88,6 +89,38 @@
 
         %>
         <div id="pageWrap">
+            <%
+                        String mensaje = request.getParameter("mensaje");
+                        if (mensaje != null) {
+
+                            String texto = "";
+                            if (request.getParameter("texto") == null) {
+                                texto = "";
+                            } else {
+                                texto = request.getParameter("texto");
+                            }
+                            if (mensaje.equals("exito")) {
+
+            %>
+
+            <script type="text/javascript">
+                exito();
+            </script>
+            <div id="info" style="float: inherit">
+                Exito! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/reservar/serviciosAU/formAudiovisuales.jsp?idEvento=<%=idEvento%>" class="close">Cerrar</a>
+            </div>
+            <%                            } else if (mensaje.equals("error")) {
+            %>
+            <script type="text/javascript">
+                error();
+            </script>
+            <div id="info2" style="float: inherit">
+                Error! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/reservar/serviciosAU/formAudiovisuales.jsp?idEvento=<%=idEvento%>" class="close">Cerrar</a>
+            </div>
+            <%                            }
+                        }
+            %>
+
             <jsp:include page="../../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">AGREGAR AUDIOVISUALES</h1>
@@ -144,7 +177,7 @@
                                 </td>
                                 <td>&nbsp;</td>
                             </tr>
-                            
+
                             <tr style="height: 38px">
                                 <td>Fecha Fin: (*)</td>
                                 <td>

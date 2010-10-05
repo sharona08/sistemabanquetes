@@ -31,6 +31,8 @@
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar salon</title>
         <%
+        String mensaje = "";
+                    String texto = "";
                     String hiddenId = "";
                     if (request.getParameter("hiddenId") == null) {
                         hiddenId = "";
@@ -43,12 +45,6 @@
                     } else {
                         id = request.getParameter("id");
                     }
-                    //  String idSalonFK = "";
-                    // if (request.getParameter("rifEmpresa") == null) {
-                    //    rif = "";
-                    // } else {
-                    //   rif = request.getParameter("rifEmpresa");
-                    // }
                     String nombre = "";
                     if (request.getParameter("nombre") == null) {
                         nombre = "";
@@ -56,7 +52,7 @@
                         nombre = request.getParameter("nombre");
                     }
         %>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/salones/salonFiltros.jsp?id=<%= id%>&nombre=<%= nombre%>">
+        
     </head>
     <body>
         <div id="pageWrap">
@@ -88,20 +84,16 @@
                             Boolean result = servicioSalon.editarSalon(salon);
 
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El salon ha sido editado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el salon ha sido editado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el salon no pudo ser editado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El salon no pudo ser editado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/salones/salonFiltros.jsp?id=<%= id%>&nombre=<%= nombre%>&mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

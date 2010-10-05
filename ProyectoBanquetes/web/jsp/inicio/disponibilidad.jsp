@@ -42,11 +42,60 @@
                 $("#commentForm").validate();
             });
         </script>
-
+        <script type="text/javascript" src="mensajeExito.js"></script>
     </head>
 
     <body>
         <div id="pageWrap">
+            <%
+                        String mensaje = request.getParameter("mensaje");
+                        if (mensaje != null) {
+                            String fechaInicio = "";
+                            if (request.getParameter("fechaInicio") == null) {
+                                fechaInicio = "";
+                            } else {
+                                fechaInicio = request.getParameter("fechaInicio");
+                            }
+                            String fechaFin = "";
+                            if (request.getParameter("fechaFin") == null) {
+                                fechaFin = "";
+                            } else {
+                                fechaFin = request.getParameter("fechaFin");
+                            }
+                            String salon = "";
+                            if (request.getParameter("salon") == null) {
+                                salon = "";
+                            } else {
+                                salon = request.getParameter("salon");
+                            }
+                            String texto = "";
+                            if (request.getParameter("texto") == null) {
+                                texto = "";
+                            } else {
+                                texto = request.getParameter("texto");
+                            }
+                            if (mensaje.equals("exito")) {
+
+            %>
+
+            <script type="text/javascript">
+                exito();
+            </script>
+            <div id="info" style="float: inherit">
+                Exito! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=<%=fechaInicio%>&fechaFin=<%= fechaFin%>&salon=<%= salon%>" class="close">Cerrar</a>
+            </div>
+            <%                            } else if (mensaje.equals("error")) {
+            %>
+            <script type="text/javascript">
+                error();
+            </script>
+            <div id="info2" style="float: inherit">
+                Error! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=<%=fechaInicio%>&fechaFin=<%= fechaFin%>&salon=<%= salon%>" class="close">Cerrar</a>
+            </div>
+            <%                            }
+                        }
+            %>
+
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
 

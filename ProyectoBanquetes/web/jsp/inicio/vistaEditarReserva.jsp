@@ -45,9 +45,11 @@
                 $("#commentForm").validate();
             });
         </script>
+        <script type="text/javascript" src="mensajeExito.js"></script>
     </head>
     <body>
         <div id="pageWrap">
+
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
                 <div id="espacio"></div>

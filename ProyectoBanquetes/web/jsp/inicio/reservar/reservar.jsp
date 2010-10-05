@@ -58,6 +58,8 @@
                 <h1 id="letra1">Reservar</h1>
                 <h1 id="letra2">Procesando...</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             IServicioEmpresa servicioEmpresa = new ServicioEmpresa();
                             IServicioSalon servicioSalon = new ServicioSalon();
                             IServicioTipoEvento servicioTipoEvento = new ServicioTipoEvento();
@@ -127,20 +129,20 @@
                                     }
                                 }
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! la reserva ha sido realizada exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
+                                mensaje = "exito";
+                                texto = "La reserva ha sido realizada exitosamente.";
                 %>
                 <script type="text/javascript">
                     window.location.href='serviciosAB/formAlimentos.jsp?idEvento=<%=result%>';
                 </script>
                 <%    } else {
+                                                mensaje = "error";
+                                                texto = "La reserva no pudo ser realizada, revise campos.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! la reserva no pudo ser realizada, revise campos.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                %>
+                <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/formReservar.jsp?idEvento=<%=result%>&mensaje=<%=mensaje%>&texto=<%=texto%>"/>
+
+                <%
                             }
                 %>
             </div>

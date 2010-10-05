@@ -30,7 +30,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Montaje</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/montajes/montajeFiltros.jsp"/>
+        
     </head>
     <body>
 
@@ -39,27 +39,26 @@
             <div id="content">
                 <h1 id="letra1">Crear Montaje</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             IServicioMontaje servicioMontaje = new ServicioMontaje();
                             Montaje montaje = new Montaje();
 
                             montaje.setTipoMontaje(request.getParameter("nombre"));
 
                             Integer result = servicioMontaje.crearMontaje(montaje);
+
                             if (result != null) {
+                                mensaje = "exito";
+                                texto = "El montaje ha sido registrado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el montaje ha sido registrado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el montaje no se pudo registrar.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El montaje no se pudo registrar.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/montajes/montajeFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

@@ -34,6 +34,8 @@
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar usuario</title>
         <%
+                    String mensaje = "";
+                    String texto = "";
                     String hiddenId = "";
                     if (request.getParameter("hiddenId") == null) {
                         hiddenId = "";
@@ -59,7 +61,7 @@
                         apellido = request.getParameter("apellido");
                     }
         %>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp?id=<%= id%>&nombre=<%= nombre%>&apellido=<%= apellido%>">
+
     </head>
     <body>
         <div id="pageWrap">
@@ -81,20 +83,16 @@
                             Boolean result = servicioUsuario.editarUsuario(usuario);
 
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El usuario ha sido editado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el usuario ha sido editado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el usuario no pudo ser editado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El usuario no pudo ser editado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/usuarioFiltros.jsp?id=<%= id%>&nombre=<%= nombre%>&apellido=<%= apellido%>&mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

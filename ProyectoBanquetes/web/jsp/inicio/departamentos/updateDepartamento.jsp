@@ -34,6 +34,8 @@
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar departamento</title>
         <%
+                    String mensaje = "";
+                    String texto = "";
                     String hiddenId = "";
                     if (request.getParameter("hiddenId") == null) {
                         hiddenId = "";
@@ -53,7 +55,7 @@
                         nombre = request.getParameter("nombre");
                     }
         %>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/departamentos/departamentoFiltros.jsp?id=<%= id%>&nombre=<%= nombre%>">
+
     </head>
     <body>
         <div id="pageWrap">
@@ -69,20 +71,16 @@
                             Boolean result = servicioDepartamento.editarDepartamento(departamento);
 
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El departamento ha sido editado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el departamento ha sido editado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el departamento no pudo ser editado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El departamento no pudo ser editado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/departamentos/departamentoFiltros.jsp?id=<%= id%>&nombre=<%= nombre%>&mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>
