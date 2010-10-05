@@ -50,9 +50,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../include/head.jsp"></jsp:include>
         <title>Editar Evento</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp">
+
     </head>
     <body>
+        <%
+                    String mensaje = "";
+                    String texto = "";
+                    java.util.Date today = new java.util.Date();
+                    java.sql.Date fecha = new java.sql.Date(today.getTime());
+        %>
         <div id="pageWrap">
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
@@ -70,6 +76,8 @@
                             Date fechaFin = util.getSqlDate(request.getParameter("fechaFinEvento"));
                             evento.setId(idEvento);
                             eventoSala.setIdEvento(Integer.valueOf(request.getParameter("idEvento")));
+
+                            Boolean ocupado = Boolean.FALSE;
 
                             String estado = null;
                             if (request.getParameter("estado") != null) {
@@ -105,6 +113,7 @@
                                     evento.setFechaFin(fechaFin);
 
                                 } else {
+                                    ocupado = Boolean.TRUE;
                                     out.print("Ya existe un evento confirmado para la fecha en el salon: " + request.getParameter(varHiddenSalon));
                                 }
                             } else {
@@ -195,33 +204,31 @@
 
                             }
 
-                            if ((result == 1) && (result2 == 1)) {
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! La reserva ha sido editada exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
+                            if (ocupado) {
+                                mensaje = "error";
+                                texto = "Ya existe un evento confirmado para la fecha uno(s) de los salones.";
                             } else {
-                                if ((result != 1) && (result2 == 1)) {
-                                    JOptionPane.showMessageDialog(null,
-                                            "Error! La informacion del evento no pudo ser editada, revise campos.",
-                                            "Error",
-                                            JOptionPane.ERROR_MESSAGE);
-                                }
-                                if ((result == 1) && (result2 != 1)) {
-                                    JOptionPane.showMessageDialog(null,
-                                            "Error! La informacion del salon no pudo ser editada, revise campos.",
-                                            "Error",
-                                            JOptionPane.ERROR_MESSAGE);
-                                }
-                                if ((result != 1) && (result2 != 1)) {
-                                    JOptionPane.showMessageDialog(null,
-                                            "Error! La reserva no pudo ser editada, revise campos.",
-                                            "Error",
-                                            JOptionPane.ERROR_MESSAGE);
+                                if ((result == 1) && (result2 == 1)) {
+                                    mensaje = "exito";
+                                    texto = "La reserva ha sido editada exitosamente.";
+                                } else {
+                                    if ((result != 1) && (result2 == 1)) {
+                                        mensaje = "error";
+                                        texto = "La informacion del evento no pudo ser editada, revise campos.";
+                                    }
+                                    if ((result == 1) && (result2 != 1)) {
+                                        mensaje = "error";
+                                        texto = "La informacion del salon no pudo ser editada, revise campos.";
+                                    }
+                                    if ((result != 1) && (result2 != 1)) {
+                                        mensaje = "error";
+                                        texto = "La reserva no pudo ser editada, revise campos.";
+                                    }
                                 }
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp?fechaInicio=<%= fecha%>&fechaFin=<%= fecha%>&salon=<%= request.getParameter("hiddenSalon")%>&mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>
     </body>

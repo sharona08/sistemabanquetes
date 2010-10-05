@@ -58,7 +58,7 @@
                 }
             }
         </script>
-
+        <script type="text/javascript" src="mensajeExito.js"></script>
         <title>Eliminar salon de reserva</title>
     </head>
     <body>
@@ -80,10 +80,42 @@
                     List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);
         %>
         <div id="pageWrap">
+            <%
+                        String mensaje = request.getParameter("mensaje");
+                        if (mensaje != null) {
+
+                            String texto = "";
+                            if (request.getParameter("texto") == null) {
+                                texto = "";
+                            } else {
+                                texto = request.getParameter("texto");
+                            }
+                            if (mensaje.equals("exito")) {
+
+            %>
+
+            <script type="text/javascript">
+                exito();
+            </script>
+            <div id="info" style="float: inherit">
+                Exito! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/otroSalon.jsp?idEvento=<%=request.getParameter("idEvento")%>" class="close">Cerrar</a>
+            </div>
+            <%                            } else if (mensaje.equals("error")) {
+            %>
+            <script type="text/javascript">
+                error();
+            </script>
+            <div id="info2" style="float: inherit">
+                Error! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/otroSalon.jsp?idEvento=<%=request.getParameter("idEvento")%>" class="close">Cerrar</a>
+            </div>
+            <%                            }
+                        }
+            %>
+
             <jsp:include page="../include/menu.jsp"></jsp:include>
             <div id="content">
                 <div id="disponibilidad" style="margin-left: 10px;">
-                    <h1 id="letra1">Eliminar salon de la reserva #: <%=idEvento%></h1>
+                    <h1 id="letra1">Eliminar salon de la reserva # <%=idEvento%></h1>
 
                     <!--                    <form action="eliminarEventoSala.jsp" method="get" name="form">-->
                     <form action="" method="get" name="form">

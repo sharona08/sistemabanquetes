@@ -30,7 +30,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Salon</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/salones/salonFiltros.jsp"/>
+
     </head>
     <body>
 
@@ -39,6 +39,8 @@
             <div id="content">
                 <h1 id="letra1">Crear Salon</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             IServicioSalon servicioSalon = new ServicioSalon();
                             Salon salon = new Salon();
 
@@ -57,21 +59,18 @@
                             }
 
                             Integer result = servicioSalon.crearSalon(salon);
+
                             if (result != null) {
+                                mensaje = "exito";
+                                texto = "El salon ha sido registrado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el salon ha sido registrado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el salon no se pudo registrar.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El salon no se pudo registrar.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/salones/salonFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

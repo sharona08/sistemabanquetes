@@ -31,6 +31,8 @@
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar empresa</title>
         <%
+        String mensaje = "";
+                    String texto = "";
                     String hiddenRif = "";
                     if (request.getParameter("hiddenRif") == null) {
                         hiddenRif = "";
@@ -50,8 +52,7 @@
                         nombre = request.getParameter("nombre");
                     }
         %>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp?rif=<%= rif%>&nombre=<%= nombre%>">
-    </head>
+        </head>
     <body>
         <div id="pageWrap">
             <jsp:include page="../../include/menu.jsp"></jsp:include>
@@ -77,21 +78,18 @@
                             empresa.setHabilitado(habilitado);
 
                             Boolean result = servicioEmpresa.editarEmpresa(empresa);
+                            
                             if (result) {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! la empresa ha sido editada exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
+                                mensaje = "exito";
+                                texto = "La empresa ha sido editada exitosamente.";
 
                             } else {
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! la empresa no pudo ser editada.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "La empresa no pudo ser editada.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/empresas/empresaFiltros.jsp?rif=<%= rif%>&nombre=<%= nombre%>&mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

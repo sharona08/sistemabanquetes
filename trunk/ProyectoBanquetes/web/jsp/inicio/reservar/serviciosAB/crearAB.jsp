@@ -32,7 +32,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Alimentos y Bebidas</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%= request.getParameter("idEvento")%>"/>
+
     </head>
     <body>
 
@@ -41,6 +41,8 @@
             <div id="content">
                 <h1 id="letra1">Crear Alimentos y Bebidas</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             IServicioReserva servicioReserva = new ServicioReserva();
                             ServicioServicioEvento servicioEvento = new ServicioServicioEvento();
                             UtilMethods util = new UtilMethods();
@@ -65,21 +67,18 @@
                             servicioEvento.setNuevaDescripcion(request.getParameter("descripcion"));
 
                             Boolean result = servicioReserva.crearServicioEvento(servicioEvento);
+
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El servicio ha sido registrado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el servicio ha sido registrado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el servicio no se pudo registrar.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El servicio no se pudo registrar.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%= request.getParameter("idEvento")%>&mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../../include/footer.jsp"></jsp:include>
         </div>
     </body>

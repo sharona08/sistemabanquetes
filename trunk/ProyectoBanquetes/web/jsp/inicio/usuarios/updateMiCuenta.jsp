@@ -34,6 +34,8 @@
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar usuario</title>
         <%
+                    String mensaje = "";
+                    String texto = "";
                     String id = "";
                     if (request.getParameter("id") == null) {
                         id = "";
@@ -53,7 +55,7 @@
                         apellido = request.getParameter("apellido");
                     }
         %>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/detalleMiCuenta.jsp">
+
     </head>
     <body>
         <div id="pageWrap">
@@ -75,20 +77,16 @@
                             Boolean result = servicioUsuario.editarUsuario(usuario);
 
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El usuario ha sido editado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el usuario ha sido editado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el usuario no pudo ser editado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El usuario no pudo ser editado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/detalleMiCuenta.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

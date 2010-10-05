@@ -33,7 +33,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar Alimentos y Bebidas</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%= request.getParameter("idEvento")%>"/>
+
     </head>
     <body>
 
@@ -42,10 +42,12 @@
             <div id="content">
                 <h1 id="letra1">Editar Alimentos y Bebidas</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             IServicioReserva servicioReserva = new ServicioReserva();
                             ServicioServicioEvento servicioEvento = new ServicioServicioEvento();
                             UtilMethods util = new UtilMethods();
-                            
+
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
                             Integer idSalon = Integer.valueOf(request.getParameter("idSalon"));
                             Integer idServicio = Integer.valueOf(request.getParameter("idServicio"));
@@ -81,21 +83,18 @@
                             servicioEvento.setNuevaDescripcion(request.getParameter("descripcion"));
 
                             Boolean result = servicioReserva.editarServicioEvento(servicioEvento);
+
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El servicio ha sido editado exitosamente.";
 
-                                     JOptionPane.showMessageDialog(null,
-                                        "Exito! el servicio ha sido editado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el servicio no se pudo editado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El servicio no pudo ser editado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%= request.getParameter("idEvento")%>&mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../../include/footer.jsp"></jsp:include>
         </div>
     </body>

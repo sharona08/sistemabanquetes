@@ -53,7 +53,7 @@
 
         <script type="text/javascript" src="../../js/jquery.validate.js"></script>
         <style type="text/css">
-/*            label { width: 10em; float: left; }*/
+            /*            label { width: 10em; float: left; }*/
             label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
             p { clear: both; }
             .submit { margin-left: 12em; }
@@ -73,6 +73,7 @@
         </script>
 
         <script type="text/javascript" src="selectContacto.js"></script>
+        <script type="text/javascript" src="../mensajeExito.js"></script>
 
         <title>Reservar</title>
     </head>
@@ -93,7 +94,7 @@
 
                 IServicioSalon iServicioSalon = new ServicioSalon();
                 Salon salon = iServicioSalon.getSalonNombre(hiddenSalon);
-              //  List<Salon> salones = iServicioSalon.listarComboBoxReservar(evento.getFechaInicio(), evento.getFechaFin());
+                //  List<Salon> salones = iServicioSalon.listarComboBoxReservar(evento.getFechaInicio(), evento.getFechaFin());
 
                 IServicioMontaje iServicioMontaje = new ServicioMontaje();
                 List<Montaje> montajes = iServicioMontaje.listarMontajes(null, null);
@@ -112,6 +113,44 @@
 
     <body>
         <div id="pageWrap">
+            <%
+                        String mensaje = request.getParameter("mensaje");
+                        if (mensaje != null) {
+                            String idEvento = "";
+                            if (request.getParameter("idEvento") == null) {
+                                idEvento = "";
+                            } else {
+                                idEvento = request.getParameter("idEvento");
+                            }
+
+                            String texto = "";
+                            if (request.getParameter("texto") == null) {
+                                texto = "";
+                            } else {
+                                texto = request.getParameter("texto");
+                            }
+                            if (mensaje.equals("exito")) {
+
+            %>
+
+            <script type="text/javascript">
+                exito();
+            </script>
+            <div id="info" style="float: inherit">
+                Exito! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/reservar/serviciosAB/formAlimentos.jsp?idEvento=<%=idEvento%>" class="close">Cerrar</a>
+            </div>
+            <%                            } else if (mensaje.equals("error")) {
+            %>
+            <script type="text/javascript">
+                error();
+            </script>
+            <div id="info2" style="float: inherit">
+                Error! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/reservar/formReservar.jsp" class="close">Cerrar</a>
+            </div>
+            <%                            }
+                        }
+            %>
+
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">CREAR RESERVA</h1>
@@ -305,12 +344,12 @@
                                         <% }%>
                                     </select>
                                 </td>
-<!--                                <td>
-                                    <div id="boton" class="demo" style="float: left">
-                                                                                <input type="submit" name="nuevoSalon" value="+" style="width: 35px; height: 25px;" align="left" onclick=""/>
-                                        <input type="image" src="../add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
-                                    </div>
-                                </td>-->
+                                <!--                                <td>
+                                                                    <div id="boton" class="demo" style="float: left">
+                                                                                                                <input type="submit" name="nuevoSalon" value="+" style="width: 35px; height: 25px;" align="left" onclick=""/>
+                                                                        <input type="image" src="../add_24.png" name="nuevo" value="" style="width: 20px; height: 20px; margin-top: 1px; margin-bottom: 1px;" onclick=""/>
+                                                                    </div>
+                                                                </td>-->
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>

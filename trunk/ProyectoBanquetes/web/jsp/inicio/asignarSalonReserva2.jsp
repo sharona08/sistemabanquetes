@@ -36,7 +36,7 @@
         <title>Agregar Salon a Evento</title>
         <jsp:include page="../include/head.jsp"></jsp:include>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp"/>
+<!--        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/disponibilidad.jsp"/>-->
     </head>
     <body>
 
@@ -45,6 +45,8 @@
             <div id="content">
                 <h1 id="letra1">Agregar salon a reserva</h1>
                 <%
+                String mensaje = "";
+                            String texto = "";
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
 
                             IServicioEventoSala servicioEventoSala = new ServicioEventoSala();
@@ -98,19 +100,15 @@
                                     // ASIGNAR COMO SALON DEL EVENTO LOS 3, ES DECIR
                                 }
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! El salon ha sido asignado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
+                             mensaje = "exito";
+                                texto = "El salon ha sido asignado exitosamente.";
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! El salon no pudo ser asignado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El salon no pudo ser asignado.";
                             }
                 %>
             </div>
+                        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/otroSalon2.jsp?idEvento=<%=request.getParameter("idEvento")%>&mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../include/footer.jsp"></jsp:include>
         </div>
     </body>

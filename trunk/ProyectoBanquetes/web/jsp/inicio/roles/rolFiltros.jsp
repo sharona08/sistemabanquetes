@@ -32,10 +32,54 @@
                 $("a", ".demo").click(function() { return false; });
             });
         </script>
+        <script type="text/javascript" src="../mensajeExito.js"></script>
         <title>Roles</title>
     </head>
     <body>
         <div id="pageWrap">
+            <%
+                        String mensaje = request.getParameter("mensaje");
+                        if (mensaje != null) {
+                            String id = "";
+                            if (request.getParameter("id") == null) {
+                                id = "";
+                            } else {
+                                id = request.getParameter("id");
+                            }
+                            String nombre = "";
+                            if (request.getParameter("nombre") == null) {
+                                nombre = "";
+                            } else {
+                                nombre = request.getParameter("nombre");
+                            }
+                            String texto = "";
+                            if (request.getParameter("texto") == null) {
+                                texto = "";
+                            } else {
+                                texto = request.getParameter("texto");
+                            }
+                            if (mensaje.equals("exito")) {
+
+            %>
+
+            <script type="text/javascript">
+                exito();
+            </script>
+            <div id="info" style="float: inherit">
+                Exito! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp?id=<%=id%>&nombre=<%= nombre%>" class="close">Cerrar</a>
+            </div>
+            <%                            } else if (mensaje.equals("error")) {
+            %>
+            <script type="text/javascript">
+                error();
+            </script>
+            <div id="info2" style="float: inherit">
+                Error! <%=texto%> <a href="/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp?id=<%=id%>&nombre=<%= nombre%>" class="close">Cerrar</a>
+            </div>
+            <%                            }
+                        }
+            %>
+
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <%

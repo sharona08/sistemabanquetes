@@ -21,6 +21,42 @@ body{
     height: 100%;
 }
 
+#info{
+    border: 1px solid;
+    margin: 0px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    position:relative;
+    color: #606048;
+    background-color: #B1D827;
+    background-image: url('exito.png');
+}
+
+#info2{
+    border: 1px solid;
+    margin: 0px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    position:relative;
+    color: #A40802;
+    background-color: #F06048;
+    background-image: url('error.png');
+}
+
+#info3{
+    border: 1px solid;
+    margin: 0px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    position:relative;
+    color: #A45B0B;
+    background-color: #FFFC7F;
+    background-image: url('info.png');
+}
+
 #header {
     font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
     width: 100%
@@ -63,8 +99,8 @@ body{
     width: 98%;
     height: auto;
     min-height: 73.5%;
-/*    width: expression(document.body.clientWidth > 1000 ? “1000px” : “94%”);*/
-/*    max-width: 1000px;*/
+    /*    width: expression(document.body.clientWidth > 1000 ? “1000px” : “94%”);*/
+    /*    max-width: 1000px;*/
     margin: 0 auto;
 }
 

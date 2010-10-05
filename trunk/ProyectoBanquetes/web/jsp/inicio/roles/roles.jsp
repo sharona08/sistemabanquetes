@@ -3,7 +3,26 @@
     Created on : Sep 2, 2010, 1:46:38 PM
     Author     : maya
 --%>
+<%@page import="com.banquetes.dominio.Usuario"%>
+<%@page import="com.banquetes.servicios.interfaces.IServicioUsuario"%>
+<%@page import="com.banquetes.servicios.impl.ServicioUsuario"%>
+<%@ page session="true" %>
 
+<%
+            Usuario usuario = new Usuario();
+            String nombreU = "";
+            HttpSession sesionOk = request.getSession();
+            if (sesionOk.getAttribute("username") == null) {
+%>
+
+<meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/login/login.jsp?error=Coloca tus datos">
+
+<%            } else {
+                nombreU = (String) sesionOk.getAttribute("username");
+                IServicioUsuario servicioUsuario = new ServicioUsuario();
+                usuario = servicioUsuario.getUsuario(nombreU);
+            }
+%>
 <%@page import="com.banquetes.dominio.Rol"%>
 <%@page import="com.banquetes.servicios.impl.ServicioRol"%>
 <%@page import="com.banquetes.servicios.interfaces.IServicioRol"%>
@@ -78,7 +97,16 @@
                     <div id="boton" class="demo">
                         <input type="hidden" name="id" value="<%= id%>">
                         <input type="hidden" name="nombre" value="<%= nombre%>">
+                        <%
+                                                if (r.getId().equals(new Integer(1))) {
+                        %>
+                        <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="includeDivMontaje()" disabled/>
+                        <%                                            } else {
+                                                    %>
                         <input type="submit" name="editar" value="Editar" style="width: 65px; margin-top: 1px; margin-bottom: 1px;" onclick="includeDivMontaje()"/>
+                        <%
+                        }
+                        %>
                     </div>
                 </td>
             </tr>

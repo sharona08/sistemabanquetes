@@ -34,6 +34,8 @@
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar contraseña</title>
         <%
+                    String mensaje = "";
+                    String texto = "";
                     String id = "";
                     if (request.getParameter("id") == null) {
                         id = "";
@@ -64,7 +66,7 @@
 
 
         %>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/detalleMiCuenta.jsp">
+
     </head>
     <body>
         <div id="pageWrap">
@@ -93,20 +95,16 @@
                             }
 
                             if (result) {
+                                mensaje = "exito";
+                                texto = "La contrasena ha sido editada exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! la contraseña ha sido editada exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! la contraseña no pudo ser editada.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "La contrasena no pudo ser editada.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/usuarios/detalleMiContrasena.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

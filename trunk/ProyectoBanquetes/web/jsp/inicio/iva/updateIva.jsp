@@ -33,7 +33,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar IVA</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/iva/detalleIva.jsp">
+        
     </head>
     <body>
         <div id="pageWrap">
@@ -41,6 +41,8 @@
             <div id="content">
                 <h1 id="letra1">IVA</h1>
                 <%
+                String mensaje = "";
+                    String texto = "";
                             IServicioIva servicioIva = new ServicioIva();
                             Iva iva = new Iva();
                             Integer id = new Integer(1);
@@ -51,21 +53,16 @@
                             Boolean result = servicioIva.editarIva(iva);
 
                             if (result) {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el IVA ha sido editado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
+                                mensaje = "exito";
+                                texto = "El IVA ha sido editado exitosamente.";
 
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el IVA no pudo ser editado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El IVA no pudo ser editado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/iva/detalleIva.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

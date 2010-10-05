@@ -34,7 +34,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Crear Contacto</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/contactos/contactoFiltros.jsp"/>
+        
     </head>
     <body>
 
@@ -43,6 +43,8 @@
             <div id="content">
                 <h1 id="letra1">Crear Contacto</h1>
                 <%
+                String mensaje = "";
+                            String texto = "";
                             IServicioEmpresa servicioEmpresa = new ServicioEmpresa();
 
                             IServicioContacto servicioContacto = new ServicioContacto();
@@ -59,21 +61,18 @@
                             contacto.setRifEmpresa(empresa.getRif());
 
                             Integer result = servicioContacto.crearContacto(contacto);
+
                             if (result != null) {
+                                mensaje = "exito";
+                                texto = "El contacto ha sido registrado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el contacto ha sido registrado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el contacto no se pudo registrar.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El contacto no se pudo registrar.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/contactos/contactoFiltros.jsp?mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>

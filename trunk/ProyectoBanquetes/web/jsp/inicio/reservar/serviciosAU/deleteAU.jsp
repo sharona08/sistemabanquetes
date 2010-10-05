@@ -33,7 +33,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Eliminar Audiovisuales</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAU/formAudiovisuales.jsp?idEvento=<%= request.getParameter("idEvento")%>"/>
+
     </head>
     <body>
 
@@ -42,6 +42,8 @@
             <div id="content">
                 <h1 id="letra1">Eliminar Audiovisuales</h1>
                 <%
+                            String mensaje = "";
+                            String texto = "";
                             UtilMethods util = new UtilMethods();
 
                             IServicioReserva servicioReserva = new ServicioReserva();
@@ -53,20 +55,16 @@
 
                             Boolean result = servicioReserva.eliminarServicioEvento(idServicio, idEvento, idSalon, fechaInicio);
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El servicio ha sido eliminado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el servicio ha sido eliminado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el servicio ha sido eliminado exitosamente.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El servicio no pudo ser eliminado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reservar/serviciosAU/formAudiovisuales.jsp?idEvento=<%= request.getParameter("idEvento")%>&mensaje=<%=mensaje%>&texto=<%=texto%>"/>
             <jsp:include page="../../../include/footer.jsp"></jsp:include>
         </div>
     </body>

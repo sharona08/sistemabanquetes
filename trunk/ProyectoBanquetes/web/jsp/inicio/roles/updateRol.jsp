@@ -32,6 +32,8 @@
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Editar rol</title>
         <%
+        String mensaje = "";
+                    String texto = "";
                     String hiddenId = "";
                     if (request.getParameter("hiddenId") == null) {
                         hiddenId = "";
@@ -51,7 +53,7 @@
                         nombre = request.getParameter("nombre");
                     }
         %>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp?id=<%= id%>&nombre=<%= nombre%>">
+        
     </head>
     <body>
         <div id="pageWrap">
@@ -67,20 +69,16 @@
                             Boolean result = servicioRol.editarRol(rol);
 
                             if (result) {
+                                mensaje = "exito";
+                                texto = "El rol ha sido editado exitosamente.";
 
-                                JOptionPane.showMessageDialog(null,
-                                        "Exito! el rol ha sido editado exitosamente.",
-                                        "Exito",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             } else {
-
-                                JOptionPane.showMessageDialog(null,
-                                        "Error! el rol no pudo ser editado.",
-                                        "Error",
-                                        JOptionPane.ERROR_MESSAGE);
+                                mensaje = "error";
+                                texto = "El rol no pudo ser editado.";
                             }
                 %>
             </div>
+            <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/roles/rolFiltros.jsp?id=<%= id%>&nombre=<%= nombre%>&mensaje=<%=mensaje%>&texto=<%=texto%>">
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
     </body>
