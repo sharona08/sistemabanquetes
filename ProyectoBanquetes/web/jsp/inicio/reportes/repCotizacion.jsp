@@ -51,7 +51,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../headInicio.jsp"></jsp:include>
         <title>Reservar</title>
-        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reportes/formCotizacion.jsp"/>
+<!--        <meta HTTP-EQUIV="REFRESH" content="0; url=/ProyectoBanquetes/jsp/inicio/reportes/formCotizacion.jsp"/>-->
     </head>
     <body>
 
@@ -59,7 +59,8 @@
             <jsp:include page="../../include/menu.jsp"></jsp:include>
             <div id="content">
                 <h1 id="letra1">Cotizacion</h1>
-                <h1 id="letra2">Cargando...</h1>
+                <div id="espacio"></div>
+                <div id="espacio"></div>
                 <%
                             Integer idEvento = Integer.valueOf(request.getParameter("idEvento"));
                             String moneda = request.getParameter("moneda");
@@ -98,8 +99,6 @@
                                 totalIVA = servicioReserva.ivaReserva(idEvento) / tasaCambio;
                                 totalServicio = servicioReserva.diezPorciento(idEvento) / tasaCambio;
                                 subtotal = servicioReserva.subtotalReserva(idEvento) / tasaCambio;
-
-
 
 
                             } else if (moneda.equals("B")) {
@@ -152,18 +151,21 @@
                                 masterParams.put("tasaCambio", tasaCambio);
 
                                 jasperPrint = JasperFillManager.fillReport(masterReport, masterParams, conn);
-                                JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/cotizacion" + idEvento + "PDF.pdf"));
-                                File file = new File(application.getRealPath("jsp/inicio/reportes/PDF/cotizacion" + idEvento + "PDF.pdf"));
+                                JasperExportManager.exportReportToPdfFile(jasperPrint, application.getRealPath("jsp/inicio/reportes/PDF/cotizacion" + idEvento + ".pdf"));
+                                // File file = new File(application.getRealPath("jsp/inicio/reportes/PDF/cotizacion" + idEvento + "PDF.pdf"));
 
-                                Desktop.getDesktop().open(file);
+                                JasperExportManager.exportReportToPdfFile(jasperPrint, "/ProyectoBanquetes/jsp/inicio/reportes/PDF/cotizacion" + idEvento + ".pdf");
 
-                            } catch (IOException ex) {
-                                Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (JRException e) {
                                 e.printStackTrace();
                             }
-
+                            String nombrePDF = "cotizacion" + idEvento + ".pdf";
                 %>
+                <div style="width: 100%;" align="center">
+                    <iframe src="../reportes/PDF/<%=nombrePDF%>" style="width:800px; height:1000px;" frameborder="0"></iframe>
+                </div>
+
+                <div id="espacio"></div>
             </div>
             <jsp:include page="../../include/footer.jsp"></jsp:include>
         </div>
