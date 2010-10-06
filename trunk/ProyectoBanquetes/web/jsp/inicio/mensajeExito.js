@@ -8,8 +8,8 @@ function exito(){
                 left:"-5000px"
             });
         });
-        $("#info").fadeOut(800).fadeIn(800).fadeOut(400).fadeIn(400)
-        .fadeOut(400).fadeIn(400);
+        $("#info").fadeOut(300).fadeIn(300)
+        .fadeOut(300).fadeIn(300);
     });
 }
 
@@ -22,10 +22,9 @@ function error(){
                 left:"-5000px"
             });
         });
-        $("#info2").fadeOut(800).fadeIn(800).fadeOut(400).fadeIn(400)
-        .fadeOut(400).fadeIn(400);
+        $("#info2").fadeOut(300).fadeIn(300)
+        .fadeOut(300).fadeIn(300);
     });
-
 }
 
 function advertencia(){
@@ -37,7 +36,7 @@ function advertencia(){
                 left:"-5000px"
             });
         });
-        $("#info3").fadeOut(800).fadeIn(800).fadeOut(400).fadeIn(400)
-        .fadeOut(400).fadeIn(400);
+        $("#info3").fadeOut(300).fadeIn(300)
+        .fadeOut(300).fadeIn(300);
     });
 }
