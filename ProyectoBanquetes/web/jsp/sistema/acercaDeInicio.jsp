@@ -31,7 +31,7 @@
                 <div id="disponibilidad" style="margin-left: 40px; margin-right: 90px">
                     <h1 id="letra1">Acerca del Sistema</h1>
                     <div id="espacio"></div>
-                    Este sistema fue diseñado y desarrollado por <label style="font-weight: bold">María Alejandra Uribe | </label>  <label style="font-weight: bold; color: #115599">contacto: mariale.uribe@gmail.com</label>
+                    Este sistema fue diseñado y desarrollado por <label style="font-weight: bold">María Alejandra Uribe Martelo | </label>  <label style="font-weight: bold; color: #115599">contacto: mariale.uribe@gmail.com</label>
                     <div style="height: 20px"></div>
                     
                     <div style="margin-bottom: 5px">El mismo tiene como principal objetivo la gestión de reserva de eventos.</div>
